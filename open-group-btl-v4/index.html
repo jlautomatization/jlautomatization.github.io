@@ -1,0 +1,968 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#131F27">
+<title>Propuesta · Open Group BTL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap">
+<style id="jla-clave-css">
+  #jla-clave{position:fixed;inset:0;z-index:99999;background:#131F27;display:flex;align-items:center;justify-content:center;font-family:Inter,system-ui,sans-serif;color:#fff}
+  #jla-clave form{background:#1F2E3A;border:1px solid #2A3F4D;border-radius:16px;padding:32px 28px;width:min(92vw,380px);text-align:center;box-shadow:0 20px 60px rgba(0,0,0,.5)}
+  #jla-clave h1{font-size:20px;margin:0 0 6px;font-weight:800}
+  #jla-clave p{margin:0 0 18px;color:#C7D0D8;font-size:14px}
+  #jla-clave input{width:100%;box-sizing:border-box;font-size:22px;letter-spacing:4px;text-align:center;padding:12px;border-radius:10px;border:1px solid #2A3F4D;background:#131F27;color:#fff;outline:none}
+  #jla-clave input:focus{border-color:#B9E200}
+  #jla-clave button{margin-top:14px;width:100%;padding:12px;border:0;border-radius:10px;background:#B9E200;color:#16210A;font-weight:800;font-size:16px;cursor:pointer}
+  #jla-clave .err{color:#ffb4a8;font-size:13px;min-height:18px;margin-top:10px}
+  body.jla-bloqueado>*:not(#jla-clave){visibility:hidden}
+</style>
+<script>
+(function(){
+  var H='6dd52c52cd92740caf4364507151faa40ca521328266e0d55c42dfc4362a8f81', K='jla_acceso_ogbtl';
+  function sha(t){return crypto.subtle.digest('SHA-256',new TextEncoder().encode(t)).then(function(b){return Array.from(new Uint8Array(b)).map(function(x){return x.toString(16).padStart(2,'0')}).join('')});}
+  function abierto(){try{return localStorage.getItem(K)===H||sessionStorage.getItem(K)===H}catch(e){return false}}
+  function pintar(){
+    if(abierto()) return;
+    document.body.classList.add('jla-bloqueado');
+    var d=document.createElement('div'); d.id='jla-clave';
+    d.innerHTML='<form><h1>Propuesta privada · Open Group BTL</h1><p>Escriba la clave que le dio Jose para entrar.</p><input type="password" autocomplete="off" inputmode="text" aria-label="Clave"><button type="submit">Entrar</button><div class="err"></div></form>';
+    document.body.appendChild(d);
+    var f=d.querySelector('form'), i=d.querySelector('input'), e=d.querySelector('.err');
+    i.focus();
+    f.addEventListener('submit',function(ev){ev.preventDefault();
+      if(!window.crypto||!crypto.subtle){e.textContent='Abra el enlace con https:// para entrar.';return;}
+      sha(i.value.trim().toLowerCase()).then(function(h){
+        if(h===H){try{localStorage.setItem(K,H)}catch(x){try{sessionStorage.setItem(K,H)}catch(y){}} d.remove(); document.body.classList.remove('jla-bloqueado');}
+        else{e.textContent='Clave incorrecta.'; i.value=''; i.focus();}
+      });
+    });
+  }
+  if(document.body) pintar(); else document.addEventListener('DOMContentLoaded',pintar);
+})();
+</script>
+<style>
+  :root{
+    --navy-900:#131F27; --navy-800:#1F2E3A; --navy-700:#2A3F4D;
+    --verde:#B9E200; --verde-ink:#16210A; --verde-deep:#5C7A00; --verde-bg:#F4FBD6;
+    --papel:#F5F5F7; --blanco:#fff; --linea:#E3E7EB; --texto:#1F2E3A; --texto-soft:#4A5A66; --texto-inv:#C7D0D8;
+    --ok:#2E6B1F; --faltante:#C45A1C; --faltante-bg:#FFF1EA; --faltante-navy:#FF9E7A;
+    --pendiente:#8A4A0A; --pendiente-bg:#FFF4E5; --pendiente-borde:#E0A15A;
+    --sombra-sm:0 1px 2px rgba(19,31,39,.06); --sombra-lg:0 30px 70px -30px rgba(19,31,39,.55);
+    --r8:8px; --r12:12px; --r20:20px;
+    --tabs:56px; --barra:0px;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
+  html,body{margin:0;background:var(--papel);color:var(--texto);font-family:Inter,system-ui,"Segoe UI",sans-serif;font-size:16px;line-height:1.5}
+  [hidden]{display:none!important}
+  h1,h2,h3,h4{margin:0 0 .5rem;font-weight:800;letter-spacing:-.01em;text-wrap:balance;line-height:1.1}
+  p{margin:0 0 .9rem}
+  a{color:var(--verde-deep)}
+  .wrap{max-width:1080px;margin:0 auto;padding-inline:16px}
+  @media (min-width:900px){.wrap{padding-inline:24px}}
+  .eyebrow{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.14em;text-transform:uppercase;color:var(--verde)}
+  .doc .eyebrow{color:var(--verde-deep)}
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;background:var(--verde);color:var(--verde-ink);border:1.5px solid var(--verde);border-radius:var(--r12);padding:10px 16px;font:700 15px/1.2 Inter,sans-serif;cursor:pointer;text-decoration:none;min-height:44px;transition:filter .2s}
+  .btn:hover{filter:brightness(1.05)}
+  .btn.ghost{background:transparent;color:#fff;border-color:rgba(255,255,255,.45)}
+  .btn.ghost.oscuro{color:var(--navy-800);border-color:var(--navy-800)}
+  .btn:focus-visible,button:focus-visible,a:focus-visible,input:focus-visible,summary:focus-visible{outline:3px solid var(--verde);outline-offset:2px}
+  .tab-num{font-variant-numeric:tabular-nums}
+  .eslabon{display:inline-block;width:18px;height:10px;vertical-align:middle;flex:none}
+
+  /* ---------- zona navy: header + historia + hero ---------- */
+  .navy{background:linear-gradient(160deg,var(--navy-900),var(--navy-800) 60%,var(--navy-700));color:#fff}
+  header.top{padding:12px 0}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .brand{display:flex;align-items:center;gap:10px;min-width:0}
+  .brand img{height:40px;width:auto;background:#fff;border-radius:var(--r8);padding:4px 8px;flex:none}
+  .brand-text{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+  .brand-text b{font-size:14px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .brand-text span{font-size:11px;color:var(--texto-inv);letter-spacing:.04em}
+  header.top .btn{flex:none;padding:10px 14px}
+
+  .historia{min-height:calc(100dvh - 64px);display:flex;flex-direction:column;justify-content:center;padding:24px 0 0}
+  .historia .paso{display:none;animation:subir .28s cubic-bezier(.2,.8,.2,1)}
+  .historia .paso.on{display:block}
+  .historia .idx{color:var(--texto-inv);font-size:11px;letter-spacing:.14em;margin-left:8px}
+  .historia h2{font-size:30px;line-height:1.04;max-width:16ch;margin:10px 0 14px;color:#fff}
+  .historia p{font-size:16px;color:var(--texto-inv);max-width:60ch;margin:0 0 12px}
+  .historia p b{color:#fff}
+  .historia ul{margin:0 0 12px;padding-left:20px;color:var(--texto-inv);max-width:60ch;font-size:16px}
+  .historia li{margin:6px 0}
+  .historia li b{color:#fff}
+  @media (min-width:900px){.historia{padding:48px 0 0}.historia h2{font-size:48px}.historia p,.historia ul{font-size:17px}.paso-2col{display:grid;grid-template-columns:1.1fr 1fr;gap:32px;align-items:center}}
+  .cadena{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;gap:6px;align-items:center;margin:14px 0 8px;max-width:640px}
+  .cadena .dato{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r12);padding:10px 8px;text-align:center;min-width:0}
+  .cadena .dato b{display:block;font-size:22px;font-weight:800;color:var(--verde);line-height:1.1;font-variant-numeric:tabular-nums}
+  .cadena .dato.mal b{color:var(--faltante-navy)}
+  .cadena .dato span{display:block;font-size:11px;color:var(--texto-inv);text-transform:uppercase;letter-spacing:.05em;margin-top:3px}
+  .cadena .dato small{display:block;font-size:11px;color:var(--faltante-navy);margin-top:2px}
+  .cadena .eslabon{color:rgba(255,255,255,.55)}
+  @media (min-width:900px){.cadena .dato b{font-size:30px}.cadena .dato span{font-size:12px}}
+  .total-cadena{font-weight:700;color:#fff;max-width:60ch;font-size:15px}
+  .cita{border-left:4px solid var(--verde);padding:6px 16px;margin:12px 0;font-style:italic;color:#fff;font-size:17px;max-width:60ch}
+  .cita small{display:block;font-style:normal;color:var(--texto-inv);font-size:12px;margin-top:4px}
+  .honesto{border:1.5px dashed var(--pendiente-borde);background:rgba(224,161,90,.12);color:#FFE2C2;border-radius:var(--r12);padding:12px 16px;max-width:640px;font-size:14px;margin-top:8px}
+  .honesto b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px;color:#FFD199}
+  .campo{display:grid;gap:6px;max-width:520px;margin-top:10px;background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r12);padding:12px 14px}
+  .campo label{font-weight:600;color:#fff;font-size:15px}
+  .campo small{color:var(--texto-inv);font-size:12.5px}
+  .campo .fila{display:flex;gap:8px;align-items:center;flex-wrap:wrap}
+  .campo input{font:600 16px Inter,sans-serif;padding:10px 12px;border-radius:var(--r8);border:1px solid rgba(255,255,255,.3);background:var(--navy-900);color:#fff;font-variant-numeric:tabular-nums;width:200px;max-width:100%}
+  .campo input:focus{border-color:var(--verde);outline:none}
+  .campo .eco{color:var(--verde);font-weight:600;font-size:13.5px;min-height:1.2em}
+  .datos{display:grid;grid-template-columns:repeat(3,1fr);gap:8px;margin:12px 0;max-width:520px}
+  .datos .dato{background:rgba(255,255,255,.06);border:1px solid rgba(255,255,255,.14);border-radius:var(--r12);padding:10px;text-align:center}
+  .datos .dato b{display:block;font-size:22px;font-weight:800;color:var(--verde);font-variant-numeric:tabular-nums}
+  .datos .dato span{font-size:11px;color:var(--texto-inv);text-transform:uppercase;letter-spacing:.05em}
+  .mini-video{max-width:640px;margin:10px 0 12px;border-radius:var(--r12);overflow:hidden;border:1px solid rgba(255,255,255,.16);background:#000}
+  .mini-video video{display:block;width:100%;aspect-ratio:16/9;background:#000}
+  .mini-video figcaption{font-size:12.5px;color:var(--texto-inv);padding:8px 12px;background:rgba(255,255,255,.05)}
+  .historia .pie{position:sticky;bottom:0;margin-top:20px;padding:12px 0 calc(12px + env(safe-area-inset-bottom));background:linear-gradient(to top,rgba(19,31,39,.98) 70%,rgba(19,31,39,0));display:flex;align-items:center;gap:10px;flex-wrap:wrap}
+  .puntos{display:flex;gap:6px;margin-right:auto}
+  .puntos i{width:9px;height:9px;border-radius:50%;background:rgba(255,255,255,.25);display:block}
+  .puntos i.on{background:var(--verde)}
+  .saltar{background:none;border:none;color:var(--texto-inv);font:600 14px Inter,sans-serif;cursor:pointer;text-decoration:underline;padding:8px;min-height:44px}
+  .documento{display:none}
+  .documento.on{display:block}
+
+  .hero{padding:32px 0 28px}
+  .hero h1{font-size:28px;line-height:1.08;max-width:24ch;color:#fff}
+  .hero .sub{color:var(--texto-inv);max-width:62ch;font-size:16px;margin:12px 0 14px}
+  .chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:720px}
+  .chip{background:rgba(255,255,255,.07);border:1px solid rgba(255,255,255,.16);color:#fff;border-radius:var(--r8);padding:8px 10px;font-size:13px;font-weight:500;line-height:1.3}
+  .chip::before{content:'✓ ';color:var(--verde);font-weight:800}
+  @media (min-width:900px){.hero{padding:48px 0 40px}.hero h1{font-size:40px}.hero .sub{font-size:17px}.chips{display:flex;flex-wrap:wrap}.chip{font-size:14px;border-radius:999px;padding:8px 14px}}
+
+  /* ---------- resumen de 20 segundos ---------- */
+  .resumen{background:var(--blanco);border:1px solid var(--linea);border-left:4px solid var(--verde);border-radius:var(--r12);padding:14px 16px;margin:20px 0 12px}
+  .resumen ul{margin:8px 0 0;padding-left:18px}
+  .resumen li{margin:5px 0;font-size:15px}
+  .resumen li b{color:var(--navy-900)}
+  @media (min-width:900px){.resumen{margin:32px 0 16px;padding:18px 22px}.resumen li{font-size:16px}}
+
+  /* ---------- pestañas ---------- */
+  .planes-nav{position:sticky;top:0;z-index:30;background:rgba(245,245,247,.96);backdrop-filter:blur(8px);border-bottom:1px solid var(--linea);padding:6px 0}
+  .planes-nav .tabs{display:flex;gap:6px}
+  .tab{flex:1;min-width:0;min-height:44px;background:var(--blanco);border:1.5px solid var(--linea);border-radius:var(--r12);padding:6px 8px;cursor:pointer;text-align:left;color:var(--texto);font-family:Inter,sans-serif;transition:background .2s,border-color .2s;display:flex;flex-direction:column;justify-content:center;gap:1px}
+  .tab .n{font-size:11px;font-weight:700;letter-spacing:.12em;text-transform:uppercase;color:var(--texto-soft);display:flex;align-items:center;gap:5px}
+  .tab .n i{width:7px;height:7px;border-radius:50%;background:var(--verde);display:inline-block;flex:none}
+  .tab .t{font-weight:700;font-size:13px;line-height:1.15;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .tab .p{display:none;font-size:12.5px;color:var(--texto-soft);margin-top:2px;font-weight:400}
+  .tab:hover{border-color:var(--verde-deep)}
+  .tab[aria-pressed="true"]{background:var(--verde);border-color:var(--verde);color:var(--verde-ink)}
+  .tab[aria-pressed="true"] .n,.tab[aria-pressed="true"] .p{color:var(--verde-ink);opacity:.85}
+  .tab[aria-pressed="true"] .n i{background:var(--verde-ink)}
+  @media (min-width:900px){.planes-nav{padding:10px 0}.planes-nav .tabs{gap:10px}.tab{padding:10px 14px;min-height:64px}.tab .t{font-size:16px;white-space:normal}.tab .p{display:block}}
+
+  /* ---------- plan ---------- */
+  .plan{display:none;padding-top:24px;scroll-margin-top:calc(var(--tabs) + 8px)}
+  .plan.on{display:block;animation:aparecer .22s ease}
+  @keyframes aparecer{from{opacity:0}to{opacity:1}}
+  @keyframes subir{from{opacity:0;transform:translateY(8px)}to{opacity:1;transform:none}}
+  .plan-head{display:grid;gap:14px;margin-bottom:16px}
+  .plan-head h2{font-size:24px}
+  .plan-head .lede{color:var(--texto-soft);margin:0;max-width:56ch;font-size:16px}
+  @media (min-width:900px){.plan{padding-top:32px}.plan-head{grid-template-columns:1.15fr 1fr;align-items:start;gap:24px}.plan-head h2{font-size:34px}.plan-head .lede{font-size:17px}}
+  .tarjeta-precio{position:relative;background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r12);padding:14px 16px;box-shadow:var(--sombra-sm)}
+  .tarjeta-precio.reco{border-color:var(--verde-deep)}
+  .folio{display:inline-block;width:max-content;font:600 11px/1 Inter,sans-serif;letter-spacing:.08em;color:var(--texto-soft);border:1px dashed var(--linea);border-radius:6px;padding:4px 7px;font-variant-numeric:tabular-nums}
+  .tarjeta-precio .dos-cifras{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:10px}
+  .tarjeta-precio b{display:block;font-weight:800;font-size:26px;color:var(--navy-900);line-height:1.1;font-variant-numeric:tabular-nums;letter-spacing:-.01em}
+  .tarjeta-precio b s{display:block;font-weight:500;font-size:13px;color:var(--texto-soft);letter-spacing:0}
+  .tarjeta-precio span{display:block;font-size:12px;color:var(--texto-soft);margin-top:4px;line-height:1.35}
+  .tarjeta-precio .pago{display:none;margin-top:12px;padding-top:10px;border-top:1px dashed var(--linea);font-size:14px;color:var(--texto)}
+  .tarjeta-precio .pago.on{display:block}
+  .tarjeta-precio .pago b{display:inline;font-size:18px;color:var(--verde-deep)}
+  @media (min-width:900px){.tarjeta-precio b{font-size:30px}}
+  .reco-grande{display:inline-flex;align-items:center;gap:6px;background:var(--verde);color:var(--verde-ink);font-weight:800;font-size:12px;letter-spacing:.08em;text-transform:uppercase;padding:5px 12px;border-radius:999px;margin-bottom:8px}
+
+  /* ---------- reproductor ---------- */
+  .player{display:flex;flex-direction:column;gap:12px;margin:6px 0 10px}
+  .controles{background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r12);padding:10px 12px}
+  .fila{display:flex;align-items:center;gap:10px}
+  .play{width:44px;height:44px;border-radius:50%;background:var(--verde);border:none;color:var(--verde-ink);font-size:18px;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center}
+  .play.sec{background:var(--papel);color:var(--verde-deep);border:1px solid var(--linea);font-size:15px;width:40px;height:40px}
+  .barra{flex:1;min-width:80px;height:10px;background:#E3E7EB;border-radius:999px;position:relative;cursor:pointer}
+  .barra .prog{position:absolute;left:0;top:0;bottom:0;width:0;background:var(--verde-deep);border-radius:999px}
+  .tiempo{font-variant-numeric:tabular-nums;color:var(--texto-soft);font-size:13px;min-width:78px;text-align:right}
+  .sub-vivo{margin-top:10px;background:var(--navy-900);border:1.5px solid var(--verde);border-left-width:6px;border-radius:var(--r12);padding:10px 14px;font:600 16px/1.35 Inter,sans-serif;color:#fff;text-align:center;min-height:56px;display:flex;align-items:center;justify-content:center}
+  .sub-vivo b{color:var(--verde)}
+  .sub-vivo:empty::before{content:'Dele a ▶ — el subtítulo de cada paso va saliendo aquí, en grande.';font-weight:500;color:var(--texto-inv)}
+  .escenario{display:flex;flex-direction:column;gap:14px;align-items:center}
+  .telefono{width:min(300px,84vw);background:#0e161c;border:3px solid #2A3F4D;border-radius:36px;padding:10px;box-shadow:var(--sombra-lg);position:relative}
+  .telefono::before{content:'';position:absolute;top:18px;left:50%;transform:translateX(-50%);width:70px;height:18px;background:#000;border-radius:12px;z-index:2}
+  .telefono video{display:block;width:100%;aspect-ratio:390/844;background:#000;border-radius:26px;max-width:100%;cursor:pointer}
+  .laptop{width:100%;max-width:860px}
+  .laptop .pantalla{background:#0e161c;border:2px solid #2A3F4D;border-bottom:none;border-radius:16px 16px 0 0;padding:10px 10px 0;box-shadow:var(--sombra-lg)}
+  .laptop video{display:block;width:100%;aspect-ratio:1366/768;background:#000;border-radius:8px 8px 0 0;max-width:100%;cursor:pointer}
+  .laptop .base{height:14px;background:linear-gradient(#3d4c58,#1F2E3A);border-radius:0 0 14px 14px;margin:0 -3%}
+  .laptop .base::after{content:'';display:block;width:16%;height:5px;margin:0 auto;background:#131F27;border-radius:0 0 6px 6px}
+  .laptop:fullscreen,.telefono:fullscreen{display:flex;align-items:center;justify-content:center;background:#000;width:100%;max-width:none;margin:0;border:none;border-radius:0;padding:0}
+  .laptop:fullscreen .pantalla{border:none;padding:0;background:#000;width:100%}
+  .laptop:fullscreen .base{display:none}
+  .laptop:fullscreen video,.telefono:fullscreen video{max-height:100vh;width:auto;max-width:100vw;margin:0 auto;border-radius:0}
+  .disp{display:flex;flex-direction:column;align-items:center;gap:8px;width:100%}
+  .etq{display:flex;justify-content:center;align-items:center;gap:8px;color:var(--texto-soft);font-size:11px;letter-spacing:.1em;text-transform:uppercase;font-weight:700}
+  .etq button{background:var(--blanco);border:1px solid var(--linea);color:var(--verde-deep);font:700 12px Inter,sans-serif;letter-spacing:.04em;text-transform:uppercase;padding:0 12px;border-radius:999px;cursor:pointer;min-height:40px}
+  @media (max-width:899px){
+    .player .controles{position:sticky;top:calc(var(--tabs) + 6px);z-index:25;order:0;box-shadow:0 8px 24px -14px rgba(19,31,39,.45)}
+    .player .escenario{order:1}
+    .player .caps,.player .nota{order:2}
+    .escenario .disp-movil{order:0}.escenario .disp-pc{order:1}
+    .laptop{max-width:360px}
+    .tarjeta-precio .dos-cifras{grid-template-columns:1fr;gap:10px}
+    .tarjeta-precio b{font-size:24px}
+    .tab .reco-txt{display:none}
+    .brand-text span{display:none}
+  }
+  @media (min-width:900px){
+    .player{gap:14px}
+    .player .escenario{order:0;display:grid;grid-template-columns:minmax(0,1fr) 240px;align-items:end;gap:22px}
+    .player .controles{order:1}
+    .telefono{width:230px}
+    .sub-vivo{font-size:19px;min-height:64px}
+    .play{width:52px;height:52px}
+  }
+  /* capítulos */
+  .caps{display:grid;gap:6px;margin-top:12px}
+  @media (min-width:900px){.caps{grid-template-columns:1fr 1fr;gap:8px}}
+  .cap{border:1px solid var(--linea);border-radius:var(--r12);background:var(--papel);position:relative;overflow:hidden;display:grid;grid-template-columns:1fr 52px;align-items:center}
+  .cap .hoja{grid-column:1/-1}
+  .cap::before{content:'';position:absolute;left:0;top:0;bottom:0;width:0;background:var(--verde);transition:width .18s}
+  .cap.on{background:var(--verde-bg);border-color:var(--verde-deep)}
+  .cap.on::before{width:3px}
+  .cap .ir{display:grid;grid-template-columns:28px 1fr auto;gap:10px;align-items:center;width:100%;min-height:56px;padding:8px 10px 8px 14px;background:none;border:none;text-align:left;cursor:pointer;font-family:Inter,sans-serif;color:var(--texto)}
+  @media (min-width:900px){.cap .ir{grid-template-columns:28px 64px 1fr auto}.cap img{display:block}}
+  .cap img{display:none;width:64px;height:36px;object-fit:cover;border-radius:6px;background:#0e161c}
+  .cap .num{width:28px;height:28px;border-radius:50%;background:var(--navy-800);color:#fff;font-weight:800;font-size:13px;display:flex;align-items:center;justify-content:center;font-variant-numeric:tabular-nums}
+  .cap.on .num{background:var(--verde);color:var(--verde-ink)}
+  .cap .tit{font-weight:600;font-size:15px;line-height:1.25;min-width:0}
+  .cap .tit small{display:block;font-weight:500;color:var(--texto-soft);font-size:13px;font-variant-numeric:tabular-nums}
+  .cap .mas{width:44px;height:44px;border-radius:50%;border:1px solid var(--linea);background:var(--blanco);color:var(--texto);font-size:18px;cursor:pointer;flex:none;display:flex;align-items:center;justify-content:center}
+  .cap .hoja{display:none;gap:6px;flex-wrap:wrap;padding:0 10px 10px 14px}
+  .cap .hoja.on{display:flex}
+  .cap .hoja a,.cap .hoja button{font:600 13px Inter,sans-serif;color:var(--verde-deep);background:var(--blanco);border:1px solid var(--linea);border-radius:999px;padding:0 12px;text-decoration:none;cursor:pointer;min-height:40px;display:inline-flex;align-items:center}
+  .nota{font-size:13px;color:var(--texto-soft);margin:0;line-height:1.45}
+  .pend{background:var(--pendiente-bg);border:1.5px dashed var(--pendiente-borde);color:var(--pendiente);border-radius:var(--r12);padding:12px 16px;font-size:14px}
+  .pend b{display:block;font-size:11px;letter-spacing:.1em;text-transform:uppercase;margin-bottom:4px}
+  .video-pend{display:grid;grid-template-columns:1fr;gap:14px;align-items:center;background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r12);padding:16px;margin:6px 0 10px}
+  @media (min-width:760px){.video-pend{grid-template-columns:1fr 1.2fr}}
+  .video-pend img{width:100%;border-radius:10px;border:1px solid var(--linea);display:block;background:#0e161c;aspect-ratio:16/9;object-fit:cover}
+
+  /* ---------- incluye / paga / línea ---------- */
+  .dos{display:grid;gap:12px;margin-top:20px}
+  @media (min-width:900px){.dos{grid-template-columns:1.25fr 1fr;gap:16px}}
+  .card{background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r12);padding:16px 18px}
+  .card h3{font-size:17px;margin-bottom:8px}
+  details.card{padding:0}
+  details.card summary{list-style:none;cursor:pointer;padding:14px 18px;font-weight:800;font-size:17px;display:flex;justify-content:space-between;align-items:center;min-height:52px}
+  details.card summary::-webkit-details-marker{display:none}
+  details.card summary::after{content:'+';font-size:22px;color:var(--verde-deep);font-weight:400}
+  details.card[open] summary::after{content:'–'}
+  details.card .cuerpo{padding:0 18px 16px}
+  .incluye{list-style:none;margin:0;padding:0}
+  .incluye li{position:relative;padding:8px 0 8px 24px;border-top:1px solid var(--linea);font-size:15px}
+  .incluye li:first-child{border-top:none;padding-top:0}
+  .incluye li::before{content:"✓";color:var(--ok);font-weight:800;position:absolute;left:0;top:8px}
+  .incluye li:first-child::before{top:0}
+  .incluye li.nuevo::before{content:"+";color:var(--faltante)}
+  .incluye li b{color:var(--navy-900)}
+  .callout{background:var(--navy-800);color:#fff;border:none}
+  .callout p{margin:0;font-size:15px;color:#fff}
+  .callout b{color:var(--verde)}
+  .col{display:grid;gap:12px;align-content:start}
+  .linea{list-style:none;margin:0;padding:0}
+  .linea li{display:grid;grid-template-columns:64px 18px 1fr;gap:8px;align-items:start;padding:0 0 14px;position:relative;font-size:14px}
+  .linea li .cuando{font-weight:700;font-size:12px;color:var(--texto-soft);letter-spacing:.02em;font-variant-numeric:tabular-nums;padding-top:2px;text-align:right}
+  .linea li .hito{width:12px;height:12px;border-radius:50%;background:var(--verde);border:2px solid var(--verde-deep);margin:3px auto 0;position:relative;z-index:1}
+  .linea li.fuera .hito{background:var(--papel);border-color:#AEB8C0}
+  .linea li::after{content:'';position:absolute;left:72px;top:16px;bottom:-2px;width:2px;background:var(--linea)}
+  .linea li:last-child::after{display:none}
+  .linea li b{display:block;color:var(--navy-900);font-size:14px}
+  .linea li.fuera b{color:var(--texto-soft)}
+  .linea li span{color:var(--texto-soft)}
+  .linea li .desde{display:inline-block;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--texto-soft);border:1px solid var(--linea);border-radius:999px;padding:1px 7px;margin-left:6px;vertical-align:middle}
+
+  /* ---------- bloques ---------- */
+  section.bloque{margin-top:48px;border-top:1px solid var(--linea);padding-top:28px;scroll-margin-top:calc(var(--tabs) + 8px)}
+  @media (min-width:900px){section.bloque{margin-top:72px;padding-top:36px}}
+  section.bloque h2{font-size:24px}
+  @media (min-width:900px){section.bloque h2{font-size:32px}}
+  section.bloque .lead{color:var(--texto-soft);max-width:62ch;font-size:16px}
+  .comparar-cards{display:grid;gap:10px}
+  .ccard{background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r12);padding:14px 16px}
+  .ccard h3{font-size:16px;display:flex;align-items:center;gap:8px}
+  .ccard ul{list-style:none;margin:0;padding:0}
+  .ccard li{display:flex;gap:10px;padding:6px 0;border-top:1px solid var(--linea);font-size:14px}
+  .ccard li:first-child{border-top:none}
+  .ccard li i{font-style:normal;font-weight:800;flex:none;width:18px;text-align:center}
+  .ccard li.si i{color:var(--ok)}.ccard li.no{color:var(--texto-soft)}.ccard li.no i{color:#AEB8C0}
+  .ccard li .desde{margin-left:auto;font-size:11px;font-weight:700;letter-spacing:.06em;text-transform:uppercase;color:var(--texto-soft);white-space:nowrap}
+  .ccard .cifras{margin-top:8px;padding-top:8px;border-top:1px dashed var(--linea);font-size:14px;color:var(--texto)}
+  .ccard .cifras b{font-variant-numeric:tabular-nums}
+  .tbl-wrap{position:relative;overflow-x:auto;margin:14px 0;border:1px solid var(--linea);border-radius:var(--r12);background:var(--blanco);-webkit-overflow-scrolling:touch}
+  .tbl-wrap::after{content:'';position:sticky;right:0;top:0;display:block;width:0}
+  .tbl-sombra{position:relative}
+  .tbl-sombra::after{content:'';position:absolute;right:0;top:0;bottom:0;width:36px;background:linear-gradient(to right,rgba(255,255,255,0),rgba(255,255,255,.95));pointer-events:none;border-radius:0 var(--r12) var(--r12) 0}
+  table{border-collapse:separate;border-spacing:0;width:100%;font-size:14px;min-width:560px}
+  th{background:var(--navy-800);color:#fff;text-align:left;padding:10px;font-weight:700;font-size:11px;letter-spacing:.08em;text-transform:uppercase}
+  th.c,td.c{text-align:center}
+  td{padding:9px 10px;border-top:1px solid var(--linea);vertical-align:top}
+  th:first-child,td:first-child{position:sticky;left:0;background:inherit;z-index:1;width:46%;min-width:180px}
+  tr:nth-child(even) td{background:var(--papel)}
+  tr td:first-child{background:var(--blanco)}
+  tr:nth-child(even) td:first-child{background:var(--papel)}
+  td.si{color:var(--ok);font-weight:800;text-align:center}td.no{color:#AEB8C0;text-align:center}
+  td s{color:var(--texto-soft)}
+  th.activo,td.activo{background:var(--verde-bg)!important}
+  th.activo{color:var(--verde-ink);background:var(--verde)!important}
+  .aparte{background:var(--blanco);border:1px solid var(--linea);border-left:4px solid var(--verde);border-radius:var(--r12);padding:14px 16px;margin:14px 0;font-size:15px}
+  .aparte ul{margin:8px 0 0;padding-left:20px}
+  .aparte li{margin:4px 0}
+  .campo-doc{display:grid;gap:8px;background:var(--blanco);border:1px solid var(--linea);border-left:4px solid var(--verde);border-radius:var(--r12);padding:14px 16px;margin:14px 0}
+  .campo-doc label{font-weight:700;font-size:15px}
+  .campo-doc small{color:var(--texto-soft);font-size:13px}
+  .campo-doc input{font:600 16px Inter,sans-serif;padding:10px 12px;border-radius:var(--r8);border:1px solid var(--linea);background:var(--papel);color:var(--texto);font-variant-numeric:tabular-nums;width:220px;max-width:100%}
+  .campo-doc input:focus{border-color:var(--verde-deep);outline:none}
+  .campo-doc .eco{color:var(--verde-deep);font-weight:600;font-size:14px;min-height:1.2em}
+  .faq details{background:var(--blanco);border:1px solid var(--linea);border-radius:var(--r12);padding:0 16px;margin:8px 0}
+  .faq summary{cursor:pointer;font-weight:700;padding:14px 0;min-height:52px;display:flex;align-items:center;justify-content:space-between;gap:10px;color:var(--navy-900);list-style:none;font-size:15px}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';color:var(--verde-deep);font-size:22px;font-weight:400;flex:none}
+  .faq details[open] summary::after{content:'–'}
+  .faq .r{padding:0 0 14px;color:var(--texto);font-size:15px}
+  .faq .r .pendiente{background:var(--pendiente-bg);color:var(--pendiente);border:1px dashed var(--pendiente-borde);border-radius:6px;padding:1px 6px;font-weight:700}
+  .grid3{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:12px;margin-top:14px}
+  .grid3 .card h3{font-size:16px}
+  .grid3 .card p{margin:0;font-size:14px;color:var(--texto-soft)}
+  .cierre{margin-top:48px;border-top:1px solid var(--linea);padding:28px 0 calc(96px + env(safe-area-inset-bottom))}
+  .cierre h2{font-size:24px}
+  @media (min-width:900px){.cierre{margin-top:72px}.cierre h2{font-size:32px}}
+  .cta-fila{display:flex;gap:10px;flex-wrap:wrap;margin:14px 0}
+  .cta{display:inline-flex;align-items:center;gap:8px;background:var(--verde);color:var(--verde-ink);text-decoration:none;font-weight:800;font-size:16px;padding:13px 18px;border-radius:var(--r12);min-height:48px}
+  .cta.sec{background:var(--navy-800);color:#fff}
+  .tagline{font-size:12.5px;color:var(--texto-soft);margin-top:22px}
+  .barra-fija{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(19,31,39,.97);backdrop-filter:blur(8px);color:#fff;padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:1px solid rgba(255,255,255,.12);transform:translateY(110%);transition:transform .24s ease}
+  .barra-fija.on{transform:none}
+  .barra-fija .marca{font:700 10px/1.2 Inter,sans-serif;letter-spacing:.12em;text-transform:uppercase;color:rgba(255,255,255,.7);min-width:0}
+  .barra-fija .marca b{color:var(--verde);display:block}
+  .barra-fija .acc{display:flex;gap:8px;flex:none}
+  .barra-fija a{display:inline-flex;align-items:center;justify-content:center;min-height:40px;background:var(--verde);color:var(--verde-ink);text-decoration:none;font-weight:800;font-size:14px;padding:0 14px;border-radius:10px;white-space:nowrap}
+  .barra-fija a.sec{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4);font-weight:600}
+  .marca-pie{text-align:center;font:700 10px/1 Inter,sans-serif;letter-spacing:.14em;text-transform:uppercase;color:var(--texto-soft);padding:0 0 12px}
+  .marca-pie b{color:var(--verde-deep)}
+  @media (prefers-reduced-motion:reduce){*{animation:none!important;transition:none!important}html{scroll-behavior:auto}.barra-fija{transition:none}}
+  @media print{
+    .historia,header.top .btn,.planes-nav,.player,.video-pend,.barra-fija,.saltar,.campo,.campo-doc,.mini-video,.cap,.tbl-sombra::after{display:none!important}
+    .documento{display:block!important}.plan{display:block!important;page-break-before:always}
+    .navy{background:#fff!important;color:#000!important}.hero h1,.hero .sub,.chip,.historia h2{color:#000!important}
+    details{open:true}.faq details[open] summary~*{display:block}
+    body{background:#fff}.comparar-cards{display:none}.tbl-wrap{overflow:visible}table{min-width:0}
+  }
+</style>
+</head>
+<body>
+
+<div class="navy">
+  <header class="top"><div class="wrap">
+    <div class="brand">
+      <img src="logo-open-group-btl.png" alt="Open Group BTL">
+      <div class="brand-text"><b>Propuesta · Open Group BTL</b><span>Sistema de custodia de equipos · JLAutomatization</span></div>
+    </div>
+    <button class="btn" type="button" onclick="abrirDocumento()">▶ Ver los planes</button>
+  </div></header>
+
+  <section class="historia wrap" id="historia" aria-label="Introducción">
+    <div class="paso on" data-paso="0">
+      <div class="paso-2col">
+        <div>
+          <span class="eyebrow">Lo que pasa hoy</span><span class="idx">1 / 5</span>
+          <h2>Salen completos. Vuelven incompletos.</h2>
+          <p>Un camión sale de la bodega a un evento, de ahí sigue a otro sin volver, y semanas después falta material. Ya hay una persona dedicada solo a revisarlo — <b>y aun así se pierde</b>. El problema no es el esfuerzo: es que nadie puede decir en qué tramo se perdió ni quién lo tenía.</p>
+        </div>
+        <div>
+          <div class="cadena" aria-label="Caso real: 10 PARES salen, 8 llegan, 6 vuelven">
+            <div class="dato"><b>10</b><span>PARES salen de La María</span></div>
+            <svg class="eslabon" viewBox="0 0 18 10" aria-hidden="true"><rect x="1" y="2.5" width="9" height="5" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="8" y="2.5" width="9" height="5" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            <div class="dato mal"><b>8</b><span>llegan a Simón Bolívar</span><small>2 perdidos</small></div>
+            <svg class="eslabon" viewBox="0 0 18 10" aria-hidden="true"><rect x="1" y="2.5" width="9" height="5" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/><rect x="8" y="2.5" width="9" height="5" rx="2.5" fill="none" stroke="currentColor" stroke-width="1.5"/></svg>
+            <div class="dato mal"><b>6</b><span>vuelven a bodega</span><small>2 más perdidos</small></div>
+          </div>
+          <p class="total-cadena">4 de 10 sin saber en qué tramo ni bajo custodia de quién. Caso que ustedes mismos reportaron.</p>
+        </div>
+      </div>
+      <div class="campo">
+        <label for="perdidaAnual">¿Cuánto calculan que pierden al año en equipos?</label>
+        <div class="fila"><input id="perdidaAnual" data-perdida inputmode="numeric" placeholder="$ 0" autocomplete="off"><div class="eco" data-perdida-eco></div></div>
+        <small>La cifra es de ustedes. Si la escriben, cada plan muestra en cuántos meses se paga con lo que hoy se pierde.</small>
+      </div>
+    </div>
+
+    <div class="paso" data-paso="1">
+      <span class="eyebrow">Lo que pidieron</span><span class="idx">2 / 5</span>
+      <h2>Saber qué salió, qué volvió y quién respondía.</h2>
+      <div class="cita" data-confirmar="Jose confirma que así se registra hoy">"Salieron 200 vallas, 100 mallas" — hoy queda en un chat de WhatsApp.<small>Así se registra hoy · según lo conversado con ustedes</small></div>
+      <p>Lo que pidieron fue concreto: <b>manifiestos por QR</b> y <b>reportes</b> para consultarlos. Eso, exacto, es el <b>Plan 1</b>.</p>
+      <p>Lo que la operación además necesita — detectar la diferencia <b>al llegar</b>, no semanas después, y que el dueño se entere <b>en el momento</b> — es lo que suman el Plan 2 y el 3.</p>
+    </div>
+
+    <div class="paso" data-paso="2">
+      <span class="eyebrow">Cómo lo trabajé</span><span class="idx">3 / 5</span>
+      <h2>Primero entender su cadena. Después construir.</h2>
+      <ul>
+        <li><b>ID único para lo que duele perder; conteo por lote para lo masivo.</b> El mismo patrón de la industria seria de renta de equipos (estándar ARA SET).</li>
+        <li><b>Funciona sin señal</b> en bodega y en el evento; se pone al día solo cuando vuelve el internet.</li>
+        <li><b>Cada registro queda encadenado al anterior:</b> nadie — ni nosotros — edita ni borra el historial.</li>
+        <li><b>Pasó una auditoría adversarial</b> antes de esta propuesta: tres roles, tres planes, celular y computador, intentos deliberados de romperlo.</li>
+      </ul>
+      <div class="honesto"><b>Para que no haya sorpresas</b>Todo lo que van a ver corre con datos de ejemplo; el inventario real se levanta con ustedes en la Fase 0. Un punto sigue sin resolver por escrito (qué pasa si se pierde un celular) y está marcado como pendiente, no escondido.</div>
+    </div>
+
+    <div class="paso" data-paso="3">
+      <span class="eyebrow">Lo que quedó construido</span><span class="idx">4 / 5</span>
+      <h2>Se puede ver funcionando hoy.</h2>
+      <p>No es una idea ni una maqueta: es el sistema real, en el celular del operario y en el computador del dueño al mismo tiempo, narrado. Esta es la pantalla que responde su pregunta — <b>qué falta, en qué tramo, quién recibió</b>:</p>
+      <figure class="mini-video" id="miniVideo" hidden>
+        <video id="vMini" playsinline preload="none" controls aria-label="Capítulo Novedades y estado del evento"></video>
+        <figcaption id="miniCap"></figcaption>
+      </figure>
+      <div class="datos">
+        <div class="dato"><b>3</b><span>planes</span></div>
+        <div class="dato"><b id="datoCaps">8</b><span>capítulos</span></div>
+        <div class="dato"><b id="datoMin">8 min</b><span>Plan 3 completo</span></div>
+      </div>
+    </div>
+
+    <div class="paso" data-paso="4">
+      <span class="eyebrow">Cómo seguimos</span><span class="idx">5 / 5</span>
+      <h2>Fase 0: una visita a la bodega, no un contrato.</h2>
+      <p>Si deciden avanzar, lo primero es levantar con ustedes lo que ningún plan debe inventar: el inventario real y sus categorías, el tipo de etiqueta, bodegas, camiones y roles, si Telegram les sirve a los dos. Con eso se firma, se paga el <b>50 %</b> y arranca el plan que elijan. <span id="fechaFase0" data-fecha=""></span></p>
+      <p><a class="btn" id="btnFase0" href="#" target="_blank" rel="noopener">📅 Agendar la Fase 0</a></p>
+    </div>
+
+    <div class="pie">
+      <div class="puntos" id="puntosHistoria" aria-hidden="true"><i class="on"></i><i></i><i></i><i></i><i></i></div>
+      <button class="saltar" type="button" onclick="abrirDocumento()">Saltar a los planes</button>
+      <button class="btn ghost" id="btnAnterior" type="button" onclick="pasoHistoria(-1)" hidden>← Anterior</button>
+      <button class="btn" id="btnHistoria" type="button" onclick="pasoHistoria(1)">Siguiente →</button>
+    </div>
+  </section>
+
+  <div class="documento" id="documento-hero">
+    <section class="hero wrap">
+      <span class="eyebrow">Propuesta · Open Group BTL · Bogotá</span>
+      <h1>Custodia de activos de precisión para su cadena de eventos — cada equipo, cada tramo, cada responsable, verificable en tiempo real.</h1>
+      <p class="sub">Un manifiesto digital por cada tramo, la diferencia detectada al llegar y un registro que nadie puede alterar. El mismo rigor en un montaje de estadio que en el evento más pequeño.</p>
+      <div class="chips">
+        <span class="chip">Funciona sin señal en bodega y evento</span>
+        <span class="chip">Aviso al momento por Telegram</span>
+        <span class="chip">Registro encadenado, imposible de editar</span>
+        <span class="chip">Se aprende en minutos</span>
+      </div>
+    </section>
+  </div>
+</div>
+
+<div class="documento doc" id="documento">
+<div class="wrap">
+  <section class="resumen" aria-label="Resumen">
+    <span class="eyebrow">En 20 segundos</span>
+    <ul>
+      <li><b>El problema:</b> el material sale completo y vuelve incompleto, y nadie puede decir en qué tramo se perdió ni quién lo tenía.</li>
+      <li><b>La solución:</b> un manifiesto digital por tramo, la diferencia detectada al llegar y un registro que nadie puede alterar — el sistema ya existe y se ve en video.</li>
+      <li><b>Tres planes:</b> Plan 1 · $ 14.000.000 · Plan 2 · $ 26.000.000 · <b>Plan 3 · $ 45.000.000 (recomendado)</b>, con mensualidad y permanencia según el plan. Precios en pesos colombianos (COP); el tratamiento del IVA se precisa en la cotización formal.</li>
+      <li><b>El siguiente paso:</b> una visita a la bodega (Fase 0), sin costo ni compromiso.</li>
+    </ul>
+  </section>
+  <nav class="planes-nav" id="planes" aria-label="Planes">
+    <div class="tabs" role="group">
+      <button class="tab" data-plan="3" aria-pressed="true"><span class="n"><i></i>Plan 3<span class="reco-txt"> · Recomendado</span></span><span class="t">Operación completa</span><span class="p">Todo el Plan 2 + programación, dashboard, informes y acompañamiento</span></button>
+      <button class="tab" data-plan="2" aria-pressed="false"><span class="n">Plan 2</span><span class="t">Custodia en cadena + Alertas</span><span class="p">Traslados, llegadas con conteo, novedades y avisos por Telegram</span></button>
+      <button class="tab" data-plan="1" aria-pressed="false"><span class="n">Plan 1</span><span class="t">Control</span><span class="p">QR, manifiestos y reportes base — lo que pidieron</span></button>
+    </div>
+  </nav>
+
+  <!-- ================= PLAN 3 ================= -->
+  <section class="plan on" id="plan3">
+    <div class="plan-head">
+      <div>
+        <span class="reco-grande">★ Recomendado</span>
+        <span class="eyebrow" style="display:block;margin-bottom:4px">"De control de material a inteligencia de operación — con nosotros al lado"</span>
+        <h2>Plan 3 · Operación completa</h2>
+        <p class="lede">Todo el Plan 2, más programar eventos con calendario, el dashboard del negocio como pantalla de entrada, informes en PDF con acta de firmas, la experiencia fácil para el conductor apurado, ajustes a pedido sin costo y una revisión mensual de los números con ustedes.</p>
+      </div>
+      <div class="tarjeta-precio reco" data-impl="45000000">
+        <span class="folio">PLAN 3 · 2026</span>
+        <div class="dos-cifras">
+          <div><b><s>$ 75.000.000</s>$ 45.000.000</b><span>Implementación · 50 % al firmar + 12 cuotas de $ 1.875.000</span></div>
+          <div><b>$ 999.999</b><span>Mensualidad · permanencia mínima 18 meses · soporte con prioridad</span></div>
+        </div>
+        <div class="pago">Con lo que hoy se pierde, la implementación se paga en <b data-pago>—</b>.</div>
+      </div>
+    </div>
+    <div class="video-caja" data-video="3"></div>
+    <div class="dos">
+      <details class="card" open><summary>Qué incluye</summary><div class="cuerpo">
+        <ul class="incluye">
+          <li><b>Todo el Plan 2:</b> QR y manifiestos sin señal, custodia en cadena, llegada con conteo, novedades, filtros y Excel, avisos y bot por Telegram.</li>
+          <li class="nuevo"><b>Programación y calendario:</b> apartar material para una fecha, saber de una vez si alcanza, editar o cancelar; el operario elige el evento desde el celular.</li>
+          <li class="nuevo"><b>Dashboard del negocio:</b> 24 gráficas, 18 indicadores comparados con el periodo anterior y hallazgos automáticos; filtros por fecha, evento, categoría y responsable.</li>
+          <li class="nuevo"><b>Informes en PDF:</b> general y por evento — pedido, cargado, devuelto, línea de tiempo, novedades y acta con firmas para el cliente.</li>
+          <li class="nuevo"><b>Experiencia fácil:</b> inicio rápido (3 toques hasta la cámara), listas para elegir, cantidades esperadas ya puestas, calendario emergente, checklist de pendientes.</li>
+          <li class="nuevo"><b>Ajustes a pedido sin costo:</b> reportes, columnas, filtros, umbrales, gráficas y formatos, acordados por escrito. Lo que exige integración o hardware se cotiza aparte.</li>
+          <li class="nuevo"><b>Acompañamiento mensual:</b> revisión de los números con ustedes — qué se pierde más, en qué eventos, con quién — y soporte remoto con prioridad en menos de 24 horas.</li>
+        </ul>
+      </div></details>
+      <div class="col">
+        <div class="card callout"><p><b>Cómo se paga:</b> $ 22.500.000 al firmar y el saldo en 12 cuotas de $ 1.875.000. Mensualidad de $ 999.999 con permanencia mínima de 18 meses: servidor, respaldos, actualizaciones, soporte con prioridad y la revisión mensual.</p></div>
+        <details class="card" open><summary>Qué pasa después de firmar</summary><div class="cuerpo"><ul class="linea" data-linea="3"></ul></div></details>
+        <p class="nota"><b>Qué NO incluye:</b> RFID de lectura masiva, GPS/BLE o portal para el cliente del evento — nada de eso está construido ni cotizado. <b>Opcional:</b> auditoría de inventarios con GLA Consultores y Auditores S.A.S. (tarifa de GLA aparte).</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PLAN 2 ================= -->
+  <section class="plan" id="plan2">
+    <div class="plan-head">
+      <div>
+        <span class="eyebrow" style="display:block;margin-bottom:4px">"El material, cubierto de evento en evento — y ustedes se enteran al momento"</span>
+        <h2>Plan 2 · Custodia en cadena + Alertas</h2>
+        <p class="lede">Todo el Plan 1 más lo que cierra el hueco: la custodia viaja con el material de evento en evento, quien recibe cuenta lo que llegó, la diferencia se detecta en el momento y el dueño se entera por Telegram sin llamar a nadie.</p>
+      </div>
+      <div class="tarjeta-precio" data-impl="26000000">
+        <span class="folio">PLAN 2 · 2026</span>
+        <div class="dos-cifras">
+          <div><b><s>$ 38.000.000</s>$ 26.000.000</b><span>Implementación · 50 % al firmar + 6 cuotas de $ 2.166.667</span></div>
+          <div><b>$ 800.000</b><span>Mensualidad · permanencia mínima 12 meses · soporte remoto &lt; 24 h</span></div>
+        </div>
+        <div class="pago">Con lo que hoy se pierde, la implementación se paga en <b data-pago>—</b>.</div>
+      </div>
+    </div>
+    <div class="video-caja" data-video="2"></div>
+    <div class="dos">
+      <details class="card" open><summary>Qué incluye</summary><div class="cuerpo">
+        <ul class="incluye">
+          <li><b>Todo el Plan 1:</b> inventario, manifiestos por QR sin señal, panel de dueños, registro encadenado, piloto y capacitación.</li>
+          <li class="nuevo"><b>Custodia en cadena:</b> el manifiesto viaja de evento en evento (Simón Bolívar → Rancho MX) sin volver a bodega; solo se escanea lo que cambia.</li>
+          <li class="nuevo"><b>Llegada con conteo:</b> quien recibe confirma qué llegó; el sistema lo compara con lo que salió y muestra faltantes o sobrantes por categoría.</li>
+          <li class="nuevo"><b>Avisos por Telegram:</b> cada discrepancia o demora llega a los dueños al momento, con reintento automático; si no sale, el panel lo muestra.</li>
+          <li class="nuevo"><b>Resumen diario y bot:</b> cada noche el resumen de la operación, y consultas "¿dónde está…?" por ID o alias; si el alias no es único, lista candidatos.</li>
+          <li class="nuevo"><b>Reportes de novedades:</b> discrepancias, demoras, llegadas y manifiestos en camino; marcar pendientes como resueltos sin ocultar el saldo.</li>
+          <li class="nuevo"><b>Filtros, Excel e impresión:</b> búsqueda y fechas en todos los reportes, exportar según el filtro, imprimir o compartir manifiestos desde el celular o el panel.</li>
+        </ul>
+      </div></details>
+      <div class="col">
+        <div class="card callout"><p><b>Cómo se paga:</b> $ 13.000.000 al firmar y el saldo en 6 cuotas de $ 2.166.667. Mensualidad de $ 800.000 con permanencia mínima de 12 meses: servidor, respaldos, actualizaciones, monitoreo de alertas y bot, soporte remoto en menos de 24 horas.</p></div>
+        <details class="card" open><summary>Qué pasa después de firmar</summary><div class="cuerpo"><ul class="linea" data-linea="2"></ul></div></details>
+        <p class="nota"><b>Qué NO incluye (Plan 3):</b> inicio rápido, listas para elegir, calendario emergente, checklist, programación, dashboard, informes PDF, ajustes a pedido ni revisión mensual. <b>Si suben después:</b> se paga la diferencia ($ 19.000.000) y rigen la mensualidad y permanencia del Plan 3; nada se reinstala ni se pierde.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= PLAN 1 ================= -->
+  <section class="plan" id="plan1">
+    <div class="plan-head">
+      <div>
+        <span class="eyebrow" style="display:block;margin-bottom:4px">"El material deja de desaparecer en silencio"</span>
+        <h2>Plan 1 · Control</h2>
+        <p class="lede">Exactamente lo que pidieron: manifiestos por QR que dicen qué salió, para cuál evento, quién lo llevó y qué volvió — sin señal, desde el celular que ya tiene el equipo — y un panel para consultarlo. Todo se escribe a mano y los reportes se ven en pantalla.</p>
+      </div>
+      <div class="tarjeta-precio" data-impl="14000000">
+        <span class="folio">PLAN 1 · 2026</span>
+        <div class="dos-cifras">
+          <div><b><s>$ 18.000.000</s>$ 14.000.000</b><span>Implementación · 50 % al firmar + 50 % al terminar</span></div>
+          <div><b>$ 400.000</b><span>Mensualidad · permanencia mínima 6 meses · garantía del software</span></div>
+        </div>
+        <div class="pago">Con lo que hoy se pierde, la implementación se paga en <b data-pago>—</b>.</div>
+      </div>
+    </div>
+    <div class="video-caja" data-video="1"></div>
+    <div class="dos">
+      <details class="card" open><summary>Qué incluye</summary><div class="cuerpo">
+        <ul class="incluye">
+          <li><b>Inventario maestro</b> con sus categorías reales: ID único (EQ-R-001) para lo que duele perder; conteo por lote y QR de categoría para lo masivo.</li>
+          <li><b>Manifiesto digital por escaneo:</b> evento, responsable, hora y la lista completa de lo que salió o volvió. Sin señal también; sincroniza solo.</li>
+          <li><b>Panel de dueños:</b> historial de cada evento con saldo por categoría, manifiestos (ver y anular con motivo), inventario, custodia, accesos, perfiles con PIN, respaldo automático.</li>
+          <li><b>Registro inmutable:</b> cada registro encadenado con hash; nadie borra ni altera un cargue; las correcciones se agregan, nunca se reescriben.</li>
+          <li><b>Piloto de 10 equipos y capacitación:</b> una sesión de 1-2 horas con quienes cargan y descargan, más una guía de una página.</li>
+        </ul>
+      </div></details>
+      <div class="col">
+        <div class="card callout"><p><b>Cómo se paga:</b> $ 7.000.000 al firmar y $ 7.000.000 al terminar la implementación. Mensualidad de $ 400.000 con permanencia mínima de 6 meses: servidor, respaldos, actualizaciones y soporte con garantía.</p></div>
+        <details class="card" open><summary>Qué pasa después de firmar</summary><div class="cuerpo"><ul class="linea" data-linea="1"></ul></div></details>
+        <p class="nota"><b>Qué NO incluye (desde el Plan 2 o 3):</b> imprimir o compartir desde el celular, listas para elegir, filtros y Excel, avisos y bot, llegadas con conteo, traslados entre eventos, programación, dashboard, informes. <b>Si suben después:</b> se paga la diferencia ($ 12.000.000 al Plan 2 · $ 31.000.000 al Plan 3); nada se reinstala ni se pierde.</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= COMPARAR ================= -->
+  <section class="bloque" id="comparar">
+    <h2>Lo mismo, de un vistazo</h2>
+    <p class="lead">Tres planes independientes: cada uno deja algo funcionando por sí solo, y se sube de plan sin reinstalar ni perder datos. Los tres incluyen instalación, configuración con las categorías reales, capacitación del equipo de bodega y garantía del software.</p>
+    <div class="campo-doc">
+      <label for="perdidaAnual2">¿Cuánto calculan que pierden al año en equipos?</label>
+      <div class="fila" style="display:flex;gap:8px;align-items:center;flex-wrap:wrap"><input id="perdidaAnual2" data-perdida inputmode="numeric" placeholder="$ 0" autocomplete="off"><div class="eco" data-perdida-eco></div></div>
+      <small>La cifra es de ustedes: con ella, cada plan muestra arriba en cuántos meses se paga la implementación.</small>
+    </div>
+    <div class="comparar-cards" id="compararCards"></div>
+    <details id="tablaCompleta"><summary style="cursor:pointer;font-weight:700;color:var(--verde-deep);padding:10px 0;min-height:44px;display:flex;align-items:center">Ver la tabla completa de los 3 planes</summary>
+      <div class="tbl-sombra"><div class="tbl-wrap"><table id="tablaComparar"></table></div></div>
+    </details>
+    <p class="nota">El precio tachado es lo que cuesta un sistema equivalente con una agencia de desarrollo en Colombia (rangos 2026: $ 15–50 millones un sistema intermedio; $ 50–150 millones con integraciones), sin el acompañamiento del Plan 3. Los precios se confirman en la reunión oficial, una vez definidos el inventario real y los costos asociados.</p>
+    <div class="aparte" id="fase0">
+      <strong>Lo que se confirma en la Fase 0 (visita técnica) si deciden avanzar</strong> — nada de esto se estima ni se inventa; se levanta con ustedes en la bodega, en cualquiera de los tres planes:
+      <ul>
+        <li>Tamaño real del inventario y qué va con ID único y qué por lote.</li>
+        <li>Tipo de etiqueta y hardware según el material (impresora térmica, rollos resistentes) — de ahí sale el costo de hardware.</li>
+        <li>Bodegas, camiones y cómo se llaman de verdad los roles (coordinador, operario, quien recibe en el evento).</li>
+        <li>Señal en la bodega y en los eventos (el sistema funciona sin ella, pero conviene saberlo para los avisos).</li>
+        <li>Si Telegram les sirve a los dos dueños para los avisos — si no, se define la alternativa (WhatsApp Business o SMS) antes de arrancar.</li>
+        <li>Los "semáforos" del tablero: días con material afuera, llegadas con diferencia seguidas, anticipación del aviso.</li>
+        <li>Si alquilan equipos a terceros (hoy no está cubierto por ningún plan) y cuánto calculan que pierden al año en equipos.</li>
+      </ul>
+    </div>
+    <p class="nota"><b>Hardware (aparte):</b> impresora térmica de etiquetas y rollos resistentes (poliéster o laminada, no papel). Sin lectores: la captura es con la cámara de los celulares que ya tiene el equipo. Modelo y cotización en la Fase 0.</p>
+  </section>
+
+  <!-- ================= PREGUNTAS ================= -->
+  <section class="bloque faq" id="preguntas">
+    <h2>Preguntas que seguro van a surgir</h2>
+    <p class="lead">Respuestas directas a lo que normalmente se pregunta antes de decidir — para no improvisar la parte técnica en la reunión.</p>
+    <details><summary>¿Y si se va la señal?</summary><div class="r">No depende de ella: se escanea igual y lo pendiente se sincroniza solo al recuperar conexión. Nada se pierde en bodega ni en el evento.</div></details>
+    <details><summary>¿Qué garantía hay, y si falla?</summary><div class="r">Garantía del software y equipo capacitado antes de cerrar la entrega. Respuesta en <b>menos de 24 horas según la severidad</b>, remota; en el Plan 3, con prioridad y revisión mensual.</div></details>
+    <details><summary>¿Podemos empezar en el Plan 1 y subir?</summary><div class="r">Sí: mismo sistema con más funciones activas, sin reinstalar ni perder datos. Se paga la diferencia y rigen la mensualidad y permanencia del plan nuevo.</div></details>
+    <details><summary>¿Y si Telegram no les sirve a los dos?</summary><div class="r">Los avisos salen por Telegram, gratis y sin instalar nada más. Si a uno no le sirve, en la Fase 0 se define la alternativa (WhatsApp Business o SMS) antes de arrancar.</div></details>
+    <details><summary>¿Y si el aviso no llega?</summary><div class="r">Reintenta automáticamente y el resultado — llegó o no — queda en la cadena de auditoría. A quién más avisar si el reintento falla es un punto por acordar con ustedes.</div></details>
+    <details><summary>¿Alguien puede alterar o borrar un registro?</summary><div class="r">No. Cada registro guarda fecha, hora y el hash del anterior; si alguien lo tocara, la cadena queda visiblemente rota desde ese punto. Nadie, incluidos nosotros, edita el historial.</div></details>
+    <details><summary>¿Se van a resistir los empleados?</summary><div class="r">Por eso el piloto de 10 equipos y 1-2 horas de capacitación antes de etiquetar toda la bodega; escanear toma segundos, no minutos.</div></details>
+    <details><summary>¿Cuánto se demora?</summary><div class="r">Está en "Qué pasa después de firmar" de cada plan, en semanas y meses desde la Fase 0 — no desde una fecha fija de hoy.</div></details>
+    <details><summary>¿Y si se pierde o daña un celular?</summary><div class="r">Punto sin resolver por escrito: <span class="pendiente">[[a definir]]</span>. Lo seguro: ningún dato vive solo en el celular; lo ya sincronizado está en la cadena de auditoría.</div></details>
+    <h3 style="margin-top:22px">Riesgos identificados y cómo se mitigan</h3>
+    <div class="grid3">
+      <div class="card"><h3>Señal mala en bodega o en el evento</h3><p>El escaneo opera sin conexión y sincroniza solo al recuperar señal.</p></div>
+      <div class="card"><h3>Resistencia del personal</h3><p>Piloto de 10 equipos y capacitación corta antes de etiquetar toda la bodega.</p></div>
+      <div class="card"><h3>Alias ambiguos en el bot</h3><p>Devuelve una lista de candidatos en vez de adivinar cuando el alias no es único.</p></div>
+    </div>
+  </section>
+
+  <!-- ================= GARANTÍA / POR QUÉ ================= -->
+  <section class="bloque" id="garantia">
+    <h2>Garantía, soporte y por qué JLAutomatization</h2>
+    <p class="lead">Respuesta ante fallas en <b>menos de 24 horas según la severidad</b>, con soporte remoto, sin depender de una visita presencial. Plan 1: garantía y soporte básico · Plan 2: soporte remoto &lt; 24 h · Plan 3: lo mismo con prioridad, más la revisión mensual con el equipo consultor.</p>
+    <div class="grid3">
+      <div class="card"><h3>Validado en operación real</h3><p>El método nació resolviendo custodia de activos en otro negocio real, en producción; antes de esta propuesta, el sistema completo pasó una auditoría interna adversarial con cientos de casos de prueba.</p></div>
+      <div class="card"><h3>Estándar de industria, sin el precio de una consultora grande</h3><p>Registro con el mismo principio criptográfico de los sistemas grandes; identificación (ID único + lote) según el estándar ARA SET y el enfoque de Flex Rental Solutions.</p></div>
+      <div class="card"><h3>Acompañamiento continuo</h3><p>En el Plan 3, cada mes se revisan los números con ustedes; para lo financiero y de auditoría trabajamos junto a GLA Consultores y Auditores S.A.S.</p></div>
+      <div class="card"><h3>No es un software genérico de renta</h3><p>Rentman o Goodshuffle modelan "reservado / disponible" en un almacén; esto modela quién tuvo la custodia y en qué tramo se perdió, aunque el camión nunca vuelva a bodega.</p></div>
+    </div>
+  </section>
+
+  <!-- ================= CIERRE ================= -->
+  <section class="cierre" id="contacto">
+    <h2>El siguiente paso no es un contrato: es una visita a la bodega.</h2>
+    <p class="lead">Fase 0, sin costo ni compromiso: se levanta el inventario real con ustedes, se define la etiqueta y se confirman las cifras. Con eso, el plan que elijan arranca con el 50 % a la firma.</p>
+    <div class="cta-fila">
+      <a class="cta" id="ctaWhatsapp" href="#" target="_blank" rel="noopener">💬 Escribir a Jose por WhatsApp</a>
+      <a class="cta sec" id="ctaFase0" href="#" target="_blank" rel="noopener">📅 Agendar la Fase 0</a>
+      <a class="cta sec" href="propuesta_resumen.pdf" target="_blank" rel="noopener">⬇ Resumen en PDF</a>
+    </div>
+    <p class="nota">Datos de ejemplo en todos los videos; el inventario real se levanta en la Fase 0. La propuesta del sitio web de Open Group BTL va aparte: <a href="https://claude.ai/code/artifact/4c32dd22-8f78-4f7b-8012-264ed331d1d1" target="_blank" rel="noopener">verla aquí</a>.</p>
+    <p class="nota">Propuesta confidencial para Open Group BTL<span id="vigencia" data-hasta=""></span>. Los datos de personas que el sistema registra (nombre y PIN de cada operario) se tratan según la Ley 1581 de 2012; en la Fase 0 se firma el acuerdo correspondiente.</p>
+    <p class="tagline">JLAutomatization — sistemas de custodia y control para operaciones reales. Hecho para Open Group BTL.</p>
+    <p class="marca-pie">Hecho por <b>JLAutomatization</b></p>
+  </section>
+</div>
+</div><!-- /documento -->
+
+<div class="barra-fija" id="barraFija" aria-hidden="true">
+  <div class="marca">Hecho por <b>JLAutomatization</b></div>
+  <div class="acc"><a class="sec" href="propuesta_resumen.pdf" target="_blank" rel="noopener">PDF</a><a id="barraWa" href="#" target="_blank" rel="noopener">💬 Escribir a Jose</a></div>
+</div>
+
+<script>
+  var BUILD = '20260916a';
+  // Los videos viven en open-group-btl/videos/ (Pages) o en ../videos/ (copia local del proyecto).
+  var VID = /github\.io$/.test(location.hostname) ? '../open-group-btl/videos/' : '../videos/';
+  var WHATSAPP_JLAUTO = "573106582111";
+  var waTexto = function(t){ return 'https://wa.me/' + WHATSAPP_JLAUTO + '?text=' + encodeURIComponent(t); };
+  document.getElementById('ctaWhatsapp').href = waTexto('Hola Jose, vi la propuesta para Open Group BTL y quiero avanzar.');
+  document.getElementById('barraWa').href = document.getElementById('ctaWhatsapp').href;
+  ['btnFase0','ctaFase0'].forEach(function(id){ document.getElementById(id).href = waTexto('Hola Jose, queremos agendar la Fase 0 (visita técnica a la bodega) de la propuesta de Open Group BTL.'); });
+  (function(){ var f = document.getElementById('fechaFase0'); if(f.dataset.fecha) f.textContent = 'Fecha propuesta: ' + f.dataset.fecha + '.'; var v = document.getElementById('vigencia'); if(v.dataset.hasta) v.textContent = ' · válida hasta el ' + v.dataset.hasta; })();
+  var $ = function(s, r){ return (r || document).querySelector(s); };
+  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  // ---------- Cifra del dueño → meses para pagarse (dos campos sincronizados; solo si él la escribe) ----------
+  function fmtPesos(n){ return '$ ' + Math.round(n).toString().replace(/\B(?=(\d{3})+(?!\d))/g, '.'); }
+  var perdida = 0;
+  function aplicarPerdida(n, origen){
+    perdida = n;
+    try{ sessionStorage.setItem('ogbtl_perdida_anual', n ? String(n) : ''); }catch(e){}
+    $$('[data-perdida]').forEach(function(i){ if(i !== origen) i.value = n ? fmtPesos(n) : ''; });
+    $$('[data-perdida-eco]').forEach(function(e){ e.textContent = n ? 'Con ' + fmtPesos(n) + ' al año:' : ''; });
+    $$('.tarjeta-precio').forEach(function(c){
+      var meses = n ? Number(c.dataset.impl) / (n / 12) : 0;
+      $('.pago', c).classList.toggle('on', n > 0);
+      $('[data-pago]', c).textContent = n ? (meses < 1 ? 'menos de 1 mes' : Math.ceil(meses) + (Math.ceil(meses) > 1 ? ' meses' : ' mes')) : '—';
+    });
+  }
+  $$('[data-perdida]').forEach(function(i){
+    i.addEventListener('input', function(){ var n = i.value.replace(/[^\d]/g, ''); i.value = n ? fmtPesos(Number(n)) : ''; aplicarPerdida(Number(n) || 0, i); });
+    i.addEventListener('keydown', function(e){ if(e.key === 'Enter'){ e.preventDefault(); i.blur(); } });
+  });
+  try{ var g = sessionStorage.getItem('ogbtl_perdida_anual'); if(g) aplicarPerdida(Number(g)); }catch(e){}
+
+  // ---------- Historia (5 pasos) → documento ----------
+  var pasoActual = 0, PASOS_HISTORIA = 5, documentoAbierto = false;
+  function pintarPaso(){
+    $$('#historia .paso').forEach(function(p){ p.classList.toggle('on', Number(p.dataset.paso) === pasoActual); });
+    $$('#puntosHistoria i').forEach(function(i, k){ i.classList.toggle('on', k <= pasoActual); });
+    $('#btnHistoria').textContent = pasoActual === PASOS_HISTORIA - 1 ? 'Ver los planes →' : 'Siguiente →';
+    $('#btnAnterior').hidden = pasoActual === 0;
+    try{ history.replaceState(null, '', '#paso' + (pasoActual + 1)); }catch(e){}
+  }
+  function pasoHistoria(delta){
+    var nuevo = pasoActual + delta;
+    if(nuevo >= PASOS_HISTORIA){ abrirDocumento(); return; }
+    if(nuevo < 0) return;
+    pasoActual = nuevo; pintarPaso();
+    window.scrollTo({ top:0, behavior:'smooth' });
+  }
+  function abrirDocumento(){
+    if(documentoAbierto){ $('#planes').scrollIntoView({ behavior:'smooth', block:'start' }); return; }
+    documentoAbierto = true;
+    var v = $('#vMini'); if(v && !v.paused) v.pause();
+    $('#historia').style.display = 'none';
+    $('#documento-hero').classList.add('on');
+    $('#documento').classList.add('on');
+    cargarPlan(planActual);
+    try{ history.replaceState(null, '', '#plan' + planActual); }catch(e){}
+    $('#planes').scrollIntoView({ behavior:'smooth', block:'start' });
+    observarCta();
+  }
+  document.addEventListener('keydown', function(e){
+    if(documentoAbierto || /INPUT|TEXTAREA/.test(e.target.tagName)) return;
+    if(e.key === 'ArrowRight' || e.key === 'Enter') pasoHistoria(1);
+    if(e.key === 'ArrowLeft') pasoHistoria(-1);
+  });
+
+  // ---------- Datos de comparación y líneas de tiempo (una sola fuente) ----------
+  var FILAS = [
+    ['Escaneo QR sin internet, manifiestos, historial por evento, inventario, custodia, accesos', 1],
+    ['Imprimir y compartir desde el celular, filtros, Excel', 2],
+    ['Traslados entre eventos, llegada con conteo, novedades', 2],
+    ['Alertas por Telegram, resumen diario, bot', 2],
+    ['Programación y calendario', 3],
+    ['Dashboard e informes PDF con acta de firmas', 3],
+    ['Experiencia fácil: inicio rápido, listas, calendario, checklist', 3],
+    ['Ajustes a pedido y revisión mensual', 3]
+  ];
+  var CIFRAS = {
+    1: { impl:'$ 14.000.000', ref:'$ 18.000.000', pago:'50 % + 50 % al terminar', mes:'$ 400.000 · 6 meses', sop:'garantía' },
+    2: { impl:'$ 26.000.000', ref:'$ 38.000.000', pago:'50 % + 6 cuotas', mes:'$ 800.000 · 12 meses', sop:'< 24 h remoto' },
+    3: { impl:'$ 45.000.000', ref:'$ 75.000.000', pago:'50 % + 12 cuotas', mes:'$ 999.999 · 18 meses', sop:'< 24 h con prioridad' }
+  };
+  var NOMBRE = { 1:'Plan 1 · Control', 2:'Plan 2 · Custodia en cadena + Alertas', 3:'Plan 3 · Operación completa' };
+  var HITOS = [
+    { c:'Sem. 1', t:'Fase 0 en la bodega', s:'Categorías reales y etiquetado de los 10 equipos más exigentes (los que se calientan, se golpean o se mojan).', d:1 },
+    { c:'Sem. 2-4', t:'Piloto en un mes normal de eventos', s:'El bodeguero sigue avisando por WhatsApp; el escaneo se suma, no reemplaza.', d:1 },
+    { c:'Sem. 5', t:'Se etiqueta el resto', s:'Con la etiqueta que sobrevivió al piloto — no antes. JLAutomatization configura y capacita.', d:1 },
+    { c:'Mes 2', t:'Custodia en cadena', s:'Llegada con conteo y motor de discrepancias sobre lo que ya funciona; no se vuelve a etiquetar.', d:2 },
+    { c:'Mes 3', t:'Bot y avisos por Telegram', s:'Con los alias que ya puso el bodeguero; acompañamos la primera cadena de eventos completa.', d:2 },
+    { c:'Mes 4+', t:'Operación completa', s:'Programación, calendario, dashboard e informes sobre los datos ya capturados; primera reunión mensual con un mes completo de datos.', d:3 }
+  ];
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); }
+  $$('[data-linea]').forEach(function(ul){
+    var p = Number(ul.dataset.linea);
+    ul.innerHTML = HITOS.map(function(h){
+      var fuera = h.d > p;
+      return '<li class="' + (fuera ? 'fuera' : '') + '"><span class="cuando">' + esc(h.c) + '</span><span class="hito"></span><div><b>' + esc(h.t) + (fuera ? '<span class="desde">desde Plan ' + h.d + '</span>' : '') + '</b><span>' + esc(h.s) + '</span></div></li>';
+    }).join('');
+  });
+  function pintarComparar(p){
+    var cards = [3, 2, 1].map(function(q){
+      var li = FILAS.map(function(f){ var si = q >= f[1]; return '<li class="' + (si ? 'si' : 'no') + '"><i>' + (si ? '✓' : '—') + '</i><span>' + esc(f[0]) + '</span>' + (si ? '' : '<span class="desde">desde Plan ' + f[1] + '</span>') + '</li>'; }).join('');
+      var c = CIFRAS[q];
+      return '<div class="ccard" data-plan="' + q + '"' + (q !== p ? ' hidden' : '') + '><h3>' + esc(NOMBRE[q]) + (q === 3 ? ' <span class="reco-grande" style="margin:0;font-size:10px;padding:3px 8px">Recomendado</span>' : '') + '</h3><ul>' + li + '</ul><div class="cifras">Implementación <b><s style="color:var(--texto-soft)">' + c.ref + '</s> ' + c.impl + '</b> · ' + c.pago + '<br>Mensualidad <b>' + c.mes + '</b> · soporte ' + c.sop + '</div></div>';
+    }).join('');
+    $('#compararCards').innerHTML = cards;
+    var th = '<tr><th>Qué incluye</th>' + [1, 2, 3].map(function(q){ return '<th class="c' + (q === p ? ' activo' : '') + '">Plan ' + q + '</th>'; }).join('') + '</tr>';
+    var tr = FILAS.map(function(f){ return '<tr><td>' + esc(f[0]) + '</td>' + [1, 2, 3].map(function(q){ return '<td class="' + (q >= f[1] ? 'si' : 'no') + (q === p ? ' activo' : '') + '">' + (q >= f[1] ? '✓' : '—') + '</td>'; }).join('') + '</tr>'; }).join('');
+    var fila = function(et, fn){ return '<tr><td><b>' + et + '</b></td>' + [1, 2, 3].map(function(q){ return '<td class="c' + (q === p ? ' activo' : '') + '">' + fn(CIFRAS[q]) + '</td>'; }).join('') + '</tr>'; };
+    $('#tablaComparar').innerHTML = th + tr + fila('Implementación (referencia · ahora)', function(c){ return '<s>' + c.ref + '</s><br><b>' + c.impl + '</b>'; }) + fila('Forma de pago', function(c){ return c.pago; }) + fila('Mensualidad · permanencia mínima', function(c){ return c.mes; }) + fila('Soporte', function(c){ return c.sop; });
+  }
+
+  // ---------- Reproductor compartido (computador + celular sincronizados) ----------
+  var planActual = 3, DATOS = {}, subActual = -1, sonido = true, srcPuesto = false;
+  var tpl = '<div class="controles"><div class="fila"><button class="play" id="btnPlay" aria-label="Reproducir">▶</button><button class="play sec" id="btnSonido" aria-label="Sonido">🔊</button><div class="barra" id="barra" role="slider" aria-label="Posición del video" tabindex="0"><div class="prog" id="prog"></div></div><div class="tiempo" id="tiempo">0:00 / 0:00</div></div><div class="sub-vivo" id="subVivo" aria-live="polite"></div></div>' +
+    '<div class="escenario">' +
+    '<div class="disp disp-pc"><div class="laptop" id="cajaPc"><div class="pantalla"><video id="vPc" playsinline preload="none" aria-label="Computador del dueño"></video></div><div class="base"></div></div><div class="etq">Dueño · computador <button type="button" onclick="verGrande(\'vPc\')">⛶ Ver el computador</button></div></div>' +
+    '<div class="disp disp-movil"><div class="telefono" id="cajaMovil"><video id="vMovil" playsinline preload="none" muted aria-label="Celular del operario"></video></div><div class="etq">Operario · celular <button type="button" onclick="verGrande(\'vMovil\')">⛶ Ver más grande</button></div></div>' +
+    '</div><div class="caps" id="caps"></div><p class="nota" style="margin-top:10px">Los dos videos van sincronizados y la narración va con el del computador; toque un video para pausar o seguir. Cada capítulo se puede compartir o descargar como un clip corto.</p>';
+  var caja = document.createElement('div'); caja.className = 'player'; caja.innerHTML = tpl;
+  var vPc, vMv, btn, prog, tiempo, subVivo;
+  function montarEn(plan){
+    var destino = $('.video-caja[data-video="' + plan + '"]');
+    if(!destino) return; destino.innerHTML = ''; destino.appendChild(caja);
+    vPc = $('#vPc'); vMv = $('#vMovil'); btn = $('#btnPlay'); prog = $('#prog'); tiempo = $('#tiempo'); subVivo = $('#subVivo');
+    enganchar();
+  }
+  function fmt(s){ s = Math.max(0, Math.floor(s||0)); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); }
+  function seccionEn(t){ var j = DATOS[planActual], s = null; (j ? j.secciones : []).forEach(function(x){ if(t >= x.inicio) s = x; }); return s; }
+  function pintarSub(t){
+    var lista = (DATOS[planActual] && DATOS[planActual].cues) || []; var i = -1;
+    for(var k=0; k<lista.length; k++){ if(t >= lista[k].t) i = k; else break; }
+    if(i === subActual) return; subActual = i;
+    var html = i >= 0 ? (lista[i].h || esc(lista[i].texto || '')) : '';
+    if(i >= 0 && !html){ var s = seccionEn(t); if(s) html = '<b>Sección ' + s.n + '</b> · ' + esc(s.titulo); }
+    subVivo.innerHTML = html;
+  }
+  function aplicarSonido(){ var mvGrande = !!vMv.webkitDisplayingFullscreen; vPc.muted = !sonido || mvGrande; vMv.muted = !sonido || !mvGrande; $('#btnSonido').textContent = sonido ? '🔊' : '🔇'; }
+  // Los archivos solo se piden cuando alguien da ▶ o toca un capítulo: abrir el documento no descarga 20 MB.
+  function asegurarSrc(){
+    if(srcPuesto) return; srcPuesto = true;
+    var j = DATOS[planActual], base = VID + 'plan' + planActual + '/';
+    vPc.src = base + (j.escritorioWeb || j.escritorio) + '?v=' + BUILD; vMv.src = base + (j.movilWeb || j.movil) + '?v=' + BUILD; vPc.load(); vMv.load();
+  }
+  // WebKit no siempre acepta un seek en loadedmetadata (bug 261512): se espera a loadeddata.
+  function saltarA(t){ asegurarSrc(); var f = function(v){ if(v.readyState >= 2) v.currentTime = t; else v.addEventListener('loadeddata', function(){ v.currentTime = t; }, { once:true }); }; f(vPc); f(vMv); subActual = -1; pintarSub(t); }
+  function irA(t){ saltarA(t); if(vPc.paused) alternar(); }
+  function alternar(){
+    asegurarSrc();
+    if(vPc.paused){
+      if(vMv.readyState >= 1) vMv.currentTime = vPc.currentTime;
+      Promise.all([vPc.play(), vMv.play()]).then(function(){ btn.textContent = '❚❚'; btn.setAttribute('aria-label', 'Pausar'); }).catch(function(){ vPc.pause(); vMv.pause(); btn.textContent = '▶'; });
+    } else { vPc.pause(); vMv.pause(); btn.textContent = '▶'; btn.setAttribute('aria-label', 'Reproducir'); }
+  }
+  function verGrande(id){
+    asegurarSrc();
+    var v = $('#' + id);
+    if(v.webkitEnterFullscreen && !v.requestFullscreen){ v.webkitEnterFullscreen(); if(v.paused) alternar(); return; }
+    var c = v.closest('.laptop, .telefono') || v;
+    if(c.requestFullscreen) c.requestFullscreen(); else if(v.webkitEnterFullscreen) v.webkitEnterFullscreen();
+    if(v.paused) alternar();
+  }
+  function urlAbs(rel){ return new URL(rel, location.href).href; }
+  function pintarCaps(){
+    var j = DATOS[planActual]; var base = VID + 'plan' + planActual + '/';
+    $('#caps').innerHTML = j.secciones.map(function(c){
+      var clip = base + c.archivos.completo; var thumb = 'thumbs/plan' + planActual + '-s' + String(c.n).padStart(2, '0') + '.jpg';
+      var texto = 'Open Group BTL · ' + NOMBRE[planActual] + ' · capítulo ' + c.n + ': ' + c.titulo + ' (' + Math.round(c.duracion) + ' s) — sistema real con datos de ejemplo: ' + urlAbs(clip);
+      return '<div class="cap" data-t="' + c.inicio + '" data-n="' + c.n + '">' +
+        '<button type="button" class="ir" onclick="irA(' + c.inicio + ')"><span class="num">' + c.n + '</span><img src="' + thumb + '" alt="" loading="lazy" onerror="this.style.display=\'none\'"><span class="tit">' + esc(c.titulo) + '<small>' + fmt(c.inicio) + ' · ' + Math.round(c.duracion) + ' s</small></span></button>' +
+        '<button type="button" class="mas" aria-label="Compartir el capítulo ' + c.n + '" onclick="hoja(this)">⋯</button>' +
+        '<div class="hoja"><button type="button" onclick="compartir(' + c.n + ',this)">Compartir…</button><a href="https://wa.me/?text=' + encodeURIComponent(texto) + '" target="_blank" rel="noopener">WhatsApp</a><button type="button" onclick="copiarLink(' + c.n + ',this)">Copiar link</button><a href="' + clip + '" download>Descargar clip</a></div></div>';
+    }).join('');
+  }
+  function hoja(b){ var cap = b.closest('.cap'); var h = $('.hoja', cap); var on = !h.classList.contains('on'); $$('.cap .hoja.on').forEach(function(x){ x.classList.remove('on'); }); h.classList.toggle('on', on); }
+  function linkCap(n){ return location.href.split('#')[0] + '#cap' + planActual + '-' + n; }
+  // En iPhone, compartir el MP4 como archivo abre la hoja nativa con "Guardar video" y WhatsApp; si no se puede, va el enlace.
+  function compartir(n, b){
+    var j = DATOS[planActual]; var c = j.secciones.filter(function(x){ return x.n === n; })[0];
+    var titulo = 'Open Group BTL · capítulo ' + n + ': ' + c.titulo;
+    var datos = { title: titulo, text: 'Capítulo ' + n + ' · ' + c.titulo + ' — sistema real con datos de ejemplo', url: linkCap(n) };
+    if(!navigator.share){ copiarLink(n, b); return; }
+    var t = b.textContent; b.textContent = 'Preparando…'; b.disabled = true;
+    var listo = function(){ b.textContent = t; b.disabled = false; };
+    fetch(VID + 'plan' + planActual + '/' + c.archivos.completo).then(function(r){ if(!r.ok) throw 0; return r.blob(); }).then(function(blob){
+      var f = new File([blob], 'open-group-btl-plan' + planActual + '-cap' + n + '.mp4', { type: 'video/mp4' });
+      if(navigator.canShare && navigator.canShare({ files:[f] })) return navigator.share({ files:[f], title: titulo, text: datos.text });
+      return navigator.share(datos);
+    }).catch(function(){ return navigator.share(datos).catch(function(){}); }).then(listo, listo);
+  }
+  function copiarLink(n, b){
+    var u = linkCap(n);
+    (navigator.clipboard ? navigator.clipboard.writeText(u) : Promise.reject()).then(function(){ var t = b.textContent; b.textContent = '✓ Copiado'; setTimeout(function(){ b.textContent = t; }, 2000); }).catch(function(){ prompt('Copie este enlace:', u); });
+  }
+  function pintarPendiente(p){
+    var destino = $('.video-caja[data-video="' + p + '"]');
+    if(!destino || $('.video-pend', destino)) return;
+    destino.innerHTML = '<div class="video-pend"><img src="' + VID + 'plan3/poster-escritorio.jpg" alt="" onerror="this.style.display=\'none\'"><div><div class="pend"><b>Video en grabación</b>El video del Plan ' + p + ' se está grabando con el mismo método: es el mismo sistema, con menos funciones activas. Mientras tanto, el video del Plan 3 muestra todo lo que existe; lo que no está en este plan aparece en "Qué NO incluye".</div><p class="nota" style="margin-top:10px"><button type="button" class="btn ghost oscuro" onclick="cargarPlan(3)">▶ Ver el Plan 3 en video</button></p></div></div>';
+  }
+  function cargarPlan(p, luego){
+    planActual = p;
+    $$('.tab').forEach(function(b){ b.setAttribute('aria-pressed', String(Number(b.dataset.plan) === p)); });
+    $$('.plan').forEach(function(s){ s.classList.toggle('on', s.id === 'plan' + p); });
+    pintarComparar(p);
+    if(!documentoAbierto) return;
+    if(vPc){ vPc.pause(); vMv.pause(); }
+    var listo = function(j){
+      DATOS[p] = j; montarEn(p); srcPuesto = false;
+      btn.textContent = '▶'; subActual = -1; subVivo.innerHTML = '';
+      var base = VID + 'plan' + p + '/';
+      vPc.removeAttribute('src'); vMv.removeAttribute('src');
+      vPc.poster = base + 'poster-escritorio.jpg'; vMv.poster = base + 'poster-movil.jpg';
+      prog.style.width = '0'; tiempo.textContent = '0:00 / ' + fmt(j.duracion);
+      pintarCaps(); aplicarSonido();
+      if(luego) luego(j);
+    };
+    if(DATOS[p]){ listo(DATOS[p]); }
+    else fetch(VID + 'plan' + p + '/secciones.json?v=' + BUILD).then(function(r){ if(!r.ok) throw new Error('sin video'); return r.json(); }).then(listo).catch(function(){ pintarPendiente(p); });
+    try{ history.replaceState(null, '', '#plan' + p); }catch(e){}
+  }
+  function enganchar(){
+    btn.onclick = alternar;
+    $('#btnSonido').onclick = function(){ sonido = !sonido; aplicarSonido(); };
+    var barra = $('#barra');
+    barra.onclick = function(e){ var r = barra.getBoundingClientRect(); var d = vPc.duration || (DATOS[planActual] && DATOS[planActual].duracion) || 0; saltarA((e.clientX - r.left) / r.width * d); };
+    barra.onkeydown = function(e){ var d = vPc.duration || 0; if(e.key === 'ArrowRight') saltarA(Math.min(d, vPc.currentTime + 10)); if(e.key === 'ArrowLeft') saltarA(Math.max(0, vPc.currentTime - 10)); if(e.key === ' '){ e.preventDefault(); alternar(); } };
+    vPc.ontimeupdate = function(){
+      var d = vPc.duration || 0, t = vPc.currentTime; prog.style.width = d ? (t/d*100)+'%' : '0';
+      tiempo.textContent = fmt(t)+' / '+fmt(d);
+      if(vMv.readyState >= 2 && !vMv.seeking && Math.abs(vMv.currentTime - t) > 0.35) vMv.currentTime = t;
+      pintarSub(t);
+      var s = seccionEn(t); $$('#caps .cap').forEach(function(b){ b.classList.toggle('on', !!s && Number(b.dataset.n) === s.n); });
+    };
+    vPc.onended = function(){ btn.textContent = '▶'; vMv.pause(); };
+    vMv.ontimeupdate = function(){ if(vPc.paused && !vMv.paused) pintarSub(vMv.currentTime); };
+    [vPc, vMv].forEach(function(v){
+      v.onclick = alternar;
+      v.onwebkitbeginfullscreen = aplicarSonido;
+      v.onwebkitendfullscreen = function(){ var otro = v === vPc ? vMv : vPc; otro.currentTime = v.currentTime; if(!v.paused) otro.play().catch(function(){}); aplicarSonido(); };
+    });
+  }
+  $$('.tab').forEach(function(b){ b.addEventListener('click', function(){ cargarPlan(Number(b.dataset.plan)); $('#planes').scrollIntoView({ behavior:'smooth', block:'start' }); }); });
+  pintarComparar(3);
+
+  // ---------- CTA fija: aparece al pasar el primer plan; se esconde con el teclado abierto ----------
+  var barraFija = $('#barraFija'), ctaVisto = false, tecladoAbierto = false;
+  function pintarBarra(){ var on = documentoAbierto && ctaVisto && !tecladoAbierto; barraFija.classList.toggle('on', on); barraFija.setAttribute('aria-hidden', String(!on)); document.documentElement.style.setProperty('--barra', on ? (barraFija.offsetHeight + 'px') : '0px'); }
+  function observarCta(){
+    if(!('IntersectionObserver' in window)){ ctaVisto = true; pintarBarra(); return; }
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ ctaVisto = true; pintarBarra(); io.disconnect(); } }); }, { rootMargin:'0px 0px -40% 0px' });
+    var m = $('.plan.on .dos') || $('#comparar'); if(m) io.observe(m);
+  }
+  if(window.visualViewport){ window.visualViewport.addEventListener('resize', function(){ tecladoAbierto = window.visualViewport.height < window.innerHeight * 0.75; pintarBarra(); }); }
+  window.addEventListener('beforeprint', function(){ $$('details').forEach(function(d){ d.open = true; }); });
+
+  // Datos del Plan 3 para la historia (capítulos, duración, clip del resultado).
+  fetch(VID + 'plan3/secciones.json?v=' + BUILD).then(function(r){ return r.json(); }).then(function(j){
+    DATOS[3] = j;
+    $('#datoCaps').textContent = j.secciones.length;
+    $('#datoMin').textContent = Math.round(j.duracion / 60) + ' min';
+    var c = j.secciones.filter(function(s){ return /novedades/i.test(s.titulo); })[0] || j.secciones[j.secciones.length - 1];
+    var v = $('#vMini'); v.src = VID + 'plan3/' + c.archivos.completo + '?v=' + BUILD; v.poster = 'thumbs/plan3-s' + String(c.n).padStart(2, '0') + '.jpg';
+    $('#miniCap').textContent = 'Capítulo ' + c.n + ' · ' + c.titulo + ' · ' + Math.round(c.duracion) + ' s · sistema real con datos de ejemplo';
+    $('#miniVideo').hidden = false;
+  }).catch(function(){});
+
+  // ---------- Enlaces profundos ----------
+  (function(){
+    var h = location.hash || '';
+    var mp = h.match(/^#paso([1-5])$/);
+    if(mp){ pasoActual = Number(mp[1]) - 1; pintarPaso(); return; }
+    var mc = h.match(/^#cap([123])-(\d+)$/);
+    if(mc){ planActual = Number(mc[1]); abrirDocumento(); var n = Number(mc[2]);
+      var esperar = setInterval(function(){ var j = DATOS[planActual]; if(!j || !vPc) return; clearInterval(esperar); var s = j.secciones.filter(function(x){ return x.n === n; })[0]; if(s){ saltarA(s.inicio); var cap = $('#caps .cap[data-n="' + n + '"]'); if(cap){ cap.classList.add('on'); cap.scrollIntoView({ block:'center' }); } } }, 200);
+      return; }
+    var m = h.match(/plan([123])|^#(documento|comparar|preguntas|garantia|contacto|fase0)$/);
+    if(m){ if(m[1]) planActual = Number(m[1]); abrirDocumento(); if(m[2]){ var el = document.getElementById(m[2]); if(el) setTimeout(function(){ el.scrollIntoView({ behavior:'smooth' }); }, 300); } }
+  })();
+</script>
+</body>
+</html>
