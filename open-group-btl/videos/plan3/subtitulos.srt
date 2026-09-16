@@ -1,0 +1,299 @@
+1
+00:00:19,508 --> 00:00:27,473
+Este es el panel del dueño. Se entra con un PIN de 4 dígitos; el PIN dice quién es, sin elegir nombre.
+
+2
+00:00:27,473 --> 00:00:30,272
+El dueño escribe su PIN…
+
+3
+00:00:30,272 --> 00:00:36,247
+…y aterriza en Funciones: todo lo que puede hacer, ordenado por lo que más se usa.
+
+4
+00:00:36,247 --> 00:00:42,882
+Arriba dice en qué plan está el sistema. Lo que no está en el plan, sencillamente no aparece.
+
+5
+00:00:42,882 --> 00:00:50,524
+En el celular del operario, lo mismo: su PIN de 4 dígitos. No hay que instalar nada, abre en el navegador.
+
+6
+00:00:50,524 --> 00:00:53,321
+El operario escribe su PIN…
+
+7
+00:00:53,321 --> 00:00:57,974
+…y queda identificado. Desde ahora, todo lo que registre lleva su nombre.
+
+8
+00:00:57,974 --> 00:01:11,824
+Esta es su pantalla de inicio: ¿Qué vas a registrar? Cuatro opciones grandes, para tocar con el dedo en el camión.
+
+9
+00:01:11,824 --> 00:01:18,649
+Programar: cliente, nombre del evento y fecha. Paso 1 de 3.
+
+10
+00:01:18,649 --> 00:01:23,615
+Los clientes frecuentes salen como botones; uno nuevo se escribe una sola vez.
+
+11
+00:01:23,615 --> 00:01:27,169
+El nombre del evento…
+
+12
+00:01:27,169 --> 00:01:31,167
+…y la fecha, en un calendario emergente. No se escribe.
+
+13
+00:01:31,167 --> 00:01:33,978
+Un toque en el día…
+
+14
+00:01:33,978 --> 00:01:36,774
+…y listo.
+
+15
+00:01:36,774 --> 00:01:40,323
+Paso 2: qué material se necesita.
+
+16
+00:01:40,323 --> 00:01:46,478
+Se escribe o se elige la categoría — solo las que existen en el inventario.
+
+17
+00:01:46,478 --> 00:01:54,385
+La cantidad se toca: 1, 5, 10, 20, 50. Escribir no es la solución.
+
+18
+00:01:54,385 --> 00:01:58,856
+10 reflectores.
+
+19
+00:01:58,856 --> 00:02:02,883
+50 vallas…
+
+20
+00:02:02,883 --> 00:02:08,979
+…y 2 truss.
+
+21
+00:02:08,979 --> 00:02:15,961
+Paso 3: el sistema dice de una vez si alcanza con lo que hay en bodega, categoría por categoría.
+
+22
+00:02:15,961 --> 00:02:35,039
+Quedó programado. Desde este momento el evento existe para todos: dueño, coordinador y operarios.
+
+23
+00:02:35,039 --> 00:02:37,828
+En el camión: Salida a evento.
+
+24
+00:02:37,828 --> 00:02:44,475
+El evento que el dueño acaba de programar ya está en la lista, con lo que se pidió.
+
+25
+00:02:44,475 --> 00:02:47,274
+Un toque.
+
+26
+00:02:47,274 --> 00:02:53,253
+Responsable y quién recibe se eligen de una lista de los más usados. Nada que escribir.
+
+27
+00:02:53,253 --> 00:02:56,052
+El responsable del camión…
+
+28
+00:02:56,052 --> 00:02:58,846
+…y quién recibe en el evento.
+
+29
+00:02:58,846 --> 00:03:03,182
+Comenzar a escanear: tres toques y la cámara ya está lista.
+
+30
+00:03:03,182 --> 00:03:08,502
+Apunta al QR de un reflector: el sistema lo reconoce y pregunta cuántos van.
+
+31
+00:03:08,502 --> 00:03:11,304
+Van 10.
+
+32
+00:03:11,304 --> 00:03:15,152
+Quedaron cargados. El contador de arriba lleva la cuenta.
+
+33
+00:03:15,152 --> 00:03:19,480
+Lo que no tiene QR, como las vallas, va por cantidad.
+
+34
+00:03:19,480 --> 00:03:22,785
+La categoría…
+
+35
+00:03:22,785 --> 00:03:25,832
+…y el número, con un toque.
+
+36
+00:03:25,832 --> 00:03:31,387
+50 vallas.
+
+37
+00:03:31,387 --> 00:03:34,127
+Y 2 truss.
+
+38
+00:03:34,127 --> 00:03:40,130
+Arriba se compara en vivo lo cargado contra lo que pidió el evento. Si falta algo, se ve antes de arrancar.
+
+39
+00:03:40,130 --> 00:03:42,930
+Cerrar manifiesto.
+
+40
+00:03:42,930 --> 00:03:51,068
+Queda fecha, hora, responsable, quién recibe y todo lo cargado, con un sello que no se puede alterar.
+
+41
+00:03:51,068 --> 00:03:57,068
+Este es el manifiesto. Con el logo de Open Group BTL, listo para el cliente.
+
+42
+00:03:57,068 --> 00:04:02,911
+Se puede compartir por WhatsApp o correo desde el mismo celular…
+
+43
+00:04:02,911 --> 00:04:11,774
+…o imprimir.
+
+44
+00:04:11,774 --> 00:04:15,728
+En la oficina, el dueño abre Manifiestos…
+
+45
+00:04:15,728 --> 00:04:28,634
+…y ya está el que se acaba de cerrar en el camión: folio, fecha, tramo, responsable.
+
+46
+00:04:28,634 --> 00:04:35,242
+Al llegar al evento: Llegada a evento.
+
+47
+00:04:35,242 --> 00:04:38,037
+El mismo evento, un toque.
+
+48
+00:04:38,037 --> 00:04:42,555
+Quién recibe y cómo llegó el material.
+
+49
+00:04:42,555 --> 00:04:45,350
+Llegó incompleto.
+
+50
+00:04:45,350 --> 00:04:51,135
+Las cantidades esperadas ya vienen puestas: solo se corrige lo que no cuadra.
+
+51
+00:04:51,135 --> 00:04:55,539
+Reflectores: llegaron los 10.
+
+52
+00:04:55,539 --> 00:04:58,345
+Vallas: se esperaban 50…
+
+53
+00:04:58,345 --> 00:05:02,748
+…pero llegaron 48.
+
+54
+00:05:02,748 --> 00:05:07,135
+Truss: los 2.
+
+55
+00:05:07,135 --> 00:05:09,937
+Se cierra la llegada.
+
+56
+00:05:09,937 --> 00:05:25,646
+Queda la confirmación: quién recibió, en qué estado llegó, y la diferencia.
+
+57
+00:05:25,646 --> 00:05:29,319
+Novedades: todo lo que se salió de lo normal.
+
+58
+00:05:29,319 --> 00:05:36,462
+Ahí está: discrepancia de conteo, 2 vallas menos, en qué tramo y quién recibió. Ya no es un silencio invisible.
+
+59
+00:05:36,462 --> 00:05:41,836
+Buscar evento: las tarjetas muestran de una vez cuál tiene pendiente.
+
+60
+00:05:41,836 --> 00:05:44,632
+Un toque…
+
+61
+00:05:44,632 --> 00:05:50,631
+…y el estado del evento: qué falta, desde cuándo, en qué tramo.
+
+62
+00:05:50,631 --> 00:05:54,973
+El detalle completo: cada tramo con su hora y su responsable…
+
+63
+00:05:54,973 --> 00:06:07,978
+…y el saldo por categoría después de cada movimiento. Se ve exactamente dónde se perdió el rastro.
+
+64
+00:06:07,978 --> 00:06:10,773
+El Dashboard del negocio.
+
+65
+00:06:10,773 --> 00:06:16,271
+Arriba, pendientes por revisar: una lista corta, no un muro de avisos.
+
+66
+00:06:16,271 --> 00:06:22,268
+Cuando el dueño lo revisa, lo marca: se pone verde y desaparece. Lo que está bien no estorba.
+
+67
+00:06:22,268 --> 00:06:29,648
+Filtros por toque: hoy, 7 días, 30 días, este mes… y por evento, categoría o responsable.
+
+68
+00:06:29,648 --> 00:06:36,413
+Indicadores comparados con el periodo anterior: cuánto salió, cuánto volvió, discrepancias, unidades afuera.
+
+69
+00:06:36,413 --> 00:07:00,440
+Y las gráficas, cuando se quieran ver: operación, calidad, custodia, planeación, uso del sistema y salud.
+
+70
+00:07:00,440 --> 00:07:06,947
+El informe PDF del evento: lo pedido, lo cargado, lo devuelto y lo confirmado en la llegada.
+
+71
+00:07:06,947 --> 00:07:11,943
+Gráficas y reconciliación de materiales…
+
+72
+00:07:11,943 --> 00:07:16,946
+…línea de tiempo, novedades…
+
+73
+00:07:16,946 --> 00:07:27,445
+…y el acta de firmas para el cliente. Listo para guardar como PDF.
+
+74
+00:07:27,445 --> 00:07:33,759
+Y todo lo que pasó quedó en la cadena de auditoría: quién entró, qué registró, qué cambió.
+
+75
+00:07:33,759 --> 00:07:38,759
+Cada registro va encadenado al anterior. Nadie — ni nosotros — puede borrar ni editar uno sin que se note.

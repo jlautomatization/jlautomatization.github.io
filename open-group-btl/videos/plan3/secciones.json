@@ -1,0 +1,956 @@
+{
+  "plan": 3,
+  "nombre": "Plan 3 · Operación completa",
+  "duracion": 484.402,
+  "completo": "plan3-completo.mp4",
+  "movil": "plan3-movil.mp4",
+  "escritorio": "plan3-escritorio.mp4",
+  "movilWeb": "plan3-movil-web.mp4",
+  "escritorioWeb": "plan3-escritorio-web.mp4",
+  "cues": [
+    {
+      "t": 12.463,
+      "texto": "",
+      "h": ""
+    },
+    {
+      "t": 19.508,
+      "texto": "Este es el panel del dueño. Se entra con un PIN de 4 dígitos; el PIN dice quién es, sin elegir nombre.",
+      "h": "Este es el <b>panel del dueño</b>. Se entra con un PIN de 4 dígitos; el PIN dice quién es, sin elegir nombre."
+    },
+    {
+      "t": 27.473,
+      "texto": "El dueño escribe su PIN…",
+      "h": "El dueño escribe su PIN…"
+    },
+    {
+      "t": 30.272,
+      "texto": "…y aterriza en Funciones: todo lo que puede hacer, ordenado por lo que más se usa.",
+      "h": "…y aterriza en <b>Funciones</b>: todo lo que puede hacer, ordenado por lo que más se usa."
+    },
+    {
+      "t": 36.247,
+      "texto": "Arriba dice en qué plan está el sistema. Lo que no está en el plan, sencillamente no aparece.",
+      "h": "Arriba dice en qué plan está el sistema. Lo que no está en el plan, sencillamente no aparece."
+    },
+    {
+      "t": 42.882,
+      "texto": "En el celular del operario, lo mismo: su PIN de 4 dígitos. No hay que instalar nada, abre en el navegador.",
+      "h": "En el celular del operario, lo mismo: su PIN de 4 dígitos. No hay que instalar nada, abre en el navegador."
+    },
+    {
+      "t": 50.524,
+      "texto": "El operario escribe su PIN…",
+      "h": "El operario escribe su PIN…"
+    },
+    {
+      "t": 53.321,
+      "texto": "…y queda identificado. Desde ahora, todo lo que registre lleva su nombre.",
+      "h": "…y queda identificado. Desde ahora, todo lo que registre lleva su nombre."
+    },
+    {
+      "t": 57.974,
+      "texto": "Esta es su pantalla de inicio: ¿Qué vas a registrar? Cuatro opciones grandes, para tocar con el dedo en el camión.",
+      "h": "Esta es su pantalla de inicio: <b>¿Qué vas a registrar?</b> Cuatro opciones grandes, para tocar con el dedo en el camión."
+    },
+    {
+      "t": 65.617,
+      "texto": "",
+      "h": ""
+    },
+    {
+      "t": 71.824,
+      "texto": "Programar: cliente, nombre del evento y fecha. Paso 1 de 3.",
+      "h": "<b>Programar</b>: cliente, nombre del evento y fecha. Paso 1 de 3."
+    },
+    {
+      "t": 78.649,
+      "texto": "Los clientes frecuentes salen como botones; uno nuevo se escribe una sola vez.",
+      "h": "Los clientes frecuentes salen como botones; uno nuevo se escribe una sola vez."
+    },
+    {
+      "t": 83.615,
+      "texto": "El nombre del evento…",
+      "h": "El nombre del evento…"
+    },
+    {
+      "t": 87.169,
+      "texto": "…y la fecha, en un calendario emergente. No se escribe.",
+      "h": "…y la fecha, en un <b>calendario emergente</b>. No se escribe."
+    },
+    {
+      "t": 91.167,
+      "texto": "Un toque en el día…",
+      "h": "Un toque en el día…"
+    },
+    {
+      "t": 93.978,
+      "texto": "…y listo.",
+      "h": "…y listo."
+    },
+    {
+      "t": 96.774,
+      "texto": "Paso 2: qué material se necesita.",
+      "h": "Paso 2: qué material se necesita."
+    },
+    {
+      "t": 100.323,
+      "texto": "Se escribe o se elige la categoría — solo las que existen en el inventario.",
+      "h": "Se escribe o se elige la categoría — solo las que existen en el inventario."
+    },
+    {
+      "t": 106.478,
+      "texto": "La cantidad se toca: 1, 5, 10, 20, 50. Escribir no es la solución.",
+      "h": "La cantidad se <b>toca</b>: 1, 5, 10, 20, 50. Escribir no es la solución."
+    },
+    {
+      "t": 114.385,
+      "texto": "10 reflectores.",
+      "h": "10 reflectores."
+    },
+    {
+      "t": 118.856,
+      "texto": "50 vallas…",
+      "h": "50 vallas…"
+    },
+    {
+      "t": 122.883,
+      "texto": "…y 2 truss.",
+      "h": "…y 2 truss."
+    },
+    {
+      "t": 128.979,
+      "texto": "Paso 3: el sistema dice de una vez si alcanza con lo que hay en bodega, categoría por categoría.",
+      "h": "Paso 3: el sistema dice de una vez <b>si alcanza</b> con lo que hay en bodega, categoría por categoría."
+    },
+    {
+      "t": 135.961,
+      "texto": "Quedó programado. Desde este momento el evento existe para todos: dueño, coordinador y operarios.",
+      "h": "Quedó programado. Desde este momento el evento existe para todos: dueño, coordinador y operarios."
+    },
+    {
+      "t": 142.99,
+      "texto": "",
+      "h": ""
+    },
+    {
+      "t": 155.039,
+      "texto": "En el camión: Salida a evento.",
+      "h": "En el camión: <b>Salida a evento</b>."
+    },
+    {
+      "t": 157.828,
+      "texto": "El evento que el dueño acaba de programar ya está en la lista, con lo que se pidió.",
+      "h": "El evento que el dueño acaba de programar ya está en la lista, con lo que se pidió."
+    },
+    {
+      "t": 164.475,
+      "texto": "Un toque.",
+      "h": "Un toque."
+    },
+    {
+      "t": 167.274,
+      "texto": "Responsable y quién recibe se eligen de una lista de los más usados. Nada que escribir.",
+      "h": "Responsable y quién recibe se eligen de una lista de los más usados. Nada que escribir."
+    },
+    {
+      "t": 173.253,
+      "texto": "El responsable del camión…",
+      "h": "El responsable del camión…"
+    },
+    {
+      "t": 176.052,
+      "texto": "…y quién recibe en el evento.",
+      "h": "…y quién recibe en el evento."
+    },
+    {
+      "t": 178.846,
+      "texto": "Comenzar a escanear: tres toques y la cámara ya está lista.",
+      "h": "<b>Comenzar a escanear</b>: tres toques y la cámara ya está lista."
+    },
+    {
+      "t": 183.182,
+      "texto": "Apunta al QR de un reflector: el sistema lo reconoce y pregunta cuántos van.",
+      "h": "Apunta al QR de un reflector: el sistema lo reconoce y pregunta <b>cuántos van</b>."
+    },
+    {
+      "t": 188.502,
+      "texto": "Van 10.",
+      "h": "Van 10."
+    },
+    {
+      "t": 191.304,
+      "texto": "Quedaron cargados. El contador de arriba lleva la cuenta.",
+      "h": "Quedaron cargados. El contador de arriba lleva la cuenta."
+    },
+    {
+      "t": 195.152,
+      "texto": "Lo que no tiene QR, como las vallas, va por cantidad.",
+      "h": "Lo que no tiene QR, como las vallas, va <b>por cantidad</b>."
+    },
+    {
+      "t": 199.48,
+      "texto": "La categoría…",
+      "h": "La categoría…"
+    },
+    {
+      "t": 202.785,
+      "texto": "…y el número, con un toque.",
+      "h": "…y el número, con un toque."
+    },
+    {
+      "t": 205.832,
+      "texto": "50 vallas.",
+      "h": "50 vallas."
+    },
+    {
+      "t": 211.387,
+      "texto": "Y 2 truss.",
+      "h": "Y 2 truss."
+    },
+    {
+      "t": 214.127,
+      "texto": "Arriba se compara en vivo lo cargado contra lo que pidió el evento. Si falta algo, se ve antes de arrancar.",
+      "h": "Arriba se compara en vivo <b>lo cargado contra lo que pidió el evento</b>. Si falta algo, se ve antes de arrancar."
+    },
+    {
+      "t": 220.13,
+      "texto": "Cerrar manifiesto.",
+      "h": "<b>Cerrar manifiesto</b>."
+    },
+    {
+      "t": 222.93,
+      "texto": "Queda fecha, hora, responsable, quién recibe y todo lo cargado, con un sello que no se puede alterar.",
+      "h": "Queda fecha, hora, responsable, quién recibe y todo lo cargado, con un sello que no se puede alterar."
+    },
+    {
+      "t": 231.068,
+      "texto": "Este es el manifiesto. Con el logo de Open Group BTL, listo para el cliente.",
+      "h": "Este es el manifiesto. Con el logo de Open Group BTL, listo para el cliente."
+    },
+    {
+      "t": 237.068,
+      "texto": "Se puede compartir por WhatsApp o correo desde el mismo celular…",
+      "h": "Se puede <b>compartir</b> por WhatsApp o correo desde el mismo celular…"
+    },
+    {
+      "t": 242.911,
+      "texto": "…o imprimir.",
+      "h": "…o <b>imprimir</b>."
+    },
+    {
+      "t": 246.211,
+      "texto": "",
+      "h": ""
+    },
+    {
+      "t": 251.774,
+      "texto": "En la oficina, el dueño abre Manifiestos…",
+      "h": "En la oficina, el dueño abre <b>Manifiestos</b>…"
+    },
+    {
+      "t": 255.728,
+      "texto": "…y ya está el que se acaba de cerrar en el camión: folio, fecha, tramo, responsable.",
+      "h": "…y ya está el que se acaba de cerrar en el camión: folio, fecha, tramo, responsable."
+    },
+    {
+      "t": 262.022,
+      "texto": "",
+      "h": ""
+    },
+    {
+      "t": 268.634,
+      "texto": "Al llegar al evento: Llegada a evento.",
+      "h": "Al llegar al evento: <b>Llegada a evento</b>."
+    },
+    {
+      "t": 275.242,
+      "texto": "El mismo evento, un toque.",
+      "h": "El mismo evento, un toque."
+    },
+    {
+      "t": 278.037,
+      "texto": "Quién recibe y cómo llegó el material.",
+      "h": "Quién recibe y cómo llegó el material."
+    },
+    {
+      "t": 282.555,
+      "texto": "Llegó incompleto.",
+      "h": "Llegó incompleto."
+    },
+    {
+      "t": 285.35,
+      "texto": "Las cantidades esperadas ya vienen puestas: solo se corrige lo que no cuadra.",
+      "h": "Las <b>cantidades esperadas ya vienen puestas</b>: solo se corrige lo que no cuadra."
+    },
+    {
+      "t": 291.135,
+      "texto": "Reflectores: llegaron los 10.",
+      "h": "Reflectores: llegaron los 10."
+    },
+    {
+      "t": 295.539,
+      "texto": "Vallas: se esperaban 50…",
+      "h": "Vallas: se esperaban 50…"
+    },
+    {
+      "t": 298.345,
+      "texto": "…pero llegaron 48.",
+      "h": "…pero llegaron <b>48</b>."
+    },
+    {
+      "t": 302.748,
+      "texto": "Truss: los 2.",
+      "h": "Truss: los 2."
+    },
+    {
+      "t": 307.135,
+      "texto": "Se cierra la llegada.",
+      "h": "Se cierra la llegada."
+    },
+    {
+      "t": 309.937,
+      "texto": "Queda la confirmación: quién recibió, en qué estado llegó, y la diferencia.",
+      "h": "Queda la confirmación: quién recibió, en qué estado llegó, y la diferencia."
+    },
+    {
+      "t": 319.103,
+      "texto": "",
+      "h": ""
+    },
+    {
+      "t": 325.646,
+      "texto": "Novedades: todo lo que se salió de lo normal.",
+      "h": "<b>Novedades</b>: todo lo que se salió de lo normal."
+    },
+    {
+      "t": 329.319,
+      "texto": "Ahí está: discrepancia de conteo, 2 vallas menos, en qué tramo y quién recibió. Ya no es un silencio invisible.",
+      "h": "Ahí está: <b>discrepancia de conteo</b>, 2 vallas menos, en qué tramo y quién recibió. Ya no es un silencio invisible."
+    },
+    {
+      "t": 336.462,
+      "texto": "Buscar evento: las tarjetas muestran de una vez cuál tiene pendiente.",
+      "h": "<b>Buscar evento</b>: las tarjetas muestran de una vez cuál tiene pendiente."
+    },
+    {
+      "t": 341.836,
+      "texto": "Un toque…",
+      "h": "Un toque…"
+    },
+    {
+      "t": 344.632,
+      "texto": "…y el estado del evento: qué falta, desde cuándo, en qué tramo.",
+      "h": "…y el estado del evento: qué falta, desde cuándo, en qué tramo."
+    },
+    {
+      "t": 350.631,
+      "texto": "El detalle completo: cada tramo con su hora y su responsable…",
+      "h": "El <b>detalle completo</b>: cada tramo con su hora y su responsable…"
+    },
+    {
+      "t": 354.973,
+      "texto": "…y el saldo por categoría después de cada movimiento. Se ve exactamente dónde se perdió el rastro.",
+      "h": "…y el saldo por categoría después de cada movimiento. Se ve exactamente dónde se perdió el rastro."
+    },
+    {
+      "t": 361.322,
+      "texto": "",
+      "h": ""
+    },
+    {
+      "t": 367.978,
+      "texto": "El Dashboard del negocio.",
+      "h": "El <b>Dashboard del negocio</b>."
+    },
+    {
+      "t": 370.773,
+      "texto": "Arriba, pendientes por revisar: una lista corta, no un muro de avisos.",
+      "h": "Arriba, <b>pendientes por revisar</b>: una lista corta, no un muro de avisos."
+    },
+    {
+      "t": 376.271,
+      "texto": "Cuando el dueño lo revisa, lo marca: se pone verde y desaparece. Lo que está bien no estorba.",
+      "h": "Cuando el dueño lo revisa, lo marca: se pone verde y desaparece. <b>Lo que está bien no estorba.</b>"
+    },
+    {
+      "t": 382.268,
+      "texto": "Filtros por toque: hoy, 7 días, 30 días, este mes… y por evento, categoría o responsable.",
+      "h": "Filtros por toque: hoy, 7 días, 30 días, este mes… y por evento, categoría o responsable."
+    },
+    {
+      "t": 389.648,
+      "texto": "Indicadores comparados con el periodo anterior: cuánto salió, cuánto volvió, discrepancias, unidades afuera.",
+      "h": "Indicadores comparados con el periodo anterior: cuánto salió, cuánto volvió, discrepancias, unidades afuera."
+    },
+    {
+      "t": 396.413,
+      "texto": "Y las gráficas, cuando se quieran ver: operación, calidad, custodia, planeación, uso del sistema y salud.",
+      "h": "Y las gráficas, cuando se quieran ver: operación, calidad, custodia, planeación, uso del sistema y salud."
+    },
+    {
+      "t": 411.457,
+      "texto": "",
+      "h": ""
+    },
+    {
+      "t": 420.44,
+      "texto": "El informe PDF del evento: lo pedido, lo cargado, lo devuelto y lo confirmado en la llegada.",
+      "h": "El <b>informe PDF del evento</b>: lo pedido, lo cargado, lo devuelto y lo confirmado en la llegada."
+    },
+    {
+      "t": 426.947,
+      "texto": "Gráficas y reconciliación de materiales…",
+      "h": "Gráficas y reconciliación de materiales…"
+    },
+    {
+      "t": 431.943,
+      "texto": "…línea de tiempo, novedades…",
+      "h": "…línea de tiempo, novedades…"
+    },
+    {
+      "t": 436.946,
+      "texto": "…y el acta de firmas para el cliente. Listo para guardar como PDF.",
+      "h": "…y el <b>acta de firmas</b> para el cliente. Listo para guardar como PDF."
+    },
+    {
+      "t": 447.445,
+      "texto": "Y todo lo que pasó quedó en la cadena de auditoría: quién entró, qué registró, qué cambió.",
+      "h": "Y todo lo que pasó quedó en la <b>cadena de auditoría</b>: quién entró, qué registró, qué cambió."
+    },
+    {
+      "t": 453.759,
+      "texto": "Cada registro va encadenado al anterior. Nadie — ni nosotros — puede borrar ni editar uno sin que se note.",
+      "h": "Cada registro va encadenado al anterior. Nadie — ni nosotros — puede borrar ni editar uno sin que se note."
+    }
+  ],
+  "secciones": [
+    {
+      "n": 1,
+      "titulo": "Entrar al sistema",
+      "inicio": 12.463,
+      "duracion": 53.154,
+      "base": "plan3-s01-entrar-al-sistema",
+      "archivos": {
+        "completo": "secciones/plan3-s01-entrar-al-sistema.mp4",
+        "movil": "secciones/plan3-s01-entrar-al-sistema-movil.mp4",
+        "escritorio": "secciones/plan3-s01-entrar-al-sistema-escritorio.mp4"
+      },
+      "subtitulos": [
+        {
+          "t": 0,
+          "texto": "",
+          "h": ""
+        },
+        {
+          "t": 7.045,
+          "texto": "Este es el panel del dueño. Se entra con un PIN de 4 dígitos; el PIN dice quién es, sin elegir nombre.",
+          "h": "Este es el <b>panel del dueño</b>. Se entra con un PIN de 4 dígitos; el PIN dice quién es, sin elegir nombre."
+        },
+        {
+          "t": 15.01,
+          "texto": "El dueño escribe su PIN…",
+          "h": "El dueño escribe su PIN…"
+        },
+        {
+          "t": 17.809,
+          "texto": "…y aterriza en Funciones: todo lo que puede hacer, ordenado por lo que más se usa.",
+          "h": "…y aterriza en <b>Funciones</b>: todo lo que puede hacer, ordenado por lo que más se usa."
+        },
+        {
+          "t": 23.784,
+          "texto": "Arriba dice en qué plan está el sistema. Lo que no está en el plan, sencillamente no aparece.",
+          "h": "Arriba dice en qué plan está el sistema. Lo que no está en el plan, sencillamente no aparece."
+        },
+        {
+          "t": 30.419,
+          "texto": "En el celular del operario, lo mismo: su PIN de 4 dígitos. No hay que instalar nada, abre en el navegador.",
+          "h": "En el celular del operario, lo mismo: su PIN de 4 dígitos. No hay que instalar nada, abre en el navegador."
+        },
+        {
+          "t": 38.061,
+          "texto": "El operario escribe su PIN…",
+          "h": "El operario escribe su PIN…"
+        },
+        {
+          "t": 40.858,
+          "texto": "…y queda identificado. Desde ahora, todo lo que registre lleva su nombre.",
+          "h": "…y queda identificado. Desde ahora, todo lo que registre lleva su nombre."
+        },
+        {
+          "t": 45.511,
+          "texto": "Esta es su pantalla de inicio: ¿Qué vas a registrar? Cuatro opciones grandes, para tocar con el dedo en el camión.",
+          "h": "Esta es su pantalla de inicio: <b>¿Qué vas a registrar?</b> Cuatro opciones grandes, para tocar con el dedo en el camión."
+        }
+      ]
+    },
+    {
+      "n": 2,
+      "titulo": "Programar un evento",
+      "inicio": 65.617,
+      "duracion": 77.373,
+      "base": "plan3-s02-programar-un-evento",
+      "archivos": {
+        "completo": "secciones/plan3-s02-programar-un-evento.mp4",
+        "movil": "secciones/plan3-s02-programar-un-evento-movil.mp4",
+        "escritorio": "secciones/plan3-s02-programar-un-evento-escritorio.mp4"
+      },
+      "subtitulos": [
+        {
+          "t": 0,
+          "texto": "",
+          "h": ""
+        },
+        {
+          "t": 6.207,
+          "texto": "Programar: cliente, nombre del evento y fecha. Paso 1 de 3.",
+          "h": "<b>Programar</b>: cliente, nombre del evento y fecha. Paso 1 de 3."
+        },
+        {
+          "t": 13.032,
+          "texto": "Los clientes frecuentes salen como botones; uno nuevo se escribe una sola vez.",
+          "h": "Los clientes frecuentes salen como botones; uno nuevo se escribe una sola vez."
+        },
+        {
+          "t": 17.998,
+          "texto": "El nombre del evento…",
+          "h": "El nombre del evento…"
+        },
+        {
+          "t": 21.552,
+          "texto": "…y la fecha, en un calendario emergente. No se escribe.",
+          "h": "…y la fecha, en un <b>calendario emergente</b>. No se escribe."
+        },
+        {
+          "t": 25.55,
+          "texto": "Un toque en el día…",
+          "h": "Un toque en el día…"
+        },
+        {
+          "t": 28.361,
+          "texto": "…y listo.",
+          "h": "…y listo."
+        },
+        {
+          "t": 31.157,
+          "texto": "Paso 2: qué material se necesita.",
+          "h": "Paso 2: qué material se necesita."
+        },
+        {
+          "t": 34.706,
+          "texto": "Se escribe o se elige la categoría — solo las que existen en el inventario.",
+          "h": "Se escribe o se elige la categoría — solo las que existen en el inventario."
+        },
+        {
+          "t": 40.861,
+          "texto": "La cantidad se toca: 1, 5, 10, 20, 50. Escribir no es la solución.",
+          "h": "La cantidad se <b>toca</b>: 1, 5, 10, 20, 50. Escribir no es la solución."
+        },
+        {
+          "t": 48.768,
+          "texto": "10 reflectores.",
+          "h": "10 reflectores."
+        },
+        {
+          "t": 53.239,
+          "texto": "50 vallas…",
+          "h": "50 vallas…"
+        },
+        {
+          "t": 57.266,
+          "texto": "…y 2 truss.",
+          "h": "…y 2 truss."
+        },
+        {
+          "t": 63.362,
+          "texto": "Paso 3: el sistema dice de una vez si alcanza con lo que hay en bodega, categoría por categoría.",
+          "h": "Paso 3: el sistema dice de una vez <b>si alcanza</b> con lo que hay en bodega, categoría por categoría."
+        },
+        {
+          "t": 70.344,
+          "texto": "Quedó programado. Desde este momento el evento existe para todos: dueño, coordinador y operarios.",
+          "h": "Quedó programado. Desde este momento el evento existe para todos: dueño, coordinador y operarios."
+        }
+      ]
+    },
+    {
+      "n": 3,
+      "titulo": "Cargar el camión — salida a evento",
+      "inicio": 142.99,
+      "duracion": 103.221,
+      "base": "plan3-s03-cargar-el-camion-salida-a-evento",
+      "archivos": {
+        "completo": "secciones/plan3-s03-cargar-el-camion-salida-a-evento.mp4",
+        "movil": "secciones/plan3-s03-cargar-el-camion-salida-a-evento-movil.mp4",
+        "escritorio": "secciones/plan3-s03-cargar-el-camion-salida-a-evento-escritorio.mp4"
+      },
+      "subtitulos": [
+        {
+          "t": 0,
+          "texto": "",
+          "h": ""
+        },
+        {
+          "t": 12.049,
+          "texto": "En el camión: Salida a evento.",
+          "h": "En el camión: <b>Salida a evento</b>."
+        },
+        {
+          "t": 14.838,
+          "texto": "El evento que el dueño acaba de programar ya está en la lista, con lo que se pidió.",
+          "h": "El evento que el dueño acaba de programar ya está en la lista, con lo que se pidió."
+        },
+        {
+          "t": 21.485,
+          "texto": "Un toque.",
+          "h": "Un toque."
+        },
+        {
+          "t": 24.284,
+          "texto": "Responsable y quién recibe se eligen de una lista de los más usados. Nada que escribir.",
+          "h": "Responsable y quién recibe se eligen de una lista de los más usados. Nada que escribir."
+        },
+        {
+          "t": 30.263,
+          "texto": "El responsable del camión…",
+          "h": "El responsable del camión…"
+        },
+        {
+          "t": 33.062,
+          "texto": "…y quién recibe en el evento.",
+          "h": "…y quién recibe en el evento."
+        },
+        {
+          "t": 35.856,
+          "texto": "Comenzar a escanear: tres toques y la cámara ya está lista.",
+          "h": "<b>Comenzar a escanear</b>: tres toques y la cámara ya está lista."
+        },
+        {
+          "t": 40.192,
+          "texto": "Apunta al QR de un reflector: el sistema lo reconoce y pregunta cuántos van.",
+          "h": "Apunta al QR de un reflector: el sistema lo reconoce y pregunta <b>cuántos van</b>."
+        },
+        {
+          "t": 45.512,
+          "texto": "Van 10.",
+          "h": "Van 10."
+        },
+        {
+          "t": 48.314,
+          "texto": "Quedaron cargados. El contador de arriba lleva la cuenta.",
+          "h": "Quedaron cargados. El contador de arriba lleva la cuenta."
+        },
+        {
+          "t": 52.162,
+          "texto": "Lo que no tiene QR, como las vallas, va por cantidad.",
+          "h": "Lo que no tiene QR, como las vallas, va <b>por cantidad</b>."
+        },
+        {
+          "t": 56.49,
+          "texto": "La categoría…",
+          "h": "La categoría…"
+        },
+        {
+          "t": 59.795,
+          "texto": "…y el número, con un toque.",
+          "h": "…y el número, con un toque."
+        },
+        {
+          "t": 62.842,
+          "texto": "50 vallas.",
+          "h": "50 vallas."
+        },
+        {
+          "t": 68.397,
+          "texto": "Y 2 truss.",
+          "h": "Y 2 truss."
+        },
+        {
+          "t": 71.137,
+          "texto": "Arriba se compara en vivo lo cargado contra lo que pidió el evento. Si falta algo, se ve antes de arrancar.",
+          "h": "Arriba se compara en vivo <b>lo cargado contra lo que pidió el evento</b>. Si falta algo, se ve antes de arrancar."
+        },
+        {
+          "t": 77.14,
+          "texto": "Cerrar manifiesto.",
+          "h": "<b>Cerrar manifiesto</b>."
+        },
+        {
+          "t": 79.94,
+          "texto": "Queda fecha, hora, responsable, quién recibe y todo lo cargado, con un sello que no se puede alterar.",
+          "h": "Queda fecha, hora, responsable, quién recibe y todo lo cargado, con un sello que no se puede alterar."
+        },
+        {
+          "t": 88.078,
+          "texto": "Este es el manifiesto. Con el logo de Open Group BTL, listo para el cliente.",
+          "h": "Este es el manifiesto. Con el logo de Open Group BTL, listo para el cliente."
+        },
+        {
+          "t": 94.078,
+          "texto": "Se puede compartir por WhatsApp o correo desde el mismo celular…",
+          "h": "Se puede <b>compartir</b> por WhatsApp o correo desde el mismo celular…"
+        },
+        {
+          "t": 99.921,
+          "texto": "…o imprimir.",
+          "h": "…o <b>imprimir</b>."
+        }
+      ]
+    },
+    {
+      "n": 4,
+      "titulo": "El dueño lo ve al momento",
+      "inicio": 246.211,
+      "duracion": 15.811,
+      "base": "plan3-s04-el-dueno-lo-ve-al-momento",
+      "archivos": {
+        "completo": "secciones/plan3-s04-el-dueno-lo-ve-al-momento.mp4",
+        "movil": "secciones/plan3-s04-el-dueno-lo-ve-al-momento-movil.mp4",
+        "escritorio": "secciones/plan3-s04-el-dueno-lo-ve-al-momento-escritorio.mp4"
+      },
+      "subtitulos": [
+        {
+          "t": 0,
+          "texto": "",
+          "h": ""
+        },
+        {
+          "t": 5.563,
+          "texto": "En la oficina, el dueño abre Manifiestos…",
+          "h": "En la oficina, el dueño abre <b>Manifiestos</b>…"
+        },
+        {
+          "t": 9.517,
+          "texto": "…y ya está el que se acaba de cerrar en el camión: folio, fecha, tramo, responsable.",
+          "h": "…y ya está el que se acaba de cerrar en el camión: folio, fecha, tramo, responsable."
+        }
+      ]
+    },
+    {
+      "n": 5,
+      "titulo": "Llegada al evento con conteo",
+      "inicio": 262.022,
+      "duracion": 57.081,
+      "base": "plan3-s05-llegada-al-evento-con-conteo",
+      "archivos": {
+        "completo": "secciones/plan3-s05-llegada-al-evento-con-conteo.mp4",
+        "movil": "secciones/plan3-s05-llegada-al-evento-con-conteo-movil.mp4",
+        "escritorio": "secciones/plan3-s05-llegada-al-evento-con-conteo-escritorio.mp4"
+      },
+      "subtitulos": [
+        {
+          "t": 0,
+          "texto": "",
+          "h": ""
+        },
+        {
+          "t": 6.612,
+          "texto": "Al llegar al evento: Llegada a evento.",
+          "h": "Al llegar al evento: <b>Llegada a evento</b>."
+        },
+        {
+          "t": 13.22,
+          "texto": "El mismo evento, un toque.",
+          "h": "El mismo evento, un toque."
+        },
+        {
+          "t": 16.015,
+          "texto": "Quién recibe y cómo llegó el material.",
+          "h": "Quién recibe y cómo llegó el material."
+        },
+        {
+          "t": 20.533,
+          "texto": "Llegó incompleto.",
+          "h": "Llegó incompleto."
+        },
+        {
+          "t": 23.328,
+          "texto": "Las cantidades esperadas ya vienen puestas: solo se corrige lo que no cuadra.",
+          "h": "Las <b>cantidades esperadas ya vienen puestas</b>: solo se corrige lo que no cuadra."
+        },
+        {
+          "t": 29.113,
+          "texto": "Reflectores: llegaron los 10.",
+          "h": "Reflectores: llegaron los 10."
+        },
+        {
+          "t": 33.517,
+          "texto": "Vallas: se esperaban 50…",
+          "h": "Vallas: se esperaban 50…"
+        },
+        {
+          "t": 36.323,
+          "texto": "…pero llegaron 48.",
+          "h": "…pero llegaron <b>48</b>."
+        },
+        {
+          "t": 40.726,
+          "texto": "Truss: los 2.",
+          "h": "Truss: los 2."
+        },
+        {
+          "t": 45.113,
+          "texto": "Se cierra la llegada.",
+          "h": "Se cierra la llegada."
+        },
+        {
+          "t": 47.915,
+          "texto": "Queda la confirmación: quién recibió, en qué estado llegó, y la diferencia.",
+          "h": "Queda la confirmación: quién recibió, en qué estado llegó, y la diferencia."
+        }
+      ]
+    },
+    {
+      "n": 6,
+      "titulo": "Novedades y estado del evento",
+      "inicio": 319.103,
+      "duracion": 42.219,
+      "base": "plan3-s06-novedades-y-estado-del-evento",
+      "archivos": {
+        "completo": "secciones/plan3-s06-novedades-y-estado-del-evento.mp4",
+        "movil": "secciones/plan3-s06-novedades-y-estado-del-evento-movil.mp4",
+        "escritorio": "secciones/plan3-s06-novedades-y-estado-del-evento-escritorio.mp4"
+      },
+      "subtitulos": [
+        {
+          "t": 0,
+          "texto": "",
+          "h": ""
+        },
+        {
+          "t": 6.543,
+          "texto": "Novedades: todo lo que se salió de lo normal.",
+          "h": "<b>Novedades</b>: todo lo que se salió de lo normal."
+        },
+        {
+          "t": 10.216,
+          "texto": "Ahí está: discrepancia de conteo, 2 vallas menos, en qué tramo y quién recibió. Ya no es un silencio invisible.",
+          "h": "Ahí está: <b>discrepancia de conteo</b>, 2 vallas menos, en qué tramo y quién recibió. Ya no es un silencio invisible."
+        },
+        {
+          "t": 17.359,
+          "texto": "Buscar evento: las tarjetas muestran de una vez cuál tiene pendiente.",
+          "h": "<b>Buscar evento</b>: las tarjetas muestran de una vez cuál tiene pendiente."
+        },
+        {
+          "t": 22.733,
+          "texto": "Un toque…",
+          "h": "Un toque…"
+        },
+        {
+          "t": 25.529,
+          "texto": "…y el estado del evento: qué falta, desde cuándo, en qué tramo.",
+          "h": "…y el estado del evento: qué falta, desde cuándo, en qué tramo."
+        },
+        {
+          "t": 31.528,
+          "texto": "El detalle completo: cada tramo con su hora y su responsable…",
+          "h": "El <b>detalle completo</b>: cada tramo con su hora y su responsable…"
+        },
+        {
+          "t": 35.87,
+          "texto": "…y el saldo por categoría después de cada movimiento. Se ve exactamente dónde se perdió el rastro.",
+          "h": "…y el saldo por categoría después de cada movimiento. Se ve exactamente dónde se perdió el rastro."
+        }
+      ]
+    },
+    {
+      "n": 7,
+      "titulo": "Dashboard y pendientes por revisar",
+      "inicio": 361.322,
+      "duracion": 50.135,
+      "base": "plan3-s07-dashboard-y-pendientes-por-revisar",
+      "archivos": {
+        "completo": "secciones/plan3-s07-dashboard-y-pendientes-por-revisar.mp4",
+        "movil": "secciones/plan3-s07-dashboard-y-pendientes-por-revisar-movil.mp4",
+        "escritorio": "secciones/plan3-s07-dashboard-y-pendientes-por-revisar-escritorio.mp4"
+      },
+      "subtitulos": [
+        {
+          "t": 0,
+          "texto": "",
+          "h": ""
+        },
+        {
+          "t": 6.656,
+          "texto": "El Dashboard del negocio.",
+          "h": "El <b>Dashboard del negocio</b>."
+        },
+        {
+          "t": 9.451,
+          "texto": "Arriba, pendientes por revisar: una lista corta, no un muro de avisos.",
+          "h": "Arriba, <b>pendientes por revisar</b>: una lista corta, no un muro de avisos."
+        },
+        {
+          "t": 14.949,
+          "texto": "Cuando el dueño lo revisa, lo marca: se pone verde y desaparece. Lo que está bien no estorba.",
+          "h": "Cuando el dueño lo revisa, lo marca: se pone verde y desaparece. <b>Lo que está bien no estorba.</b>"
+        },
+        {
+          "t": 20.946,
+          "texto": "Filtros por toque: hoy, 7 días, 30 días, este mes… y por evento, categoría o responsable.",
+          "h": "Filtros por toque: hoy, 7 días, 30 días, este mes… y por evento, categoría o responsable."
+        },
+        {
+          "t": 28.326,
+          "texto": "Indicadores comparados con el periodo anterior: cuánto salió, cuánto volvió, discrepancias, unidades afuera.",
+          "h": "Indicadores comparados con el periodo anterior: cuánto salió, cuánto volvió, discrepancias, unidades afuera."
+        },
+        {
+          "t": 35.091,
+          "texto": "Y las gráficas, cuando se quieran ver: operación, calidad, custodia, planeación, uso del sistema y salud.",
+          "h": "Y las gráficas, cuando se quieran ver: operación, calidad, custodia, planeación, uso del sistema y salud."
+        }
+      ]
+    },
+    {
+      "n": 8,
+      "titulo": "Informe PDF y cadena de auditoría",
+      "inicio": 411.457,
+      "duracion": 72.945,
+      "base": "plan3-s08-informe-pdf-y-cadena-de-auditoria",
+      "archivos": {
+        "completo": "secciones/plan3-s08-informe-pdf-y-cadena-de-auditoria.mp4",
+        "movil": "secciones/plan3-s08-informe-pdf-y-cadena-de-auditoria-movil.mp4",
+        "escritorio": "secciones/plan3-s08-informe-pdf-y-cadena-de-auditoria-escritorio.mp4"
+      },
+      "subtitulos": [
+        {
+          "t": 0,
+          "texto": "",
+          "h": ""
+        },
+        {
+          "t": 8.983,
+          "texto": "El informe PDF del evento: lo pedido, lo cargado, lo devuelto y lo confirmado en la llegada.",
+          "h": "El <b>informe PDF del evento</b>: lo pedido, lo cargado, lo devuelto y lo confirmado en la llegada."
+        },
+        {
+          "t": 15.49,
+          "texto": "Gráficas y reconciliación de materiales…",
+          "h": "Gráficas y reconciliación de materiales…"
+        },
+        {
+          "t": 20.486,
+          "texto": "…línea de tiempo, novedades…",
+          "h": "…línea de tiempo, novedades…"
+        },
+        {
+          "t": 25.489,
+          "texto": "…y el acta de firmas para el cliente. Listo para guardar como PDF.",
+          "h": "…y el <b>acta de firmas</b> para el cliente. Listo para guardar como PDF."
+        },
+        {
+          "t": 35.988,
+          "texto": "Y todo lo que pasó quedó en la cadena de auditoría: quién entró, qué registró, qué cambió.",
+          "h": "Y todo lo que pasó quedó en la <b>cadena de auditoría</b>: quién entró, qué registró, qué cambió."
+        },
+        {
+          "t": 42.302,
+          "texto": "Cada registro va encadenado al anterior. Nadie — ni nosotros — puede borrar ni editar uno sin que se note.",
+          "h": "Cada registro va encadenado al anterior. Nadie — ni nosotros — puede borrar ni editar uno sin que se note."
+        }
+      ]
+    }
+  ]
+}

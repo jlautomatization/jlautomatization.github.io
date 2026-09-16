@@ -1,0 +1,17 @@
+TÍTULO
+Open Group BTL · Sistema de custodia de equipos — Plan 3 · Operación completa (demo paso a paso)
+
+DESCRIPCIÓN
+Así funciona el Plan 3 del sistema de control y custodia de equipos de JLAutomatization para Open Group BTL, visto al mismo tiempo desde el celular del operario (en el camión) y el computador del dueño (en la oficina). Datos de ejemplo: el inventario real se levanta con Open Group BTL en la Fase 0.
+
+Capítulos
+0:00 Entrar al sistema
+1:05 Programar un evento
+2:22 Cargar el camión — salida a evento
+4:06 El dueño lo ve al momento
+4:22 Llegada al evento con conteo
+5:19 Novedades y estado del evento
+6:01 Dashboard y pendientes por revisar
+6:51 Informe PDF y cadena de auditoría
+
+Subtítulos en español incluidos (archivo .srt). Powered by JLAutomatization.
