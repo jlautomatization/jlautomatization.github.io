@@ -21,7 +21,7 @@
     if(abierto()) return;
     document.body.classList.add('jla-bloqueado');
     var d=document.createElement('div'); d.id='jla-clave';
-    d.innerHTML='<form><h1>Propuesta privada</h1><p>Escribe la clave que te dio Jose para entrar.</p><input type="password" autocomplete="off" inputmode="text" aria-label="Clave"><button type="submit">Entrar</button><div class="err"></div></form>';
+    d.innerHTML='<form><h1>Guía privada</h1><p>Escribe la clave que te dio Jose para entrar.</p><input type="password" autocomplete="off" inputmode="text" aria-label="Clave"><button type="submit">Entrar</button><div class="err"></div></form>';
     document.body.appendChild(d);
     var f=d.querySelector('form'), i=d.querySelector('input'), e=d.querySelector('.err');
     i.focus();
@@ -35,538 +35,288 @@
   if(document.body) pintar(); else document.addEventListener('DOMContentLoaded',pintar);
 })();
 </script>
-<title>Propuesta En Construcción Gym</title>
+<title>Tu sistema, paso a paso · En Construcción Gym</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anton&family=Barlow:wght@400;500;600;700&family=Barlow+Condensed:wght@600;700&display=swap">
 <style>
-  /* Paleta del gimnasio (negro + verde) — un solo tema oscuro, igual que la web y el sistema. */
   :root{
     --bg:#050505; --surface:#0A0A0A; --surface-2:#141414; --border:#242724;
     --text:#F2F3F1; --text-soft:#9AA39C; --heading:#FFFFFF;
     --verde:#22C55E; --verde-osc:#159A3B; --verde-brillo:#4ADE80; --verde-bg:#0F2416; --sobre-verde:#04140A;
     --ambar:#F59E0B; --ambar-bg:#2A2110; --pend-border:#C77B25; --pend-text:#F0B463;
-    --jl-azul:#163A5C; --jl-azul-2:#1F4E79; --jl-oro:#B8860B; --jl-fondo:#F4F6F9; --jl-linea:#D9E3ED;
-    color-scheme: dark;
+    color-scheme:dark;
   }
-  *{box-sizing:border-box;}
-  html,body{margin:0; background:var(--bg);}
-  body{font-family:'Barlow',system-ui,-apple-system,sans-serif; color:var(--text); font-size:16px; line-height:1.55; background:radial-gradient(circle at 50% -8%, #0f2416 0%, #050505 42%);}
-  h1,h2,h3{font-family:'Anton',system-ui,sans-serif; font-weight:400; letter-spacing:.01em; text-wrap:balance; margin:0 0 .5rem; color:var(--heading);}
-  p{margin:0 0 .9rem;}
-  a{color:var(--verde-brillo);}
-  .wrap{max-width:1080px; margin:0 auto; padding-block:0 60px; padding-inline:16px;}
-
-  /* ---- Encabezado (el que Jose aprobó) ---- */
-  header.top{padding:16px 0 12px; border-bottom:1px solid var(--border); display:flex; align-items:center; justify-content:space-between; gap:12px; flex-wrap:wrap;}
-  .brand{display:flex; align-items:center; gap:10px;}
-  .logo{position:relative; display:inline-flex; align-items:center; justify-content:center; width:34px; height:34px;}
-  .logo .letters{font-family:'Anton',sans-serif; font-size:1.15rem; color:var(--verde); letter-spacing:-.03em;}
-  .logo .arm{position:absolute; width:30px; height:5px; background:var(--verde-brillo); border-radius:3px; left:2px; top:9px; transform:rotate(-26deg); box-shadow:0 1px 3px rgba(0,0,0,.18);}
-  .brand-text{display:flex; flex-direction:column; line-height:1.15;}
-  .brand-text b{font-family:'Anton',sans-serif; font-weight:400; font-size:.92rem; color:var(--verde); letter-spacing:.01em;}
-  .brand-text span{font-size:.66rem; color:var(--text-soft); letter-spacing:.03em;}
-  .top-actions{display:flex; gap:8px; flex-wrap:wrap;}
-  .btn{display:inline-flex; align-items:center; gap:6px; background:var(--verde); color:var(--sobre-verde); border:1.5px solid var(--verde); border-radius:10px; padding:10px 14px; font:700 .8rem 'Barlow Condensed',sans-serif; letter-spacing:.08em; text-transform:uppercase; cursor:pointer; text-decoration:none; min-height:40px;}
-  .btn.ghost{background:transparent; color:var(--verde-brillo); border-color:var(--verde-brillo);}
-  .btn:hover{filter:brightness(1.08);}
-  .btn:focus-visible, button:focus-visible{outline:2px solid var(--verde-brillo); outline-offset:2px;}
-
-  /* ---- Historia (gancho de 5 pasos antes del documento) ---- */
-  .historia{min-height:calc(100dvh - 70px); display:flex; flex-direction:column; justify-content:center; padding:28px 0 24px;}
-  .historia .paso{display:none; animation:fadein .35s ease;}
-  .historia .paso.on{display:block;}
-  @media (prefers-reduced-motion:reduce){ .historia .paso{animation:none;} }
-  .historia .eyebrow{margin-bottom:12px;}
-  .historia h2{font-size:clamp(1.9rem, 6vw, 3.4rem); line-height:1.02; text-transform:uppercase; max-width:16ch; margin-bottom:16px;}
-  .historia p{font-size:clamp(1rem, 2.2vw, 1.2rem); color:var(--text-soft); max-width:58ch; margin:0 0 12px;}
-  .historia p b{color:var(--text);}
-  .historia .cita{border-left:4px solid var(--verde); padding:6px 16px; margin:14px 0; font-style:italic; color:var(--text); font-size:1.02rem; max-width:60ch;}
-  .historia .cita small{display:block; font-style:normal; color:var(--text-soft); font-size:.78rem; margin-top:4px;}
-  .historia .datos{display:grid; grid-template-columns:repeat(auto-fit, minmax(150px,1fr)); gap:10px; margin:16px 0 6px; max-width:720px;}
-  .historia .dato{background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:12px 14px;}
-  .historia .dato b{display:block; font-family:'Anton',sans-serif; font-weight:400; font-size:1.6rem; color:var(--verde-brillo); line-height:1.1;}
-  .historia .dato span{font-size:.74rem; color:var(--text-soft); text-transform:uppercase; letter-spacing:.06em;}
-  .historia .pie{display:flex; align-items:center; gap:12px; flex-wrap:wrap; margin-top:26px;}
-  .historia .puntos{display:flex; gap:6px; margin-right:auto;}
-  .historia .puntos i{width:8px; height:8px; border-radius:50%; background:var(--border); display:block;}
-  .historia .puntos i.on{background:var(--verde);}
-  .historia .btn.grande{font-size:.95rem; padding:14px 22px; min-height:48px;}
-  .historia .saltar{background:none; border:none; color:var(--text-soft); font:600 .82rem 'Barlow',sans-serif; cursor:pointer; text-decoration:underline; padding:8px;}
-  /* Mensaje de voz de Jose en la apertura */
-  .mensaje-jose{display:flex; align-items:center; gap:14px; background:var(--surface-2); border:1.5px solid var(--verde); border-radius:16px; padding:12px 16px; margin:18px 0 6px; max-width:560px;}
-  .mensaje-jose button{width:56px; height:56px; border-radius:50%; background:var(--verde); border:none; color:var(--sobre-verde); font-size:1.3rem; cursor:pointer; flex:none; box-shadow:0 0 22px -4px rgba(34,197,94,.8);}
-  .mensaje-jose .txt{display:flex; flex-direction:column; gap:2px;}
-  .mensaje-jose .txt b{font-family:'Barlow Condensed',sans-serif; letter-spacing:.1em; text-transform:uppercase; font-size:.72rem; color:var(--verde-brillo);}
-  .mensaje-jose .txt span{font-weight:600; color:var(--text);}
-  .mensaje-jose .txt small{color:var(--text-soft); font-size:.8rem;}
-  .mensaje-jose .onda{display:flex; gap:3px; align-items:center; height:28px; margin-left:auto;}
-  .mensaje-jose .onda i{width:4px; height:8px; background:var(--verde-brillo); border-radius:2px; opacity:.5;}
-  .mensaje-jose.sonando .onda i{animation:onda .9s ease-in-out infinite; opacity:1;}
-  .mensaje-jose .onda i:nth-child(2){animation-delay:.15s} .mensaje-jose .onda i:nth-child(3){animation-delay:.3s} .mensaje-jose .onda i:nth-child(4){animation-delay:.45s} .mensaje-jose .onda i:nth-child(5){animation-delay:.6s}
-  @keyframes onda{0%,100%{height:8px} 50%{height:26px}}
-  @media (prefers-reduced-motion:reduce){ .mensaje-jose.sonando .onda i{animation:none; height:18px;} }
-  .documento{display:none;}
-  .documento.on{display:block;}
-
-  /* ---- Apertura ---- */
-  .hero{padding:34px 0 10px; display:grid; gap:14px;}
-  .eyebrow{display:inline-block; font-size:.68rem; font-weight:700; letter-spacing:.14em; color:var(--verde-brillo); text-transform:uppercase;}
-  .hero h1{font-size:clamp(1.9rem, 5.2vw, 3rem); line-height:1.05; text-transform:uppercase; max-width:14ch;}
-  .hero p{color:var(--text-soft); max-width:62ch; margin:0;}
-
-  /* ---- Selector de planes (3 → 2 → 1) ---- */
-  .planes-nav{position:static; z-index:30; background:rgba(5,5,5,.92); backdrop-filter:blur(8px); padding:12px 0; margin-top:18px; border-bottom:1px solid var(--border);}
-  .planes-nav .tabs{display:grid; grid-template-columns:repeat(3,1fr); gap:8px;}
-  .tab{position:relative; background:var(--surface-2); border:1.5px solid var(--border); border-radius:14px; padding:12px 12px 10px; cursor:pointer; text-align:left; color:var(--text); font-family:'Barlow',sans-serif; transition:.2s; min-height:64px;}
-  .tab .n{display:block; font:700 .68rem 'Barlow Condensed',sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--text-soft);}
-  .tab .t{display:block; font-family:'Anton',sans-serif; font-size:1.05rem; line-height:1.15; margin-top:2px;}
-  .tab .p{display:block; font-size:.74rem; color:var(--text-soft); margin-top:3px;}
-  .tab:hover{border-color:var(--verde);}
-  .tab.on{background:var(--verde); border-color:var(--verde); color:var(--sobre-verde);}
-  .tab.on .n, .tab.on .p{color:var(--sobre-verde); opacity:.85;}
-  .tab .reco{position:absolute; top:-10px; right:10px; background:var(--verde-brillo); color:var(--sobre-verde); font:700 .62rem 'Barlow Condensed',sans-serif; letter-spacing:.1em; text-transform:uppercase; padding:3px 9px; border-radius:20px;}
-  .tab.on .reco{background:#04140A; color:var(--verde-brillo);}
-  @media (min-width:641px){ .planes-nav{position:sticky; top:0;} }
-  @media (max-width:640px){ .planes-nav .tabs{grid-template-columns:1fr;} .tab{min-height:0; padding:10px 12px;} .tab .t{font-size:.95rem; display:inline;} .tab .n{display:inline; margin-right:8px;} .tab .p{display:none;} }
-
-  /* ---- Panel de cada plan ---- */
-  .plan{display:none; padding-top:26px; scroll-margin-top:120px;}
-  .plan.on{display:block; animation:fadein .3s ease;}
-  @keyframes fadein{ from{opacity:0; transform:translateY(6px);} to{opacity:1; transform:none;} }
-  @media (prefers-reduced-motion:reduce){ .plan.on{animation:none;} }
-  .plan-head{display:grid; gap:14px; margin-bottom:18px;}
-  @media (min-width:820px){ .plan-head{grid-template-columns:1.2fr 1fr; align-items:end;} }
-  .plan-head h2{font-size:clamp(1.6rem, 4vw, 2.4rem); text-transform:uppercase; line-height:1.05;}
-  .plan-head .lede{color:var(--text-soft); margin:0; max-width:55ch;}
-  .precios{display:grid; grid-template-columns:repeat(auto-fit, minmax(150px, 1fr)); gap:10px;}
-  .precio{background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:12px 14px;}
-  .precio b{display:block; font-family:'Anton',sans-serif; font-weight:400; font-size:clamp(1.25rem, 2.6vw, 1.7rem); color:var(--verde-brillo); line-height:1.1; font-variant-numeric:tabular-nums;}
-  .precio b s{font-family:'Barlow',sans-serif; font-weight:400; font-size:.8rem; color:var(--text-soft); margin-right:6px;}
-  .precio span{display:block; font-size:.68rem; color:var(--text-soft); text-transform:uppercase; letter-spacing:.06em; margin-top:4px;}
-  .precio.reco{border-color:var(--verde); background:var(--verde-bg);}
-  .precio.largo b{font-size:clamp(1.05rem, 2vw, 1.3rem);}
-  .reco-grande{display:inline-flex; align-items:center; gap:8px; background:var(--verde-brillo); color:var(--sobre-verde); font-family:'Anton',sans-serif; font-size:1.1rem; letter-spacing:.06em; text-transform:uppercase; padding:6px 16px; border-radius:999px; margin-bottom:8px;}
-  .fase{display:inline-flex; background:var(--ambar); color:#1a1000; font:700 .7rem 'Barlow Condensed',sans-serif; letter-spacing:.14em; text-transform:uppercase; padding:5px 12px; border-radius:999px; margin-bottom:8px;}
-
-  /* ---- Video (mockups) ---- */
-  .video-caja{margin:18px 0 10px;}
-  .escenario{display:grid; grid-template-columns:1fr; gap:18px; align-items:end;}
-  @media (min-width:900px){ .escenario{grid-template-columns:minmax(0,1fr) 220px;} }
-  .laptop{width:100%; max-width:820px; margin:0 auto;}
-  .laptop .pantalla{background:#0b0b0b; border:2px solid #2a2a2a; border-bottom:none; border-radius:16px 16px 0 0; padding:10px 10px 0; box-shadow:0 30px 80px -30px rgba(0,0,0,.9);}
-  .laptop video{display:block; width:100%; aspect-ratio:16/10; background:#000; border-radius:8px 8px 0 0; max-width:100%;}
-  .laptop .base{height:14px; background:linear-gradient(#3a3a3a,#1c1c1c); border-radius:0 0 14px 14px; margin:0 -3%;}
-  .telefono{width:200px; margin:0 auto; background:#0b0b0b; border:3px solid #2a2a2a; border-radius:32px; padding:9px; box-shadow:0 30px 70px -25px rgba(0,0,0,.95); position:relative;}
-  .telefono::before{content:''; position:absolute; top:16px; left:50%; transform:translateX(-50%); width:62px; height:16px; background:#000; border-radius:12px; z-index:2;}
-  .telefono video{display:block; width:100%; aspect-ratio:390/844; background:#000; border-radius:24px; max-width:100%;}
-  @media (max-width:899px){ .telefono{width:min(300px, 84vw);} }
-  .etq{display:flex; justify-content:center; align-items:center; gap:10px; color:var(--text-soft); font:700 .72rem 'Barlow Condensed',sans-serif; letter-spacing:.06em; text-transform:uppercase; margin-top:8px;}
-  .etq button{background:var(--surface-2); border:1px solid var(--border); color:var(--verde-brillo); font:700 .72rem 'Barlow Condensed',sans-serif; letter-spacing:.06em; text-transform:uppercase; padding:7px 11px; border-radius:999px; cursor:pointer; min-height:34px;}
-  .sub-vivo{position:sticky; bottom:10px; z-index:20; margin-top:14px; background:rgba(0,0,0,.9); border:1.5px solid var(--verde); border-left-width:6px; border-radius:14px; padding:12px 16px; font:600 clamp(1rem, 2.4vw, 1.3rem)/1.35 'Barlow',sans-serif; color:#fff; text-align:center; min-height:58px;}
-  .sub-vivo b{color:var(--verde-brillo);}
-  .sub-vivo:empty{opacity:.4;}
-  .sub-vivo:empty::before{content:'Dale a ▶ y el subtítulo de cada paso sale aquí en grande.'; font-weight:500; color:var(--text-soft);}
-  .controles{margin-top:14px; background:var(--surface); border:1px solid var(--border); border-radius:14px; padding:12px 14px;}
-  .fila{display:flex; align-items:center; gap:10px; flex-wrap:wrap;}
-  .play{width:48px; height:48px; border-radius:50%; background:var(--verde); border:none; color:var(--sobre-verde); font-size:1.2rem; cursor:pointer; flex:none; display:flex; align-items:center; justify-content:center;}
-  .play.sec{background:var(--surface-2); color:var(--verde-brillo); border:1px solid var(--border); font-size:1rem;}
-  .barra{flex:1; min-width:160px; height:10px; background:#1d201e; border-radius:999px; position:relative; cursor:pointer;}
-  .barra .prog{position:absolute; left:0; top:0; bottom:0; width:0; background:var(--verde); border-radius:999px;}
-  .tiempo{font-variant-numeric:tabular-nums; color:var(--text-soft); font-size:.85rem; min-width:88px; text-align:right;}
-  .caps{display:flex; gap:7px; flex-wrap:wrap; margin-top:12px;}
-  .caps button{background:var(--surface-2); border:1px solid var(--border); color:var(--text-soft); font:600 .75rem 'Barlow',sans-serif; padding:7px 11px; border-radius:999px; cursor:pointer; min-height:34px;}
-  .caps button.on{border-color:var(--verde); color:var(--verde-brillo);}
-  .aviso-sim{margin-top:12px; border:1.5px dashed var(--ambar); border-radius:12px; padding:10px 14px; color:var(--pend-text); font-size:.84rem;}
-
-  /* ---- Qué incluye ---- */
-  .dos{display:grid; gap:16px; margin-top:22px;}
-  @media (min-width:820px){ .dos{grid-template-columns:1.25fr 1fr;} }
-  .card{background:var(--surface-2); border:1px solid var(--border); border-radius:16px; padding:18px 20px;}
-  .card h3{font-size:1.05rem; margin-bottom:10px;}
-  .incluye{list-style:none; margin:0; padding:0;}
-  .incluye li{display:flex; gap:10px; padding:8px 0; border-top:1px solid var(--border); font-size:.92rem;}
-  .incluye li:first-child{border-top:none; padding-top:0;}
-  .incluye li::before{content:"✓"; color:var(--verde-brillo); font-weight:700; flex:none;}
-  .incluye li.nuevo::before{content:"+"; color:var(--ambar);}
-  .incluye li b{color:var(--heading);}
-  .nota{font-size:.82rem; color:var(--text-soft); margin:0;}
-  .callout{background:var(--verde); color:var(--sobre-verde); border:none;}
-  .callout p{color:var(--sobre-verde); margin:0; font-size:.95rem;}
-  .pend{background:var(--ambar-bg); border:1.5px dashed var(--pend-border); color:var(--pend-text); border-radius:14px; padding:12px 16px; font-size:.88rem;}
-  .pend b{display:block; font-size:.66rem; letter-spacing:.1em; text-transform:uppercase; margin-bottom:4px;}
-
-  /* ---- Prueba el sistema ---- */
-  section.prueba{margin-top:40px; border-top:1px solid var(--border); padding-top:28px; scroll-margin-top:120px;}
-  .prueba h2{font-size:clamp(1.5rem, 4vw, 2.2rem); text-transform:uppercase;}
-  .prueba .intro{color:var(--text-soft); max-width:62ch;}
-  .prueba .acciones{display:flex; gap:10px; flex-wrap:wrap; margin:14px 0 18px;}
-  .prueba .btn.grande{font-size:.95rem; padding:14px 22px; min-height:48px;}
-  .cred{display:grid; grid-template-columns:repeat(auto-fit, minmax(210px, 1fr)); gap:10px; margin:14px 0 18px;}
-  .cred div{background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:12px 14px;}
-  .cred .rol{display:block; font:700 .68rem 'Barlow Condensed',sans-serif; letter-spacing:.14em; text-transform:uppercase; color:var(--verde-brillo);}
-  .cred .quien{display:block; color:var(--text); font-weight:600; margin:2px 0 4px;}
-  .cred .como{display:block; font-size:.82rem; color:var(--text-soft);}
-  .cred b.dato{display:inline-block; font-family:'Barlow Condensed',sans-serif; font-size:1.15rem; letter-spacing:.08em; color:#fff; background:var(--verde-bg); border:1px solid var(--verde); border-radius:8px; padding:2px 10px; margin-top:6px;}
-  .pasos{display:grid; gap:10px;}
-  .pasos .paso{display:grid; grid-template-columns:34px 1fr; gap:12px; background:var(--surface-2); border:1px solid var(--border); border-radius:14px; padding:14px 16px;}
-  .pasos .num{width:30px; height:30px; border-radius:50%; background:var(--verde); color:var(--sobre-verde); font-family:'Anton',sans-serif; font-size:1rem; display:flex; align-items:center; justify-content:center;}
-  .pasos h3{font-family:'Barlow',sans-serif; font-weight:700; font-size:1rem; margin:3px 0 4px;}
-  .pasos p{margin:0; font-size:.9rem; color:var(--text-soft);}
-  .pasos p b{color:var(--text);}
-  .prueba .ojo{margin-top:14px;}
-
-  /* ---- Cierre ---- */
-  section.cierre{margin-top:40px; border-top:1px solid var(--border); padding-top:28px;}
-  .cierre h2{font-size:1.5rem; text-transform:uppercase;}
-  .tbl-wrap{overflow-x:auto; margin:14px 0; border:1px solid var(--border); border-radius:12px;}
-  table{border-collapse:collapse; width:100%; font-size:.84rem; min-width:100%;}
-  th{background:var(--verde); color:var(--sobre-verde); text-align:left; padding:9px 10px; font-weight:700; font-size:.72rem; letter-spacing:.04em; text-transform:uppercase;}
-  td{padding:9px 10px; border-top:1px solid var(--border); vertical-align:top;}
-  tr:nth-child(even) td{background:var(--surface-2);}
-  td.si{color:var(--verde-brillo); font-weight:700; text-align:center;} td.no{color:#5d655f; text-align:center;}
-  details{margin:14px 0;} summary{cursor:pointer; color:var(--verde-brillo); font-weight:600;}
-  .cta{display:block; text-align:center; background:var(--verde); color:var(--sobre-verde) !important; text-decoration:none; font-family:'Anton',sans-serif; font-size:1rem; padding:15px 20px; border-radius:12px; margin-top:16px; letter-spacing:.03em;}
-  .tagline{font-size:.72rem; color:var(--text-soft); text-align:center; margin-top:22px;}
-  .marca-jl{position:fixed; right:10px; bottom:10px; z-index:9999; font:600 10px/1 "Barlow",system-ui,sans-serif; letter-spacing:.14em; text-transform:uppercase; color:rgba(255,255,255,.55); background:rgba(0,0,0,.55); border:1px solid rgba(255,255,255,.15); border-radius:20px; padding:6px 10px; pointer-events:none;}
-  .marca-jl b{color:#4ADE80; font-weight:700;}
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  html,body{margin:0;background:var(--bg)}
+  body{font-family:'Barlow',system-ui,sans-serif;color:var(--text);font-size:16px;line-height:1.55;background:radial-gradient(circle at 20% -10%,#0f2416 0,transparent 45%),var(--bg)}
+  h1,h2,h3{font-family:'Anton',system-ui,sans-serif;font-weight:400;letter-spacing:.01em;margin:0 0 .5rem;color:var(--heading);text-wrap:balance}
+  p{margin:0 0 .9rem} a{color:var(--verde-brillo)}
+  .wrap{max-width:1040px;margin:0 auto;padding:0 16px 80px}
+  header.top{padding:14px 0 12px;border-bottom:1px solid var(--border);display:flex;align-items:center;justify-content:space-between;gap:12px;flex-wrap:wrap}
+  .brand{display:flex;align-items:center;gap:10px}
+  .logo{position:relative;display:inline-flex;align-items:center;justify-content:center;width:34px;height:34px}
+  .logo .letters{font-family:'Anton',sans-serif;font-size:1.15rem;color:var(--verde);letter-spacing:-.03em}
+  .logo .arm{position:absolute;width:30px;height:5px;background:var(--verde-brillo);border-radius:3px;left:2px;top:9px;transform:rotate(-26deg)}
+  .brand-text{display:flex;flex-direction:column;line-height:1.15}
+  .brand-text b{font-family:'Anton',sans-serif;font-weight:400;font-size:.92rem;color:var(--verde)}
+  .brand-text span{font-size:.66rem;color:var(--text-soft);letter-spacing:.03em}
+  .btn{display:inline-flex;align-items:center;gap:6px;background:var(--verde);color:var(--sobre-verde);border:1.5px solid var(--verde);border-radius:999px;padding:9px 14px;font:700 .8rem 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;text-decoration:none;cursor:pointer}
+  .btn.ghost{background:transparent;color:var(--verde-brillo);border-color:var(--verde-brillo)}
+  .btn.mini{padding:6px 11px;font-size:.72rem}
+  .eyebrow{display:inline-block;font-size:.68rem;font-weight:700;letter-spacing:.14em;color:var(--verde-brillo);text-transform:uppercase}
+  .hero{padding:36px 0 18px;display:grid;gap:12px}
+  .hero h1{font-size:clamp(2rem,5.4vw,3.2rem);line-height:1.04;text-transform:uppercase;max-width:16ch}
+  .hero p{color:var(--text-soft);max-width:62ch;margin:0}
+  .cuatro{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin:14px 0 4px}
+  .cuatro div{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:12px 14px;font-size:.92rem}
+  .cuatro b{display:block;font-family:'Anton',sans-serif;font-weight:400;color:var(--verde-brillo);font-size:1.4rem;line-height:1}
+  nav.pasos{position:sticky;top:0;z-index:20;background:rgba(5,5,5,.94);backdrop-filter:blur(8px);border-bottom:1px solid var(--border);padding:10px 0;margin-top:14px}
+  nav.pasos .chips{display:flex;gap:6px;overflow-x:auto;scrollbar-width:none}
+  nav.pasos a{flex:0 0 auto;white-space:nowrap;background:var(--surface-2);border:1px solid var(--border);color:var(--text);text-decoration:none;border-radius:999px;padding:7px 12px;font:600 .78rem 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase}
+  nav.pasos a.on{background:var(--verde);border-color:var(--verde);color:var(--sobre-verde)}
+  section.paso{padding:34px 0 8px;scroll-margin-top:64px;border-bottom:1px solid var(--border)}
+  section.paso h2{font-size:clamp(1.5rem,3.8vw,2.2rem);text-transform:uppercase;line-height:1.08}
+  .num{font:700 .72rem 'Barlow Condensed',sans-serif;letter-spacing:.14em;color:var(--verde-brillo);text-transform:uppercase}
+  .lede{color:var(--text-soft);max-width:62ch}
+  .dice{border-left:4px solid var(--verde);padding:6px 16px;margin:14px 0;font-style:italic;color:var(--text);max-width:66ch;background:var(--surface)}
+  .dice small{display:block;font-style:normal;color:var(--text-soft);font-size:.76rem;margin-top:4px}
+  .cards{display:grid;grid-template-columns:repeat(auto-fit,minmax(230px,1fr));gap:10px;margin:14px 0}
+  .card{background:var(--surface-2);border:1px solid var(--border);border-radius:14px;padding:14px 16px}
+  .card h3{font-size:1.05rem;color:var(--verde-brillo);margin-bottom:6px}
+  .card ul{margin:0;padding-left:18px;color:var(--text);font-size:.93rem}
+  .card li{margin:3px 0}
+  .card.pend{border-color:var(--pend-border);background:var(--ambar-bg)}
+  .card.pend h3{color:var(--pend-text)}
+  .chip{display:inline-block;font:700 .66rem 'Barlow Condensed',sans-serif;letter-spacing:.1em;text-transform:uppercase;border-radius:999px;padding:3px 9px;margin:2px 4px 2px 0}
+  .chip.si{background:var(--verde-bg);color:var(--verde-brillo);border:1px solid var(--verde-osc)}
+  .chip.pend{background:var(--ambar-bg);color:var(--pend-text);border:1px solid var(--pend-border)}
+  .ver{margin:10px 0 18px}
+  .video{background:var(--surface);border:1px solid var(--border);border-radius:18px;padding:14px;position:relative}
+  .video .barra{display:flex;gap:8px;align-items:center;flex-wrap:wrap;margin-bottom:10px}
+  .video .barra b{font-family:'Anton',sans-serif;font-weight:400;font-size:1.1rem}
+  .seg{display:inline-flex;border:1px solid var(--border);border-radius:999px;overflow:hidden;margin-left:auto}
+  .seg button{background:transparent;border:0;color:var(--text-soft);padding:7px 12px;font:700 .72rem 'Barlow Condensed',sans-serif;letter-spacing:.08em;text-transform:uppercase;cursor:pointer}
+  .seg button.on{background:var(--verde);color:var(--sobre-verde)}
+  .video video{width:100%;border-radius:12px;background:#000;display:block;max-height:70vh}
+  .video video.movil{max-width:360px;margin:0 auto}
+  .sub{min-height:52px;margin-top:10px;padding:10px 14px;border-radius:12px;background:var(--surface-2);border:1px solid var(--border);color:var(--text);font-size:1.02rem;text-align:center}
+  .caps{display:flex;gap:6px;flex-wrap:wrap;margin-top:10px}
+  .caps button{background:var(--surface-2);border:1px solid var(--border);color:var(--text);border-radius:999px;padding:7px 11px;font:600 .74rem 'Barlow Condensed',sans-serif;letter-spacing:.06em;text-transform:uppercase;cursor:pointer}
+  .caps button.on{border-color:var(--verde);color:var(--verde-brillo)}
+  .lista-web{display:grid;grid-template-columns:repeat(auto-fit,minmax(260px,1fr));gap:10px;margin:14px 0}
+  .pagina h3{font-size:1.1rem;margin-bottom:4px}
+  .pagina ul{margin:0;padding-left:18px;font-size:.92rem}
+  .pagina li span{color:var(--text-soft)}
+  .check{list-style:none;padding:0;margin:12px 0}
+  .check li{display:flex;gap:10px;align-items:flex-start;padding:9px 0;border-bottom:1px dashed var(--border)}
+  .check li i{flex:0 0 22px;height:22px;border-radius:6px;border:1.5px solid var(--pend-border);display:inline-block;margin-top:2px}
+  .pie{padding:30px 0 0;color:var(--text-soft);font-size:.85rem;display:flex;gap:12px;flex-wrap:wrap;align-items:center;justify-content:space-between}
+  .pie b{font-family:'Anton',sans-serif;font-weight:400;color:var(--verde)}
+  @media (max-width:640px){ .hero{padding-top:26px} section.paso{padding-top:26px} }
 </style>
 
 <div class="wrap">
   <header class="top">
     <div class="brand">
-      <span class="logo"><span class="arm"></span><span class="letters">JL</span></span>
-      <div class="brand-text">
-        <b>JLAUTOMATIZATION</b>
-        <span>Propuesta para En Construcción Gym</span>
-      </div>
+      <span class="logo"><span class="letters">JL</span><span class="arm"></span></span>
+      <span class="brand-text"><b>JLAUTOMATIZATION</b><span>Guía del sistema · En Construcción Gym</span></span>
     </div>
-    <div class="top-actions">
-      <button class="btn ghost" id="btnPdf" type="button">⬇ Propuesta en PDF</button>
-      <button class="btn" type="button" onclick="abrirDocumento()">▶ Ver los planes en video</button>
+    <div style="display:flex;gap:8px;flex-wrap:wrap">
+      <a class="btn ghost" href="#video">▶ Ver el video</a>
+      <a class="btn ghost" href="propuesta.html">Cómo empezó esto</a>
     </div>
   </header>
 
-  <section class="historia" id="historia" aria-label="Introducción">
-    <div class="paso on" data-paso="0">
-      <span class="eyebrow">Para José Esteban · En Construcción Gym</span>
-      <h2>Hoy tu gimnasio vive en un cuaderno.</h2>
-      <p>Quién pagó, quién se vence, quién lleva tres meses, quién no volvió esta semana. Todo está en la cabeza de quien atiende. Funciona… mientras son pocos.</p>
-      <p>En Bucaramanga llegaste a <b>100 socios al mes</b>. Bogotá arranca de cero y la meta es la misma. A esa escala, el cuaderno no se sostiene.</p>
+  <div class="hero" id="inicio">
+    <span class="eyebrow">Para José Esteban · En Construcción Gym · Plan 2</span>
+    <h1>Tu sistema,<br>paso a paso.</h1>
+    <p>Esto ya es tuyo. Aquí está cómo se entra, qué hay en cada pantalla y qué me falta de ti para arrancar con tus socios reales. Todo lo que ves hoy tiene <b>socios de ejemplo, con nombres inventados</b>; con tu lista es esto mismo con tu gente.</p>
+    <p class="lede" style="margin-top:6px">Lo que me pediste, y de donde sale todo lo demás:</p>
+    <div class="cuatro">
+      <div><b>1</b>Alerta y mensaje automático cuando se vence una mensualidad.</div>
+      <div><b>2</b>Alerta y felicitación a los 3 meses de permanencia.</div>
+      <div><b>3</b>Reporte semanal de cumplimiento de entrenamientos.</div>
+      <div><b>4</b>Mensaje de seguimiento a quien no cumple, con tono de acompañamiento.</div>
     </div>
-    <div class="paso" data-paso="1">
-      <span class="eyebrow">Lo que nos pediste, con tus palabras</span>
-      <h2>Que la gente no se te vaya sin darte cuenta.</h2>
-      <div class="cita">"Necesito que me salte una alerta cada vez que a alguien se le esté acabando el mes, y que automáticamente le llegue un mensaje."<small>Punto 1 · Vencimientos</small></div>
-      <div class="cita">"Necesito saber semanalmente quién cumple con el número de entrenamientos y quién no… para crear compromiso."<small>Puntos 3 y 4 · Control semanal y seguimiento</small></div>
-      <p>Y saber quién cumple 3, 6 y 12 meses para felicitarlo. Cuatro puntos. No pediste control: pediste que la gente se quede.</p>
-    </div>
-    <div class="paso" data-paso="2">
-      <span class="eyebrow">Lo que cambia</span>
-      <h2>Un sistema que lleva el control solo.</h2>
-      <p>Cada socio se registra <b>una vez por cédula</b>. Desde ahí el sistema sabe quién se vence, quién cumple meses, quién entrenó esta semana y quién no — y te lo muestra sin que nadie lleve cuentas aparte.</p>
-      <p>En el mostrador: la cédula, un toque, listo. Para ti: la lista de quién vence y quién falló, cada semana. Para el socio: su propio panel en el celular para agendar sus clases.</p>
-    </div>
-    <div class="paso" data-paso="3">
-      <span class="eyebrow">No es una idea: ya está construido</span>
-      <h2>Lo puedes ver funcionando hoy.</h2>
-      <p>Página web, sistema de control, panel del mostrador, panel del dueño, horario de entrenadores, panel del socio, pago en línea, Habeas Data. Todo hecho, probado en celular y computador, con datos de ejemplo.</p>
-      <div class="datos">
-        <div class="dato"><b>3</b><span>planes para elegir</span></div>
-        <div class="dato"><b>6</b><span>videos del sistema real</span></div>
-        <div class="dato"><b>3 sem</b><span>para tenerlo en Bogotá</span></div>
-      </div>
-    </div>
-    <div class="paso" data-paso="4">
-      <span class="eyebrow">Cómo leer lo que sigue</span>
-      <h2>Tres planes. Empieza por el que vas a comparar.</h2>
-      <p><b>Plan 1</b> es la base: exactamente tus 4 puntos, con los mensajes mandados a mano. <b>Plan 2</b> es el recomendado: lo mismo, y los mensajes salen solos. <b>Plan 3</b> es el paso que sigue: Bucaramanga y un asistente que te responde por Telegram.</p>
-      <p>Cada plan trae su video: el sistema real, en celular y computador al tiempo, explicado menú por menú. Dale a "Ver los planes" y elige.</p>
-    </div>
-    <div class="pie">
-      <div class="puntos" id="puntosHistoria"><i class="on"></i><i></i><i></i><i></i><i></i></div>
-      <button class="saltar" type="button" onclick="abrirDocumento()">Saltar a los planes</button>
-      <button class="btn ghost grande" id="btnAnterior" type="button" onclick="pasoHistoria(-1)" hidden>← Anterior</button>
-      <button class="btn grande" id="btnHistoria" type="button" onclick="pasoHistoria(1)">Siguiente →</button>
-    </div>
-  </section>
+  </div>
 
-  <div class="documento" id="documento">
-  <section class="hero">
-    <span class="eyebrow">Para José Esteban · En Construcción Gym · Bogotá y Bucaramanga</span>
-    <h1>Del cuaderno a un sistema que trabaja solo</h1>
-    <p>Página web + sistema de control del gimnasio: socios, vencimientos, entrenadores, horario y clases, mensajes. Ya está construido y funcionando con datos de ejemplo. Aquí lo ves en video, plan por plan, con lo que incluye cada uno y su precio cerrado.</p>
-  </section>
-
-  <nav class="planes-nav" id="planes" aria-label="Planes">
-    <div class="tabs">
-      <button class="tab on" data-plan="3"><span class="n">Plan 3 · Fase 2</span><span class="t">Con asistente 24/7 — 2 sedes</span><span class="p">Bucaramanga + bot de Telegram + Jose como consultor</span></button>
-      <button class="tab" data-plan="2"><span class="reco">Recomendado</span><span class="n">Plan 2</span><span class="t">Todo automatizado</span><span class="p">El sistema completo y los mensajes salen solos</span></button>
-      <button class="tab" data-plan="1"><span class="n">Plan 1</span><span class="t">La base completa</span><span class="p">Todo el sistema, mensajes mandados a mano</span></button>
+  <nav class="pasos" aria-label="Pasos de la guía">
+    <div class="chips">
+      <a href="#entrar">1 · Cómo entrar</a>
+      <a href="#escritorio">2 · Tu escritorio</a>
+      <a href="#recepcion">3 · Recepción y entrenadores</a>
+      <a href="#socio">4 · El socio</a>
+      <a href="#web">5 · La página web</a>
+      <a href="#apagado">6 · Qué sale solo</a>
+      <a href="#sigue">7 · Qué sigue</a>
     </div>
   </nav>
 
-  <!-- ================= PLAN 3 ================= -->
-  <section class="plan on" id="plan3">
-    <div class="plan-head">
-      <div>
-        <span class="fase">Fase 2 · el paso que sigue</span>
-        <h2>Plan 3 · Con asistente 24/7 — 2 sedes</h2>
-        <p class="lede">No es una tercera opción para elegir hoy: es a dónde llegas cuando Bogotá ya funciona bien y quieres sumar Bucaramanga con acompañamiento permanente. Todo el Plan 2, para las dos sedes, más un asistente que responde por ti.</p>
-      </div>
-      <div class="precios">
-        <div class="precio"><b><s>$ 28.000.000</s>$ 14.000.000</b><span>Si arrancas directo con las 2 sedes</span></div>
-        <div class="precio"><b>$ 9.000.000</b><span>Si subes después de tener el Plan 2</span></div>
-        <div class="precio largo"><b>$ 450.000 → $ 150.000</b><span>Mensual · 6 meses / después · las 2 sedes</span></div>
-      </div>
+  <section class="paso" id="entrar">
+    <span class="num">Paso 1</span>
+    <h2>Cómo se entra</h2>
+    <p class="lede">La página web tiene arriba el botón que abre el sistema. La pantalla de entrada es la misma para todos y funciona igual en el celular y en el computador.</p>
+    <div class="cards">
+      <div class="card"><h3>Tus socios</h3><ul><li>Pestaña <b>Socios</b>.</li><li>Entran solo con su <b>PIN de 4 dígitos</b>. Sin contraseñas ni correos.</li><li>El PIN se lo generas tú desde tu escritorio.</li></ul></div>
+      <div class="card"><h3>Tus entrenadores</h3><ul><li>Pestaña <b>Entrenadores</b>.</li><li>Entran con su usuario y su clave; cada uno ve únicamente lo suyo.</li></ul></div>
+      <div class="card"><h3>Tú, el dueño</h3><ul><li><b>5 toques sobre el logo</b> y tu PIN: tu acceso secreto.</li><li>Nadie más del gimnasio entra ahí.</li></ul></div>
+      <div class="card"><h3>Como app</h3><ul><li>Se instala en el celular y en el computador como una app (icono en la pantalla).</li><li>Si se cae el internet, recepción sigue registrando y se pone al día sola cuando vuelve.</li></ul></div>
     </div>
-    <div class="video-caja" data-video="3"></div>
-    <div class="dos">
-      <div class="card">
-        <h3>Qué incluye</h3>
-        <ul class="incluye">
-          <li><b>Todo el Plan 2</b> (sistema completo + mensajes automáticos), para las dos sedes.</li>
-          <li class="nuevo"><b>Bucaramanga se suma al mismo sistema:</b> no se reconstruye nada de Bogotá; se conecta sobre esa misma base.</li>
-          <li class="nuevo"><b>Bot de Telegram 24/7:</b> le escribes "¿cuántos socios se vencen esta semana en Bucaramanga?" o "¿cuánto vendimos ayer en Bogotá?" y responde al instante. Uno por sede y uno para las dos juntas.</li>
-          <li class="nuevo"><b>Reportes diarios</b> de ventas y asistencia por sede: llegan solos, no hay que pedirlos.</li>
-          <li class="nuevo"><b>Acompañamiento permanente de Jose</b> como consultor: mejoras sencillas al bot o al sistema sin costo adicional (lo grande, como escalar con más equipos, se cotiza aparte).</li>
-        </ul>
-      </div>
-      <div style="display:grid; gap:12px; align-content:start;">
-        <div class="card callout"><p><b>Cómo se paga:</b> $ 7.000.000 al firmar + $ 7.000.000 hasta en 12 cuotas. Si ya tienes el Plan 2, se te reconoce el 50 % de lo invertido: pagas $ 9.000.000 más, no los $ 14.000.000. La mensualidad es UN solo pago para las dos sedes.</p></div>
-        <div class="pend"><b>Ojo con el video</b>El capítulo "Simulación" (bot de Telegram y 2 sedes) es una maqueta de cómo se vería — todavía no está construido. Todo lo demás del video es el sistema real.</div>
-        <p class="nota">Precio de lista $ 28.000.000: un bot de Telegram con IA y reportes se cotiza en Colombia entre $ 9.400.000 y $ 15.600.000 solo de implementación. Entre amigos queda en la mitad, sin bajar la calidad.</p>
-      </div>
+    <p class="ver"><button class="btn mini" data-cap="1">▶ Ver este paso en el video · 0:01</button></p>
+  </section>
+
+  <section class="paso" id="escritorio">
+    <span class="num">Paso 2</span>
+    <h2>Tu escritorio (Panel Administrador)</h2>
+    <p class="lede">Lo que vas a ver cada mañana. Tiene 7 pestañas; las tres que más vas a usar son <b>Dashboard</b>, <b>Socios</b> y <b>Reporte semanal</b>.</p>
+    <div class="dice">"Todo eso para que el sistema te avise y no tengas que perseguir a nadie."<small>La frase que resume el escritorio.</small></div>
+    <div class="cards">
+      <div class="card"><h3>Dashboard</h3><ul><li>Estado de la cartera: quién está al día y quién vencido.</li><li>Vencimientos próximos.</li><li>Ingreso mensual por plan.</li><li>Distribución y antigüedad de los socios; fase de cada uno.</li><li>Entrenamientos por día esta semana y cumplimiento por entrenador.</li></ul></div>
+      <div class="card"><h3>Socios</h3><ul><li>Filtros: todos · vencidos · por vencer · al día. Exportar a Excel.</li><li>Nuevo socio. Renovar membresía y generar comprobante.</li><li>Asignar entrenador y plan de nutrición.</li><li>Progreso: medidas por fecha, fase y racha semanal.</li><li>Escribir mensaje. Generar el PIN del socio.</li></ul></div>
+      <div class="card"><h3>Reporte semanal</h3><ul><li>Quién cumplió y quién no esta semana.</li><li>% de cumplimiento, por entrenador y por plan.</li><li>Reporte del negocio para leer o imprimir (Generar y descargar).</li></ul></div>
+      <div class="card"><h3>Mensajes</h3><ul><li>Qué alertas se mandan solas: vencimiento y renovación · permanencia (3 meses) · seguimiento motivacional.</li><li>Envíos automáticos de los últimos 7 días.</li><li>Enviar seleccionados por correo.</li></ul></div>
+      <div class="card"><h3>Entrenadores</h3><ul><li>Horario semanal de todos los entrenadores, junto.</li></ul></div>
+      <div class="card"><h3>Nutrición</h3><ul><li>Planes de nutrición: crear uno nuevo y asignarlo a un socio.</li></ul></div>
+      <div class="card"><h3>Actividad</h3><ul><li>Queda registrado quién hizo qué y cuándo.</li><li>Respaldo de datos: respaldar ahora y verificar que nada se alteró.</li></ul></div>
+    </div>
+    <p class="ver"><button class="btn mini" data-cap="184">▶ Ver este paso en el video · 3:04</button></p>
+  </section>
+
+  <section class="paso" id="recepcion">
+    <span class="num">Paso 3</span>
+    <h2>Recepción y entrenadores (Panel Operario)</h2>
+    <p class="lede">Lo usan tus entrenadores y quien esté en la puerta. Dos pestañas: <b>Registro</b> y <b>Mi horario</b>.</p>
+    <div class="cards">
+      <div class="card"><h3>Registro</h3><ul><li>Escribe la cédula o el nombre del socio.</li><li>Ve si está al día o vencido y le registra la entrada.</li><li>Próximos vencimientos a la vista.</li><li>Botón "Cómo se usa esto" para quien llegue nuevo a recepción.</li></ul></div>
+      <div class="card"><h3>Mi horario (cada entrenador)</h3><ul><li>Su semana y sus clases.</li><li>Crear clase.</li><li>De la asistencia que marca sale tu reporte semanal.</li></ul></div>
+      <div class="card"><h3>Si un entrenador falta</h3><ul><li>El aviso a los socios de esa clase sale por <b>correo</b>.</li><li>Por WhatsApp e Instagram se ve como <span class="chip pend">Simulación</span> hasta que Meta apruebe la línea (ver paso 6).</li></ul></div>
+    </div>
+    <p class="ver"><button class="btn mini" data-cap="54">▶ Ver este paso en el video · 0:54</button></p>
+  </section>
+
+  <section class="paso" id="socio">
+    <span class="num">Paso 4</span>
+    <h2>Lo que ve tu socio en su celular</h2>
+    <p class="lede">Con su PIN de 4 dígitos, desde cualquier celular.</p>
+    <div class="cards">
+      <div class="card"><h3>Su panel</h3><ul><li>Mis próximas clases.</li><li>Clases de la semana y agendar cupo.</li><li>Descargar mi horario (PDF).</li></ul></div>
+      <div class="card"><h3>Si está vencido</h3><ul><li>Le sale el aviso: "Tu membresía está vencida — no puedes agendar clases hasta renovar en el mostrador".</li></ul></div>
+      <div class="card"><h3>Pagar en línea</h3><ul><li>El botón "Pagar mi renovación en línea" se prende cuando activemos Wompi <span class="chip pend">Pendiente llaves</span>.</li></ul></div>
+    </div>
+    <p class="ver"><button class="btn mini" data-cap="379">▶ Ver este paso en el video · 6:19</button></p>
+  </section>
+
+  <section class="paso" id="web">
+    <span class="num">Paso 5</span>
+    <h2>La página web: qué hay en cada parte</h2>
+    <p class="lede">Es para el que te busca por primera vez. Tiene 4 páginas. Lo marcado en <span class="chip pend">Ficticio</span> es texto o foto de muestra que me falta que me mandes; precios, horarios y el Proceso EC son reales.</p>
+    <div class="lista-web">
+      <div class="card pagina"><h3>Inicio</h3><ul>
+        <li><b>Por qué entrenar distinto</b> <span>— el modelo de 1 entrenador por 4 personas.</span></li>
+        <li><b>Todo lo que trae tu Proceso EC</b> <span>— qué incluye.</span></li>
+        <li><b>3 pasos para tu primer entrenamiento</b> <span>— cómo empezar.</span></li>
+        <li><b>Aparta tu cupo</b> <span>— horarios por sede.</span></li>
+        <li><b>Dos sedes, un mismo proceso</b> <span>— Bogotá y Bucaramanga.</span> <span class="chip pend">Dirección de Bucaramanga ficticia</span></li>
+        <li><b>Arma tu plan</b> <span>— planes y precios (reales).</span></li>
+        <li><b>Antes de escribirnos</b> <span>— preguntas frecuentes.</span> <span class="chip pend">Algunas respuestas ficticias</span></li>
+        <li><b>Cifras</b> <span>— oculta hasta tener las reales.</span> <span class="chip pend">Ficticio</span></li>
+      </ul></div>
+      <div class="card pagina"><h3>Nosotros</h3><ul>
+        <li><b>"No vendemos entrenamientos…"</b> <span>— el reto.</span></li>
+        <li><b>Testimonios</b> <span class="chip pend">3 testimonios ficticios</span></li>
+        <li><b>Así nos presentamos</b> <span class="chip pend">Ficticio</span></li>
+        <li><b>Misión y visión</b> <span class="chip pend">Ficticio</span></li>
+        <li><b>Más que un entrenador, un acompañante</b> <span>— tus entrenadores.</span></li>
+      </ul></div>
+      <div class="card pagina"><h3>Proceso EC</h3><ul>
+        <li><b>Proceso EC</b> <span>— las 12 semanas, paso a paso (real).</span></li>
+        <li><b>Tips de entrenamiento</b></li>
+      </ul></div>
+      <div class="card pagina"><h3>Comunidad</h3><ul>
+        <li><b>Así se vería la comunidad</b> <span class="chip pend">Fotos de banco</span></li>
+        <li><b>Vení a construir</b> <span>— llamado a inscribirse.</span></li>
+        <li><b>Contacto</b> <span class="chip pend">Teléfono, correo, NIT y WhatsApp pendientes</span></li>
+      </ul></div>
+    </div>
+    <p class="ver"><button class="btn mini" data-cap="444">▶ Ver este paso en el video · 7:24</button></p>
+  </section>
+
+  <section class="paso" id="apagado">
+    <span class="num">Paso 6</span>
+    <h2>Qué sale solo hoy, y qué falta activar</h2>
+    <div class="cards">
+      <div class="card"><h3>Sale solo <span class="chip si">Activo</span></h3><ul><li>Correos automáticos: vencimiento, felicitación a los 3 meses, seguimiento a quien no cumple.</li><li>Reporte semanal de cumplimiento.</li><li>Copia de todos los datos cada noche.</li><li>Recepción sin internet: registra y se pone al día sola.</li></ul></div>
+      <div class="card pend"><h3>WhatsApp e Instagram</h3><ul><li>Se conectan cuando Meta apruebe la línea del gimnasio (1 a 3 semanas de trámite).</li><li>El consumo lo paga el gimnasio, como quedó en el acuerdo.</li><li>Mientras tanto se ven como "Simulación", marcado en pantalla.</li></ul></div>
+      <div class="card pend"><h3>Pago en línea (Wompi)</h3><ul><li>Tarjeta o Nequi desde el celular del socio.</li><li>Se prende cuando tengamos las llaves de Wompi.</li></ul></div>
+      <div class="card"><h3>Tus datos</h3><ul><li>Viven en el computador del gimnasio, con copia diaria.</li><li>Los socios son tuyos; si un día no seguimos, se entregan en Excel. Así quedó en el acuerdo.</li><li>Cada socio firma el documento de Habeas Data para que guardes sus datos.</li></ul></div>
     </div>
   </section>
 
-  <!-- ================= PLAN 2 ================= -->
-  <section class="plan" id="plan2">
-    <div class="plan-head">
-      <div>
-        <span class="reco-grande">★ Recomendado</span>
-        <h2>Plan 2 · Todo automatizado</h2>
-        <p class="lede">Todo el Plan 1 más el paso final: el sistema no solo sabe quién se vence o quién cumplió meses — le escribe solo, por WhatsApp, Instagram y correo, sin que nadie se siente a mandar mensajes.</p>
+  <section class="paso" id="sigue">
+    <span class="num">Paso 7</span>
+    <h2>Qué sigue: lo que necesito de ti</h2>
+    <p class="lede">Con esto pasamos de socios de ejemplo a tu gente. A las <b>6 semanas de recibir los datos</b> está andando, con la capacitación a quien atiende.</p>
+    <ul class="check">
+      <li><i></i><span><b>Lista de socios</b>: nombre, cédula, teléfono, fecha de inicio, fecha de vencimiento y plan (en Excel o como la tengas).</span></li>
+      <li><i></i><span><b>Planes y precios reales</b>, y quién atiende en cada sede.</span></li>
+      <li><i></i><span><b>Correo del gimnasio</b> para los envíos automáticos.</span></li>
+      <li><i></i><span><b>NIT o cédula</b> y correo, para el acuerdo.</span></li>
+      <li><i></i><span><b>Textos y fotos reales de la web</b>: testimonios, quiénes somos, misión y visión, dirección de Bucaramanga, teléfono y WhatsApp.</span></li>
+      <li><i></i><span><b>Usuario de TikTok</b> (y el de Instagram si cambió).</span></li>
+      <li><i></i><span><b>Computador, internet y dominio</b> del gimnasio (van por tu cuenta, como acordamos).</span></li>
+    </ul>
+    <p class="lede">Después: firma del acuerdo y abono; luego el trámite de la línea de WhatsApp/Instagram ante Meta y las llaves de Wompi.</p>
+  </section>
+
+  <section class="paso" id="video" style="border-bottom:0">
+    <span class="num">El video</span>
+    <h2>Todo el sistema en 8 minutos</h2>
+    <p class="lede">Es el sistema real funcionando con datos de ejemplo. Toca un capítulo para saltar a esa parte; el subtítulo va abajo en grande. Es el mismo video de la propuesta: los precios que aparecen son los de lista; lo tuyo es lo que acordamos.</p>
+    <div class="video">
+      <div class="barra"><b>Plan 2 · Todo automatizado</b>
+        <div class="seg"><button class="on" data-v="escritorio">Computador</button><button data-v="movil">Celular</button></div>
       </div>
-      <div class="precios">
-        <div class="precio reco"><b><s>$ 25.000.000</s>$ 10.000.000</b><span>Implementación · $ 3.000.000 + $ 7.000.000 financiados</span></div>
-        <div class="precio largo"><b>$ 350.000 → $ 100.000</b><span>Mensual · primeros 6 meses / desde el mes 7</span></div>
-      </div>
-    </div>
-    <div class="video-caja" data-video="2"></div>
-    <div class="dos">
-      <div class="card">
-        <h3>Qué incluye</h3>
-        <ul class="incluye">
-          <li><b>Todo el Plan 1:</b> web, sistema de control, Panel Operario y Administrador, horario y agendamiento, panel del socio, pago en línea, app instalable, Habeas Data.</li>
-          <li class="nuevo"><b>Mensajes que salen solos:</b> vencimiento y renovación, permanencia (3/6/12 meses), seguimiento motivacional, recordatorio de clase, aviso cuando se cancela una clase, y el PIN de acceso al registrar al socio. Tú eliges cuáles van automáticos.</li>
-          <li class="nuevo"><b>Tres canales conectados:</b> WhatsApp, Instagram y correo; el sistema usa el correcto según el mensaje. Registro de todo lo enviado.</li>
-          <li class="nuevo"><b>Dashboard con gráficos</b> (estado de la cartera, cumplimiento por entrenador, fase de transformación, ingreso por plan) y <b>reporte del negocio en PDF</b> con tu marca.</li>
-          <li class="nuevo"><b>Más cómodo de usar:</b> búsqueda por nombre, filtros por estado y por plan, horario semanal en grilla tipo calendario, comprobantes de pago en PDF, registro de actividad a prueba de manipulación.</li>
-          <li class="nuevo"><b>Progreso del socio</b> (medidas y fotos), <b>planes de nutrición</b> asignables, control de entrenadores con el horario de todos en una sola grilla.</li>
-        </ul>
-      </div>
-      <div style="display:grid; gap:12px; align-content:start;">
-        <div class="card callout"><p><b>Cómo se paga:</b> $ 3.000.000 al firmar + $ 7.000.000 hasta en 12 cuotas mensuales. El consumo de WhatsApp (≈ $ 25.000–60.000/mes) va directo a Meta, no en la mensualidad.</p></div>
-        <p class="nota">Un sistema de control a la medida en Colombia cuesta desde $ 25.000.000 — sin sitio web, sin Habeas Data y sin esta automatización. Aquí todo eso junto queda en $ 10.000.000.</p>
-        <p class="nota">Tiempo de entrega: 6 semanas, incluida la espera de aprobación de la API de WhatsApp/Instagram ante Meta (1-3 semanas, trámite externo).</p>
-      </div>
+      <video id="vid" controls playsinline preload="metadata" poster="videos/poster_plan2_escritorio.jpg" src="videos/plan2_escritorio.mp4"></video>
+      <div class="sub" id="sub">Dale a ▶ y el subtítulo de cada paso sale aquí en grande.</div>
+      <div class="caps" id="caps"></div>
     </div>
   </section>
 
-  <!-- ================= PLAN 1 ================= -->
-  <section class="plan" id="plan1">
-    <div class="plan-head">
-      <div>
-        <h2>Plan 1 · La base completa</h2>
-        <p class="lede">Exactamente lo que pediste: cambiar el cuaderno por un sistema que lleva el control solo. El sistema te dice QUÉ está pasando — quién se vence, quién cumple, quién falló — y los mensajes los mandas tú con un toque.</p>
-      </div>
-      <div class="precios">
-        <div class="precio"><b>$ 5.000.000</b><span>Implementación · pago único al firmar</span></div>
-        <div class="precio largo"><b>$ 150.000 → $ 50.000</b><span>Mensual · primeros 6 meses / desde el mes 7</span></div>
-      </div>
-    </div>
-    <div class="video-caja" data-video="1"></div>
-    <div class="dos">
-      <div class="card">
-        <h3>Qué incluye</h3>
-        <ul class="incluye">
-          <li><b>Página web</b> del gimnasio: modelo, horarios, sedes, planes, reto, contacto y política de datos.</li>
-          <li><b>Tus 4 puntos:</b> cada socio por cédula una vez; el sistema sabe solo quién se vence, quién cumple 3/6/12 meses, quién cumplió sus entrenamientos de la semana y quién no.</li>
-          <li><b>Panel Operario</b> (mostrador: registro por cédula, vencimientos próximos, funciona sin internet y sincroniza después) y <b>Panel Administrador</b> (lista de socios con su estado, nuevo socio con PIN, renovaciones, exportar a Excel, respaldos automáticos).</li>
-          <li><b>Reporte semanal:</b> dos listas — cumplieron / no cumplieron — y los 3 mensajes que pediste (vencimiento, permanencia, seguimiento) listos para mandar por WhatsApp con un toque.</li>
-          <li><b>Clases:</b> los entrenadores crean sus clases (días de repetición, cupo), ven quién se agendó en una lista, recuerdan y avisan cancelaciones por WhatsApp.</li>
-          <li><b>Panel del socio:</b> entra con su PIN, ve su membresía (verde al día, rojo vencida), agenda sus clases de una lista, paga su renovación en línea (Wompi; la comisión la cobra Wompi).</li>
-          <li><b>Se instala como app</b> en el celular sin tiendas, y <b>Habeas Data</b> listo para firmar.</li>
-        </ul>
-      </div>
-      <div style="display:grid; gap:12px; align-content:start;">
-        <div class="card callout"><p><b>Cómo se paga:</b> completo al firmar. Es el punto de partida sobre el que se construye todo lo demás; si después subes al Plan 2, no se repite nada.</p></div>
-        <p class="nota">Lo que queda para el Plan 2: mensajes automáticos, búsqueda por nombre, filtros por estado y plan, horario semanal en grilla, comprobantes de pago en PDF, dashboard con gráficos, progreso y nutrición, registro de actividad.</p>
-        <p class="nota">Tiempo de entrega: 3 semanas.</p>
-      </div>
-    </div>
-  </section>
-
-  <!-- ================= CIERRE ================= -->
-  <section class="cierre">
-    <h2>Lo mismo, de un vistazo</h2>
-    <div class="tbl-wrap">
-      <table>
-        <tr><th>Qué incluye</th><th>Plan 1</th><th>Plan 2</th><th>Plan 3</th></tr>
-        <tr><td>Página web completa</td><td class="si">✓</td><td class="si">✓</td><td class="si">✓</td></tr>
-        <tr><td>Sistema de control (cédula, vencimientos, permanencia, reporte semanal)</td><td class="si">✓</td><td class="si">✓</td><td class="si">✓</td></tr>
-        <tr><td>Panel Operario (registro por cédula) + Administrador (socios, renovaciones, PIN, Excel, respaldos)</td><td class="si">✓</td><td class="si">✓</td><td class="si">✓</td></tr>
-        <tr><td>Clases y agendamiento con panel propio del socio (Plan 1 en lista · Plan 2 en grilla semanal)</td><td class="si">✓</td><td class="si">✓</td><td class="si">✓</td></tr>
-        <tr><td>Búsqueda por nombre, filtros, comprobantes PDF, registro de actividad</td><td class="no">—</td><td class="si">✓</td><td class="si">✓</td></tr>
-        <tr><td>Pago en línea (Wompi), app instalable, Habeas Data</td><td class="si">✓</td><td class="si">✓</td><td class="si">✓</td></tr>
-        <tr><td>Mensajes automáticos por WhatsApp, Instagram y correo</td><td class="no">—</td><td class="si">✓</td><td class="si">✓</td></tr>
-        <tr><td>Dashboard con gráficos, progreso, nutrición, reporte del negocio PDF</td><td class="no">—</td><td class="si">✓</td><td class="si">✓</td></tr>
-        <tr><td>Bot de Telegram 24/7 con reportes diarios</td><td class="no">—</td><td class="no">—</td><td class="si">✓</td></tr>
-        <tr><td>Sede de Bucaramanga</td><td class="no">—</td><td class="no">—</td><td class="si">✓</td></tr>
-        <tr><td>Acompañamiento de Jose como consultor</td><td class="no">—</td><td class="no">—</td><td class="si">✓</td></tr>
-        <tr><td><b>Implementación</b></td><td><b>$ 5.000.000</b></td><td><b>$ 10.000.000</b></td><td><b>$ 14.000.000</b> (o $ 9.000.000 desde el Plan 2)</td></tr>
-        <tr><td><b>Mensual (6 meses → después)</b></td><td>$ 150.000 → $ 50.000</td><td>$ 350.000 → $ 100.000</td><td>$ 450.000 → $ 150.000</td></tr>
-      </table>
-    </div>
-
-    <details>
-      <summary>Condiciones y qué necesitamos de tu parte</summary>
-      <div class="tbl-wrap">
-        <table>
-          <tr><td>La mensualidad cubre</td><td>Soporte, correcciones, respaldos, cambios de textos y tarifas</td></tr>
-          <tr><td>Si no renuevas</td><td>El sistema sigue funcionando: se pierde el soporte, no el sistema. Es tuyo.</td></tr>
-          <tr><td>Equipos</td><td>Un computador por sede (sirve el que ya tienen) + internet</td></tr>
-          <tr><td>Para arrancar</td><td>Lista de socios (nombre, cédula, teléfono, fechas) · planes y precios · entrenamientos semanales por plan · quién registra en cada sede · NIT y contacto oficial para el Habeas Data · textos de la web (quiénes son, historia, misión)</td></tr>
-        </table>
-      </div>
-    </details>
-
-    <a class="cta" id="ctaWhatsapp" href="#" target="_blank" rel="noopener">Escríbenos por WhatsApp</a>
-    <p class="tagline">JLAutomatization — automatización y control para negocios que manejan efectivo y personas.</p>
-  </section>
-  </div><!-- /documento -->
+  <div class="pie">
+    <span>Hecho por <b>JLAUTOMATIZATION</b> para En Construcción Gym · 15/09/2026</span>
+    <span><a href="propuesta.html">Cómo empezó esto: la propuesta y los 3 planes</a> · <a href="videos.html">Los 3 planes en video</a></span>
+  </div>
 </div>
-<div class="marca-jl">Hecho por <b>JLAutomatization</b></div>
 
 <script>
-  var WHATSAPP_JLAUTO = "573106582111";
-  document.getElementById('ctaWhatsapp').href = 'https://wa.me/' + WHATSAPP_JLAUTO + '?text=' + encodeURIComponent('Hola Jose, vi la propuesta para En Construcción Gym y quiero avanzar.');
-
-  // ---------- Historia (gancho) → documento ----------
-  var pasoActual = 0, PASOS_HISTORIA = 5;
-  function pasoHistoria(delta){
-    var nuevo = pasoActual + delta;
-    if(nuevo >= PASOS_HISTORIA){ abrirDocumento(); return; }
-    if(nuevo < 0) return;
-    pasoActual = nuevo;
-    document.querySelectorAll('#historia .paso').forEach(function(p){ p.classList.toggle('on', Number(p.dataset.paso) === pasoActual); });
-    document.querySelectorAll('#puntosHistoria i').forEach(function(i, k){ i.classList.toggle('on', k <= pasoActual); });
-    document.getElementById('btnHistoria').textContent = pasoActual === PASOS_HISTORIA - 1 ? 'Ver los planes →' : 'Siguiente →';
-    document.getElementById('btnAnterior').hidden = pasoActual === 0;
-    window.scrollTo({ top:0, behavior:'smooth' });
-  }
-  function abrirDocumento(){
-    document.getElementById('historia').style.display = 'none';
-    document.getElementById('documento').classList.add('on');
-    try{ history.replaceState(null, '', '#plan' + planActual); }catch(e){}
-    document.getElementById('planes').scrollIntoView({ behavior:'smooth', block:'start' });
-  }
-  document.addEventListener('keydown', function(e){
-    if(document.getElementById('documento').classList.contains('on')) return;
-    if(e.key === 'ArrowRight' || e.key === 'Enter') pasoHistoria(1);
-    if(e.key === 'ArrowLeft') pasoHistoria(-1);
+(function(){
+  var CAPS=[{t:1,titulo:'Inicio y acceso'},{t:54,titulo:'Panel Operario'},{t:184,titulo:'Panel Administrador'},{t:379,titulo:'Panel del Socio'},{t:444,titulo:'Página web'},{t:465,titulo:'Resumen'}];
+  var vid=document.getElementById('vid'), sub=document.getElementById('sub'), caps=document.getElementById('caps');
+  var modo='escritorio', subs=[];
+  function mmss(s){s=Math.round(s);return Math.floor(s/60)+':'+('0'+(s%60)).slice(-2);}
+  CAPS.forEach(function(c){var b=document.createElement('button');b.textContent=c.titulo+' · '+mmss(c.t);b.dataset.t=c.t;b.addEventListener('click',function(){ir(c.t)});caps.appendChild(b);});
+  function ir(t){
+    vid.src='videos/plan2_'+modo+'.mp4#t='+t;
+    vid.play().catch(function(){});
+    document.getElementById('video').scrollIntoView({behavior:'smooth',block:'start'}); }
+  document.querySelectorAll('[data-cap]').forEach(function(b){b.addEventListener('click',function(){ir(+b.dataset.cap)})});
+  document.querySelectorAll('.seg button').forEach(function(b){b.addEventListener('click',function(){
+    document.querySelectorAll('.seg button').forEach(function(x){x.classList.remove('on')}); b.classList.add('on');
+    modo=b.dataset.v; var t=vid.currentTime, playing=!vid.paused;
+    vid.className=modo==='movil'?'movil':''; vid.poster='videos/poster_plan2_'+modo+'.jpg'; vid.src='videos/plan2_'+modo+'.mp4';
+    vid.addEventListener('loadedmetadata',function(){vid.currentTime=t; if(playing) vid.play().catch(function(){});},{once:true});
+  })});
+  fetch('videos/subtitulos.json').then(function(r){return r.json()}).then(function(j){subs=(j.plan2||[]).slice().sort(function(a,b){return a.t-b.t});}).catch(function(){});
+  vid.addEventListener('timeupdate',function(){
+    var t=vid.currentTime, h='';
+    for(var i=0;i<subs.length;i++){ if(subs[i].t<=t) h=subs[i].h; else break; }
+    if(h) sub.innerHTML=h;
+    var cur=null; CAPS.forEach(function(c){ if(c.t<=t) cur=c.t; });
+    caps.querySelectorAll('button').forEach(function(b){ b.classList.toggle('on', +b.dataset.t===cur); });
   });
-  // Si el link ya trae #plan2, #plan3…, se salta la historia (ya la vio)
-  if(/plan[123]/.test(location.hash || '')){ document.getElementById('historia').style.display = 'none'; document.getElementById('documento').classList.add('on'); }
-
-  // ---------- Reproductor (computador + celular sincronizados) ----------
-  var CAPS = {}, SUBS = {}, planActual = 3, sonido = false;
-  var tpl = '<div class="escenario">' +
-    '<div><div class="laptop"><div class="pantalla"><video id="vPc" playsinline preload="metadata"></video></div><div class="base"></div></div><div class="etq">Computador <button type="button" onclick="verGrande(\'vPc\')">⛶ Ver más grande</button></div></div>' +
-    '<div><div class="telefono"><video id="vMovil" playsinline preload="metadata" muted></video></div><div class="etq">Celular <button type="button" onclick="verGrande(\'vMovil\')">⛶ Ver más grande</button></div></div>' +
-    '</div><div class="sub-vivo" id="subVivo"></div>' +
-    '<div class="controles"><div class="fila"><button class="play" id="btnPlay" aria-label="Reproducir">▶</button><button class="play sec" id="btnSonido" aria-label="Sonido">🔇</button><div class="barra" id="barra"><div class="prog" id="prog"></div></div><div class="tiempo" id="tiempo">0:00 / 0:00</div></div><div class="caps" id="caps"></div><div class="aviso-sim" id="avisoSim" hidden>⚠ El capítulo “Simulación” (bot de Telegram y 2 sedes) es una maqueta: aún no está construido.</div></div>';
-  var caja = document.createElement('div'); caja.className = 'video-caja'; caja.innerHTML = tpl;
-  var vPc, vMv, btn, prog, tiempo, subVivo, subActual = -1;
-  function montarEn(plan){
-    var destino = document.querySelector('.video-caja[data-video="' + plan + '"]');
-    if(!destino) return;
-    destino.innerHTML = ''; destino.appendChild(caja);
-    vPc = document.getElementById('vPc'); vMv = document.getElementById('vMovil'); btn = document.getElementById('btnPlay');
-    prog = document.getElementById('prog'); tiempo = document.getElementById('tiempo'); subVivo = document.getElementById('subVivo');
-  }
-  function fmt(s){ s = Math.max(0, Math.floor(s||0)); return Math.floor(s/60)+':'+String(s%60).padStart(2,'0'); }
-  function pintarSub(t){
-    var lista = SUBS['plan'+planActual] || []; var i = -1;
-    for(var k=0; k<lista.length; k++){ if(t >= lista[k].t) i = k; else break; }
-    if(i === subActual) return; subActual = i; subVivo.innerHTML = i >= 0 ? lista[i].h : '';
-  }
-  function pintarCaps(){
-    var lista = CAPS['plan'+planActual] || [];
-    document.getElementById('caps').innerHTML = lista.map(function(c, i){ return '<button type="button" data-t="'+c.t+'" onclick="irA('+c.t+')">'+(i+1)+'. '+c.titulo+' · '+fmt(c.t)+'</button>'; }).join('');
-  }
-  function aplicarSonido(){ var mvGrande = !!vMv.webkitDisplayingFullscreen; vPc.muted = !sonido || mvGrande; vMv.muted = !sonido || !mvGrande; document.getElementById('btnSonido').textContent = sonido ? '🔊' : '🔇'; }
-  function irA(t){ vPc.currentTime = t; vMv.currentTime = t; if(vPc.paused) alternar(); }
-  function alternar(){
-    if(vPc.paused){ vMv.currentTime = vPc.currentTime; Promise.all([vPc.play(), vMv.play()]).catch(function(){}); btn.textContent = '❚❚'; }
-    else { vPc.pause(); vMv.pause(); btn.textContent = '▶'; }
-  }
-  function verGrande(id){
-    var v = document.getElementById(id);
-    if(v.webkitEnterFullscreen && !v.requestFullscreen){ v.webkitEnterFullscreen(); if(v.paused) alternar(); return; }
-    var c = v.closest('.laptop, .telefono') || v;
-    if(c.requestFullscreen) c.requestFullscreen(); else if(v.webkitEnterFullscreen) v.webkitEnterFullscreen();
-    if(v.paused) alternar();
-  }
-  function cargarPlan(p){
-    planActual = p;
-    document.querySelectorAll('.tab').forEach(function(b){ b.classList.toggle('on', Number(b.dataset.plan) === p); });
-    document.querySelectorAll('.plan').forEach(function(s){ s.classList.toggle('on', s.id === 'plan' + p); });
-    if(vPc){ vPc.pause(); vMv.pause(); }
-    montarEn(p);
-    btn.textContent = '▶'; subActual = -1; subVivo.innerHTML = '';
-    vPc.poster = 'videos/poster_plan'+p+'_escritorio.jpg'; vMv.poster = 'videos/poster_plan'+p+'_movil.jpg';
-    vPc.src = 'videos/plan'+p+'_escritorio.mp4'; vMv.src = 'videos/plan'+p+'_movil.mp4'; vPc.load(); vMv.load();
-    [vPc, vMv].forEach(function(v){ v.onloadedmetadata = function(){ if(v.paused && v.currentTime < 0.5) v.currentTime = 1.2; }; });
-    document.getElementById('avisoSim').hidden = p !== 3;
-    pintarCaps(); aplicarSonido(); enganchar();
-    if(document.getElementById('documento').classList.contains('on')){ try{ history.replaceState(null, '', '#plan'+p); }catch(e){} }
-  }
-  function enganchar(){
-    btn.onclick = alternar;
-    document.getElementById('btnSonido').onclick = function(){ sonido = !sonido; aplicarSonido(); };
-    document.getElementById('barra').onclick = function(e){ var r = this.getBoundingClientRect(); var t = (e.clientX - r.left)/r.width * (vPc.duration||0); vPc.currentTime = t; vMv.currentTime = t; };
-    vPc.ontimeupdate = function(){
-      var d = vPc.duration || 0; prog.style.width = d ? (vPc.currentTime/d*100)+'%' : '0';
-      tiempo.textContent = fmt(vPc.currentTime)+' / '+fmt(d);
-      if(Math.abs(vMv.currentTime - vPc.currentTime) > 0.35) vMv.currentTime = vPc.currentTime;
-      pintarSub(vPc.currentTime);
-      var actual = null; (CAPS['plan'+planActual]||[]).forEach(function(c){ if(vPc.currentTime >= c.t) actual = c.t; });
-      document.querySelectorAll('#caps button').forEach(function(b){ b.classList.toggle('on', Number(b.dataset.t) === actual); });
-    };
-    vPc.onended = function(){ btn.textContent = '▶'; vMv.pause(); };
-    vMv.ontimeupdate = function(){ if(vPc.paused && !vMv.paused) pintarSub(vMv.currentTime); };
-    [vPc, vMv].forEach(function(v){
-      v.onclick = alternar;
-      v.addEventListener('webkitbeginfullscreen', aplicarSonido);
-      v.addEventListener('webkitendfullscreen', function(){ var otro = v === vPc ? vMv : vPc; otro.currentTime = v.currentTime; if(!v.paused) otro.play().catch(function(){}); aplicarSonido(); });
-    });
-  }
-  document.querySelectorAll('.tab').forEach(function(b){ b.addEventListener('click', function(){ cargarPlan(Number(b.dataset.plan)); document.getElementById('planes').scrollIntoView({ behavior:'smooth', block:'start' }); }); });
-  fetch('videos/capitulos.json').then(function(r){ return r.json(); }).then(function(j){ CAPS = j; pintarCaps(); }).catch(function(){});
-  fetch('videos/subtitulos.json').then(function(r){ return r.json(); }).then(function(j){ SUBS = j; }).catch(function(){});
-  var m = (location.hash||'').match(/plan([123])/);
-  cargarPlan(m ? Number(m[1]) : 3);
-
-  // ---------- PDF por la capacidad "downloads" del visor ----------
-  (function(){
-    var b = document.getElementById('btnPdf'); var RESPALDO = 'videos/propuesta_resumen.pdf';
-    b.addEventListener('click', function(){
-      var txt = b.textContent; b.textContent = 'Preparando…'; b.disabled = true;
-      Promise.all([ (window.claude && window.claude.use) ? window.claude.use('downloads') : Promise.resolve(null), fetch('videos/propuesta_resumen.pdf').then(function(r){ if(!r.ok) throw new Error('pdf'); return r.blob(); }) ])
-        .then(function(res){ var dl = res[0], blob = res[1]; if(!dl){ window.open(RESPALDO, '_blank'); return; }
-          return dl.save({ filename:'Propuesta-EnConstruccionGym.pdf', data: blob }).then(function(){ b.textContent = '✓ PDF guardado'; setTimeout(function(){ b.textContent = txt; }, 3000); }); })
-        .catch(function(e){ if(!(e && e.code === 'declined')) window.open(RESPALDO, '_blank'); })
-        .then(function(){ b.disabled = false; if(b.textContent === 'Preparando…') b.textContent = txt; });
-    });
-  })();
+  var links=document.querySelectorAll('nav.pasos a'), secs=[].map.call(links,function(a){return document.querySelector(a.getAttribute('href'))});
+  function marcar(){ var y=window.scrollY+90, on=0; secs.forEach(function(s,i){ if(s&&s.offsetTop<=y) on=i; }); links.forEach(function(a,i){a.classList.toggle('on',i===on)}); }
+  window.addEventListener('scroll',marcar,{passive:true}); marcar();
+})();
 </script>
