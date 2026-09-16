@@ -222,7 +222,7 @@
     .tarjeta-precio .dos-cifras{grid-template-columns:1fr;gap:10px}
     .tarjeta-precio b{font-size:24px}
     .tab .reco-txt{display:none}
-    .tab .t{white-space:normal;font-size:12px;line-height:1.15}
+    .tab .t{white-space:normal;font-size:12px;line-height:1.15;display:-webkit-box;-webkit-line-clamp:2;-webkit-box-orient:vertical;overflow:hidden}
     .brand-text span{display:none}
     /* El teléfono no puede ser más alto que lo que queda bajo pestañas + controles pegados (≈290 px). */
     .telefono{width:min(300px,84vw,calc((100dvh - 290px) * .46))}
@@ -948,6 +948,8 @@
   }
   $$('.tab').forEach(function(b){ b.addEventListener('click', function(){ cargarPlan(Number(b.dataset.plan)); $('#planes').scrollIntoView({ behavior:'smooth', block:'start' }); }); });
   pintarComparar(3);
+  // La altura real de las pestañas manda sobre lo que se pega debajo (controles) y sobre los scroll-margin.
+  (function(){ var nav = $('#planes'); function medir(){ document.documentElement.style.setProperty('--tabs', nav.offsetHeight + 'px'); } if(window.ResizeObserver) new ResizeObserver(medir).observe(nav); window.addEventListener('resize', medir); medir(); })();
   // La sombra de "hay más a la derecha" solo cuando la tabla de verdad se desborda y no está al final.
   (function(){ var w = $('.tbl-wrap'), s = $('.tbl-sombra'); function ver(){ s.classList.toggle('mas', w.scrollWidth > w.clientWidth + 2 && w.scrollLeft < w.scrollWidth - w.clientWidth - 2); } w.addEventListener('scroll', ver); window.addEventListener('resize', ver); $('#tablaCompleta').addEventListener('toggle', function(){ setTimeout(ver, 50); }); ver(); })();
 
