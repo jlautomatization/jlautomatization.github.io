@@ -1,0 +1,87 @@
+{
+ "plan1": [
+  {
+   "t": 1,
+   "titulo": "Inicio y acceso"
+  },
+  {
+   "t": 54,
+   "titulo": "Panel Operario"
+  },
+  {
+   "t": 166,
+   "titulo": "Panel Administrador"
+  },
+  {
+   "t": 283,
+   "titulo": "Panel del Socio"
+  },
+  {
+   "t": 329,
+   "titulo": "Página web"
+  },
+  {
+   "t": 347,
+   "titulo": "Resumen y precios"
+  }
+ ],
+ "duracion_plan1": 354,
+ "plan2": [
+  {
+   "t": 1,
+   "titulo": "Inicio y acceso"
+  },
+  {
+   "t": 54,
+   "titulo": "Panel Operario"
+  },
+  {
+   "t": 184,
+   "titulo": "Panel Administrador"
+  },
+  {
+   "t": 379,
+   "titulo": "Panel del Socio"
+  },
+  {
+   "t": 444,
+   "titulo": "Página web"
+  },
+  {
+   "t": 465,
+   "titulo": "Resumen y precios"
+  }
+ ],
+ "duracion_plan2": 475,
+ "plan3": [
+  {
+   "t": 1,
+   "titulo": "Inicio y acceso"
+  },
+  {
+   "t": 64,
+   "titulo": "Panel Operario"
+  },
+  {
+   "t": 209,
+   "titulo": "Panel Administrador"
+  },
+  {
+   "t": 428,
+   "titulo": "Panel del Socio"
+  },
+  {
+   "t": 489,
+   "titulo": "Página web"
+  },
+  {
+   "t": 511,
+   "titulo": "Asistente 24/7 y 2 sedes"
+  },
+  {
+   "t": 563,
+   "titulo": "Resumen y precios"
+  }
+ ],
+ "duracion_plan3": 576
+}
