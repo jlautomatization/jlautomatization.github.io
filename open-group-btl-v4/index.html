@@ -168,12 +168,23 @@
      más alto, sin importar cuál esté encendido. El pie queda en la fila 2 (auto), siempre a la
      misma distancia del final de esa fila fija. */
   .historia{min-height:calc(100dvh - 70px);display:grid;grid-template-rows:1fr auto;padding:24px 0 0}
-  .historia .paso{grid-row:1;grid-column:1;visibility:hidden;pointer-events:none;align-self:start}
-  .historia .paso.on{visibility:visible;pointer-events:auto}
-  .historia .paso.on .eyebrow,.historia .paso.on .idx{opacity:0;animation:riseIn .8s cubic-bezier(.2,.7,.2,1) .05s forwards}
-  .historia .paso.on h2{opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .2s forwards}
-  .historia .paso.on p,.historia .paso.on ul{opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .4s forwards}
-  .historia .paso.on .cadena,.historia .paso.on .total-cadena{opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .6s forwards}
+  /* (2026-09-19, Jose sobre el sitio publicado: "las transiciones están mal… me refiero a el de
+     historia"). Medido en el código anterior: el paso que salía desaparecía DE GOLPE (solo
+     visibility, sin transición) y el que entraba goteaba con retrasos .05/.2/.4/.6s por
+     animaciones de .8-.9s — el último elemento terminaba de aparecer 1,5 s después del clic,
+     mientras la página además hacía scroll suave. Para algo que se dispara con un botón eso es
+     una eternidad: la referencia para una transición de interfaz son 200-350 ms.
+     Ahora: el paso que sale se desvanece en 150 ms, el que entra completa en 510 ms (tres veces
+     más rápido), el recorrido baja de 16 px a 10 px para que a esa velocidad no se vea un brinco,
+     y el scroll al tope pasa a ser instantáneo para que no compita con la animación. */
+  @keyframes riseInCorto{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  .historia .paso{grid-row:1;grid-column:1;pointer-events:none;align-self:start;
+    visibility:hidden;opacity:0;transition:opacity .15s ease,visibility 0s .15s}
+  .historia .paso.on{visibility:visible;pointer-events:auto;opacity:1;transition:opacity .2s ease,visibility 0s}
+  .historia .paso.on .eyebrow,.historia .paso.on .idx{opacity:0;animation:riseInCorto .32s cubic-bezier(.2,.7,.2,1) .02s forwards}
+  .historia .paso.on h2{opacity:0;animation:riseInCorto .32s cubic-bezier(.2,.7,.2,1) .07s forwards}
+  .historia .paso.on p,.historia .paso.on ul{opacity:0;animation:riseInCorto .32s cubic-bezier(.2,.7,.2,1) .12s forwards}
+  .historia .paso.on .cadena,.historia .paso.on .total-cadena{opacity:0;animation:riseInCorto .34s cubic-bezier(.2,.7,.2,1) .17s forwards}
   .historia .idx{display:inline-block;font:500 11px/1 var(--sans);letter-spacing:.14em;text-transform:uppercase;color:#8A97A2;margin-left:12px;vertical-align:2px}
   /* (2026-09-17, Jose: "los de verde deberían ser los grandes, y los blancos en otra
      tipografía, negrilla, abajito, no tan grande") — la etiqueta ("El problema") pasa a ser el
@@ -387,6 +398,21 @@
   .marco video{position:absolute;left:calc(var(--px) - 1px);top:calc(var(--py) - 1px);
     width:calc(var(--pw) + 2px);height:calc(var(--ph) + 2px);object-fit:cover;background:#000;z-index:1;cursor:pointer;
     border-radius:var(--rad)}
+  /* (2026-09-19, Jose sobre el sitio publicado: "cuando oprimo para ver el video se demora en
+     reproducirse un poco"). Medido: el archivo no es el problema (12,5 MB para 8 minutos, unos
+     207 kbps, y el índice moov ya está al principio); en aislado arranca en 272 ms. Lo que fallaba
+     es que no había NINGÚN aviso: se oprimía ▶, el botón cambiaba a "reproduciendo" de una y la
+     pantalla se quedaba negra hasta que llegaran los datos. Parecía roto.
+     Una línea lima que barre el ancho de la pantalla mientras carga, y que se apaga sola en cuanto
+     el video corre. Cuadrada y fina, como el resto de la página: nada de ruedita. */
+  @keyframes barridoCarga{0%{background-position:-45% 0}100%{background-position:145% 0}}
+  .player.cargando .marco::after{content:'';position:absolute;left:var(--px);top:var(--py);
+    width:var(--pw);height:2px;z-index:3;pointer-events:none;
+    background-image:linear-gradient(90deg,transparent,#B9E200,transparent);
+    background-size:40% 100%;background-repeat:no-repeat;
+    animation:barridoCarga 1.1s ease-in-out infinite}
+  @media (prefers-reduced-motion:reduce){
+    .player.cargando .marco::after{animation:none;background-size:100% 100%;opacity:.5}}
   /* Los dos mockups quedan CENTRADOS en su caja (Jose, 2026-09-19): el del MacBook se rellenó
      con blanco puro hasta que la pantalla quedó al 50 % exacto del archivo — como el blanco es
      invisible bajo multiply, centrar no agregó ni un pixel visible. */
@@ -1578,7 +1604,10 @@
     if(nuevo >= PASOS_HISTORIA){ abrirDocumento(); return; }
     if(nuevo < 0) return;
     pasoActual = nuevo; pintarPaso();
-    window.scrollTo({ top:0, behavior:'smooth' });
+    // (2026-09-19) Antes era behavior:'smooth', y ese scroll corría ENCIMA de la animación del
+    // paso nuevo: dos movimientos peleando, que es parte de por qué se sentía lento. El contenido
+    // cambia entero de todos modos, así que el salto no se percibe como salto.
+    if(window.scrollY > 4) window.scrollTo({ top:0, behavior:'auto' });
   }
   // ---------- P2 · ripple lima al tocar (delegado en document) ----------
   // Delegado con closest(), así funciona también con lo que se monta después (el reproductor,
@@ -1933,6 +1962,9 @@
     caja.classList.toggle('reproduciendo', on);
     $$('.ov-play', caja).forEach(function(b){ b.setAttribute('aria-pressed', String(on)); });
   }
+  // (2026-09-19) Ver la nota del CSS: sin esto, entre el ▶ y el primer cuadro la pantalla se
+  // quedaba negra sin decir nada y parecía que el botón no servía.
+  function marcarCargando(on){ caja.classList.toggle('cargando', !!on); }
   // (2026-09-19, Jose en su iPhone: "el botón de darle play al video no sirve") — antes esto
   // era Promise.all([vPc.play(), vMv.play()]): con Promise.all, si UNO de los dos rechaza, el
   // catch pausaba los DOS. Safari en iPhone solo deja arrancar un video por gesto (y además
@@ -1958,9 +1990,11 @@
     if(recien && tPendiente !== null){ var tp = tPendiente; tPendiente = null; saltarA(tp); }
     if(vPc.paused && vMv.paused){
       if(vMv.readyState >= 1) vMv.currentTime = vPc.currentTime;
+      // readyState < 3 = todavía no hay datos suficientes para correr sin cortarse: avisa.
+      marcarCargando(vPc.readyState < 3);
       intentarReproducir(vPc);
       intentarReproducir(vMv);
-    } else { vPc.pause(); vMv.pause(); marcarReproduciendo(false); }
+    } else { vPc.pause(); vMv.pause(); marcarReproduciendo(false); marcarCargando(false); }
   }
   function verGrande(id){
     asegurarSrc();
@@ -2062,7 +2096,17 @@
       pintarSub(t);
       var s = seccionEn(t); $$('#caps .cap').forEach(function(b){ b.classList.toggle('on', !!s && Number(b.dataset.n) === s.n); });
     };
-    vPc.onended = function(){ marcarReproduciendo(false); vMv.pause(); };
+    vPc.onended = function(){ marcarReproduciendo(false); marcarCargando(false); vMv.pause(); };
+    // (2026-09-19) El aviso de carga lo dicta el video, no el clic: se enciende cuando se queda
+    // esperando datos y se apaga en cuanto vuelve a correr. 'playing' cubre tanto el arranque como
+    // la vuelta de un atasco a mitad de camino; 'error' lo apaga para no dejar la línea corriendo
+    // para siempre sobre un video que nunca va a cargar.
+    ['playing','canplay','canplaythrough','pause','error','abort'].forEach(function(ev){
+      vPc.addEventListener(ev, function(){ marcarCargando(false); });
+    });
+    ['waiting','stalled'].forEach(function(ev){
+      vPc.addEventListener(ev, function(){ if(!vPc.paused) marcarCargando(true); });
+    });
     // Si en iPhone solo arranca uno de los dos, el que sí corre manda: pinta subtítulo,
     // progreso y capítulo activo, para que nada se quede congelado.
     vMv.ontimeupdate = function(){
