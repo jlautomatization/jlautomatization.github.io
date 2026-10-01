@@ -1090,7 +1090,7 @@
 
 
 <script>
-  var BUILD = '20261001a';
+  var BUILD = '20261001b';
   // Los videos viven en open-group-btl/videos/ (Pages) o en ../videos/ (copia local del proyecto).
   var VID = /github\.io$/.test(location.hostname) ? './videos/' : '../videos/';
   var WHATSAPP_JLAUTO = "573106582111";
@@ -1263,8 +1263,16 @@
   // 13,8s en arrancar. canPlayType('application/vnd.apple.mpegurl') devuelve 'probably'/'maybe' en Safari
   // iOS/macOS (nunca en Chrome/Firefox/Edge, aunque sea de escritorio o celular): ahí SIEMPRE se usa HLS —
   // streaming real por segmentos de 4s, nunca el archivo entero — en vez de la variante 720/completa de MP4.
+  // (01/10/2026 01:05, coordinador) HLS SOLO para WebKit de Apple: iPhone/iPad (cualquier navegador en iOS usa
+  // WebKit) y Safari de Mac. Medido en la tarea HLS: el Chrome de escritorio también responde 'maybe' a
+  // canPlayType(mpegurl) y con HLS tardaba ~4 s en arrancar frente a 1 ms con MP4; Chrome Android no reproduce
+  // HLS nativo de forma fiable. Por eso canPlayType ya no decide solo: se exige además ser Apple/WebKit.
   function soportaHLSNativo(){
     try{
+      var ua = navigator.userAgent || '';
+      var esIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var esSafariMac = /Macintosh/.test(ua) && /Safari\//.test(ua) && !/Chrome|Chromium|CriOS|Edg|OPR|Firefox/.test(ua);
+      if(!esIOS && !esSafariMac) return false;
       var v = document.createElement('video');
       return !!(v.canPlayType && v.canPlayType('application/vnd.apple.mpegurl'));
     }catch(e){ return false; }
