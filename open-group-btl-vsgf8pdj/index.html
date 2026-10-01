@@ -370,6 +370,10 @@
      recalcula al centro de ese hueco (mismas medidas que .video-marco[data-marco="3"] video de arriba:
      left 14.439%+71.782%/2, top 6.815%+73.157%/2), no al centro de la figura completa. */
   .video-marco[data-marco="3"].con-video .boton-play{left:50.33%;top:43.394%}
+  /* (30/09/2026 noche, pantallazo de Jose: sitio publicado) en iPhone, los controles nativos YA pintan su propio
+     botón de play grande en el centro apenas hay portada/metadata; nuestro .boton-play quedaba encima, duplicado.
+     Se oculta en cualquier dispositivo táctil (sin hover) y se mantiene en escritorio (mouse = hover:hover). */
+  @media (hover:none){ .video-marco.con-video .boton-play{display:none} }
   .video-marco.largo{max-width:960px;margin-top:36px}
   /* (27/09/2026, noche) capítulos del video largo: de 1 línea de texto a cuadrícula de 8 celdas. 2 columnas en
      celular, 4 en escritorio (min-width:900px, igual que .videos) — nunca una fila corrida ni descuadrada.
@@ -1086,7 +1090,7 @@
 
 
 <script>
-  var BUILD = '20260930c';
+  var BUILD = '20260930d';
   // Los videos viven en open-group-btl/videos/ (Pages) o en ../videos/ (copia local del proyecto).
   var VID = /github\.io$/.test(location.hostname) ? './videos/' : '../videos/';
   var WHATSAPP_JLAUTO = "573106582111";
@@ -1311,25 +1315,53 @@
     registrarVideo(v, fig);
     return v;
   }
-  function montarVideos(){
-    // #como: tres videos cortos. Mientras el archivo no exista, queda el estado "En producción" (sin un reproductor con src roto).
-    $$('.video-item').forEach(function(it){
-      // (v9-u, Jose 2026-09-25: "No quiero que salga la duración estimada") ya no hay línea de duración en la espera ni nada que leer de data-duracion.
-      var fig = $('.video-marco', it);
-      if(!fig || !it.dataset.src) return;
-      var src = rutaVideo(it.dataset.src), poster = it.dataset.poster ? rutaVideo(it.dataset.poster) : '';
-      elegirSrc(src).then(function(elegido){
-        if(!elegido) return;
-        // con el archivo real, el "[PENDIENTE]" se va con .video-espera; la duración la muestran los controles del <video>
-        // (v9-t: sin línea "Duración: X" bajo el marco — Jose, 2026-09-25: "solo títulos y videos")
-        // (30/09/2026, bug iOS: pantallazo de Jose) la portada se pone directo desde data-poster, SIN el HEAD
-        // que antes la condicionaba: en iOS ese HEAD extra del jpg fallaba o tardaba y el <video> quedaba negro
-        // sin portada. Si el jpg no existe, el navegador simplemente no pinta portada — no rompe nada.
-        montarVideoNativo(fig, elegido, poster, 'metadata');
-      });
+  // #como: un video corto. Mientras el archivo no exista, queda el estado "En producción" (sin un reproductor con src roto).
+  function montarVideoComo(it){
+    // (v9-u, Jose 2026-09-25: "No quiero que salga la duración estimada") ya no hay línea de duración en la espera ni nada que leer de data-duracion.
+    var fig = $('.video-marco', it);
+    if(!fig || !it.dataset.src) return;
+    var src = rutaVideo(it.dataset.src), poster = it.dataset.poster ? rutaVideo(it.dataset.poster) : '';
+    elegirSrc(src).then(function(elegido){
+      if(!elegido) return;
+      // con el archivo real, el "[PENDIENTE]" se va con .video-espera; la duración la muestran los controles del <video>
+      // (v9-t: sin línea "Duración: X" bajo el marco — Jose, 2026-09-25: "solo títulos y videos")
+      // (30/09/2026, bug iOS: pantallazo de Jose) la portada se pone directo desde data-poster, SIN el HEAD
+      // que antes la condicionaba: en iOS ese HEAD extra del jpg fallaba o tardaba y el <video> quedaba negro
+      // sin portada. Si el jpg no existe, el navegador simplemente no pinta portada — no rompe nada.
+      montarVideoNativo(fig, elegido, poster, 'metadata');
     });
-    montarVideoLargo();
+  }
+  // (30/09/2026 noche, 2º pantallazo de Jose: "el pitch tarda ~8s en arrancar, los otros 4 de una") medido con
+  // Chrome + CDP a 1.6 Mbps/100ms (misma condición para los 3, qa/medir_throttle_v9.js): pedir play() al pitch
+  // apenas carga la página tardó 2380ms en llegar a 'playing'; el mismo play() a un corto o a la recorrida
+  // larga, en una carga limpia SIN los otros 4 compitiendo, tardó 3-4ms. La causa no es el archivo del pitch
+  // (su .mp4 ya es +faststart igual que los demás, moov ANTES de mdat en los 4 comparados con ffprobe -v
+  // trace) sino que su moov pesa ~2.16× más (264KB vs 122KB de un corto, proporcional a que dura ~2.2× más,
+  // 241s vs 110s) Y que montarVideos() lo montaba DE ÚLTIMO (después de los 3 cortos + la recorrida larga):
+  // los 5 <video> con preload="metadata" piden su rango inicial casi al mismo tiempo al cargar la página y
+  // compiten por el mismo ancho de banda/cupo de conexiones — el pitch, pidiendo más bytes Y de último, pierde
+  // esa carrera. Arreglo justificado por la medición: el pitch (primer video de la página, "si solo tiene 4
+  // minutos") se monta DE UNA; los otros 4 (fuera de vista al cargar) difieren su montaje — y con él, su
+  // primera petición Range — hasta que su <figure> esté por entrar en pantalla (IntersectionObserver, margen
+  // 600px), para no competir por ancho de banda con el video que el visitante ya está viendo. preload sigue
+  // SIEMPRE 'metadata' en cuanto se montan (no se toca ese fix de iOS de más arriba: ningún <video> se crea
+  // nunca con preload='none', así que el rectángulo negro no vuelve) — lo único que cambia es CUÁNDO se montan.
+  function montarVideos(){
     montarVideoPitch();
+    var objetivos = $$('.video-item');
+    if(figLargo) objetivos.push(figLargo);
+    if(!('IntersectionObserver' in window)){
+      objetivos.forEach(function(o){ if(o === figLargo) montarVideoLargo(); else montarVideoComo(o); });
+      return;
+    }
+    var ioPreCarga = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting) return;
+        ioPreCarga.unobserve(e.target);
+        if(e.target === figLargo) montarVideoLargo(); else montarVideoComo(e.target);
+      });
+    }, { rootMargin: '600px 0px' });
+    objetivos.forEach(function(o){ ioPreCarga.observe(o); });
   }
   // ================= v9 · #pitch: la propuesta en video (4 min), mismo mecanismo que #video-completo =================
   // (30/09/2026) un solo <video>, montado solo si el archivo existe; preload="metadata" (fix bug iOS del mismo
@@ -1361,6 +1393,9 @@
   var figLargo = document.getElementById('video-completo') ? $('#video-completo .video-marco') : null;
   var capBotones = $$('.cap-item');
   var largoMontando = null;
+  // monta el <video> de la recorrida larga si hace falta (lo usa el arranque, montarVideos(), para tenerlo listo
+  // de antemano). NO se llama desde el gesto de clic de un capítulo — ver irACapitulo más abajo — porque esperar
+  // la promesa de elegirSrc() (un HEAD de red) ahí perdía el gesto del usuario en iOS.
   function montarVideoLargo(cb){
     if(!figLargo) return;
     var v0 = figLargo.querySelector('video');
@@ -1368,6 +1403,8 @@
     if(!largoMontando){
       var src = rutaVideo(figLargo.dataset.src), poster = figLargo.dataset.poster ? rutaVideo(figLargo.dataset.poster) : '';
       largoMontando = elegirSrc(src).then(function(elegido){
+        var yaMontado = figLargo.querySelector('video');
+        if(yaMontado) return yaMontado; // irACapitulo ya lo montó de una mientras este HEAD seguía en curso
         if(!elegido) return null;
         var v = montarVideoNativo(figLargo, elegido, poster, 'metadata');
         v.addEventListener('timeupdate', function(){ marcarCapituloActivo(v.currentTime); });
@@ -1383,19 +1420,34 @@
       if(b === activo) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
     });
   }
+  // (30/09/2026 noche, 2º pantallazo de Jose: el capítulo 6 quedaba marcado activo pero el video seguía en pausa
+  // en el primer cuadro) causa confirmada: montarVideoLargo() creaba el <video> DENTRO del .then() de
+  // elegirSrc() (una espera de red, el HEAD de "¿existe el archivo?"); si el visitante tocaba un capítulo antes
+  // de que esa promesa resolviera, v.play() llegaba fuera de la pila de llamadas del toque y Safari lo
+  // descartaba en silencio — currentTime sí se alcanzaba a aplicar (por eso quedaba marcado el capítulo; un seek
+  // dispara 'timeupdate'), pero play() no. Arreglo: irACapitulo ya NO espera el HEAD para reproducir — el HEAD
+  // solo decide la variante 720/"Próximamente", y este video ya se confirmó real al cargar la página. Si el
+  // <video> no está montado todavía, se monta de una EN EL MISMO clic; v.play() se llama de inmediato y de forma
+  // síncrona (aunque readyState sea 0 — se guarda la promesa y se traga el rechazo), luego el scroll, y recién
+  // ahí se fija currentTime (ya si readyState>=1, o en loadedmetadata una sola vez si aún no hay datos). Por si
+  // iOS descartó el seek por falta de datos, al primer 'playing' se vuelve a comprobar y corregir. Nunca se
+  // llama v.load() después de ese play() del gesto (sí rompía el play en pruebas anteriores).
   function irACapitulo(seg){
     if(!figLargo) return;
-    montarVideoLargo(function(v){
-      figLargo.scrollIntoView({ behavior:'smooth', block:'center' });
-      var saltar = function(){
-        try{ v.currentTime = seg; }catch(e){}
-        var p = v.play(); if(p && p.catch) p.catch(function(){});
-      };
-      // con preload="metadata" (fix iOS 30/09/2026) el navegador ya pide la metadata solo; este chequeo queda
-      // como respaldo por si el visitante hace clic en un capítulo antes de que esa carga automática termine.
-      if(v.readyState < 1){ v.addEventListener('loadedmetadata', saltar, { once:true }); v.load(); }
-      else saltar();
-    });
+    var v = figLargo.querySelector('video');
+    if(!v){
+      var src = rutaVideo(figLargo.dataset.src), poster = figLargo.dataset.poster ? rutaVideo(figLargo.dataset.poster) : '';
+      v = montarVideoNativo(figLargo, src, poster, 'metadata');
+      v.addEventListener('timeupdate', function(){ marcarCapituloActivo(v.currentTime); });
+      largoMontando = Promise.resolve(v); // si el HEAD de montarVideoLargo() seguía en curso, al resolver encuentra este <video> puesto y no monta uno segundo
+    }
+    var p = v.play(); if(p && p.catch) p.catch(function(){});
+    figLargo.scrollIntoView({ behavior:'smooth', block:'center' });
+    var fijar = function(){ try{ v.currentTime = seg; }catch(e){} };
+    if(v.readyState >= 1) fijar(); else v.addEventListener('loadedmetadata', fijar, { once:true });
+    v.addEventListener('playing', function(){
+      if(Math.abs(v.currentTime - seg) > 1.5) fijar();
+    }, { once:true });
   }
   capBotones.forEach(function(b){ b.addEventListener('click', function(){ irACapitulo(Number(b.dataset.t)); }); });
 
