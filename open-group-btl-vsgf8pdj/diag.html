@@ -13,7 +13,13 @@
 <h1>Diagnóstico de videos (solo para Jose)</h1>
 <p class="sub" id="info">…</p>
 <button id="copiar">Copiar reporte</button>
+<p class="sub" id="soporteHLS">…</p>
+<h2 style="font-size:16px;margin:18px 0 2px">A · MP4 (lo de antes)</h2>
+<p class="sub" style="margin:0 0 10px">preload=metadata fijo — evidencia del 01/10 00:15: Safari descarga el archivo ENTERO (no solo el rango inicial).</p>
 <div id="lista"></div>
+<h2 style="font-size:16px;margin:18px 0 2px">B · HLS (lo nuevo)</h2>
+<p class="sub" style="margin:0 0 10px">mismos 5 videos, servidos como .m3u8 + segmentos de 4s — solo en navegadores con HLS nativo (Safari iOS/macOS) deberían pedir poco antes de reproducir.</p>
+<div id="listaHLS"></div>
 <script>
 (function(){
   var movil = window.innerWidth <= 820;
@@ -25,24 +31,33 @@
     ['Corto 3 · Panel del dueño', 'entienda/03-panel-del-dueno', 'entienda/03-panel-del-dueno.jpg'],
     ['Recorrida (7 min)', 'plan3/plan3-completo', '../portada/video-completo-poster.jpg']
   ];
+  // (01/10/2026) misma carpeta/nombre que build_v9.py::rutaHLS(): '<carpeta>/propuesta-en-video.mp4' ->
+  // '<carpeta>/hls/<nombre>/index.m3u8'. Se arma aquí mismo, sin depender de rutaHLS (este archivo no se genera
+  // con build_v9.py, es estático).
+  function rutaHLS(relSinExt){
+    var partes = relSinExt.split('/'), nombre = partes.pop(), carpeta = partes.join('/');
+    return base + carpeta + '/hls/' + nombre + '/index.m3u8';
+  }
   var c = navigator.connection || {};
   document.getElementById('info').textContent = (movil ? 'celular (720p)' : 'escritorio (completa)') + ' · ancho ' + window.innerWidth +
     ' · red: ' + (c.effectiveType || '?') + (c.downlink ? ' ' + c.downlink + ' Mbps' : '') + (c.rtt ? ' rtt ' + c.rtt + ' ms' : '') +
     ' · ' + navigator.userAgent.replace(/^.*\((.*?)\).*$/, '$1');
+  var hlsNativo = (function(){ try{ return !!document.createElement('video').canPlayType('application/vnd.apple.mpegurl'); }catch(e){ return false; } })();
+  document.getElementById('soporteHLS').innerHTML = 'HLS nativo (canPlayType de application/vnd.apple.mpegurl): ' +
+    '<b class="' + (hlsNativo ? 'ok' : 'mal') + '">' + (hlsNativo ? 'SÍ (este navegador usaría HLS en la página real)' : 'NO (este navegador usaría MP4 en la página real)') + '</b>';
   var t0 = performance.now(), filas = [];
   function bytesDe(url){
     var n = 0, k = 0;
     performance.getEntriesByType('resource').forEach(function(e){ if(e.name.indexOf(url) >= 0){ k++; n += (e.transferSize || e.encodedBodySize || 0); } });
     return { peticiones: k, kb: Math.round(n / 1024) };
   }
-  VIDEOS.forEach(function(def, i){
-    var titulo = def[0], src = base + def[1] + (movil ? '-720' : '') + '.mp4', poster = def[2].indexOf('../') === 0 ? def[2].slice(3) : base + def[2];
+  function montarMedicion(contenedorId, titulo, src, poster, prefijoFila){
     var box = document.createElement('div'); box.className = 'v';
-    box.innerHTML = '<h2>' + (i + 1) + '. ' + titulo + '</h2>';
+    box.innerHTML = '<h2>' + titulo + '</h2>';
     var v = document.createElement('video'); v.controls = true; v.preload = 'metadata'; v.setAttribute('playsinline', ''); v.setAttribute('webkit-playsinline', '');
     v.poster = poster; v.src = src;
     var d = document.createElement('div'); d.className = 'd'; d.textContent = 'archivo: ' + src + '\nesperando…';
-    box.appendChild(v); box.appendChild(d); document.getElementById('lista').appendChild(box);
+    box.appendChild(v); box.appendChild(d); document.getElementById(contenedorId).appendChild(box);
     var st = { titulo: titulo, meta: null, tap: null, arranque: null, espera: 0, errores: 0 };
     function pintar(){
       var b = bytesDe(src);
@@ -60,10 +75,15 @@
     v.addEventListener('error', function(){ st.errores++; pintar(); });
     v.addEventListener('timeupdate', pintar);
     setInterval(pintar, 1000);
-    filas.push(function(){ return (i + 1) + '. ' + titulo + ' | indice ' + (st.meta == null ? '-' : (st.meta / 1000).toFixed(1) + 's') + ' | arranque ' + (st.arranque == null ? '-' : (st.arranque / 1000).toFixed(2) + 's') + ' | ' + JSON.stringify(bytesDe(src)) + ' | esperas ' + st.espera; });
+    filas.push(function(){ return prefijoFila + titulo + ' | indice ' + (st.meta == null ? '-' : (st.meta / 1000).toFixed(1) + 's') + ' | arranque ' + (st.arranque == null ? '-' : (st.arranque / 1000).toFixed(2) + 's') + ' | ' + JSON.stringify(bytesDe(src)) + ' | esperas ' + st.espera; });
+  }
+  VIDEOS.forEach(function(def, i){
+    var titulo = def[0], relSinExt = def[1], src = base + relSinExt + (movil ? '-720' : '') + '.mp4', poster = def[2].indexOf('../') === 0 ? def[2].slice(3) : base + def[2];
+    montarMedicion('lista', (i + 1) + '. ' + titulo, src, poster, 'A' + (i + 1) + '. ');
+    montarMedicion('listaHLS', (i + 1) + '. ' + titulo, rutaHLS(relSinExt), poster, 'B' + (i + 1) + '. ');
   });
   document.getElementById('copiar').onclick = function(){
-    var txt = document.getElementById('info').textContent + '\n' + filas.map(function(f){ return f(); }).join('\n');
+    var txt = document.getElementById('info').textContent + '\n' + document.getElementById('soporteHLS').textContent + '\n' + filas.map(function(f){ return f(); }).join('\n');
     if(navigator.clipboard) navigator.clipboard.writeText(txt);
     alert(txt);
   };

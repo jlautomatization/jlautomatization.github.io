@@ -1090,7 +1090,7 @@
 
 
 <script>
-  var BUILD = '20260930d';
+  var BUILD = '20261001a';
   // Los videos viven en open-group-btl/videos/ (Pages) o en ../videos/ (copia local del proyecto).
   var VID = /github\.io$/.test(location.hostname) ? './videos/' : '../videos/';
   var WHATSAPP_JLAUTO = "573106582111";
@@ -1257,7 +1257,30 @@
     try{ return window.innerWidth <= 820 || !!(navigator.connection && navigator.connection.saveData); }
     catch(e){ return false; }
   }
+  // (01/10/2026, HLS para Safari) Evidencia (diag.html, iPhone de Jose, 01/10 00:15): con MP4 + preload=metadata
+  // Safari descarga el archivo ENTERO en vez de solo el rango inicial (corto 1: 3.997 KB = el archivo completo;
+  // pitch: 12.566 KB) — eso es lo que hacía que los 5 videos compitieran por ancho de banda y el pitch tardara
+  // 13,8s en arrancar. canPlayType('application/vnd.apple.mpegurl') devuelve 'probably'/'maybe' en Safari
+  // iOS/macOS (nunca en Chrome/Firefox/Edge, aunque sea de escritorio o celular): ahí SIEMPRE se usa HLS —
+  // streaming real por segmentos de 4s, nunca el archivo entero — en vez de la variante 720/completa de MP4.
+  function soportaHLSNativo(){
+    try{
+      var v = document.createElement('video');
+      return !!(v.canPlayType && v.canPlayType('application/vnd.apple.mpegurl'));
+    }catch(e){ return false; }
+  }
+  var HLS_NATIVO = soportaHLSNativo();
+  // 'pitch/propuesta-en-video.mp4' -> 'pitch/hls/propuesta-en-video/index.m3u8' (mismo patrón para
+  // 'plan3/plan3-completo.mp4' y los 3 de 'entienda/0N-….mp4'; ver build_v9.py, tarea HLS 01/10/2026).
+  function rutaHLS(base){
+    var m = base.match(/^(.*)\/([^\/]+)\.mp4$/);
+    return m ? (m[1] + '/hls/' + m[2] + '/index.m3u8') : null;
+  }
   function elegirSrc(base){
+    if(HLS_NATIVO){
+      var hls = rutaHLS(base);
+      if(hls) return existe(hls).then(function(ok){ return ok ? hls : null; });
+    }
     if(!usarMovil()) return existe(base).then(function(ok){ return ok ? base : null; });
     var v720 = variante720(base);
     return existe(v720).then(function(ok720){
@@ -1292,16 +1315,35 @@
     });
   });
   document.addEventListener('webkitendfullscreen', function(e){ if(e.target && !e.target.paused) e.target.pause(); }, true);
+  // (01/10/2026) Cola de precarga en fila: cuando un <video> se monta con preload='none' (los 4 que no son el
+  // pitch, ver montarVideos más abajo), entra aquí y sube a 'metadata' SOLO cuando le toca su turno — nunca hay
+  // más de 1 de estos 4 descargando metadata a la vez (el pitch es aparte, siempre 'metadata' desde que se crea).
+  // El turno pasa al siguiente cuando el video dispara 'loadedmetadata' (ya tiene su índice) o 'error', o a los
+  // 4s como tope (por si el archivo no existe o la red está muy lenta) — así un video roto nunca traba la fila.
+  var COLA_PRECARGA = [], colaOcupada = false;
+  function avanzarColaPrecarga(){
+    if(colaOcupada || !COLA_PRECARGA.length) return;
+    colaOcupada = true;
+    var v = COLA_PRECARGA.shift(), yaPaso = false;
+    function pasar(){ if(yaPaso) return; yaPaso = true; colaOcupada = false; avanzarColaPrecarga(); }
+    v.addEventListener('loadedmetadata', pasar, { once:true });
+    v.addEventListener('error', pasar, { once:true });
+    setTimeout(pasar, 4000);
+    v.preload = 'metadata';
+    v.load(); // necesario: el navegador solo vuelve a consultar `preload` al correr de nuevo la selección de recurso.
+  }
+  function colaSubirPreload(v){ COLA_PRECARGA.push(v); avanzarColaPrecarga(); }
   function montarVideoNativo(fig, src, poster, preload, alDurar){
     var v = document.createElement('video');
     v.controls = true;
     v.setAttribute('playsinline', '');
     v.setAttribute('webkit-playsinline', ''); // Safari iOS viejo solo reconoce el atributo con el prefijo webkit-
-    // (30/09/2026, bug iOS: pantallazo de Jose 30/09 23:01 del sitio publicado) preload SIEMPRE 'metadata' para
-    // los 5 videos — el parámetro preload/data-preload ya no decide esto (se ignora a propósito). Con +faststart
-    // el moov queda al inicio del mp4: Safari pide solo unos KB por Range y ya pinta el primer cuadro y muestra
-    // los controles. Con 'none' el <video> se quedaba negro (sin portada ni botón) hasta el primer tap.
-    v.preload = 'metadata';
+    // (30/09/2026, bug iOS: pantallazo de Jose 30/09 23:01 del sitio publicado) el póster se pone SIEMPRE directo
+    // desde data-poster (sin HEAD previo, ver montarVideoComo) y el <video>/controles/botón de play se montan de
+    // una — así nunca queda negro, tenga el preload que tenga. (01/10/2026) preload YA NO es fijo en 'metadata'
+    // para los 5: el pitch sigue arrancando en 'metadata' (primer video de la página); los otros 4 arrancan en
+    // 'none' y entran a COLA_PRECARGA para subir de a uno — ver montarVideos/montarVideoComo/montarVideoLargo.
+    v.preload = preload || 'metadata';
     if(poster) v.poster = poster;
     v.src = src + (src.indexOf('?') < 0 ? '?v=' + BUILD : '');
     v.addEventListener('play', function(){ fig.classList.add('reproduciendo'); });
@@ -1313,6 +1355,7 @@
     var boton = document.createElement('span'); boton.className = 'boton-play'; boton.setAttribute('aria-hidden', 'true');
     fig.appendChild(boton);
     registrarVideo(v, fig);
+    if(v.preload === 'none') colaSubirPreload(v);
     return v;
   }
   // #como: un video corto. Mientras el archivo no exista, queda el estado "En producción" (sin un reproductor con src roto).
@@ -1328,7 +1371,9 @@
       // (30/09/2026, bug iOS: pantallazo de Jose) la portada se pone directo desde data-poster, SIN el HEAD
       // que antes la condicionaba: en iOS ese HEAD extra del jpg fallaba o tardaba y el <video> quedaba negro
       // sin portada. Si el jpg no existe, el navegador simplemente no pinta portada — no rompe nada.
-      montarVideoNativo(fig, elegido, poster, 'metadata');
+      // (01/10/2026) 'none': este es uno de los 4 que ya no compiten con el pitch por ancho de banda al cargar
+      // la página — sube a 'metadata' cuando le toca su turno en COLA_PRECARGA (ver montarVideoNativo).
+      montarVideoNativo(fig, elegido, poster, 'none');
     });
   }
   // (30/09/2026 noche, 2º pantallazo de Jose: "el pitch tarda ~8s en arrancar, los otros 4 de una") medido con
@@ -1340,28 +1385,22 @@
   // 241s vs 110s) Y que montarVideos() lo montaba DE ÚLTIMO (después de los 3 cortos + la recorrida larga):
   // los 5 <video> con preload="metadata" piden su rango inicial casi al mismo tiempo al cargar la página y
   // compiten por el mismo ancho de banda/cupo de conexiones — el pitch, pidiendo más bytes Y de último, pierde
-  // esa carrera. Arreglo justificado por la medición: el pitch (primer video de la página, "si solo tiene 4
-  // minutos") se monta DE UNA; los otros 4 (fuera de vista al cargar) difieren su montaje — y con él, su
-  // primera petición Range — hasta que su <figure> esté por entrar en pantalla (IntersectionObserver, margen
-  // 600px), para no competir por ancho de banda con el video que el visitante ya está viendo. preload sigue
-  // SIEMPRE 'metadata' en cuanto se montan (no se toca ese fix de iOS de más arriba: ningún <video> se crea
-  // nunca con preload='none', así que el rectángulo negro no vuelve) — lo único que cambia es CUÁNDO se montan.
+  // esa carrera. Arreglo del 30/09: el pitch se monta DE UNA; los otros 4 difieren su montaje (IntersectionObserver,
+  // margen 600px) hasta que su <figure> esté por entrar en pantalla.
+  // (01/10/2026, HLS) ESE arreglo del 30/09 resultó insuficiente en Safari real (ver evidencia de diag.html citada
+  // en el BUILD, arriba): con preload="metadata" FIJO, Safari no pide "solo el rango inicial" como Chrome — pide
+  // el archivo MP4 ENTERO por Range, así que en cuanto un video se montaba (aunque fuera diferido por scroll) competía
+  // igual de duro por ancho de banda. El arreglo de fondo es doble: (a) Safari/iOS-macOS ahora recibe HLS (streaming
+  // real por segmentos, nunca el archivo entero — ver elegirSrc/HLS_NATIVO más arriba); (b) YA NO hace falta el
+  // IntersectionObserver de montaje diferido — se quita — porque ahora los 5 <video> se montan de una al cargar (así
+  // los botones de capítulo siempre tienen su <video> listo para el play() síncrono del gesto, sin depender de scroll)
+  // pero solo el pitch arranca en preload='metadata'; los otros 4 arrancan en 'none' y suben a 'metadata' DE UNO EN
+  // UNO, en cadena (COLA_PRECARGA, ver montarVideoNativo) — nunca vuelven a competir los 5 a la vez.
   function montarVideos(){
     montarVideoPitch();
     var objetivos = $$('.video-item');
     if(figLargo) objetivos.push(figLargo);
-    if(!('IntersectionObserver' in window)){
-      objetivos.forEach(function(o){ if(o === figLargo) montarVideoLargo(); else montarVideoComo(o); });
-      return;
-    }
-    var ioPreCarga = new IntersectionObserver(function(es){
-      es.forEach(function(e){
-        if(!e.isIntersecting) return;
-        ioPreCarga.unobserve(e.target);
-        if(e.target === figLargo) montarVideoLargo(); else montarVideoComo(e.target);
-      });
-    }, { rootMargin: '600px 0px' });
-    objetivos.forEach(function(o){ ioPreCarga.observe(o); });
+    objetivos.forEach(function(o){ if(o === figLargo) montarVideoLargo(); else montarVideoComo(o); });
   }
   // ================= v9 · #pitch: la propuesta en video (4 min), mismo mecanismo que #video-completo =================
   // (30/09/2026) un solo <video>, montado solo si el archivo existe; preload="metadata" (fix bug iOS del mismo
@@ -1406,7 +1445,9 @@
         var yaMontado = figLargo.querySelector('video');
         if(yaMontado) return yaMontado; // irACapitulo ya lo montó de una mientras este HEAD seguía en curso
         if(!elegido) return null;
-        var v = montarVideoNativo(figLargo, elegido, poster, 'metadata');
+        // (01/10/2026) 'none': este es el 4° de los 4 que entran a COLA_PRECARGA (después de los 3 cortos de
+        // #como) — sube a 'metadata' cuando le toca su turno, nunca junto con el pitch ni con los otros 3.
+        var v = montarVideoNativo(figLargo, elegido, poster, 'none');
         v.addEventListener('timeupdate', function(){ marcarCapituloActivo(v.currentTime); });
         return v;
       });
