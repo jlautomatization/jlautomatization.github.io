@@ -354,6 +354,22 @@
   .video-marco[data-marco="3"] video,.video-marco[data-marco="3"] .video-espera{position:absolute;left:14.439%;top:6.815%;width:71.782%;height:73.157%}
   .video-marco[data-marco="3"] .video-espera{padding:12px;border:none}
   .video-marco[data-marco="3"] .video-espera span{font-size:13px}
+  /* (30/09/2026, bug iOS: pantallazo de Jose 23:01, sitio publicado) botón de play propio sobre la portada,
+     visible mientras el <video> no suena. No es ::after del marco porque data-marco="2" ya usa ::before/::after
+     para dibujar la barra de "ventana" (los 3 puntos + la pestaña); un pseudo-elemento nuevo ahí los pisaría.
+     Mismo lenguaje que 3k (BOTONES SIN RELLENO DE LIMA, Jose: "no me gusta que el fondo de los botones sea
+     verde"): placa negra opaca + borde lima de 2px (peso de acción principal) + triángulo en lima, igual que
+     .badge — NO relleno sólido de lima. */
+  .video-marco.con-video .boton-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:var(--negro);border:2px solid var(--lima);display:flex;align-items:center;justify-content:center;pointer-events:none;box-shadow:0 10px 30px rgba(0,0,0,.45);z-index:2;transition:opacity .15s}
+  .video-marco.con-video .boton-play::after{content:'';display:block;width:0;height:0;margin-left:4px;border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent var(--lima)}
+  .video-marco.con-video.reproduciendo .boton-play{opacity:0;pointer-events:none}
+  /* marco 2 ("Ventana") tiene 34px de barra arriba fuera del video: el centrado baja la mitad para quedar
+     centrado en el video real, no en la figura completa (barra + video). */
+  .video-marco[data-marco="2"].con-video .boton-play{top:calc(50% + 17px)}
+  /* marco 3 (laptop): el video vive en el hueco de la pantalla, no en toda la figura — el centro del botón se
+     recalcula al centro de ese hueco (mismas medidas que .video-marco[data-marco="3"] video de arriba:
+     left 14.439%+71.782%/2, top 6.815%+73.157%/2), no al centro de la figura completa. */
+  .video-marco[data-marco="3"].con-video .boton-play{left:50.33%;top:43.394%}
   .video-marco.largo{max-width:960px;margin-top:36px}
   /* (27/09/2026, noche) capítulos del video largo: de 1 línea de texto a cuadrícula de 8 celdas. 2 columnas en
      celular, 4 en escritorio (min-width:900px, igual que .videos) — nunca una fila corrida ni descuadrada.
@@ -684,7 +700,7 @@
   <div class="wrap">
     <p class="kicker anim">La propuesta en 4 minutos</p>
     <h2 class="t-sec anim" id="t-pitch">Si solo tiene <em>cuatro minutos</em>, vea esto.</h2>
-    <figure class="video-marco largo anim" data-marco="2" data-src="pitch/propuesta-en-video.mp4" data-poster="pitch/propuesta-en-video.jpg" data-preload="none">
+    <figure class="video-marco largo anim" data-marco="2" data-src="pitch/propuesta-en-video.mp4" data-poster="pitch/propuesta-en-video.jpg">
       <div class="video-espera"><b class="dato-chip">Próximamente</b></div>
     </figure>
   </div>
@@ -1025,7 +1041,7 @@
   <div class="wrap">
     <p class="kicker anim">Para quien quiera verlo todo</p>
     <h2 class="t-sec anim" id="t-largo">¿Quiere ver el <em>sistema completo?</em></h2>
-    <figure class="video-marco largo anim" data-marco="2" data-src="plan3/plan3-completo.mp4" data-poster="portada/video-completo-poster.jpg" data-preload="none">
+    <figure class="video-marco largo anim" data-marco="2" data-src="plan3/plan3-completo.mp4" data-poster="portada/video-completo-poster.jpg">
       <div class="video-espera"><b class="dato-chip">Próximamente</b><span>7 minutos · sistema completo</span></div>
     </figure>
     <!-- (27/09/2026, noche, Jose aprobó) los capítulos pasan de 1 línea de texto a una cuadrícula de 8 celdas,
@@ -1070,7 +1086,7 @@
 
 
 <script>
-  var BUILD = '20260930b';
+  var BUILD = '20260930c';
   // Los videos viven en open-group-btl/videos/ (Pages) o en ../videos/ (copia local del proyecto).
   var VID = /github\.io$/.test(location.hostname) ? './videos/' : '../videos/';
   var WHATSAPP_JLAUTO = "573106582111";
@@ -1227,6 +1243,24 @@
   // la cuadrícula de botones ya van fijos como texto en el HTML (CAPITULOS_LARGO, build_v9.py).
   function rutaVideo(r){ return /^portada\//.test(r) ? r : VID + r; }
   function existe(url){ return fetch(url, { method:'HEAD', cache:'no-store' }).then(function(r){ return r.ok; }).catch(function(){ return false; }); }
+  // (30/09/2026, Jose: "en iPhone sí abren pero se demoran en cargar") variante 720p (mismo nombre + "-720") para
+  // celular/datos limitados: pantalla chica (innerWidth<=820, cubre los iPhone grandes en vertical) o el visitante
+  // pidió "ahorrar datos" (navigator.connection.saveData). elegirSrc() prueba primero la variante 720 con HEAD; si
+  // no existe (o el navegador no decide usarla), cae a la variante normal — nunca deja de montarse el video por
+  // esto, solo cambia cuál de las dos pesa menos.
+  function variante720(ruta){ return ruta.replace(/\.mp4$/, '-720.mp4'); }
+  function usarMovil(){
+    try{ return window.innerWidth <= 820 || !!(navigator.connection && navigator.connection.saveData); }
+    catch(e){ return false; }
+  }
+  function elegirSrc(base){
+    if(!usarMovil()) return existe(base).then(function(ok){ return ok ? base : null; });
+    var v720 = variante720(base);
+    return existe(v720).then(function(ok720){
+      if(ok720) return v720;
+      return existe(base).then(function(ok){ return ok ? base : null; });
+    });
+  }
   // (30/09/2026, Jose: "que no queden con el bug de que si me salgo sigan sonando") Un solo controlador vigila
   // los 4 <video> (3 cortos de #como + la recorrida de #video-completo) desde que cada uno se crea:
   // (i) al reproducir uno se pausan los demás — nunca 2 sonando a la vez; (ii) pestaña oculta (visibilitychange)
@@ -1256,12 +1290,24 @@
   document.addEventListener('webkitendfullscreen', function(e){ if(e.target && !e.target.paused) e.target.pause(); }, true);
   function montarVideoNativo(fig, src, poster, preload, alDurar){
     var v = document.createElement('video');
-    v.controls = true; v.setAttribute('playsinline', ''); v.preload = preload || 'metadata';
+    v.controls = true;
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', ''); // Safari iOS viejo solo reconoce el atributo con el prefijo webkit-
+    // (30/09/2026, bug iOS: pantallazo de Jose 30/09 23:01 del sitio publicado) preload SIEMPRE 'metadata' para
+    // los 5 videos — el parámetro preload/data-preload ya no decide esto (se ignora a propósito). Con +faststart
+    // el moov queda al inicio del mp4: Safari pide solo unos KB por Range y ya pinta el primer cuadro y muestra
+    // los controles. Con 'none' el <video> se quedaba negro (sin portada ni botón) hasta el primer tap.
+    v.preload = 'metadata';
     if(poster) v.poster = poster;
     v.src = src + (src.indexOf('?') < 0 ? '?v=' + BUILD : '');
+    v.addEventListener('play', function(){ fig.classList.add('reproduciendo'); });
+    ['pause', 'ended'].forEach(function(ev){ v.addEventListener(ev, function(){ fig.classList.remove('reproduciendo'); }); });
     if(alDurar) v.addEventListener('loadedmetadata', function(){ alDurar(v.duration); }, { once:true });
     var esp = fig.querySelector('.video-espera'); if(esp) esp.remove();
     fig.insertBefore(v, fig.firstChild); fig.classList.add('con-video');
+    // botón de play propio (CSS .boton-play) encima de la portada; se oculta mientras .reproduciendo está puesta.
+    var boton = document.createElement('span'); boton.className = 'boton-play'; boton.setAttribute('aria-hidden', 'true');
+    fig.appendChild(boton);
     registrarVideo(v, fig);
     return v;
   }
@@ -1272,21 +1318,24 @@
       var fig = $('.video-marco', it);
       if(!fig || !it.dataset.src) return;
       var src = rutaVideo(it.dataset.src), poster = it.dataset.poster ? rutaVideo(it.dataset.poster) : '';
-      existe(src).then(function(ok){
-        if(!ok) return;
-        (poster ? existe(poster) : Promise.resolve(false)).then(function(okp){
-          // con el archivo real, el "[PENDIENTE]" se va con .video-espera; la duración la muestran los controles del <video>
-          // (v9-t: sin línea "Duración: X" bajo el marco — Jose, 2026-09-25: "solo títulos y videos")
-          montarVideoNativo(fig, src, okp ? poster : '', 'metadata');
-        });
+      elegirSrc(src).then(function(elegido){
+        if(!elegido) return;
+        // con el archivo real, el "[PENDIENTE]" se va con .video-espera; la duración la muestran los controles del <video>
+        // (v9-t: sin línea "Duración: X" bajo el marco — Jose, 2026-09-25: "solo títulos y videos")
+        // (30/09/2026, bug iOS: pantallazo de Jose) la portada se pone directo desde data-poster, SIN el HEAD
+        // que antes la condicionaba: en iOS ese HEAD extra del jpg fallaba o tardaba y el <video> quedaba negro
+        // sin portada. Si el jpg no existe, el navegador simplemente no pinta portada — no rompe nada.
+        montarVideoNativo(fig, elegido, poster, 'metadata');
       });
     });
     montarVideoLargo();
     montarVideoPitch();
   }
   // ================= v9 · #pitch: la propuesta en video (4 min), mismo mecanismo que #video-completo =================
-  // (30/09/2026) un solo <video>, montado solo si el archivo existe (preload none: no se descarga nada
-  // hasta que el visitante le dé play), con la misma regla de pausa (registrarVideo, dentro de montarVideoNativo).
+  // (30/09/2026) un solo <video>, montado solo si el archivo existe; preload="metadata" (fix bug iOS del mismo
+  // día, ver montarVideoNativo) pide solo unos KB del mp4 para pintar el primer cuadro y mostrar los controles —
+  // no descarga el video completo hasta que el visitante le dé play. Misma regla de pausa (registrarVideo,
+  // dentro de montarVideoNativo).
   var figPitch = document.getElementById('pitch') ? $('#pitch .video-marco') : null;
   var pitchMontando = null;
   function montarVideoPitch(cb){
@@ -1295,22 +1344,20 @@
     if(v0){ if(cb) cb(v0); return; }
     if(!pitchMontando){
       var src = rutaVideo(figPitch.dataset.src), poster = figPitch.dataset.poster ? rutaVideo(figPitch.dataset.poster) : '';
-      pitchMontando = existe(src).then(function(ok){
-        if(!ok) return null;
-        return (poster ? existe(poster) : Promise.resolve(false)).then(function(okp){
-          return montarVideoNativo(figPitch, src, okp ? poster : '', figPitch.dataset.preload || 'none');
-        });
+      pitchMontando = elegirSrc(src).then(function(elegido){
+        if(!elegido) return null;
+        return montarVideoNativo(figPitch, elegido, poster, 'metadata');
       });
     }
     pitchMontando.then(function(v){ if(v && cb) cb(v); });
   }
   // ================= v9 · #video-completo: capítulos que saltan al segundo real del video =================
   // (30/09/2026, Jose: los videos ya se regrabaron, "ya pueden ser botones") montarVideoLargo() monta la recorrida
-  // (igual que antes: solo si el archivo existe, preload none) y queda cacheado (largoMontando) para que un clic
-  // en un capítulo antes de que termine de resolverse el HEAD no dispare una segunda carga. irACapitulo() monta si
-  // hace falta, hace scroll a la figura, espera loadedmetadata si el video aún no tiene metadata (readyState<1) y
-  // recién ahí fija currentTime y reproduce. marcarCapituloActivo() pinta aria-current según el tiempo real
-  // (timeupdate), no según el último capítulo tocado.
+  // (igual que antes: solo si el archivo existe; preload="metadata" desde el fix iOS 30/09/2026) y queda cacheado
+  // (largoMontando) para que un clic en un capítulo antes de que termine de resolverse el HEAD no dispare una
+  // segunda carga. irACapitulo() monta si hace falta, hace scroll a la figura, espera loadedmetadata si el video
+  // aún no tiene metadata (readyState<1) y recién ahí fija currentTime y reproduce. marcarCapituloActivo() pinta
+  // aria-current según el tiempo real (timeupdate), no según el último capítulo tocado.
   var figLargo = document.getElementById('video-completo') ? $('#video-completo .video-marco') : null;
   var capBotones = $$('.cap-item');
   var largoMontando = null;
@@ -1320,13 +1367,11 @@
     if(v0){ if(cb) cb(v0); return; }
     if(!largoMontando){
       var src = rutaVideo(figLargo.dataset.src), poster = figLargo.dataset.poster ? rutaVideo(figLargo.dataset.poster) : '';
-      largoMontando = existe(src).then(function(ok){
-        if(!ok) return null;
-        return (poster ? existe(poster) : Promise.resolve(false)).then(function(okp){
-          var v = montarVideoNativo(figLargo, src, okp ? poster : '', figLargo.dataset.preload || 'none');
-          v.addEventListener('timeupdate', function(){ marcarCapituloActivo(v.currentTime); });
-          return v;
-        });
+      largoMontando = elegirSrc(src).then(function(elegido){
+        if(!elegido) return null;
+        var v = montarVideoNativo(figLargo, elegido, poster, 'metadata');
+        v.addEventListener('timeupdate', function(){ marcarCapituloActivo(v.currentTime); });
+        return v;
       });
     }
     largoMontando.then(function(v){ if(v && cb) cb(v); });
@@ -1346,8 +1391,8 @@
         try{ v.currentTime = seg; }catch(e){}
         var p = v.play(); if(p && p.catch) p.catch(function(){});
       };
-      // preload="none" (a propósito: no se descarga nada del video largo hasta que se pida) significa que
-      // readyState se queda en 0 para siempre si no se fuerza la carga: loadedmetadata nunca dispararía solo.
+      // con preload="metadata" (fix iOS 30/09/2026) el navegador ya pide la metadata solo; este chequeo queda
+      // como respaldo por si el visitante hace clic en un capítulo antes de que esa carga automática termine.
       if(v.readyState < 1){ v.addEventListener('loadedmetadata', saltar, { once:true }); v.load(); }
       else saltar();
     });
