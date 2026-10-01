@@ -1,0 +1,1377 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#0E0E0E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E0E0E'/%3E%3Crect x='6' y='11' width='11' height='10' rx='5' fill='none' stroke='%23B9E200' stroke-width='3'/%3E%3Crect x='15' y='11' width='11' height='10' rx='5' fill='none' stroke='%23B9E200' stroke-width='3'/%3E%3C/svg%3E">
+<title>Propuesta · Open Group BTL</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+<!-- v9 (2026-09-24, mañana): 3 videos nativos en #como, tarjetas = selector, video completo al final, mensualidad sin plazo (decisión de Jose). Generado por build_v9.py; textos en v9/MAPA_CONTENIDO_v9.md -->
+<style>
+  :root{
+    --negro:#0E0E0E; --fondo:#121212; --navy:#1A2218; --navy2:#202B1E; --navy3:#273525;
+    /* (v9-n) --navy* = RESERVADOS para énfasis que pida Jose; ningún contenedor los usa por defecto.
+       --gris1/2/3 = los mismos 3 niveles, neutros (S 0 %), misma luminancia relativa: navy→gris1 · navy2→gris2 · navy3→gris3 */
+    --gris1:#202020; --gris2:#282828; --gris3:#313131;
+    --linea:rgba(245,241,232,.13); --linea-fuerte:rgba(245,241,232,.28);
+    --lima:#B9E200; --lima-2:#C8EE1E; --lima-ink:#16210A; --lima-velo:rgba(185,226,0,.10);
+    --marfil:#F5F1E8; --texto:#E4E1D8; --texto2:#9FAAB3; --rojo:#C0392B;
+    --serif:'Newsreader',Georgia,serif; --sans:'Public Sans',system-ui,sans-serif;
+    --t-portada:clamp(34px,5.6vw,60px); --t-sec:clamp(30px,4.6vw,48px); --t-bajada:clamp(18px,2.4vw,22px);
+    --t-cuerpo:clamp(16px,2vw,17.5px); --t-chico:14.5px; --t-kicker:11px; --ls-kicker:.16em;
+    --medida:62ch; --tabs:0px; --barra:0px;
+    --px:0;--py:0;--pw:100%;--ph:100%;--rad:0;
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:16px;background:var(--fondo)}
+  body{margin:0;background:var(--fondo);color:var(--texto);font-family:var(--sans);font-size:var(--t-cuerpo);line-height:1.6;
+    font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;touch-action:manipulation}
+  [hidden]{display:none!important}
+  ::selection{background:var(--lima);color:var(--lima-ink)}
+  html{scrollbar-color:var(--gris3) var(--fondo)}
+  ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-thumb{background:var(--gris3);border:2px solid var(--fondo)}::-webkit-scrollbar-track{background:var(--fondo)}
+  a{color:var(--lima)}
+  p{margin:0 0 .9em;max-width:var(--medida)}
+  h1,h2,h3,h4{margin:0;font-variant-numeric:tabular-nums;text-wrap:balance}
+  h2{font-family:var(--sans);font-weight:800;letter-spacing:-.022em;line-height:1.06;font-size:var(--t-sec);color:#fff;max-width:20ch}
+  h2 em,h1 em,.t-sec em,h3 em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--lima);letter-spacing:0}
+  h3{font-family:var(--serif);font-weight:500;font-size:var(--t-bajada);line-height:1.25;color:var(--marfil)}
+  button,input,select,textarea,summary{font-variant-numeric:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding-inline:18px}
+  @media (min-width:900px){.wrap{padding-inline:28px}}
+  .kicker,.eyebrow{display:block;font-family:var(--sans);font-weight:700;font-size:var(--t-kicker);line-height:1.25;
+    letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--lima);margin:0 0 14px}
+  .bajada,.lead,.lede{color:var(--texto2);font-size:var(--t-bajada);line-height:1.45;max-width:var(--medida);margin:14px 0 0}
+  .nota{font-family:var(--serif);font-style:italic;font-weight:400;font-size:var(--t-chico);line-height:1.5;color:var(--texto2);margin:0}
+  .nota b{color:var(--marfil);font-style:normal;font-family:var(--sans)}
+  .chico{font-size:var(--t-chico)}
+  :focus-visible{outline:3px solid var(--lima);outline-offset:3px}
+  .salto{position:absolute;left:-999px;top:8px;background:var(--negro);color:var(--lima);border:2px solid var(--lima);padding:8px 12px;z-index:100;font-weight:700}
+  .salto:focus{left:8px}
+
+  /* ---------- botones ---------- */
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:transparent;color:var(--lima);border:2px solid var(--lima);
+    padding:13px 20px;font:700 var(--t-chico)/1.2 var(--sans);letter-spacing:.01em;cursor:pointer;text-decoration:none;min-height:46px;
+    transition:background .2s,color .2s,border-color .2s,transform .35s cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent}
+  .btn.ghost,.btn.ghost.oscuro{background:transparent;color:var(--marfil);border-width:1px;border-color:var(--linea-fuerte)}
+  .flecha{flex:none;width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .3s cubic-bezier(.34,1.4,.5,1)}
+  .app-ripple{position:absolute;border-radius:50%;transform:scale(0);pointer-events:none;z-index:1;
+    background:radial-gradient(circle,rgba(185,226,0,.42),rgba(185,226,0,.12) 55%,transparent 70%);animation:appRipple .62s cubic-bezier(.22,.61,.36,1) forwards}
+  @keyframes appRipple{to{transform:scale(1);opacity:0}}
+
+  /* ---------- revelado ---------- */
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .rv.vis{opacity:1;transform:none}
+  @keyframes riseIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes drawX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @keyframes pop{0%{opacity:0;transform:scale(.6)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+
+  /* ---------- progreso + cabecera ---------- */
+  .progreso{position:fixed;left:0;top:0;right:0;height:3px;z-index:80;background:rgba(245,241,232,.08);pointer-events:none}
+  .progreso i{display:block;height:100%;background:var(--lima);transform-origin:left;transform:scaleX(0)}
+  header.top{padding:18px 0;border-bottom:1px solid var(--linea);background:var(--gris1)}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  .brand{display:flex;align-items:center;gap:12px;text-decoration:none;color:inherit;min-width:0}
+  .brand img{height:38px;width:auto;background:#fff;padding:5px 8px;flex:none}
+  .brand-t{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+  .brand-t b{font-size:14px;color:#fff}
+  .brand-t small{font:11px/1.2 var(--sans);color:var(--texto2);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .top-nav{display:none;gap:22px;margin-left:auto;margin-right:22px}
+  .top-nav a{color:var(--texto2);text-decoration:none;font-weight:600;font-size:var(--t-chico);position:relative;padding:6px 0}
+  .top-nav a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--lima);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+  .top-cta{padding:11px 16px;min-height:44px}
+  @media (min-width:900px){.top-nav{display:flex}}
+
+  /* ---------- portada ---------- */
+  .hero-sec{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--gris1) 0%,var(--fondo) 26%,var(--negro) 100%)}
+  .hero{position:relative;z-index:1;padding:44px 0 36px;display:grid;gap:36px}
+  .hero-texto{min-width:0}
+  .hero .kicker{opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .15s forwards}
+  .hero h1{font-family:var(--sans);font-weight:800;letter-spacing:-.025em;line-height:1.04;color:#fff;font-size:var(--t-portada);max-width:15ch;
+    opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .3s forwards}
+  .hero .lede{color:#fff;font-weight:500;margin:20px 0 10px;opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .5s forwards}
+  .hero .sub{color:var(--texto2);font-size:var(--t-cuerpo);line-height:1.6;max-width:var(--medida);margin:0 0 20px;opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .62s forwards}
+  .chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:720px}
+  .chip{background:rgba(255,255,255,.03);border:1px solid var(--linea);color:var(--marfil);padding:9px 11px;font-size:var(--t-chico);line-height:1.35;display:flex;align-items:center;gap:8px;opacity:0;animation:chipEntra .9s cubic-bezier(.16,.6,.24,1) both,chipCheck 1.1s cubic-bezier(.45,.05,.25,1) both}
+  .chip::before{content:'';flex:none;width:9px;height:6px;border-left:1.5px solid var(--marfil);border-bottom:1.5px solid var(--marfil);transform:rotate(-45deg) translateY(-1px);animation:chipTick 1.1s cubic-bezier(.45,.05,.25,1) both}
+  .chip:nth-child(1){animation-delay:.8s,1.4s}.chip:nth-child(1)::before{animation-delay:1.4s}
+  .chip:nth-child(2){animation-delay:1.2s,1.8s}.chip:nth-child(2)::before{animation-delay:1.8s}
+  .chip:nth-child(3){animation-delay:1.6s,2.2s}.chip:nth-child(3)::before{animation-delay:2.2s}
+  .chip:nth-child(4){animation-delay:2s,2.6s}.chip:nth-child(4)::before{animation-delay:2.6s}
+  @keyframes chipEntra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes chipCheck{0%{background:rgba(255,255,255,.03);border-color:var(--linea);color:var(--marfil)}42%{color:var(--marfil)}58%{color:var(--lima-ink)}100%{background:var(--lima);border-color:var(--lima);color:var(--lima-ink)}}
+  @keyframes chipTick{0%,42%{border-color:rgba(245,241,232,.3);transform:rotate(-45deg) translateY(-1px) scale(.6)}72%{border-color:var(--lima-ink);transform:rotate(-45deg) translateY(-1px) scale(1.12)}100%{border-color:var(--lima-ink);transform:rotate(-45deg) translateY(-1px) scale(1)}}
+  .hero-cta{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;margin-top:24px;opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .95s forwards}
+  .hero-cta .btn{padding:14px 22px}
+  .hero-link{color:var(--marfil);font:600 var(--t-chico)/1.2 var(--sans);text-decoration:underline;text-underline-offset:5px;text-decoration-color:rgba(245,241,232,.4)}
+  .hero-panel{position:relative;padding:16px 0 44px;animation:flota 7s ease-in-out infinite alternate}
+  @keyframes flota{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+  .glow{position:absolute;inset:-30% -20%;pointer-events:none;background:radial-gradient(closest-side at 60% 40%,rgba(185,226,0,.34),rgba(185,226,0,.07) 55%,transparent 75%);
+    filter:blur(28px);animation:glowDeriva 14s ease-in-out infinite alternate}
+  @keyframes glowDeriva{from{transform:translate(-4%,-3%) scale(1)}to{transform:translate(5%,4%) scale(1.1)}}
+  .panel{position:relative;margin:0;background:var(--gris1);border:1px solid rgba(255,255,255,.1);box-shadow:0 50px 100px -40px rgba(0,0,0,.85);opacity:0}
+  .panel img{display:block;width:100%;height:auto}
+  .panel-main{transform:rotate(-2deg);animation:panelEntra .9s cubic-bezier(.2,.7,.2,1) .55s forwards}
+  @keyframes panelEntra{from{opacity:0;transform:translate(48px,10px) rotate(-5deg)}to{opacity:1;transform:rotate(-2deg)}}
+  .panel-chrome{display:flex;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid rgba(255,255,255,.08);font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--texto2)}
+  .panel-chrome i{width:8px;height:8px;border-radius:50%;background:rgba(255,255,255,.18);flex:none}
+  .panel-chrome span{margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .panel-kpis{position:absolute;left:-4%;bottom:6px;width:64%;border-color:rgba(185,226,0,.4);transform:rotate(1.5deg);animation:panelEntra2 .9s cubic-bezier(.2,.7,.2,1) .95s forwards}
+  @keyframes panelEntra2{from{opacity:0;transform:translateY(30px) rotate(4deg)}to{opacity:1;transform:rotate(1.5deg)}}
+  .badge{position:absolute;right:-6px;top:-4px;background:var(--negro);color:var(--lima);border:1px solid var(--lima);box-shadow:0 10px 30px rgba(0,0,0,.45);padding:9px 13px;opacity:0;animation:badgePop .55s cubic-bezier(.34,1.56,.64,1) 1.35s both;
+    font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase}
+  @keyframes badgePop{0%{opacity:0;transform:scale(.55) rotate(2deg)}60%{opacity:1;transform:scale(1.09) rotate(2deg)}100%{opacity:1;transform:scale(1) rotate(2deg)}}
+  .badge b{display:block;font:italic 500 var(--t-bajada)/1.15 var(--serif);letter-spacing:0;text-transform:none;margin-top:3px;color:var(--marfil)}
+  @media (min-width:900px){
+    .hero{grid-template-columns:1.02fr .98fr;align-items:center;gap:56px;padding:84px 0 96px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}.chip{padding:9px 14px}
+    .hero-panel{padding:24px 0 56px}.badge{right:-14px;top:-10px}
+  }
+
+  /* ---------- secciones ---------- */
+  .seccion{padding:72px 0;border-top:1px solid var(--linea)}
+  @media (min-width:900px){.seccion{padding:110px 0}}
+  .t-sec{margin-top:0}
+
+  /* el problema: la cadena 10 → 8 → 6 */
+  .problema{background:var(--negro)}
+  .cadena{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:start;gap:6px;margin:44px 0 18px;max-width:900px}
+  .dato{text-align:center;min-width:0;opacity:0;transform:scale(.6)}
+  .cadena.vis .dato{animation:pop .7s cubic-bezier(.34,1.56,.64,1) both}
+  .cadena.vis .dato:nth-child(1){animation-delay:.1s}.cadena.vis .dato:nth-child(3){animation-delay:.55s}.cadena.vis .dato:nth-child(5){animation-delay:1s}
+  .dato b{display:block;font:500 clamp(58px,11vw,128px)/1 var(--serif);color:var(--marfil);letter-spacing:-.02em}
+  .dato span{display:block;margin-top:10px;font:700 var(--t-kicker)/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--texto2)}
+  .dato small{display:block;margin-top:6px;font:italic 500 var(--t-chico)/1.2 var(--serif);color:var(--rojo)}
+  .dato.mal b{color:var(--rojo)}
+  .tramo{display:block;height:1px;width:clamp(28px,8vw,90px);margin-top:clamp(30px,5.5vw,64px);background:linear-gradient(90deg,transparent,var(--marfil));transform:scaleX(0);transform-origin:left}
+  .cadena.vis .tramo:nth-child(2){animation:drawX .5s ease .35s both}.cadena.vis .tramo:nth-child(4){animation:drawX .5s ease .8s both}
+  .total{font-size:var(--t-bajada);color:var(--texto2);max-width:none}
+  .total em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--marfil)}
+
+  /* elija su plan */
+  .elegir{background:linear-gradient(180deg,var(--fondo),var(--negro))}
+  .planes-grandes{display:grid;gap:12px;margin-top:36px}
+  @media (min-width:900px){.planes-grandes{grid-template-columns:repeat(3,1fr);gap:14px}}
+  .pg{position:relative;text-align:left;display:flex;flex-direction:column;gap:4px;min-height:44px;padding:24px 22px 22px;
+    background:rgba(255,255,255,.03);border:1px solid var(--linea);color:var(--marfil);cursor:pointer;font-family:var(--sans);
+    transition:border-color .25s,background .25s,transform .35s cubic-bezier(.2,.7,.2,1);overflow:hidden;-webkit-tap-highlight-color:transparent}
+  .pg-sello{position:absolute;top:0;right:0;background:transparent;color:var(--lima);border:1px solid var(--lima);border-top:none;border-right:none;padding:6px 10px 7px;font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase}
+  .pg-n{font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--texto2)}
+  .pg-t{font:500 var(--t-bajada)/1.25 var(--serif);color:#fff}
+  .pg-precio{display:block;margin-top:16px;font:500 var(--t-sec)/1 var(--serif);letter-spacing:-.01em;color:#fff}
+  .pg-mes{font-size:var(--t-chico);color:var(--marfil);font-weight:700;margin-top:8px}
+  .pg-d{font-size:var(--t-chico);line-height:1.5;color:var(--texto2);margin-top:14px;padding-top:14px;border-top:1px solid var(--linea)}
+  .pg-ir{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-weight:700;font-size:var(--t-chico);color:var(--marfil)}
+  .pg-ir .flecha{border-color:var(--lima)}
+  .pg::after{content:'';position:absolute;top:-40%;bottom:-40%;left:-60%;width:40%;pointer-events:none;opacity:0;background:linear-gradient(105deg,transparent 0%,rgba(185,226,0,.22) 50%,transparent 100%);transform:skewX(-18deg)}
+  .pg.reco.vis::after{animation:brillo 1.4s cubic-bezier(.2,.7,.2,1) .5s both}
+  @keyframes brillo{0%{opacity:0;transform:skewX(-18deg) translateX(0)}20%{opacity:1}100%{opacity:0;transform:skewX(-18deg) translateX(420%)}}
+  .elegir-nota{margin-top:20px}
+
+  /* ---------- plan ---------- */
+  .documento{padding-bottom:calc(var(--barra) + 24px)}
+  .plan{display:none;padding-top:40px;scroll-margin-top:16px}
+  .plan.on{display:block;animation:aparecer .3s ease}
+  @keyframes aparecer{from{opacity:0}to{opacity:1}}
+  .plan-head{display:grid;gap:22px;margin-bottom:28px}
+  .plan-head .lede{font-size:var(--t-cuerpo);line-height:1.6;margin-top:14px}
+  .eyebrow.tagline-plan{font:italic 400 var(--t-bajada)/1.4 var(--serif);letter-spacing:0;text-transform:none;color:var(--texto2);margin-bottom:10px;max-width:44ch}
+  @media (min-width:900px){.plan{padding-top:56px}.plan-head{grid-template-columns:1.15fr 1fr;align-items:start;gap:40px}}
+  /* qué incluye / cómo se paga / después de firmar */
+  .card{background:var(--gris2);color:var(--texto);border:1px solid var(--linea);padding:16px 18px}
+  details.card{padding:0}
+  details.card summary{list-style:none;cursor:pointer;padding:16px 18px;font:500 var(--t-bajada)/1.3 var(--serif);color:var(--marfil);display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;position:relative;overflow:hidden}
+  details.card summary::-webkit-details-marker{display:none}
+  details.card summary::after{content:'+';font:400 24px/1 var(--sans);color:var(--marfil);flex:none}
+  details.card[open] summary::after{content:'–';color:var(--lima)}
+  details.card .cuerpo{padding:2px 18px 18px;animation:vzAbre .34s cubic-bezier(.22,.61,.36,1) both}
+  .incluye{list-style:none;margin:0;padding:0}
+  .incluye li{position:relative;padding:12px 0 12px 26px;border-top:1px solid var(--linea);font-size:var(--t-cuerpo);line-height:1.55}
+  .incluye li:first-child{border-top:none;padding-top:4px}
+  .incluye li::before{content:'';position:absolute;left:1px;top:19px;width:9px;height:6px;border-left:2px solid var(--texto2);border-bottom:2px solid var(--texto2);transform:rotate(-45deg)}
+  .incluye li.hereda::before{border-color:var(--marfil)}
+  .incluye li:first-child::before{top:11px}
+  .incluye li.nuevo::before{content:'+';border:none;color:var(--texto2);font-weight:700;transform:none;top:11px;left:2px}
+  .incluye li b{color:#fff}
+  .incluye .nota{margin-top:6px;max-width:none}
+  .callout p{margin:0;font-size:var(--t-cuerpo);color:var(--texto);max-width:none}
+  .callout b{color:var(--marfil)}
+  .linea{list-style:none;margin:8px 0 0;padding:0}
+  .linea li{display:grid;grid-template-columns:64px 18px 1fr;gap:8px;align-items:start;padding:0 0 16px;position:relative;font-size:var(--t-chico);line-height:1.5}
+  .linea li .cuando{font:italic 400 var(--t-chico)/1.4 var(--serif);color:var(--marfil);text-align:right;padding-top:1px}
+  .linea li .hito{width:8px;height:8px;border-radius:50%;background:var(--marfil);margin:8px auto 0;position:relative;z-index:1;box-shadow:0 0 0 3px var(--gris2)}
+  .linea li.fuera .hito{background:var(--gris3);border:1px solid var(--linea-fuerte)}
+  .linea li::after{content:'';position:absolute;left:77px;top:16px;bottom:-2px;width:1px;background:var(--linea)}
+  .linea li:last-child::after{display:none}
+  .linea li b{display:block;color:#fff}
+  .linea li.fuera b,.linea li.fuera .cuando{color:var(--texto2)}
+  .linea li span{color:var(--texto2)}
+
+  .faq details{background:var(--gris2);border:1px solid var(--linea);margin:10px 0}
+  .faq summary{cursor:pointer;font:600 var(--t-bajada)/1.3 var(--sans);padding:16px 18px;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--marfil);list-style:none;position:relative;overflow:hidden}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';color:var(--marfil);font:400 24px/1 var(--sans);flex:none}
+  .faq details[open] summary::after{content:'–';color:var(--lima)}
+  .faq .r{padding:0 18px 18px;color:var(--texto);max-width:var(--medida);animation:vzAbre .34s cubic-bezier(.22,.61,.36,1) both}
+  .lista-mitiga{list-style:none;margin:0;padding:0}
+  .lista-mitiga li{padding:16px 0;border-top:1px solid var(--linea)}
+  .lista-mitiga li:first-child{border-top:none;padding-top:6px}
+  .lista-mitiga h3{margin:0 0 6px;font-family:var(--sans);font-weight:700;font-size:var(--t-cuerpo);color:#fff}
+  .lista-mitiga p{margin:0;color:var(--texto2);font-size:var(--t-cuerpo)}
+  @media (min-width:900px){.lista-mitiga li{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px}.lista-mitiga h3{font-size:var(--t-bajada)}}
+
+  /* ---------- cierre ---------- */
+  .cierre{margin-top:96px;padding:60px 0 calc(var(--barra) + 40px);border-top:1px solid var(--linea);position:relative;overflow:hidden}
+  .cierre::before{content:'';position:absolute;left:50%;top:-40%;width:900px;height:600px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(185,226,0,.16),transparent 70%);filter:blur(30px);pointer-events:none}
+  .cierre>*{position:relative}
+  .cierre .lead{margin-top:18px}
+  .cta-fila{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:28px 0 20px}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--lima);text-decoration:none;font:700 16px/1.2 var(--sans);padding:16px 24px;border:2px solid var(--lima);min-height:54px;position:relative;overflow:hidden;transition:background .2s,color .2s,border-color .2s;-webkit-tap-highlight-color:transparent}
+  .cta svg{width:18px;height:18px;flex:none}
+  .cta.sec{background:transparent;color:var(--marfil);border-width:1px;border-color:var(--linea-fuerte);font-weight:600;font-size:var(--t-chico);padding:12px 18px;min-height:46px}
+  @keyframes ctaPulso{0%{box-shadow:0 0 0 0 rgba(185,226,0,.55)}100%{box-shadow:0 0 0 18px rgba(185,226,0,0)}}
+  .cta-fila.vis .cta:not(.sec){animation:ctaPulso 1.6s ease-out .6s 2}
+  .tagline{font-size:var(--t-chico);color:var(--texto2);max-width:48ch}
+  .marca-pie{margin-top:18px;font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--texto2)}
+  .marca-pie b{color:var(--marfil)}
+
+  /* ---------- barra fija ---------- */
+  .barra-fija{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(14,14,14,.96);backdrop-filter:blur(10px);color:#fff;padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:2px solid var(--lima);transform:translateY(110%);transition:transform .24s ease}
+  .barra-fija:not(.on){visibility:hidden}
+  .barra-fija.on{transform:none}
+  .barra-fija .marca{font:700 10px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:rgba(255,255,255,.7);min-width:0}
+  .barra-fija .marca b{color:#fff;display:block;letter-spacing:0}
+  .barra-fija .acc{display:flex;gap:8px;flex:none}
+  .barra-fija a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;background:transparent;color:var(--lima);border:2px solid var(--lima);text-decoration:none;font:700 14px/1 var(--sans);padding:0 16px;white-space:nowrap;transition:background .2s}
+  @media (hover:hover) and (pointer:fine){.barra-fija a:not(.sec):hover{background:rgba(185,226,0,.1)}}
+  .barra-fija a svg{width:16px;height:16px;flex:none}
+  .barra-fija a.sec{background:transparent;color:#fff;border:1px solid rgba(255,255,255,.4)}
+
+  /* ---------- hover (solo PC) y press ---------- */
+  @media (hover:hover) and (pointer:fine){
+    .btn:hover{background:rgba(185,226,0,.1);border-color:var(--lima-2);color:var(--lima-2)}
+    .btn.ghost:hover,.btn.ghost.oscuro:hover{background:rgba(245,241,232,.08);border-color:rgba(245,241,232,.6)}
+    .btn:hover .flecha,.cta:hover .flecha,.pg:hover .pg-ir .flecha{transform:rotate(-45deg) translate(3px,-3px)}
+    .cta:hover{background:rgba(185,226,0,.1);border-color:var(--lima-2);color:var(--lima-2)}
+    .cta.sec:hover{background:rgba(245,241,232,.08);border-color:var(--marfil)}
+    .pg:hover{border-color:rgba(185,226,0,.65);background:rgba(185,226,0,.07);transform:translateY(-4px)}
+    .top-nav a:hover{color:#fff}.top-nav a:hover::after{transform:scaleX(1)}
+  }
+  .btn:active,.cta:active,.pg:active{transform:scale(.96)}
+  summary:active{transform:none}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}html{scroll-behavior:auto}
+    .rv,.hero *,.panel,.badge,.dato,.tramo{opacity:1!important;transform:none!important}
+    .chip::before{animation:none!important}
+    .chip{background:var(--lima)!important;border-color:var(--lima)!important;color:var(--lima-ink)!important}
+    .chip::before{border-color:var(--lima-ink)!important;transform:rotate(-45deg) translateY(-1px) scale(1)!important}
+  }
+  @media print{
+    html,body,.hero-sec,.problema,.elegir,.seccion,.card,.faq details,.pg{background:#fff!important;color:#000!important}
+    h1,h2,h3,.lede,.sub,.chip,.lead,.nota,.pg-t,.pg-precio,.incluye li b,.linea li b,.cap .tit,.faq summary,.dato b,.total{color:#000!important}
+    .progreso,.glow,.hero-panel,.barra-fija,.video-marco,.top-cta,.top-nav,.cta-fila{display:none!important}
+    .plan{display:block!important}details{display:block}
+    .faq details[open] summary~*{display:block}
+  }
+
+  /* ---------- v8: correcciones de AUDITORIA_diseno.md (Agente 10) — P1 y P2, Agente 11 ---------- */
+  /* P1·3 header: un solo CTA lima por pantalla; "Escribir a Jose" pasó a .btn.ghost, sin partirse. */
+  .top-cta{white-space:nowrap}
+  /* P1·5 banda vacía de 96px antes del cierre (costura de 3 tonos): padding, no margen, como el resto. */
+  .cierre{margin-top:0;padding:72px 0 calc(var(--barra) + 40px)}
+  @media (min-width:900px){.cierre{padding-top:110px}}
+  /* P1·6 un solo estilo de acordeón (serif 500, como details.card) en vez de tres caras distintas. */
+  .faq summary{font:500 var(--t-bajada)/1.3 var(--serif)}
+  /* (26/09/2026) P1·11 (tabla comparativa en celular) salió con la sección Comparar. */
+  /* P1·12 líneas de 120-140 caracteres en el cronograma y el detalle técnico. */
+  .linea{max-width:calc(var(--medida) + 90px)}
+  /* P1·13 el espacio entre la bajada y el contenido cambiaba en cada sección; una sola distancia. */
+  .seccion .bajada + *{margin-top:36px}
+  .planes-grandes{margin-top:0}
+  .linea{margin:0}
+  /* (26/09/2026) #despues sin bajada: el cronograma iba pegado al título; misma distancia que `.bajada + *`. */
+  #despues .t-sec + .linea{margin-top:36px}
+  section.bloque>details.card,.seccion>.wrap>details.card{margin-top:0}
+  /* P1·14 el titular del plan pesaba igual que el de la sección; un titular grande por sección. */
+  .plan-head h2{font-size:clamp(24px,3.2vw,32px);max-width:none}
+  /* P1·16 tres áreas de toque bajo 44px en celular. */
+  .hero-link{display:inline-flex;align-items:center;min-height:44px}
+  /* (26/09/2026) P2·17 (marca "no incluye" de la tabla) salió con la sección Comparar. */
+  /* P2·18 texto de cuerpo a 14,5px en celular y letras de 10px. */
+  @media (max-width:619px){:root{--t-chico:15px}.barra-fija .marca{display:none}}
+  /* P2·19 el sello "Avisó solo" cortaba la etiqueta "ejemplo ilustrativo" del panel de portada. */
+  .badge{top:auto;bottom:24px;right:-6px}
+  @media (min-width:900px){.badge{right:-14px;bottom:32px}}
+  /* P2·20 en celular el panel de KPIs salía por el borde izquierdo. */
+  @media (max-width:899px){.panel-kpis{left:0}.badge{right:0}}
+  /* P2·22 (v8) unificaba salmón + ámbar en una sola segunda tinta; en v9 (barrido de paleta, 2026-09-24)
+     esos tokens desaparecen: la página es negro + lima, sin segunda tinta (ver v9/AUDITORIA_PALETA.md). */
+  /* P2·23 la portada acumulaba 5 movimientos sobre la misma pieza; se quita la flotación perpetua
+     (las 3 entradas — panel, kpis, badge — se quedan, cuentan una sola cosa: el panel llega y avisa). */
+  .hero-panel{animation:none}
+  .glow{animation:none}
+
+  /* ---------- v8-b: correcciones de PRUEBA_HUMANO_1.md y AUDITORIA_TECNICA_v8.md (Agente 25) ---------- */
+  /* (26/09/2026) Humano #1 · hallazgo 1 (aviso "Deslice la tabla…" en celular) salió con la sección Comparar. */
+  /* Humano #1 · hallazgo 4: línea-resumen en negrita encima del párrafo largo de "Cómo se paga",
+     con los mismos datos (misma sección = permitido); el párrafo no se toca. */
+  /* Técnica 4·"Tamaño táctil": "Para ver... Comparar ↓" era un link de 15px dentro de un párrafo;
+     pasa a botón fantasma con el mínimo táctil de 44px, en los 3 planes. */
+  /* Técnica 4·"Tamaño táctil": #topWa medía 98×42; con el min-height a 44 (arriba) ya cumple, y en
+     celular el texto pasa a "WhatsApp" para no pelear por ancho contra el resto del header. */
+  .topwa-corto{display:none}
+  @media (max-width:619px){.topwa-largo{display:none}.topwa-corto{display:inline}}
+
+  /* ---------- v9: videos nativos (#como ×3 y #video-completo) ---------- */
+  .videos{display:grid;gap:22px;margin-top:36px}
+  @media (min-width:900px){.videos{grid-template-columns:repeat(3,1fr);gap:20px}}
+  .video-item{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .video-num{font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--marfil);margin:0}
+  .video-item h3{margin:0;font-family:var(--sans);font-weight:700;font-size:var(--t-bajada);color:#fff;letter-spacing:-.01em}
+  .video-marco{position:relative;margin:0;aspect-ratio:16/9;background:#000;border:1px solid var(--linea);overflow:hidden}
+  .video-marco video{display:block;width:100%;height:100%;object-fit:contain;background:#000;accent-color:var(--lima)}
+  .video-espera{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:20px;background:var(--gris1);border:1px solid var(--linea)}
+  .video-espera b{font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--marfil)}
+  .video-espera span{font:italic 400 var(--t-chico)/1.4 var(--serif);color:var(--texto2)}
+  /* Marco: lo decide Jose con la pieza de 3 mockups (v9/mockups/opciones.html). Las tres variantes existen;
+     cuál se usa lo fija la constante MARCO de build_v9.py (28/09/2026, Jose aprobó "Ventana" → 2). Medidas del hueco de laptop-oscuro.png:
+     1212×719, hueco left 14.439% top 6.815% w 71.782% h 73.157% (v9/mockups/LICENCIA.md). */
+  /* 1 · Sin marco: el video a sangre, línea lima arriba y el resplandor de la escena. */
+  .video-marco[data-marco="1"]{border-top:1px solid var(--lima);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 120px rgba(185,226,0,.14)}
+  /* 2 · Ventana: barra fina de navegador dibujada en CSS (tres puntos + una pestaña con punto lima) sobre el 16:9. */
+  .video-marco[data-marco="2"]{box-sizing:content-box;padding-top:34px;background:var(--fondo);box-shadow:0 30px 80px rgba(0,0,0,.6),0 0 100px rgba(185,226,0,.10)}
+  .video-marco[data-marco="2"]::before{content:'';position:absolute;left:0;right:0;top:0;height:34px;background:var(--fondo);border-bottom:1px solid var(--linea);
+    background-image:radial-gradient(circle,transparent 3.5px,rgba(245,241,232,.45) 4px,rgba(245,241,232,.45) 4.6px,transparent 5.2px),radial-gradient(circle,transparent 3.5px,rgba(245,241,232,.45) 4px,rgba(245,241,232,.45) 4.6px,transparent 5.2px),radial-gradient(circle,transparent 3.5px,rgba(245,241,232,.45) 4px,rgba(245,241,232,.45) 4.6px,transparent 5.2px);
+    background-repeat:no-repeat;background-size:12px 12px;background-position:12px 11px,27px 11px,42px 11px}
+  .video-marco[data-marco="2"]::after{content:'';position:absolute;left:62px;top:9px;width:120px;height:25px;border:1px solid var(--linea);border-bottom:none;background:var(--negro) radial-gradient(circle at 12px 12px,var(--lima) 3px,transparent 3.5px) no-repeat}
+  .video-marco[data-marco="2"] .video-espera{top:34px}
+  /* 3 · Laptop nuevo (CC0, oscurecido): el video vive en el hueco de la pantalla. */
+  .video-marco[data-marco="3"]{aspect-ratio:1212/719;background:url(v9/mockups/laptop-oscuro.png) 0 0/100% 100% no-repeat;border:none;overflow:visible;filter:drop-shadow(0 40px 60px rgba(0,0,0,.65))}
+  .video-marco[data-marco="3"] video,.video-marco[data-marco="3"] .video-espera{position:absolute;left:14.439%;top:6.815%;width:71.782%;height:73.157%}
+  .video-marco[data-marco="3"] .video-espera{padding:12px;border:none}
+  .video-marco[data-marco="3"] .video-espera span{font-size:13px}
+  .video-marco.largo{max-width:960px;margin-top:36px}
+  /* (27/09/2026, noche) capítulos del video largo: de 1 línea de texto a cuadrícula de 8 celdas. 2 columnas en
+     celular, 4 en escritorio (min-width:900px, igual que .videos) — nunca una fila corrida ni descuadrada.
+     (28/09/2026) Opción C · Cuadrícula compacta: Jose la eligió entre 3 mocks (v9/capitulos-opciones/opciones.html,
+     ~50-58px de alto por celda). Reemplaza la cuadrícula de botones grandes (.cap-btn, número grande arriba,
+     ~110px de alto, mismo lenguaje que .btn.ghost) por celdas chicas: caja con borde de 1px, número chico en su
+     propio recuadro al lado, título y minuto en la misma línea unidos con "—". CSS calcado del mock aprobado.
+     (30/09/2026) Los videos se regrabaron: .cap-item pasa de <div> a <button> real (salta el video a su minuto,
+     ver JS_V9). Reset de botón nativo para conservar el mismo aspecto exacto: tipografía heredada, fondo y borde
+     iguales a los de siempre, texto a la izquierda, cursor de mano; hover sutil con borde lima y :focus-visible
+     visible para navegación por teclado. */
+  .capitulos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:28px;max-width:960px}
+  @media (min-width:900px){.capitulos-grid{grid-template-columns:repeat(4,1fr);gap:8px}}
+  .cap-item{display:flex;align-items:flex-start;gap:8px;border:1px solid var(--linea);padding:8px 9px;min-width:0;
+    font:inherit;background:transparent;color:inherit;text-align:left;width:100%;cursor:pointer;transition:border-color .15s}
+  .cap-item:hover{border-color:var(--lima-2)}
+  .cap-item:focus-visible{outline:2px solid var(--lima);outline-offset:2px}
+  .cap-item[aria-current="true"]{border-color:var(--lima)}
+  .cap-item .cap-n{flex:none;font:700 10px/1 var(--sans);color:var(--lima);border:1px solid var(--linea);
+    width:15px;height:15px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .cap-item .cap-body{flex:1;min-width:0;font-size:0}
+  .cap-item .cap-tit{font:600 11.5px/1.3 var(--sans);color:var(--marfil)}
+  .cap-item .cap-tit::after{content:' — '}
+  .cap-item .cap-time{font:600 11px/1.3 var(--sans);color:var(--texto2)}
+  .videos>.video-item.rv:nth-child(2){transition-delay:.12s}
+  .videos>.video-item.rv:nth-child(3){transition-delay:.24s}
+
+  /* ---------- v9: las tarjetas de plan son el selector ---------- */
+  .pg[aria-pressed="true"]{border-color:var(--lima);box-shadow:inset 0 0 0 1px var(--lima);background:rgba(185,226,0,.07)}
+  .pg .pg-ir-on{display:none}
+  .pg[aria-pressed="true"] .pg-ir-ver{display:none}
+  .pg[aria-pressed="true"] .pg-ir-on{display:inline}
+  .pg[aria-pressed="true"] .pg-ir{color:var(--lima)}
+  #plan-detalle{scroll-margin-top:16px}
+  @media (min-width:900px){.plan-head{grid-template-columns:1fr;max-width:74ch}}
+
+  /* ---------- v9: "por qué" del plan, "cómo se paga" en líneas, tarjeta fija de "qué incluye" ---------- */
+  .porque{list-style:none;margin:0;padding:0;display:grid;gap:0;max-width:none;background:var(--gris2);border:1px solid var(--linea)}
+  .porque li{padding:16px 18px 18px;border-top:1px solid var(--linea);font-size:var(--t-cuerpo);line-height:1.55;color:var(--texto2);min-width:0}
+  .porque li:first-child{border-top:none}
+  .porque li b{display:block;font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--marfil);margin-bottom:4px}
+  .card-t{margin:0 0 10px;font:500 var(--t-bajada)/1.3 var(--serif);color:var(--marfil)}
+  .qincluye{padding:16px 18px 18px}
+  .pago-lista{list-style:none;margin:0;padding:0}
+  .pago-lista li{padding:8px 0;border-top:1px solid var(--linea);font-size:var(--t-chico);line-height:1.5;color:var(--texto)}
+  .pago-lista li:first-child{border-top:none;padding-top:0}
+  .pago-lista b{color:var(--marfil)}
+  .ver-largo{margin-top:4px}
+
+  /* ---------- v9: listas de 1 línea (detalle técnico, qué no incluye, Fase 0) ---------- */
+  .lista-corta{list-style:none;margin:0 0 6px;padding:0}
+  .lista-corta li{position:relative;padding:9px 0 9px 24px;border-top:1px solid var(--linea);font-size:var(--t-chico);line-height:1.5;color:var(--texto2)}
+  .lista-corta li:first-child{border-top:none}
+  .lista-corta li::before{content:'';position:absolute;left:1px;top:15px;width:9px;height:6px;border-left:2px solid var(--texto2);border-bottom:2px solid var(--texto2);transform:rotate(-45deg)}
+  .lista-corta b{color:#fff}
+  /* (27/09/2026) .porque-jla sale: "Por qué JLAutomatization" dejó de ser .card siempre visible y pasó a ser
+     un acordeón más de .faq (ver #confianza); ya no hay ningún elemento con esa clase. */
+  .seccion .bajada + .card{margin-top:36px}
+  .faq{margin-top:14px}
+  /* vzAbre vivía en el bloque "bloques del documento" (borrado arriba, §2.1.4) y lo siguen usando
+     details.card .cuerpo y .faq .r: se vuelve a declarar tal cual (mismo keyframe de v7). */
+  @keyframes vzAbre{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+  /* ---------- v9-b: correcciones tras mirar qa/v9 (constructor, 2026-09-24) ---------- */
+  /* qa/v9/d-03-como.png: los tres marcos quedaban a alturas distintas. Antes lo absorbía la descripción bajo
+     el título (quitada en v9-t); ahora el título (1 línea el video 1, 2 líneas los videos 2 y 3) toma el
+     sobrante y los tres marcos alinean abajo. */
+  .video-item h3{flex:1 0 auto}
+  /* (26/09/2026) qa/v9/d-06-comparar.png (margen de la tabla tras el aviso de deslizar) salió con la sección Comparar. */
+
+  /* ---------- v9-c: DENSIDAD (editor de densidad, 2026-09-24) — Jose: "más corto y directo… da pereza leer" ---------- */
+  /* Qué incluye: nombre + 1 línea; sin nota itálica. */
+  .incluye li{padding:10px 0 10px 26px;font-size:var(--t-chico);line-height:1.5;color:var(--texto2)}
+  .incluye li::before{top:17px}
+  .incluye li:first-child::before,.incluye li.nuevo::before{top:9px}
+  .incluye li:first-child.nuevo::before{top:1px}
+  /* (26/09/2026) salió el CSS de los 2 acordeones retirados de Comparar; su contenido vive en v9/CONTENIDO_RESERVADO_reunion.md. */
+  /* (26/09/2026) salió el CSS de Comparar en celular (rejilla 46 % + 3, tr.cif, recuadro lima de la columna activa). */
+
+/* =====================================================================================
+   LUZ Y MOVIMIENTO · v8 (Agente 6, 2026-09-24)
+   Para pegar dentro del <style> de build_v8.py DESPUÉS del CSS base de build_v7.py.
+   Usa los mismos tokens (--negro, --fondo, --navy, --lima, --marfil, --texto2…).
+   Reglas: una luz propia por sección (posición, tamaño y ritmo distintos), un solo gesto
+   de entrada por pieza (.rv/.vis, que ya existe), keyframes ya definidos en v7 se
+   referencian por nombre y NO se duplican: riseIn, drawX, pop, brillo, ctaPulso, flota.
+   ===================================================================================== */
+
+/* ---------- 0. base común de la luz ---------- */
+/* Cada sección es su propio "cuarto": la luz vive detrás (z 0) y el contenido delante (z 1). */
+.hero-sec,#problema,#como,#video-completo,#planes-sec,#landing-sec,#despues,#confianza,#contacto{position:relative;overflow:clip;isolation:isolate}
+/* El contenido siempre por encima de la luz; el .wrap es el único hijo directo de contenido. */
+.hero-sec>.hero,#problema>.wrap,#como>.wrap,#video-completo>.wrap,#planes-sec>.wrap,#landing-sec>.wrap,#despues>.wrap,#confianza>.wrap,#contacto>.wrap{position:relative;z-index:1}
+/* Un solo pseudo-elemento por sección: círculo de luz lima difuso, sin ruido ni gradientes en texto. */
+.hero-sec::before,#problema::before,#como::before,#video-completo::before,#planes-sec::before,#landing-sec::before,#despues::before,#confianza::before,#contacto::before{
+  content:'';position:absolute;z-index:0;pointer-events:none;border-radius:50%;
+  filter:blur(36px);will-change:transform}
+/* La deriva se anima SOLO con transform (barato para la GPU); nunca filter ni background. */
+@keyframes luzDeriva{from{transform:translate(-3%,-2%) scale(1)}to{transform:translate(4%,3%) scale(1.08)}}
+@keyframes luzDerivaInv{from{transform:translate(3%,2%) scale(1.06)}to{transform:translate(-4%,-3%) scale(1)}}
+
+/* ---------- 1. fondos alternados: negro / fondo / negro… para que las costuras se sientan ---------- */
+.hero-sec{background:linear-gradient(180deg,var(--gris1) 0%,var(--fondo) 26%,var(--negro) 100%)} /* baja desde el gris1 de la cabecera (v9-n) */
+#problema{background:var(--negro)}
+#como{background:var(--fondo)}
+#planes-sec{background:var(--negro)}
+#landing-sec{background:var(--fondo)}
+#despues{background:var(--negro)}
+#confianza{background:var(--fondo)}
+#video-completo{background:var(--negro)}
+#contacto{background:var(--fondo)}
+
+/* ---------- 2. una luz por sección (posición · tamaño · alfa central · ritmo) ---------- */
+/* Portada: lavado amplio arriba a la derecha, detrás del panel; el .hero-panel .glow del v7 sigue siendo la luz enfocada. */
+.hero-sec::before{width:900px;height:900px;right:-22%;top:-38%;
+  background:radial-gradient(closest-side,rgba(185,226,0,.20),rgba(185,226,0,.05) 55%,transparent 72%);
+  animation:luzDeriva 20s ease-in-out infinite alternate}
+/* El problema: la luz abajo a la izquierda, lejos del titular; sube tenue detrás de los números 10 → 8 → 6. */
+#problema::before{width:720px;height:720px;left:-18%;bottom:-40%;
+  background:radial-gradient(closest-side,rgba(185,226,0,.16),rgba(185,226,0,.04) 55%,transparent 72%);
+  animation:luzDerivaInv 16s ease-in-out infinite alternate}
+/* Cómo lo solucionamos: luz centrada arriba, detrás del video corto; el texto va a los lados, no encima. */
+#como::before{width:820px;height:520px;left:50%;top:-30%;margin-left:-410px;
+  background:radial-gradient(closest-side,rgba(185,226,0,.18),rgba(185,226,0,.05) 55%,transparent 72%);
+  animation:luzDeriva 18s ease-in-out infinite alternate}
+/* Véalo funcionando: luz pequeña y más viva arriba-centro, es el "reflector" del escenario del reproductor. */
+#video-completo::before{width:640px;height:640px;left:50%;top:-24%;margin-left:-320px;
+  background:radial-gradient(closest-side,rgba(185,226,0,.22),rgba(185,226,0,.06) 50%,transparent 70%);
+  animation:luzDerivaInv 14s ease-in-out infinite alternate}
+/* Los planes: luz a la derecha a media altura, detrás de la tarjeta recomendada (Plan 3 es la de la derecha). */
+#planes-sec::before{width:760px;height:760px;right:-20%;top:18%;
+  background:radial-gradient(closest-side,rgba(185,226,0,.17),rgba(185,226,0,.05) 55%,transparent 72%);
+  animation:luzDeriva 22s ease-in-out infinite alternate}
+/* La landing: luz arriba a la izquierda, detrás de la foto de la portada; tenue para no lavar la imagen. */
+#landing-sec::before{width:680px;height:680px;left:-16%;top:-30%;
+  background:radial-gradient(closest-side,rgba(185,226,0,.13),rgba(185,226,0,.04) 55%,transparent 72%);
+  animation:luzDerivaInv 18s ease-in-out infinite alternate}
+/* Qué pasa después de firmar: luz arriba a la derecha, pequeña, como una lámpara sobre la línea de tiempo. */
+#despues::before{width:560px;height:560px;right:-14%;top:-26%;
+  background:radial-gradient(closest-side,rgba(185,226,0,.15),rgba(185,226,0,.04) 55%,transparent 72%);
+  animation:luzDeriva 15s ease-in-out infinite alternate}
+/* Lo que le puede preocupar: la más tenue de todas (lectura larga), abajo a la derecha. */
+#confianza::before{width:700px;height:700px;right:-24%;bottom:-38%;
+  background:radial-gradient(closest-side,rgba(185,226,0,.11),rgba(185,226,0,.03) 55%,transparent 72%);
+  animation:luzDerivaInv 21s ease-in-out infinite alternate}
+/* El siguiente paso: la luz vuelve al centro-arriba, la más presente de la segunda mitad: aquí se decide. */
+#contacto::before{width:900px;height:620px;left:50%;top:-34%;margin-left:-450px;
+  background:radial-gradient(closest-side,rgba(185,226,0,.20),rgba(185,226,0,.06) 55%,transparent 72%);
+  animation:luzDeriva 17s ease-in-out infinite alternate}
+/* El .cierre::before del v7 (halo propio) queda redundante con #contacto::before: se apaga aquí. */
+#contacto .cierre::before{display:none}
+/* En celular las luces se encogen a la mitad: el viewport es angosto y una luz de 900 px lo pinta todo. */
+@media (max-width:619px){
+  .hero-sec::before,#problema::before,#como::before,#video-completo::before,#planes-sec::before,#landing-sec::before,#despues::before,#confianza::before,#contacto::before{transform:scale(.55);animation:none;filter:blur(28px)}
+}
+
+/* ---------- 3. movimiento: un gesto por pieza, reutilizando lo que ya existe ---------- */
+/* Todo lo que entra al hacer scroll usa .rv/.vis (opacity + 18px) — ya está en v7; aquí solo el escalonado. */
+.planes-grandes>.pg.rv:nth-child(2){transition-delay:.12s}
+.planes-grandes>.pg.rv:nth-child(3){transition-delay:.24s}
+/* Raya lima bajo cada título de sección: keyframe drawX (v7). Aquí se extiende a los .t-sec nuevos. */
+.t-sec{position:relative;padding-bottom:14px}
+.t-sec::after{content:'';position:absolute;left:0;bottom:0;width:56px;height:3px;background:var(--lima);transform-origin:left;transform:scaleX(0)}
+.t-sec.vis::after{animation:drawX .7s cubic-bezier(.2,.7,.2,1) .35s forwards}
+/* Números 10 → 8 → 6: keyframe pop (v7) con escalonado; los tramos con drawX. Ya cableado en v7 con .cadena.vis. */
+/* Plan recomendado: brillo único (keyframe brillo, v7) al aparecer. Ya cableado con .pg.reco.vis::after. */
+/* CTA final: latido doble (keyframe ctaPulso, v7) al entrar. Ya cableado con .cta-fila.vis. */
+/* Panel de portada: flota (keyframe flota, v7). Ya cableado en .hero-panel. */
+/* Línea de tiempo (una sola, sección "después"): cada hito entra con .rv/.vis y un pequeño escalonado. */
+#despues .linea li.rv:nth-child(n+2){transition-delay:calc(.07s * (var(--i,1)))}
+/* Vista aparte y acordeones: ya traen vaEntra / vzAbre (v7). No se agrega nada. */
+
+/* ---------- 5. reducir movimiento: luces quietas, cero animación ---------- */
+@media (prefers-reduced-motion:reduce){
+  .hero-sec::before,#problema::before,#como::before,#video-completo::before,#planes-sec::before,#landing-sec::before,#despues::before,#confianza::before,#contacto::before{animation:none!important;transform:none!important}
+  .t-sec::after{transform:none!important;animation:none!important}
+  .planes-grandes>.pg.rv,#despues .linea li.rv{transition-delay:0s!important}
+}
+
+  /* ---------- v9-i: la landing page como sección propia ---------- */
+  .landing{display:grid;gap:22px;align-items:start}
+  @media (min-width:900px){.landing{grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);gap:36px}}
+  .landing-foto{display:block;border:1px solid var(--linea);background:#000;color:var(--texto2);text-decoration:none;line-height:0}
+  .landing-foto img{display:block;width:100%;height:auto}
+  .landing-pie{display:flex;align-items:center;gap:10px;padding:10px 12px;border-top:1px solid var(--linea);font:italic 400 var(--t-chico)/1.4 var(--serif);line-height:1.4}
+  /* (v9-z) .landing-titulo (h3) = título corto sobre el botón, sans y marcado (mismo peso que tuvo la frase-gancho).
+     .landing-trabaja = nota aparte, itálica serif con borde (mismo lenguaje que una cita de plan): un extra que
+     suma, deliberadamente más chico y más callado que el gancho. */
+  .landing-titulo{margin:0;font:600 var(--t-bajada)/1.3 var(--sans);color:var(--marfil)}
+  /* (v9-g · jerarquía del lima) el borde de la nota va en --linea-fuerte, no en --lima: el ancla lima de esta
+     sección sigue siendo el kicker y la raya del titular (una sola por bloque). */
+  .landing-trabaja{margin:0 0 26px;padding:14px 16px;border-left:2px solid var(--linea-fuerte);font:italic 400 var(--t-chico)/1.55 var(--serif);color:var(--texto2)}
+  .landing-abrir{margin-top:16px}
+  @media (hover:hover){.landing-foto:hover{border-color:var(--linea-fuerte)}}
+
+  /* ---------- v9-h: chips y cuadros de dato (menos texto plano) ---------- */
+  /* Chip: etiqueta corta en línea. Recuadro de 1 px, mayúsculas 11 px, marfil; el recuadro hace de "dos puntos". */
+  .dato-chip,.linea li .desde{display:inline-block;font:700 11px/1.2 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--marfil);border:1px solid var(--linea-fuerte);padding:3px 7px;vertical-align:middle;white-space:nowrap}
+  .linea li .desde{margin-left:6px}
+  /* "En producción" en los marcos de video: sigue con la letra del estado (kicker) y gana el recuadro del chip. */
+  .video-espera b.dato-chip{padding:6px 10px}
+  /* Cuadro de dato: etiqueta arriba (10 px mayúsculas, gris) y cifra abajo (16 px negrita, marfil). Fondo capa 1 (v9-n: --gris1) y
+     línea de 1 px, dentro de la tarjeta de "Cómo se paga". Reparto: 2 arriba (al firmar · saldo) y la mensualidad
+     —el ancla del bloque— a todo el ancho abajo. Así queda en celular (316 px de contenido) Y en escritorio (la
+     tarjeta va de ancho completo del plan desde v9-x: precio fijo + pestañas, muy por encima de los 400 px).
+     Solo con ≥ 400 px de tarjeta los 3 van en fila; por debajo (celular), 2 arriba + la mensualidad abajo. Se mide
+     con la tarjeta (container query), no con la ventana — por eso sigue funcionando igual tras v9-x. */
+  .callout.pago{container-type:inline-size}
+  .pago-datos{list-style:none;margin:0 0 12px;padding:0 0 12px;display:grid;grid-template-columns:1fr 1fr;gap:6px;border-bottom:1px solid var(--linea)}
+  .pago-datos .mini-cuadro:last-child{grid-column:1/-1}
+  .mini-cuadro{display:flex;flex-direction:column;justify-content:flex-start;gap:5px;min-width:0;padding:8px 0 9px}
+  /* v9 (26/09): sin caja gris ni borde; texto directo sobre el tinte lima, como la tarjeta .pg. La mensualidad se separa con 1 px --linea. */
+  .pago-datos .mini-cuadro:last-child{border-top:1px solid var(--linea);margin-top:4px;padding-top:13px}
+  .mini-cuadro .mc-et{font:700 10px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--texto2)}
+  .mini-cuadro .mc-v{font:700 16px/1.25 var(--sans);letter-spacing:-.01em;color:var(--marfil);overflow-wrap:anywhere}
+  .mini-cuadro .mc-n{font:400 12px/1.4 var(--sans);color:var(--texto2)}
+  @container (min-width:400px){
+    .pago-datos{grid-template-columns:repeat(3,1fr)}
+    .pago-datos .mini-cuadro:last-child{grid-column:auto;border-top:0;margin-top:0;padding-top:8px}
+  }
+  @media print{.dato-chip{background:#fff!important;color:#000!important;border-color:#000!important}}
+
+  /* ---------- v9-j: cajas para bloques sueltos ---------- */
+  /* (A) "Qué trae / En qué se nota / Por qué con nosotros": una sola caja. En celular y tablet los 3 bloques
+     apilados con divisor horizontal; en escritorio (≥ 900 px) 3 columnas con divisor vertical, de ancho completo
+     como las tarjetas de abajo. (v9-x) vive dentro de .plan-panel#panel-porqueN, ya no es hermana directa de
+     .plan-head; su espaciado con lo de arriba lo pone .plan-panel (bloque 3i-bis), no esta regla. */
+  .plan .porque{margin:0}
+  @media (min-width:900px){
+    .porque{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .porque li{padding:18px 20px 20px;border-top:none;border-left:1px solid var(--linea)}
+    .porque li:first-child{border-left:none}
+  }
+  /* (B) "Qué trae" de la landing: SALIÓ (v9-y) junto con su lista; .landing-txt ya no lleva caja propia, ver
+     bloque v9-i más arriba (.landing-titulo / .landing-trabaja). */
+  /* (C) capítulos del video completo: de párrafo gris suelto a franja pegada al pie del marco (mismo ancho, línea de
+     1 px, fondo capa 2 = v9-n: --gris2), como el pie "PREVIEW" de la foto de la landing. Con el marco 1 se pega al borde inferior;
+     con los marcos 2 y 3 (ventana, laptop) queda separada 12 px porque esos no tienen borde inferior recto. */
+  .capitulos{max-width:960px;margin:12px 0 0;padding:12px 16px;background:var(--gris2);border:1px solid var(--linea);line-height:1.6}
+  .video-marco[data-marco="1"]+.capitulos{margin-top:-1px;border-top:0}
+  @media print{.porque,.capitulos{background:#fff!important;color:#000!important;border-color:#000!important}.porque li{border-color:#000!important}}
+
+  /* ---------- v9-x: precio fijo + pestañas ---------- */
+  /* (v9-z · 2026-09-25, Jose señaló con captura el cuadro "Al firmar/Saldo/Mensualidad", corregido el mismo día
+     tras verlo: "no se parece a la referencia… el color de la cajita, lo visual me refiero") el cuadro de precio
+     gana el mismo lenguaje visual que la tarjeta ACTIVA del selector de plan — el mecanismo EXACTO de
+     .pg[aria-pressed="true"] (§ arriba), no una aproximación: border-color lima + su inset ring de 1 px que lo
+     engruesa + el FONDO con el mismo tinte lima al 7 % de opacidad. Nada de resplandor/glow hacia afuera (eso fue
+     el error: un box-shadow con blur difuso no es lo mismo que un tinte de fondo). Sin el barrido animado de
+     .pg.reco.vis::after (keyframe brillo): ese es una señal de "elegí este plan", y aquí no se elige nada, es un
+     dato fijo — con el estado quieto basta. Este background gana la cascada sobre el gris neutro genérico de
+     .card (§ más abajo, pase de fondo neutro) por especificidad: 3 clases (.plan>.card.callout.pago) contra 1
+     (.card). Sin el glow ya no hace falta tanto aire para el acordeón de abajo: vuelve a los 10 px de antes. */
+  .plan>.card.callout.pago{margin-top:32px;border-color:var(--lima);box-shadow:inset 0 0 0 1px var(--lima);background:rgba(185,226,0,.07)}
+  .plan>details.card{margin-top:10px}
+  .plan>.ver-largo{margin-top:20px}
+  /* Pestañas: control segmentado de 2 botones, esquinas cuadradas, línea de 1 px (regla ya establecida de
+     "botones sin relleno": nada de fondo lima sólido). El activo se lee por borde + texto lima; el inactivo,
+     por borde + texto marfil apagado (--texto2, el mismo tono "apagado" que usa el resto de la página). Aquí el
+     lima SÍ es navegación real (cambia lo que se ve), no decoración de un dato ya mostrado (criterio v9-k). */
+  .plan-tabs{display:flex;margin-top:28px}
+  .plan-tab{flex:1;min-height:44px;padding:12px 14px;background:transparent;border:1px solid var(--texto2);
+    font:600 var(--t-chico)/1.3 var(--sans);color:var(--texto2);cursor:pointer;text-align:center;
+    transition:color .15s ease,border-color .15s ease;-webkit-tap-highlight-color:transparent}
+  .plan-tab+.plan-tab{margin-left:-1px}
+  .plan-tab[aria-selected="true"]{border-color:var(--lima);color:var(--lima);position:relative;z-index:1}
+  .plan-tab:hover:not([aria-selected="true"]){color:var(--marfil);border-color:var(--marfil)}
+  .plan-tab:focus-visible{outline:2px solid var(--lima);outline-offset:2px;z-index:2}
+  @media (min-width:620px){.plan-tabs{max-width:480px}}
+  /* Paneles: mostrar/ocultar con [hidden], sin animación de acordeón (lo que Jose pidió). Sin fade-in por
+     scroll (SEL de §3.5 no los incluye): si se revelaran por IntersectionObserver, cambiar de pestaña volvería
+     a disparar esa transición la primera vez que el panel oculto pasa a visible — el efecto "acordeón" que no
+     debe pasar. */
+  .plan-panel{margin-top:20px}
+  @media print{.plan-tabs{display:none!important}.plan-panel[hidden]{display:block!important}}
+</style>
+</head>
+<body class="documento">
+
+<a class="salto" href="#planes-sec">Ir a los planes</a>
+<div class="progreso" aria-hidden="true"><i id="progresoBarra"></i></div>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Inicio de la propuesta">
+      <img src="logo-open-group-btl.png" alt="Open Group BTL">
+      <span class="brand-t"><b>Propuesta · Open Group BTL</b><small>Sistema de custodia de equipos · JLAutomatization</small></span>
+    </a>
+    <nav class="top-nav" aria-label="Secciones"><a href="#pitch">La propuesta en video</a><a href="#como">Cómo funciona</a><a href="#planes-sec">Planes</a><a href="#confianza">Preguntas</a></nav>
+    <a class="btn ghost top-cta" id="topWa" href="#" target="_blank" rel="noopener"><span class="topwa-largo">Escribir a Jose</span><span class="topwa-corto">WhatsApp</span></a>
+  </div>
+</header>
+
+<div class="hero-sec">
+  <section class="hero wrap" aria-label="Portada">
+    <div class="hero-texto">
+      <p class="kicker">Propuesta para Open Group BTL · Bogotá</p>
+      <h1>Custodia de activos de <em>precisión</em> para su cadena de eventos.</h1>
+      <p class="lede">Cada equipo, cada tramo, cada responsable, verificable en tiempo real.</p>
+      <div class="chips">
+        <span class="chip">Funciona sin señal en bodega y evento</span>
+        <span class="chip">Aviso por Telegram (desde Plan 2)</span>
+        <span class="chip">Registro encadenado: nada se cambia sin dejar constancia</span>
+        <span class="chip">Se aprende en minutos</span>
+      </div>
+      <div class="hero-cta">
+        <a class="btn" href="#planes-sec">Ver los planes <span class="flecha" aria-hidden="true"></span></a>
+        <a class="hero-link" href="#pitch">Ver la propuesta en video · 4 min</a>
+        <a class="hero-link" href="#como">Entienda cómo lo solucionamos ↓</a>
+      </div>
+    </div>
+    <div class="hero-panel" aria-hidden="true">
+      <div class="glow"></div>
+      <figure class="panel panel-main">
+        <div class="panel-chrome"><i></i><i></i><i></i><span>Panel del dueño · ejemplo ilustrativo</span></div>
+        <img src="portada/panel-eventos.jpg" alt="" loading="eager" decoding="async">
+      </figure>
+      <figure class="panel panel-kpis"><img src="portada/panel-kpis.jpg" alt="" decoding="async"></figure>
+      <div class="badge"><span>Avisó solo</span><b>Pendiente: 3 vallas</b></div>
+    </div>
+  </section>
+</div>
+
+<!-- (30/09/2026, Jose: "directo desde la página que se reproduzcan los videos") el pitch (4 min) va
+     aquí, entre la portada y #problema: mismo mecanismo montarVideoNativo/registrarVideo de los
+     demás videos (marco "Ventana", data-marco=2; regla de pausa automática). -->
+<section class="seccion" id="pitch" aria-labelledby="t-pitch">
+  <div class="wrap">
+    <p class="kicker anim">La propuesta en 4 minutos</p>
+    <h2 class="t-sec anim" id="t-pitch">Si solo tiene <em>cuatro minutos</em>, vea esto.</h2>
+    <figure class="video-marco largo anim" data-marco="2" data-src="pitch/propuesta-en-video.mp4" data-poster="pitch/propuesta-en-video.jpg" data-preload="none">
+      <div class="video-espera"><b class="dato-chip">Próximamente</b></div>
+    </figure>
+  </div>
+</section>
+
+<section class="seccion" id="problema" aria-labelledby="t-problema">
+  <div class="wrap">
+    <p class="kicker anim">El problema</p>
+    <h2 class="t-sec anim" id="t-problema">Salen completos. <em>Vuelven incompletos.</em></h2>
+    <p class="bajada anim">Nadie puede decir en qué tramo se perdió el material, ni quién lo tenía.</p>
+    <div class="cadena anim" role="img" aria-label="Caso real: 10 pares salen de La María, 8 llegan a Simón Bolívar, 6 vuelven a bodega">
+      <div class="dato"><b>10</b><span>pares salen de La María</span></div>
+      <i class="tramo" aria-hidden="true"></i>
+      <div class="dato mal"><b>8</b><span>llegan a Simón Bolívar</span><small>2 perdidos</small></div>
+      <i class="tramo" aria-hidden="true"></i>
+      <div class="dato mal"><b>6</b><span>vuelven a bodega</span><small>2 más perdidos</small></div>
+    </div>
+    <p class="total anim"><em>4 de 10, sin rastro.</em></p>
+  </div>
+</section>
+
+<section class="seccion" id="como" aria-labelledby="t-como">
+  <div class="wrap">
+    <p class="kicker anim">Entienda cómo lo solucionamos</p>
+    <h2 class="t-sec anim" id="t-como">Un registro que <em>no se cambia sin dejar constancia.</em></h2>
+    <div class="videos">
+      <article class="video-item" data-src="entienda/01-salida-de-la-bodega.mp4" data-poster="entienda/01-salida-de-la-bodega.jpg" data-duracion="[PENDIENTE]">
+        <p class="video-num">Video 1</p>
+        <h3>Salida de la bodega</h3>
+        <figure class="video-marco" data-marco="2">
+          <div class="video-espera"><b class="dato-chip">Próximamente</b></div>
+        </figure>
+      </article>
+      <article class="video-item" data-src="entienda/02-llegada-y-regreso.mp4" data-poster="entienda/02-llegada-y-regreso.jpg" data-duracion="[PENDIENTE]">
+        <p class="video-num">Video 2</p>
+        <h3>Llegada al evento y regreso a bodega</h3>
+        <figure class="video-marco" data-marco="2">
+          <div class="video-espera"><b class="dato-chip">Próximamente</b></div>
+        </figure>
+      </article>
+      <article class="video-item" data-src="entienda/03-panel-del-dueno.mp4" data-poster="entienda/03-panel-del-dueno.jpg" data-duracion="[PENDIENTE]">
+        <p class="video-num">Video 3</p>
+        <h3>El panel del dueño: rastrear una discrepancia</h3>
+        <figure class="video-marco" data-marco="2">
+          <div class="video-espera"><b class="dato-chip">Próximamente</b></div>
+        </figure>
+      </article>
+      <!-- Video 4: [PENDIENTE] — Jose no dijo de qué es (bandeja 2026-09-24). No se monta hasta que lo diga:
+      <article class="video-item video-4" data-src="entienda/04-PENDIENTE.mp4" data-poster="" data-duracion="[PENDIENTE]">…</article> -->
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="planes-sec" aria-labelledby="t-planes">
+  <div class="wrap">
+    <p class="kicker anim">Los planes</p>
+    <h2 class="t-sec anim" id="t-planes">Tres planes, <em>un mismo sistema.</em></h2>
+    <p class="bajada anim">Cada plan incluye todo lo del anterior; toque uno para ver qué trae y cómo se paga.</p>
+    <div class="planes-grandes" role="group" aria-label="Elija un plan">
+      <button type="button" class="pg anim" data-pg="1" aria-pressed="false" onclick="elegirPlan(1)">
+        <span class="pg-n">Plan 1</span><span class="pg-t">Control</span>
+        <span class="pg-precio">$ 14.000.000</span>
+        <span class="pg-mes">+ $ 999.999 al mes</span>
+        <span class="pg-d">Queda registrado quién tuvo cada equipo y cuándo.</span>
+        <span class="pg-ir"><span class="pg-ir-ver">Ver qué incluye</span><span class="pg-ir-on">Se muestra abajo ↓</span> <i class="flecha"></i></span>
+      </button>
+      <button type="button" class="pg anim" data-pg="2" aria-pressed="false" onclick="elegirPlan(2)">
+        <span class="pg-n">Plan 2</span><span class="pg-t">Custodia en cadena + Alertas</span>
+        <span class="pg-precio">$ 26.000.000</span>
+        <span class="pg-mes">+ $ 999.999 al mes</span>
+        <span class="pg-d">Todo el Plan 1 + se enteran al momento si algo no cuadra, no cuando ya es tarde.</span>
+        <span class="pg-ir"><span class="pg-ir-ver">Ver qué incluye</span><span class="pg-ir-on">Se muestra abajo ↓</span> <i class="flecha"></i></span>
+      </button>
+      <button type="button" class="pg reco anim" data-pg="3" aria-pressed="true" onclick="elegirPlan(3)">
+        <span class="pg-sello">Recomendado</span>
+        <span class="pg-n">Plan 3</span><span class="pg-t">Operación completa</span>
+        <span class="pg-precio">$ 45.000.000</span>
+        <span class="pg-mes">+ $ 999.999 al mes</span>
+        <span class="pg-d">Todo lo anterior + ven el negocio completo e identifican qué podrían mejorar cada mes; es la diferencia entre operar a ciegas y operar con propósito.</span>
+        <span class="pg-ir"><span class="pg-ir-ver">Ver qué incluye</span><span class="pg-ir-on">Se muestra abajo ↓</span> <i class="flecha"></i></span>
+      </button>
+    </div>
+    <p class="nota elegir-nota anim">Los precios pueden ajustarse en la Fase 0, según el inventario, tramos y responsables reales.</p>
+  </div>
+  <div class="wrap" id="plan-detalle">
+
+    <section class="plan on" id="plan3">
+      <div class="plan-head">
+        <div>
+          <h2>Plan 3 · Operación completa</h2>
+          <p class="lede">Hoy alguien revisa a mano si hay material para el próximo evento, y se entera de un problema días después. El Plan 3 hace las dos cosas solo: avisa si alcanza apenas se programa, y señala lo raro antes de que alguien tenga que ir a buscarlo.</p>
+        </div>
+      </div>
+      <div class="card callout pago">
+        <ul class="pago-datos" aria-label="Cómo se paga, en tres datos">
+          <li class="mini-cuadro"><span class="mc-et">Al firmar</span><b class="mc-v">$&nbsp;22.500.000</b></li>
+              <li class="mini-cuadro"><span class="mc-et">Saldo</span><b class="mc-v">12 cuotas de $&nbsp;1.875.000</b></li>
+              <li class="mini-cuadro ancla"><span class="mc-et">Mensualidad</span><b class="mc-v">$&nbsp;999.999 al mes</b></li>
+        </ul>
+      </div>
+      <details class="card">
+        <summary>Ver condiciones completas</summary>
+        <div class="cuerpo">
+          <ul class="pago-lista">
+            <li><b>Al firmar:</b> $ 22.500.000 (el 50 %).</li><li><b>Saldo:</b> 12 cuotas de $ 1.875.000, que no se cobran hasta que el sistema esté terminado y funcionando, no antes.</li><li><b>Mensualidad:</b> $ 999.999 al mes mientras el sistema esté en servicio: servidor, dominio, almacenamiento, respaldos automáticos, actualizaciones, soporte con prioridad y la revisión mensual. Es el servicio mensual que mantiene el sistema andando y a ustedes acompañados: infraestructura, soporte y revisión; si los proveedores suben tarifas, se ajusta avisando con un mes de anticipación.</li><li><b>Referencia:</b> un sistema equivalente con una agencia de desarrollo en Colombia cuesta $ 75.000.000 (rangos 2026 publicados por agencias colombianas — TotalSys, MY Tech Solutions, Togrow: $ 15–50 millones un sistema intermedio; $ 50–150 millones con integraciones); la diferencia no es un descuento nuestro.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="plan-tabs" role="tablist" aria-label="Detalle del plan">
+        <button type="button" class="plan-tab" role="tab" id="tab-porque3" aria-controls="panel-porque3" aria-selected="false" onclick="activarPestana(this)">Por qué este plan</button>
+        <button type="button" class="plan-tab" role="tab" id="tab-incluye3" aria-controls="panel-incluye3" aria-selected="false" onclick="activarPestana(this)">Qué incluye</button>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-porque3" aria-labelledby="tab-porque3" hidden>
+        <ul class="porque">
+          <li><b>Qué trae que el Plan 2 no</b>Deja de revisar a mano si hay material para el próximo evento y de enterarse de un problema días después: el sistema avisa apenas se programa si alcanza, y señala solo lo que se sale de lo normal — nada de eso existe en el Plan 2.</li>
+            <li><b>En qué se nota en la operación</b>El faltante se ve al programar, no el día del montaje. Ya no hay que revisar bodega a mano antes de confirmar un evento, y un problema se nota apenas pasa, no cuando ya es tarde.</li>
+            <li><b>Por qué con nosotros</b>Jose no instala el sistema y desaparece: cada mes revisa los números con ustedes y ajusta lo que haga falta. El sistema se construye a la medida de cómo trabaja Open — y cada mejora libera las horas que hoy se van revisando a mano lo que el sistema puede avisar solo.</li>
+        </ul>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-incluye3" aria-labelledby="tab-incluye3" hidden>
+        <div class="card qincluye"><h3 class="card-t">Qué incluye</h3>
+          <ul class="incluye">
+          <li class="hereda"><b>Todo el Plan 2:</b> QR sin señal, custodia en cadena, llegadas con conteo, novedades, Excel y Telegram.</li>
+          <li class="nuevo"><b>Programación y calendario:</b> Se aparta material para una fecha y el sistema avisa de una vez si alcanza con lo que hay.</li>
+          <li class="nuevo"><b>Dashboard del negocio:</b> 24 gráficas y 18 indicadores; avisa solo si hay material afuera más de 7 días.</li>
+          <li class="nuevo"><b>Informes en PDF:</b> General o por evento, con la reconciliación completa y el espacio de firmas.</li>
+          <li class="nuevo"><b>Experiencia fácil:</b> 3 toques hasta la cámara, nombres sugeridos y los pendientes del día al abrir el panel.</li>
+          <li class="nuevo"><b>Ajustes a pedido sin costo:</b> Reportes, filtros, umbrales y formatos, por escrito; integración y hardware aparte.</li>
+          <li class="nuevo"><b>Acompañamiento mensual:</b> Revisión de los números con ustedes cada mes y soporte con prioridad en menos de 24 h.</li>
+        </ul>
+        </div>
+      </div>
+      <p class="nota ver-largo">En el <a href="#video-completo">video completo</a>: capítulos 2, 7 y 8.</p>
+    </section>
+
+
+    <section class="plan" id="plan2">
+      <div class="plan-head">
+        <div>
+          <span class="eyebrow tagline-plan">"El material, cubierto de evento en evento — y ustedes se enteran al momento"</span>
+          <h2>Plan 2 · Custodia en cadena + Alertas</h2>
+          <p class="lede">El Plan 2 cierra el hueco del caso de los 10 pares: el material queda cubierto de evento en evento y ustedes se enteran al momento, sin llamar a nadie.</p>
+        </div>
+      </div>
+      <div class="card callout pago">
+        <ul class="pago-datos" aria-label="Cómo se paga, en tres datos">
+          <li class="mini-cuadro"><span class="mc-et">Al firmar</span><b class="mc-v">$&nbsp;13.000.000</b></li>
+              <li class="mini-cuadro"><span class="mc-et">Saldo</span><b class="mc-v">6 cuotas de $&nbsp;2.166.667</b><small class="mc-n">(la última, $&nbsp;2.166.665)</small></li>
+              <li class="mini-cuadro ancla"><span class="mc-et">Mensualidad</span><b class="mc-v">$&nbsp;999.999 al mes</b></li>
+        </ul>
+      </div>
+      <details class="card">
+        <summary>Ver condiciones completas</summary>
+        <div class="cuerpo">
+          <ul class="pago-lista">
+            <li><b>Al firmar:</b> $ 13.000.000 (el 50 %).</li><li><b>Saldo:</b> 6 cuotas de $ 2.166.667 (la última, $ 2.166.665), que no se cobran hasta que el sistema esté terminado y funcionando, no antes.</li><li><b>Mensualidad:</b> $ 999.999 al mes mientras el sistema esté en servicio: servidor, dominio, almacenamiento, respaldos automáticos, actualizaciones, monitoreo de alertas y bot, y soporte remoto en menos de 24 horas. Es el servicio mensual que mantiene el sistema andando y a ustedes acompañados: infraestructura, soporte y revisión; si los proveedores suben tarifas, se ajusta avisando con un mes de anticipación.</li><li><b>Referencia:</b> un sistema equivalente con una agencia cuesta $ 38.000.000 (mismas fuentes que el Plan 3); no es un descuento nuestro.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="plan-tabs" role="tablist" aria-label="Detalle del plan">
+        <button type="button" class="plan-tab" role="tab" id="tab-porque2" aria-controls="panel-porque2" aria-selected="false" onclick="activarPestana(this)">Por qué este plan</button>
+        <button type="button" class="plan-tab" role="tab" id="tab-incluye2" aria-controls="panel-incluye2" aria-selected="false" onclick="activarPestana(this)">Qué incluye</button>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-porque2" aria-labelledby="tab-porque2" hidden>
+        <ul class="porque">
+          <li><b>Qué trae que el Plan 1 no</b>Traslados directos entre eventos, llegada con conteo, avisos por Telegram, resumen diario y bot, Novedades, filtros, Excel e impresión desde el celular.</li>
+            <li><b>En qué se nota en la operación</b>La diferencia se detecta cuando el material llega, no semanas después; el aviso sale solo al dueño con el tramo y quién recibió; y el tramo de un evento a otro sin pasar por bodega deja de ser invisible.</li>
+            <li><b>Por qué con nosotros</b>El sistema avisa y nada se borra: la alerta y el registro quedan encadenados en el sistema, no en un chat. Soporte remoto en menos de 24 horas.</li>
+        </ul>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-incluye2" aria-labelledby="tab-incluye2" hidden>
+        <div class="card qincluye"><h3 class="card-t">Qué incluye</h3>
+          <ul class="incluye">
+          <li class="hereda"><b>Todo el Plan 1:</b> Inventario, manifiestos por QR sin señal, historial, panel de dueños, registro encadenado.</li>
+          <li class="nuevo"><b>Custodia en cadena:</b> El traslado directo de un evento a otro también queda registrado, con su responsable.</li>
+          <li class="nuevo"><b>Llegada con conteo:</b> Quien recibe cuenta lo que llegó; faltantes o sobrantes por categoría, al instante.</li>
+          <li class="nuevo"><b>Avisos por Telegram:</b> Apenas hay una discrepancia al llegar a un evento, el aviso llega directo a los dueños.</li>
+          <li class="nuevo"><b>Resumen diario y bot:</b> Cada noche llega cómo quedó el día; al bot se le pregunta "¿dónde está la R-023?".</li>
+          <li class="nuevo"><b>Reportes de novedades:</b> Lo raro de la semana en una sola cronología; se marca resuelto sin ocultar el saldo.</li>
+          <li class="nuevo"><b>Filtros, Excel e impresión:</b> Filtrar por fecha y categoría, exportar a Excel, imprimir o compartir desde el celular.</li>
+        </ul>
+        </div>
+      </div>
+      <p class="nota ver-largo">En el <a href="#video-completo">video completo</a>: capítulos 5 y 6.</p>
+    </section>
+
+
+    <section class="plan" id="plan1">
+      <div class="plan-head">
+        <div>
+          <span class="eyebrow tagline-plan">"El material deja de desaparecer en silencio"</span>
+          <h2>Plan 1 · Control</h2>
+          <p class="lede">Exactamente lo que pidieron: manifiestos por QR desde el celular que ya tiene el personal, y un panel para consultarlos.</p>
+        </div>
+      </div>
+      <div class="card callout pago">
+        <ul class="pago-datos" aria-label="Cómo se paga, en tres datos">
+          <li class="mini-cuadro"><span class="mc-et">Al firmar</span><b class="mc-v">$&nbsp;7.000.000</b></li>
+              <li class="mini-cuadro"><span class="mc-et">Al terminar</span><b class="mc-v">$&nbsp;7.000.000</b></li>
+              <li class="mini-cuadro ancla"><span class="mc-et">Mensualidad</span><b class="mc-v">$&nbsp;999.999 al mes</b></li>
+        </ul>
+      </div>
+      <details class="card">
+        <summary>Ver condiciones completas</summary>
+        <div class="cuerpo">
+          <ul class="pago-lista">
+            <li><b>Al firmar:</b> $ 7.000.000.</li><li><b>Al terminar:</b> $ 7.000.000, solo cuando el sistema esté terminado y funcionando, no antes.</li><li><b>Mensualidad:</b> $ 999.999 al mes mientras el sistema esté en servicio: servidor, dominio, almacenamiento, respaldos automáticos, actualizaciones y soporte. Es el servicio mensual que mantiene el sistema andando y a ustedes acompañados: infraestructura, soporte y revisión; si los proveedores suben tarifas, se ajusta avisando con un mes de anticipación.</li><li><b>Referencia:</b> un sistema equivalente con una agencia cuesta $ 18.000.000 (mismas fuentes que el Plan 3); no es un descuento nuestro.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="plan-tabs" role="tablist" aria-label="Detalle del plan">
+        <button type="button" class="plan-tab" role="tab" id="tab-porque1" aria-controls="panel-porque1" aria-selected="false" onclick="activarPestana(this)">Por qué este plan</button>
+        <button type="button" class="plan-tab" role="tab" id="tab-incluye1" aria-controls="panel-incluye1" aria-selected="false" onclick="activarPestana(this)">Qué incluye</button>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-porque1" aria-labelledby="tab-porque1" hidden>
+        <ul class="porque">
+          <li><b>Qué trae</b>Inventario maestro, manifiestos por escaneo (sin señal también), historial por evento, panel de dueños con PIN propio, registro inmutable, piloto de 10 equipos y capacitación.</li>
+            <li><b>En qué se nota en la operación</b>Un "salieron 200 vallas" por WhatsApp se pierde; acá cada salida y cada regreso quedan con fecha, hora y responsable. Los datos se escriben a mano y los reportes se ven en pantalla, sin filtros ni avisos automáticos.</li>
+            <li><b>Por qué con nosotros</b>El dueño ve todo y nada se borra desde el primer plan: cada registro queda encadenado al anterior y las correcciones se agregan, nunca se reescriben.</li>
+        </ul>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-incluye1" aria-labelledby="tab-incluye1" hidden>
+        <div class="card qincluye"><h3 class="card-t">Qué incluye</h3>
+          <ul class="incluye">
+          <li><b>Historial por evento:</b> Todo lo que salió y volvió de cada evento, con hora y responsable de cada movimiento.</li>
+          <li><b>Inventario maestro:</b> Sus categorías reales, ID único (EQ-R-001) para lo que duele perder y lote para lo masivo.</li>
+          <li><b>Manifiesto digital por escaneo:</b> Evento, responsable, hora y lista completa con la cámara del celular; sin señal también.</li>
+          <li><b>Panel de dueños:</b> Manifiestos, inventario, custodia y accesos; PIN propio por persona y copia cada 6 horas.</li>
+          <li><b>Registro inmutable:</b> Cada registro queda encadenado al anterior; las correcciones se agregan, nunca se borra.</li>
+          <li><b>Piloto de equipos y capacitación:</b> 10 equipos de prueba antes de etiquetar todo, sesión de 1-2 horas y guía de una página.</li>
+        </ul>
+        </div>
+      </div>
+      <p class="nota ver-largo">En el <a href="#video-completo">video completo</a>: capítulos 1, 3 y 4, y la cadena de auditoría del capítulo 8.</p>
+    </section>
+
+  </div>
+</section>
+
+<section class="seccion" id="landing-sec" aria-labelledby="t-landing">
+  <div class="wrap">
+    <p class="kicker anim">Incluido en el Plan 3</p>
+    <h2 class="t-sec anim" id="t-landing">La landing page nueva de Open, <em>ya en preview.</em></h2>
+    <p class="bajada anim">Con el Plan 3 viene incluida la mejora de su página web. Haga clic en la imagen para verla.</p>
+    <div class="landing anim">
+      <a class="landing-foto" href="https://claude.ai/code/artifact/4c32dd22-8f78-4f7b-8012-264ed331d1d1" target="_blank" rel="noopener" aria-label="Abrir el preview de la landing en una pestaña nueva">
+        <img src="portada/landing-preview.jpg" alt="Portada del preview de la landing: foto aérea de un evento y el titular del sitio" loading="lazy" decoding="async" width="720" height="412">
+        <span class="landing-pie"><b class="dato-chip">Preview</b><span>Portada real de hoy · textos y datos por confirmar con Open</span></span>
+      </a>
+      <div class="landing-txt">
+        <!-- (v9-y, 2026-09-25, texto aprobado por Jose tal cual) La lista "Qué trae" (título .card-t + su ul de 5
+             ítems) salió: enumeraba funciones en vez de invitar a recorrer el sitio. En su lugar, dos elementos con
+             peso propio y jerarquía distinta entre sí:
+             (1) .landing-titulo (h3, v9-z): título corto "Recórrala usted mismo", grande/marcado, justo encima del
+                 botón al preview; la nota .landing-trabaja va antes, como secundaria.
+             (2) .landing-trabaja: nota destacada aparte (itálica Newsreader + borde, como una cita de plan), un
+                 extra que suma y no compite con el gancho — dato real de 01_ESTADO_ACTUAL.md Parte A, A.1: la
+                 landing SÍ tiene página "Trabaja con Nosotros" con formulario de postulación + adjuntar CV,
+                 enlazada desde el footer. -->
+        <p class="landing-trabaja">Un detalle que no estaba pedido: en redes sociales, buena parte de los comentarios eran de gente que quería trabajar con Open. Por eso la landing ya trae un botón «Trabaja con nosotros» donde pueden dejar su hoja de vida — sin que ustedes tengan que salir a buscarla.</p>
+        <h3 class="landing-titulo">Recórrala usted mismo</h3>
+        <a class="btn ghost landing-abrir" href="https://claude.ai/code/artifact/4c32dd22-8f78-4f7b-8012-264ed331d1d1" target="_blank" rel="noopener">Abrir el preview en una pestaña nueva <span class="flecha" aria-hidden="true"></span></a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="despues" aria-labelledby="t-despues">
+  <div class="wrap">
+    <p class="kicker anim">Después de firmar</p>
+    <h2 class="t-sec anim" id="t-despues">Qué pasa <em>después de firmar.</em></h2>
+    <!-- (26/09/2026, Jose) salió la bajada de esta sección; el texto vive en v9/CONTENIDO_RESERVADO_reunion.md. -->
+    <ul class="linea" data-linea="3"></ul>
+    <details class="card" id="fase0"><summary>Lo que se confirma en la Fase 0 (visita técnica)</summary><div class="cuerpo">
+      <p>Nada se estima ni se inventa: se levanta con ustedes en la bodega, en cualquiera de los tres planes.</p>
+      <ul class="lista-corta">
+        <li><b>Inventario real</b> · se cuenta en bodega, no del Excel viejo; ahí sale qué lleva ID único y qué se controla por lote.</li>
+        <li><b>Categorías</b> · con los nombres que ustedes ya usan: vallas, tarimas, pirotecnia, truss, tubería, reflectores.</li>
+        <li><b>Tramos</b> · en qué puntos cambia la responsabilidad (bodega, camión, evento…), incluidos los traslados directos entre eventos.</li>
+        <li><b>Responsables</b> · con nombre real: quién entrega, quién recibe, quién coordina; cada escaneo queda firmado por una persona.</li>
+        <li><b>Cifras finales</b> · se cierran con lo que salga de esta visita y nunca suben sin que ustedes lo sepan antes de firmar.</li>
+        <li><b>Señal en bodega y eventos</b> · el sistema funciona sin ella; conviene saber dónde falla para calibrar los avisos.</li>
+        <li><b>Canal de avisos</b> · Telegram si les sirve a los dos dueños; si no, WhatsApp Business o SMS, decidido antes de arrancar.</li>
+        <li><b>Umbrales de alerta</b> · cuántos días afuera y cuántas llegadas con diferencia encienden la alarma, con datos de Open.</li>
+        <li><b>Alquiler a terceros</b> · no lo cubre ningún plan; se levanta cuánto pierden por ahí para decidir con números si se cubre después.</li>
+      </ul>
+    </div></details>
+  </div>
+</section>
+
+<section class="seccion" id="confianza" aria-labelledby="t-confianza">
+  <div class="wrap">
+    <p class="kicker anim">Antes de la reunión</p>
+    <h2 class="t-sec anim" id="t-confianza">Lo que le puede <em>preocupar.</em></h2>
+    <p class="bajada anim">Soporte y corrección de errores incluidos en los tres planes. Desde el Plan 2, respuesta remota en menos de 24 horas según la severidad, sin depender de una visita presencial; en el Plan 3, con prioridad.</p>
+    <div class="faq">
+      <!-- (27/09/2026, Jose: "no quiero que la info salga así, me gusta más que salga como botón") "Por qué
+           JLAutomatization" pasa de .card siempre visible a un acordeón más, del mismo .faq: mismo marcador
+           +/-, misma tipografía de summary, mismo padding/borde, cerrado por defecto. El contenido de los 3
+           sub-bloques (título + párrafo, con su divisor .lista-mitiga de siempre) no cambia ni una palabra. -->
+      <!-- (27/09/2026, Jose: "quítalo, a Open no le debería interesar eso") 1er sub-bloque: se retira su 1ª
+           frase original, que nombraba otro caso sin decir cuál (párrafo completo archivado en
+           CONTENIDO_RESERVADO_reunion.md). Su 2ª frase queda sola como el contenido completo del sub-bloque,
+           con título nuevo acorde ("Se puede probar antes de firmar") en vez del título anterior, que solo
+           tenía sentido con la frase que se fue. Los otros 2 sub-bloques no se tocan. -->
+      <details><summary>Por qué JLAutomatization</summary><div class="r">
+        <ul class="lista-mitiga">
+          <li><h3>Se puede probar antes de firmar</h3><p>Lo que ve en los videos corre de verdad y lo pueden probar antes de firmar.</p></li>
+          <li><h3>Hecho para cómo Open mueve el material, no para cualquier bodega</h3><p>Rentman o Goodshuffle resuelven reservas de un almacén de alquiler. Lo que le cuesta plata a Open es no saber quién tuvo el material y en qué tramo se perdió; por eso el traslado directo de un evento a otro está en el diseño desde el principio.</p></li>
+          <li><h3>El precio corresponde a adaptar, no a construir desde cero</h3><p>La implementación cuesta menos que la referencia de las agencias porque parte de un método ya construido y probado, adaptado a Open.</p></li>
+        </ul>
+      </div></details>
+      <details><summary>¿Y si se va la señal?</summary><div class="r">No depende de ella: el escáner arma el manifiesto dentro del celular y se cierra igual sin internet. Cuando vuelve la señal, sincroniza solo. Nada se pierde en bodega ni en el evento.</div></details>
+      <details><summary>¿Alguien puede alterar o borrar un registro?</summary><div class="r">No, y rige desde el Plan 1: cada registro queda encadenado al anterior, así que si alguien cambia o borra uno, se nota. Lo mal registrado no se borra: se anula con motivo —coordinador o dueño— y la anulación queda tan visible como el original.</div></details>
+      <details><summary>¿Se van a resistir los empleados?</summary><div class="r">Por eso el piloto no arranca con toda la bodega, sino con los equipos que más problemas dan, y la capacitación va antes de etiquetar el resto. Para el operario, cada escaneo es apuntar la cámara del celular que ya carga encima: segundos, no minutos.</div></details>
+      <details><summary>¿Y si se pierde o daña un celular?</summary><div class="r">El sistema no vive en el celular: todo lo sincronizado está en el servidor, dentro de una cadena donde, si alguien altera algo, se nota. Solo se arriesga lo capturado sin señal que aún no subió; por eso sincroniza apenas hay conexión. Para seguir, otra persona abre el mismo enlace en otro celular y entra con su PIN.</div></details>
+      <!-- (27/09/2026, Jose: aprobada tal cual, texto EXACTO) 7ª FAQ, contenido nuevo: conecta dos hechos que YA
+           viven en la página —el soporte por plan (bajada de esta misma sección) y el registro sin señal (FAQ
+           "¿Y si se va la señal?", arriba)— para responder al miedo puntual de que algo falle el mismo día de
+           un evento. No repite cifras ni reescribe esos dos hechos, solo los une. NO se promete un tiempo de
+           respuesta más rápido el día de un evento: el soporte de 24 horas queda igual; se aclara por qué eso
+           no detiene la bodega. Va después de "¿Y si se pierde o daña un celular?" (cierra el bloque
+           técnico/diario) y antes de la FAQ siguiente sobre el sistema no quedando listo a tiempo: las 3
+           últimas preguntas (día de evento · no funciona a tiempo · continuidad) quedan juntas como una
+           escalera de confiabilidad del servicio, de lo puntual (un día) a lo del proyecto (el plazo) a lo
+           existencial (el proveedor mismo). -->
+      <details><summary>¿Y si algo falla justo el día de un evento?</summary><div class="r">El soporte responde en menos de 24 horas (con prioridad desde el Plan 3), pero eso no detiene la bodega: el registro en el celular ya funciona sin internet y se sincroniza solo cuando vuelve la señal. Lo que podría fallar un día de evento es el panel del dueño o una alerta, no el registro de lo que sale y llega.</div></details>
+      <!-- (27/09/2026, noche, Jose: 2 FAQ retiradas de la web — decisiones comerciales reales vigentes para el
+           contrato/reunión (prueba de aceptación con descuento por atraso · custodia del código con un tercero
+           de confianza), no para mostrar en esta propuesta. Preguntas y respuestas completas archivadas en
+           CONTENIDO_RESERVADO_reunion.md, sección "2 FAQ retiradas de la web…". Acordeones de este bloque bajan
+           de 9 a 7 con este cambio. -->
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="video-completo" aria-labelledby="t-largo">
+  <div class="wrap">
+    <p class="kicker anim">Para quien quiera verlo todo</p>
+    <h2 class="t-sec anim" id="t-largo">¿Quiere ver el <em>sistema completo?</em></h2>
+    <figure class="video-marco largo anim" data-marco="2" data-src="plan3/plan3-completo.mp4" data-poster="portada/video-completo-poster.jpg" data-preload="none">
+      <div class="video-espera"><b class="dato-chip">Próximamente</b><span>7 minutos · sistema completo</span></div>
+    </figure>
+    <!-- (27/09/2026, noche, Jose aprobó) los capítulos pasan de 1 línea de texto a una cuadrícula de 8 celdas,
+         4x2 en escritorio y 2x4 en celular. Datos verificados contra la fuente real (videos/plan3/secciones.json,
+         campo "secciones"), no inventados (regla 1). Cada capítulo es un <div>, no un <button> ni un <a>: no hay
+         acción que ejecutar (sin onclick, sin salto al tiempo del video) porque Jose va a regrabar todos los
+         videos pronto y cablear el salto ahora sería trabajo perdido; al no ser un control real, no finge serlo.
+         (28/09/2026) celda = Opción C · Cuadrícula compacta, elegida por Jose entre 3 mocks
+         (v9/capitulos-opciones/opciones.html): caja con borde 1px, número chico al lado, título — minuto en la
+         misma línea. Textos originales (bajada + línea de capítulos) archivados en
+         v9/CONTENIDO_RESERVADO_reunion.md. -->
+    <div class="capitulos-grid anim" id="capitulosLargo">
+      <button type="button" class="cap-item" data-t="0"><span class="cap-n">1</span><span class="cap-body"><span class="cap-tit">Entrar al sistema</span><span class="cap-time">0:00</span></span></button>
+      <button type="button" class="cap-item" data-t="21.5"><span class="cap-n">2</span><span class="cap-body"><span class="cap-tit">Programar un evento</span><span class="cap-time">0:21</span></span></button>
+      <button type="button" class="cap-item" data-t="57.3"><span class="cap-n">3</span><span class="cap-body"><span class="cap-tit">Cargar el camión — salida a evento</span><span class="cap-time">0:57</span></span></button>
+      <button type="button" class="cap-item" data-t="124.7"><span class="cap-n">4</span><span class="cap-body"><span class="cap-tit">El dueño lo ve al momento</span><span class="cap-time">2:04</span></span></button>
+      <button type="button" class="cap-item" data-t="145.4"><span class="cap-n">5</span><span class="cap-body"><span class="cap-tit">Llegada al evento con conteo (y regreso a bodega)</span><span class="cap-time">2:25</span></span></button>
+      <button type="button" class="cap-item" data-t="235.6"><span class="cap-n">6</span><span class="cap-body"><span class="cap-tit">Novedades y estado del evento</span><span class="cap-time">3:55</span></span></button>
+      <button type="button" class="cap-item" data-t="304.9"><span class="cap-n">7</span><span class="cap-body"><span class="cap-tit">Dashboard y pendientes por revisar</span><span class="cap-time">5:04</span></span></button>
+      <button type="button" class="cap-item" data-t="332.5"><span class="cap-n">8</span><span class="cap-body"><span class="cap-tit">Informe PDF y cadena de auditoría</span><span class="cap-time">5:32</span></span></button>
+    </div>
+  </div>
+</section>
+
+<!-- ================= CIERRE ================= -->
+  <section class="cierre" id="contacto">
+    <div class="wrap">
+    <h2 class="t-sec">El siguiente paso no es firmar nada: <em>es una reunión.</em></h2>
+    <div class="cta-fila">
+      <a class="cta" id="ctaWhatsapp" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> Escribir a Jose por WhatsApp <span class="flecha" aria-hidden="true"></span></a>
+      <a class="cta sec" href="propuesta_resumen_v9.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg> Resumen en PDF</a>
+    </div>
+    <p class="marca-pie">Hecho por <b>JLAutomatization</b></p>
+      </div>
+  </section>
+
+<div class="barra-fija" id="barraFija" aria-hidden="true">
+  <div class="marca">Hecho por <b>JLAutomatization</b></div>
+  <div class="acc"><a class="sec" href="propuesta_resumen_v9.pdf" target="_blank" rel="noopener">Ver el PDF</a><a id="barraWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> Escribir a Jose</a></div>
+</div>
+
+
+
+<script>
+  var BUILD = '20260930b';
+  // Los videos viven en open-group-btl/videos/ (Pages) o en ../videos/ (copia local del proyecto).
+  var VID = /github\.io$/.test(location.hostname) ? './videos/' : '../videos/';
+  var WHATSAPP_JLAUTO = "573106582111";
+  var waTexto = function(t){ return 'https://wa.me/' + WHATSAPP_JLAUTO + '?text=' + encodeURIComponent(t); };
+  document.getElementById('ctaWhatsapp').href = waTexto('Hola José, revisamos la propuesta y nos gustaría agendar una reunión para resolver las dudas que nos quedaron y decidir cómo seguir.');
+  document.getElementById('barraWa').href = document.getElementById('ctaWhatsapp').href;
+  (function(){ var t = document.getElementById('topWa'); if(t) t.href = document.getElementById('ctaWhatsapp').href; })();
+  // (2026-09-19) El span #vigencia se eliminó junto con el bloque legal del cierre. El guardia
+  // `v &&` evita que un null reviente todo el script que viene después.
+  (function(){ var v = document.getElementById('vigencia'); if(v && v.dataset.hasta) v.textContent = ' · válida hasta el ' + v.dataset.hasta; })();
+  var $ = function(s, r){ return (r || document).querySelector(s); };
+  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  // (v7) Ya no hay carrusel: la página entera es la historia. El documento está abierto siempre.
+  var pasoActual = 0;
+  function pintarPaso(){}
+  function pasoHistoria(){}
+  // ---------- P2 · ripple lima al tocar (delegado en document) ----------
+  // Delegado con closest(), así funciona también con lo que se monta después (el reproductor,
+  // los capítulos, la vista aparte). Es puramente aditivo: no hace preventDefault ni
+  // stopPropagation, así que ningún onclick existente se ve afectado.
+  (function(){
+    var SEL='.btn,.cta,.pg,summary';
+    document.addEventListener('pointerdown', function(e){
+      var host=e.target.closest(SEL); if(!host||host.disabled) return;
+      if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var r=host.getBoundingClientRect(), size=Math.max(r.width,r.height)*1.3;
+      var rip=document.createElement('span'); rip.className='app-ripple';
+      rip.style.width=rip.style.height=size+'px';
+      rip.style.left=(e.clientX-r.left-size/2)+'px'; rip.style.top=(e.clientY-r.top-size/2)+'px';
+      host.appendChild(rip); setTimeout(function(){ rip.remove(); }, 680);
+    }, true);
+  })();
+
+  // Revelado suave del documento al hacer scroll: cada texto y caja entra cuando aparece en pantalla.
+  (function(){
+    var SEL = '.anim,.videos>.video-item,.planes-grandes>.pg,.plan-head>*,.plan>.card.callout.pago,.plan>.plan-tabs,.faq details,.cierre .wrap>*,details.card,.linea li';
+    function revelar(){
+      if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var io = new IntersectionObserver(function(entradas){
+        entradas.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } });
+      }, { rootMargin:'0px 0px -6% 0px', threshold:.06 });
+      $$(SEL).forEach(function(el){
+        var padre = el.parentElement, i = padre ? Array.prototype.indexOf.call(padre.children, el) : 0;
+        el.classList.add('rv'); el.style.transitionDelay = Math.min(i, 6) * 70 + 'ms'; io.observe(el);
+      });
+    }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', revelar); else revelar();
+  })();
+  /* (2026-09-19) Las cifras grandes se animan al entrar en pantalla.
+     Antes CONTABAN de 0 hasta el precio (count-up, §3 de la guía). Se quitó: los tres
+     [data-cifra-cop] son precios, y contando mostraban en pantalla cifras que no son el precio
+     ($ 7.387.454, $ 13.999.844…) durante casi un segundo. Un precio equivocado a la vista de un
+     cliente, aunque sea un instante, rompe la regla 1 del método — no se muestra un dato que no
+     es. Se reemplaza por el "pop" de la §9 de la misma guía: la cifra aparece con escala y
+     opacidad, y el número es el correcto desde el primer cuadro. */
+  (function(){
+    var reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reducir || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting || e.target.dataset.aparecida) return;
+        e.target.dataset.aparecida = '1'; io.unobserve(e.target);
+        e.target.classList.add('aparece');
+      });
+    }, { threshold:.5 });
+    document.querySelectorAll('[data-cifra-cop]').forEach(function(el){ io.observe(el); });
+  })();
+  function abrirDocumento(){ var el = $('#planes-sec'); if(el) el.scrollIntoView({ behavior:'smooth', block:'start' }); }
+
+  // ---------- Líneas de tiempo (una sola fuente) ----------
+  var NOMBRE = { 1:'Plan 1 · Control', 2:'Plan 2 · Custodia en cadena + Alertas', 3:'Plan 3 · Operación completa' };
+  var HITOS = [
+    { c:'Sem. 1', t:'Reunión de arranque', s:'Qué bodega se trabaja, qué entra al inventario y quién responde en cada rol.', d:1 },
+    { c:'Sem. 2', t:'Arranque en bodega', s:'Inventario completo y etiquetado piloto de 10 equipos: 5 que más se pierden y 5 que más se golpean, se mojan o se calientan.', d:1 },
+    { c:'Sem. 3', t:'Piloto en paralelo', s:'El bodeguero sigue avisando por WhatsApp como hoy; el escaneo por QR corre al lado, como prueba.', d:1 },
+    { c:'Sem. 4-8', t:'Etiquetado completo y primeras salidas', s:'Con la etiqueta que sobrevivió al piloto se etiqueta toda la bodega y salen los primeros manifiestos digitales.', d:1 },
+    { c:'Mes 3', t:'Custodia en cadena y alertas', s:'Lo que salió se compara con lo que llegó y el aviso sale por Telegram apenas algo no cuadra; ustedes dicen quién lo recibe.', d:2 },
+    { c:'Mes 4', t:'Prueba de fuego en un evento real', s:'Una o dos pruebas en un evento que Open elija, con Jose presente.', d:1 },
+    { c:'Mes 5+', t:'Operación completa', s:'Programación, dashboard e informes sobre los datos ya capturados; con el primer mes completo, la primera revisión mensual.', d:3 }
+  ];
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); }
+  $$('[data-linea]').forEach(function(ul){
+    ul.innerHTML = HITOS.map(function(h){
+      return '<li><span class="cuando">' + esc(h.c) + '</span><span class="hito"></span><div><b>' + esc(h.t) + (h.d > 1 ? '<span class="desde">desde Plan ' + h.d + '</span>' : '') + '</b><span>' + esc(h.s) + '</span></div></li>';
+    }).join('');
+  });
+
+  // ---------- CTA fija: aparece al pasar el primer plan; se esconde con el teclado abierto ----------
+  var barraFija = $('#barraFija'), ctaVisto = false, tecladoAbierto = false, enCierre = false;
+  function pintarBarra(){ var on = ctaVisto && !tecladoAbierto && !enCierre; barraFija.classList.toggle('on', on); barraFija.setAttribute('aria-hidden', String(!on)); document.documentElement.style.setProperty('--barra', on ? (barraFija.offsetHeight + 'px') : '0px'); }
+  function observarCta(){
+    if(!('IntersectionObserver' in window)){ ctaVisto = true; pintarBarra(); return; }
+    var io = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ ctaVisto = true; pintarBarra(); io.disconnect(); } }); }, { rootMargin:'0px 0px -40% 0px' });
+    var m = $('.plan.on .plan-tabs'); if(m) io.observe(m);
+  }
+  if(window.visualViewport){ window.visualViewport.addEventListener('resize', function(){ tecladoAbierto = window.visualViewport.height < window.innerHeight * 0.75; pintarBarra(); }); }
+  window.addEventListener('beforeprint', function(){ $$('details').forEach(function(d){ d.open = true; }); });
+
+
+
+  // ================= v9 · tarjetas = selector de plan =================
+  var planElegido = 3;
+  function cargarPlan(p, conservarHash){
+    planElegido = p;
+    $$('.pg').forEach(function(b){ b.setAttribute('aria-pressed', String(Number(b.dataset.pg) === p)); });
+    $$('.plan').forEach(function(s){ s.classList.toggle('on', s.id === 'plan' + p); });
+    // (v9-x, Opción C; 26/09/2026 pestañas CERRADAS por defecto, Jose: "en vez de mostrar la info siempre, solo aparezca
+    // cuando se oprime alguno de los dos") cada vez que se muestra un plan, ninguna pestaña queda activa y los dos paneles
+    // quedan [hidden]: no se recuerda lo que el visitante dejó abierto la última vez en ESTE plan (las 3 secciones .plan
+    // viven siempre en el documento; solo se ocultan con .on, así que sin este reseteo conservarían el estado anterior).
+    var activo = document.getElementById('plan' + p);
+    if(activo) cerrarPestanas(activo);
+    // lo que acaba de pedir el visitante se ve de una vez, sin esperar el revelado por scroll
+    $$('.plan.on .rv').forEach(function(el){ el.classList.add('vis'); el.style.transitionDelay = '0ms'; });
+    if(!conservarHash){ try{ history.replaceState(null, '', '#plan' + p); }catch(e){} }
+  }
+  function elegirPlan(p){
+    cargarPlan(p);
+    var d = document.getElementById('plan-detalle'); if(d) d.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+  // ================= v9-x · pestañas del detalle de plan (Opción C, 2026-09-25) =================
+  // Mostrar/ocultar puro (hidden), sin animación: cambiar de pestaña es instantáneo, no un acordeón que abre y cierra.
+  // (26/09/2026) Estado inicial = NINGUNA pestaña activa (aria-selected="false" en las dos; es válido en ARIA) y los dos
+  // paneles [hidden]. Las dos pestañas quedan en el orden de tabulación (tabIndex 0): sin pestaña activa no hay a cuál
+  // "rodar" el foco, y así el teclado llega a las dos.
+  function cerrarPestanas(plan){
+    $$('.plan-tab', plan).forEach(function(b){ b.setAttribute('aria-selected', 'false'); b.tabIndex = 0; });
+    $$('.plan-panel', plan).forEach(function(pnl){ pnl.hidden = true; });
+  }
+  // Alterna: tocar una pestaña inactiva muestra su panel (y oculta el otro); tocar la ACTIVA la cierra (ambos ocultos otra vez).
+  // `abrir` = true (flechas del teclado) solo activa, nunca cierra.
+  function activarPestana(btn, abrir){
+    var tabs = btn.closest('.plan-tabs'), plan = btn.closest('.plan');
+    if(!tabs || !plan) return;
+    if(btn.getAttribute('aria-selected') === 'true' && !abrir){ cerrarPestanas(plan); return; }
+    $$('.plan-tab', tabs).forEach(function(b){ b.setAttribute('aria-selected', String(b === btn)); b.tabIndex = 0; });
+    $$('.plan-panel', plan).forEach(function(p){ p.hidden = p.id !== btn.getAttribute('aria-controls'); });
+  }
+  // Flechas ←/→ mueven el foco entre las 2 pestañas del mismo grupo y las activan (patrón ARIA de tablist);
+  // Enter/Espacio sobre un <button> nativo disparan el clic, o sea que alternan (abren/cierran) sin código extra.
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    var btn = e.target.closest && e.target.closest('.plan-tab'); if(!btn) return;
+    var grupo = $$('.plan-tab', btn.closest('.plan-tabs')), i = grupo.indexOf(btn);
+    if(i < 0) return;
+    var siguiente = grupo[(i + (e.key === 'ArrowRight' ? 1 : -1) + grupo.length) % grupo.length];
+    siguiente.focus(); activarPestana(siguiente, true); e.preventDefault();
+  });
+  // (26/09/2026) salió de aquí la sombra "hay más a la derecha" y el aviso "Deslice la tabla…" de Comparar (ver COMPARAR_JS_RETIRADO).
+
+  // ================= v9 · videos nativos: solo se monta <video> si el archivo existe =================
+  // (v9-ab, 27-28/09/2026) fmt() salió: solo la armaba la línea de texto de capítulos (retirada); los minutos de
+  // la cuadrícula de botones ya van fijos como texto en el HTML (CAPITULOS_LARGO, build_v9.py).
+  function rutaVideo(r){ return /^portada\//.test(r) ? r : VID + r; }
+  function existe(url){ return fetch(url, { method:'HEAD', cache:'no-store' }).then(function(r){ return r.ok; }).catch(function(){ return false; }); }
+  // (30/09/2026, Jose: "que no queden con el bug de que si me salgo sigan sonando") Un solo controlador vigila
+  // los 4 <video> (3 cortos de #como + la recorrida de #video-completo) desde que cada uno se crea:
+  // (i) al reproducir uno se pausan los demás — nunca 2 sonando a la vez; (ii) pestaña oculta (visibilitychange)
+  // o abandonada (pagehide) → se pausan todos; (iii) el video que suena sale COMPLETO del viewport
+  // (IntersectionObserver por <figure>, isIntersecting=false) → se pausa — cubre también navegar por el menú de
+  // capítulos hacia un video fuera de vista; (iv) salir de pantalla completa (fullscreenchange, y
+  // webkitendfullscreen en iOS) → se pausa. Nunca autoplay: el usuario siempre decide cuándo empieza.
+  var VIDEOS_TODOS = [];
+  function registrarVideo(v, fig){
+    VIDEOS_TODOS.push(v);
+    v.addEventListener('play', function(){ VIDEOS_TODOS.forEach(function(o){ if(o !== v && !o.paused) o.pause(); }); });
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(!e.isIntersecting && !v.paused) v.pause(); });
+      }, { threshold:0 }).observe(fig);
+    }
+  }
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden) VIDEOS_TODOS.forEach(function(v){ if(!v.paused) v.pause(); });
+  });
+  window.addEventListener('pagehide', function(){ VIDEOS_TODOS.forEach(function(v){ if(!v.paused) v.pause(); }); });
+  ['fullscreenchange', 'webkitfullscreenchange'].forEach(function(ev){
+    document.addEventListener(ev, function(){
+      if(!document.fullscreenElement && !document.webkitFullscreenElement) VIDEOS_TODOS.forEach(function(v){ if(!v.paused) v.pause(); });
+    });
+  });
+  document.addEventListener('webkitendfullscreen', function(e){ if(e.target && !e.target.paused) e.target.pause(); }, true);
+  function montarVideoNativo(fig, src, poster, preload, alDurar){
+    var v = document.createElement('video');
+    v.controls = true; v.setAttribute('playsinline', ''); v.preload = preload || 'metadata';
+    if(poster) v.poster = poster;
+    v.src = src + (src.indexOf('?') < 0 ? '?v=' + BUILD : '');
+    if(alDurar) v.addEventListener('loadedmetadata', function(){ alDurar(v.duration); }, { once:true });
+    var esp = fig.querySelector('.video-espera'); if(esp) esp.remove();
+    fig.insertBefore(v, fig.firstChild); fig.classList.add('con-video');
+    registrarVideo(v, fig);
+    return v;
+  }
+  function montarVideos(){
+    // #como: tres videos cortos. Mientras el archivo no exista, queda el estado "En producción" (sin un reproductor con src roto).
+    $$('.video-item').forEach(function(it){
+      // (v9-u, Jose 2026-09-25: "No quiero que salga la duración estimada") ya no hay línea de duración en la espera ni nada que leer de data-duracion.
+      var fig = $('.video-marco', it);
+      if(!fig || !it.dataset.src) return;
+      var src = rutaVideo(it.dataset.src), poster = it.dataset.poster ? rutaVideo(it.dataset.poster) : '';
+      existe(src).then(function(ok){
+        if(!ok) return;
+        (poster ? existe(poster) : Promise.resolve(false)).then(function(okp){
+          // con el archivo real, el "[PENDIENTE]" se va con .video-espera; la duración la muestran los controles del <video>
+          // (v9-t: sin línea "Duración: X" bajo el marco — Jose, 2026-09-25: "solo títulos y videos")
+          montarVideoNativo(fig, src, okp ? poster : '', 'metadata');
+        });
+      });
+    });
+    montarVideoLargo();
+    montarVideoPitch();
+  }
+  // ================= v9 · #pitch: la propuesta en video (4 min), mismo mecanismo que #video-completo =================
+  // (30/09/2026) un solo <video>, montado solo si el archivo existe (preload none: no se descarga nada
+  // hasta que el visitante le dé play), con la misma regla de pausa (registrarVideo, dentro de montarVideoNativo).
+  var figPitch = document.getElementById('pitch') ? $('#pitch .video-marco') : null;
+  var pitchMontando = null;
+  function montarVideoPitch(cb){
+    if(!figPitch) return;
+    var v0 = figPitch.querySelector('video');
+    if(v0){ if(cb) cb(v0); return; }
+    if(!pitchMontando){
+      var src = rutaVideo(figPitch.dataset.src), poster = figPitch.dataset.poster ? rutaVideo(figPitch.dataset.poster) : '';
+      pitchMontando = existe(src).then(function(ok){
+        if(!ok) return null;
+        return (poster ? existe(poster) : Promise.resolve(false)).then(function(okp){
+          return montarVideoNativo(figPitch, src, okp ? poster : '', figPitch.dataset.preload || 'none');
+        });
+      });
+    }
+    pitchMontando.then(function(v){ if(v && cb) cb(v); });
+  }
+  // ================= v9 · #video-completo: capítulos que saltan al segundo real del video =================
+  // (30/09/2026, Jose: los videos ya se regrabaron, "ya pueden ser botones") montarVideoLargo() monta la recorrida
+  // (igual que antes: solo si el archivo existe, preload none) y queda cacheado (largoMontando) para que un clic
+  // en un capítulo antes de que termine de resolverse el HEAD no dispare una segunda carga. irACapitulo() monta si
+  // hace falta, hace scroll a la figura, espera loadedmetadata si el video aún no tiene metadata (readyState<1) y
+  // recién ahí fija currentTime y reproduce. marcarCapituloActivo() pinta aria-current según el tiempo real
+  // (timeupdate), no según el último capítulo tocado.
+  var figLargo = document.getElementById('video-completo') ? $('#video-completo .video-marco') : null;
+  var capBotones = $$('.cap-item');
+  var largoMontando = null;
+  function montarVideoLargo(cb){
+    if(!figLargo) return;
+    var v0 = figLargo.querySelector('video');
+    if(v0){ if(cb) cb(v0); return; }
+    if(!largoMontando){
+      var src = rutaVideo(figLargo.dataset.src), poster = figLargo.dataset.poster ? rutaVideo(figLargo.dataset.poster) : '';
+      largoMontando = existe(src).then(function(ok){
+        if(!ok) return null;
+        return (poster ? existe(poster) : Promise.resolve(false)).then(function(okp){
+          var v = montarVideoNativo(figLargo, src, okp ? poster : '', figLargo.dataset.preload || 'none');
+          v.addEventListener('timeupdate', function(){ marcarCapituloActivo(v.currentTime); });
+          return v;
+        });
+      });
+    }
+    largoMontando.then(function(v){ if(v && cb) cb(v); });
+  }
+  function marcarCapituloActivo(t){
+    var activo = null;
+    capBotones.forEach(function(b){ if(Number(b.dataset.t) <= t + .25) activo = b; });
+    capBotones.forEach(function(b){
+      if(b === activo) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+    });
+  }
+  function irACapitulo(seg){
+    if(!figLargo) return;
+    montarVideoLargo(function(v){
+      figLargo.scrollIntoView({ behavior:'smooth', block:'center' });
+      var saltar = function(){
+        try{ v.currentTime = seg; }catch(e){}
+        var p = v.play(); if(p && p.catch) p.catch(function(){});
+      };
+      // preload="none" (a propósito: no se descarga nada del video largo hasta que se pida) significa que
+      // readyState se queda en 0 para siempre si no se fuerza la carga: loadedmetadata nunca dispararía solo.
+      if(v.readyState < 1){ v.addEventListener('loadedmetadata', saltar, { once:true }); v.load(); }
+      else saltar();
+    });
+  }
+  capBotones.forEach(function(b){ b.addEventListener('click', function(){ irACapitulo(Number(b.dataset.t)); }); });
+
+  // ================= v9 · enlaces profundos =================
+  (function(){
+    var h = location.hash || '';
+    var m = h.match(/plan([123])|^#(pitch|como|planes-sec|despues|confianza|video-completo|contacto|fase0)$|^#cap([1-8])$/);
+    if(m && m[1]) planElegido = Number(m[1]);
+    if(m && m[2]){ var el = document.getElementById(m[2]); if(el){ if(el.tagName === 'DETAILS') el.open = true; setTimeout(function(){ el.scrollIntoView({ behavior:'smooth' }); }, 300); } }
+    if(m && m[1]) setTimeout(function(){ var d = document.getElementById('plan-detalle'); if(d) d.scrollIntoView({ behavior:'smooth', block:'start' }); }, 300);
+    if(m && m[3]){ var btn = capBotones[Number(m[3]) - 1]; if(btn) setTimeout(function(){ irACapitulo(Number(btn.dataset.t)); }, 300); }
+  })();
+
+  // ================= v9 · arranque =================
+  cargarPlan(planElegido, true);
+  montarVideos();
+  observarCta();
+  (function(){ var c = document.getElementById('contacto'); if(!c || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function(es){ es.forEach(function(e){ enCierre = e.isIntersecting; pintarBarra(); }); }, { threshold:.2 }).observe(c);
+  })();
+  (function(){ var b = document.getElementById('progresoBarra'); if(!b) return; function f(){ var h = document.documentElement; var p = h.scrollTop / ((h.scrollHeight - h.clientHeight) || 1); b.style.transform = 'scaleX(' + Math.min(1, Math.max(0, p)) + ')'; } window.addEventListener('scroll', f, { passive:true }); window.addEventListener('resize', f); f(); })();
+</script>
+</body>
+</html>
