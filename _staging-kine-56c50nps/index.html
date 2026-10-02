@@ -1,0 +1,1419 @@
+<!doctype html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="robots" content="noindex,nofollow,noarchive">
+<meta name="theme-color" content="#0E0E0E">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='7' fill='%230E0E0E'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23EAF1F8' stroke-width='3'/%3E%3C/svg%3E">
+<title>Propuesta · Kine</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Newsreader:ital,wght@0,400;0,500;1,400;1,500&family=Public+Sans:wght@400;500;600;700;800&display=swap">
+
+<style>
+  
+  :root{
+    
+    --fondo-oscuro:#0E0E0E; --fondo-oscuro-rgb:14,14,14; --fondo:#121212;
+    
+    --enfasis-1:#202020; --enfasis-2:#282828; --enfasis-3:#313131;
+    --superficie-1:#202020; --superficie-2:#282828; --superficie-3:#313131;
+    
+    --acento:#EAF1F8; --acento-rgb:234,241,248; --acento-2:#EAF1F8; --acento-ink:#0E0E0E;
+    --acento-velo:rgba(var(--acento-rgb),.10);
+    --texto-fuerte:#F5F1E8; --texto-fuerte-rgb:245,241,232; --texto:#E4E1D8; --texto-suave:#9FAAB3;
+    --linea:rgba(var(--texto-fuerte-rgb),.13); --linea-fuerte:rgba(var(--texto-fuerte-rgb),.28);
+    --rojo:#C0392B;
+    --serif:'Newsreader',Georgia,serif; --sans:'Public Sans',system-ui,sans-serif;
+    
+    --blanco:#fff; --blanco-rgb:255,255,255; --negro-puro:#000; --negro-rgb:0,0,0;
+    --t-portada:clamp(34px,5.6vw,60px); --t-sec:clamp(30px,4.6vw,48px); --t-bajada:clamp(18px,2.4vw,22px);
+    --t-cuerpo:clamp(16px,2vw,17.5px); --t-chico:14.5px; --t-kicker:11px; --ls-kicker:.16em;
+    --medida:62ch; --tabs:0px; --barra:0px;
+    --px:0;--py:0;--pw:100%;--ph:100%;--rad:0;
+  }
+
+
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth;-webkit-text-size-adjust:100%;font-size:16px;background:var(--fondo)}
+  body{margin:0;background:var(--fondo);color:var(--texto);font-family:var(--sans);font-size:var(--t-cuerpo);line-height:1.6;
+    font-variant-numeric:tabular-nums;-webkit-font-smoothing:antialiased;touch-action:manipulation}
+  [hidden]{display:none!important}
+  ::selection{background:var(--acento);color:var(--acento-ink)}
+  html{scrollbar-color:var(--superficie-3) var(--fondo)}
+  ::-webkit-scrollbar{width:10px}::-webkit-scrollbar-thumb{background:var(--superficie-3);border:2px solid var(--fondo)}::-webkit-scrollbar-track{background:var(--fondo)}
+  a{color:var(--acento)}
+  p{margin:0 0 .9em;max-width:var(--medida)}
+  h1,h2,h3,h4{margin:0;font-variant-numeric:tabular-nums;text-wrap:balance}
+  h2{font-family:var(--sans);font-weight:800;letter-spacing:-.022em;line-height:1.06;font-size:var(--t-sec);color:var(--blanco);max-width:20ch}
+  h2 em,h1 em,.t-sec em,h3 em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--acento);letter-spacing:0}
+  h3{font-family:var(--serif);font-weight:500;font-size:var(--t-bajada);line-height:1.25;color:var(--texto-fuerte)}
+  button,input,select,textarea,summary{font-variant-numeric:inherit}
+  .wrap{max-width:1120px;margin:0 auto;padding-inline:18px}
+  @media (min-width:900px){.wrap{padding-inline:28px}}
+  .kicker,.eyebrow{display:block;font-family:var(--sans);font-weight:700;font-size:var(--t-kicker);line-height:1.25;
+    letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--acento);margin:0 0 14px}
+  .bajada,.lead,.lede{color:var(--texto-suave);font-size:var(--t-bajada);line-height:1.45;max-width:var(--medida);margin:14px 0 0}
+  .nota{font-family:var(--serif);font-style:italic;font-weight:400;font-size:var(--t-chico);line-height:1.5;color:var(--texto-suave);margin:0}
+  .nota b{color:var(--texto-fuerte);font-style:normal;font-family:var(--sans)}
+  .chico{font-size:var(--t-chico)}
+  :focus-visible{outline:3px solid var(--acento);outline-offset:3px}
+  
+  video:focus-visible{outline:3px solid var(--acento);outline-offset:3px}
+  .salto{position:absolute;left:-999px;top:8px;background:var(--fondo-oscuro);color:var(--acento);border:2px solid var(--acento);padding:8px 12px;z-index:100;font-weight:700}
+  .salto:focus{left:8px}
+
+  
+  .btn{display:inline-flex;align-items:center;justify-content:center;gap:10px;background:transparent;color:var(--acento);border:2px solid var(--acento);
+    padding:13px 20px;font:700 var(--t-chico)/1.2 var(--sans);letter-spacing:.01em;cursor:pointer;text-decoration:none;min-height:46px;
+    transition:background .2s,color .2s,border-color .2s,transform .35s cubic-bezier(.2,.7,.2,1);position:relative;overflow:hidden;-webkit-tap-highlight-color:transparent}
+  .btn.ghost,.btn.ghost.oscuro{background:transparent;color:var(--texto-fuerte);border-width:1px;border-color:var(--linea-fuerte)}
+  .flecha{flex:none;width:9px;height:9px;border-right:2px solid currentColor;border-bottom:2px solid currentColor;transform:rotate(-45deg);transition:transform .3s cubic-bezier(.34,1.4,.5,1)}
+  .app-ripple{position:absolute;border-radius:50%;transform:scale(0);pointer-events:none;z-index:1;
+    background:radial-gradient(circle,rgba(var(--acento-rgb),.42),rgba(var(--acento-rgb),.12) 55%,transparent 70%);animation:appRipple .62s cubic-bezier(.22,.61,.36,1) forwards}
+  @keyframes appRipple{to{transform:scale(1);opacity:0}}
+
+  
+  .rv{opacity:0;transform:translateY(18px);transition:opacity .8s ease,transform .8s cubic-bezier(.2,.7,.2,1)}
+  .rv.vis{opacity:1;transform:none}
+  @keyframes riseIn{from{opacity:0;transform:translateY(16px)}to{opacity:1;transform:none}}
+  @keyframes drawX{from{transform:scaleX(0)}to{transform:scaleX(1)}}
+  @keyframes pop{0%{opacity:0;transform:scale(.6)}60%{opacity:1;transform:scale(1.08)}100%{opacity:1;transform:scale(1)}}
+
+  
+  .progreso{position:fixed;left:0;top:0;right:0;height:3px;z-index:80;background:rgba(var(--texto-fuerte-rgb),.08);pointer-events:none}
+  .progreso i{display:block;height:100%;background:var(--acento);transform-origin:left;transform:scaleX(0)}
+  header.top{padding:18px 0;border-bottom:1px solid var(--linea);background:var(--superficie-1)}
+  header.top .wrap{display:flex;align-items:center;justify-content:space-between;gap:14px}
+  
+  .brand{display:inline-flex;align-items:center;gap:12px;text-decoration:none;color:inherit;min-width:0;min-height:44px}
+  .brand img{height:38px;width:auto;background:var(--blanco);padding:5px 8px;flex:none}
+  .brand-t{display:flex;flex-direction:column;line-height:1.15;min-width:0}
+  .brand-t b{font-size:14px;color:var(--blanco)}
+  .brand-t small{font:11px/1.2 var(--sans);color:var(--texto-suave);letter-spacing:.04em;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .top-nav{display:none;gap:22px;margin-left:auto;margin-right:22px}
+  .top-nav a{color:var(--texto-suave);text-decoration:none;font-weight:600;font-size:var(--t-chico);position:relative;padding:6px 0}
+  .top-nav a::after{content:'';position:absolute;left:0;right:0;bottom:0;height:2px;background:var(--acento);transform:scaleX(0);transform-origin:left;transition:transform .3s cubic-bezier(.2,.7,.2,1)}
+  .top-cta{padding:11px 16px;min-height:44px}
+  @media (min-width:900px){.top-nav{display:flex}}
+
+  
+  .hero-sec{position:relative;overflow:hidden;background:linear-gradient(180deg,var(--superficie-1) 0%,var(--fondo) 26%,var(--fondo-oscuro) 100%)}
+  .hero{position:relative;z-index:1;padding:44px 0 36px;display:grid;gap:36px}
+  .hero-texto{min-width:0}
+  .hero .kicker{opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .15s forwards}
+  .hero h1{font-family:var(--sans);font-weight:800;letter-spacing:-.025em;line-height:1.04;color:var(--blanco);font-size:var(--t-portada);max-width:15ch;
+    opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .3s forwards}
+  .hero .lede{color:var(--blanco);font-weight:500;margin:20px 0 10px;opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .5s forwards}
+  .hero .sub{color:var(--texto-suave);font-size:var(--t-cuerpo);line-height:1.6;max-width:var(--medida);margin:0 0 20px;opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .62s forwards}
+  .chips{display:grid;grid-template-columns:1fr 1fr;gap:8px;max-width:720px}
+  .chip{background:rgba(var(--blanco-rgb),.03);border:1px solid var(--linea);color:var(--texto-fuerte);padding:9px 11px;font-size:var(--t-chico);line-height:1.35;display:flex;align-items:center;gap:8px;opacity:0;animation:chipEntra .9s cubic-bezier(.16,.6,.24,1) both,chipCheck 1.1s cubic-bezier(.45,.05,.25,1) both}
+  .chip::before{content:'';flex:none;width:9px;height:6px;border-left:1.5px solid var(--texto-fuerte);border-bottom:1.5px solid var(--texto-fuerte);transform:rotate(-45deg) translateY(-1px);animation:chipTick 1.1s cubic-bezier(.45,.05,.25,1) both}
+  .chip:nth-child(1){animation-delay:.8s,1.4s}.chip:nth-child(1)::before{animation-delay:1.4s}
+  .chip:nth-child(2){animation-delay:1.2s,1.8s}.chip:nth-child(2)::before{animation-delay:1.8s}
+  .chip:nth-child(3){animation-delay:1.6s,2.2s}.chip:nth-child(3)::before{animation-delay:2.2s}
+  .chip:nth-child(4){animation-delay:2s,2.6s}.chip:nth-child(4)::before{animation-delay:2.6s}
+  @keyframes chipEntra{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+  @keyframes chipCheck{0%{background:rgba(var(--blanco-rgb),.03);border-color:var(--linea);color:var(--texto-fuerte)}42%{color:var(--texto-fuerte)}58%{color:var(--acento-ink)}100%{background:var(--acento);border-color:var(--acento);color:var(--acento-ink)}}
+  @keyframes chipTick{0%,42%{border-color:rgba(var(--texto-fuerte-rgb),.3);transform:rotate(-45deg) translateY(-1px) scale(.6)}72%{border-color:var(--acento-ink);transform:rotate(-45deg) translateY(-1px) scale(1.12)}100%{border-color:var(--acento-ink);transform:rotate(-45deg) translateY(-1px) scale(1)}}
+  .hero-cta{display:flex;align-items:center;flex-wrap:wrap;gap:10px 18px;margin-top:24px;opacity:0;animation:riseIn .9s cubic-bezier(.2,.7,.2,1) .95s forwards}
+  .hero-cta .btn{padding:14px 22px}
+  .hero-link{color:var(--texto-fuerte);font:600 var(--t-chico)/1.2 var(--sans);text-decoration:underline;text-underline-offset:5px;text-decoration-color:rgba(var(--texto-fuerte-rgb),.4)}
+  .hero-panel{position:relative;padding:16px 0 44px;animation:flota 7s ease-in-out infinite alternate}
+  @keyframes flota{from{transform:translateY(0)}to{transform:translateY(-10px)}}
+  .glow{position:absolute;inset:-30% -20%;pointer-events:none;background:radial-gradient(closest-side at 60% 40%,rgba(var(--acento-rgb),.34),rgba(var(--acento-rgb),.07) 55%,transparent 75%);
+    filter:blur(28px);animation:glowDeriva 14s ease-in-out infinite alternate}
+  @keyframes glowDeriva{from{transform:translate(-4%,-3%) scale(1)}to{transform:translate(5%,4%) scale(1.1)}}
+  .panel{position:relative;margin:0;background:var(--superficie-1);border:1px solid rgba(var(--blanco-rgb),.1);box-shadow:0 50px 100px -40px rgba(var(--negro-rgb),.85);opacity:0}
+  .panel img{display:block;width:100%;height:auto}
+  .panel-main{transform:rotate(-2deg);animation:panelEntra .9s cubic-bezier(.2,.7,.2,1) .55s forwards}
+  @keyframes panelEntra{from{opacity:0;transform:translate(48px,10px) rotate(-5deg)}to{opacity:1;transform:rotate(-2deg)}}
+  .panel-chrome{display:flex;align-items:center;gap:6px;padding:8px 12px;border-bottom:1px solid rgba(var(--blanco-rgb),.08);font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--texto-suave)}
+  .panel-chrome i{width:8px;height:8px;border-radius:50%;background:rgba(var(--blanco-rgb),.18);flex:none}
+  .panel-chrome span{margin-left:8px;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+  .panel-kpis{position:absolute;left:-4%;bottom:6px;width:64%;border-color:rgba(var(--acento-rgb),.4);transform:rotate(1.5deg);animation:panelEntra2 .9s cubic-bezier(.2,.7,.2,1) .95s forwards}
+  @keyframes panelEntra2{from{opacity:0;transform:translateY(30px) rotate(4deg)}to{opacity:1;transform:rotate(1.5deg)}}
+  .badge{position:absolute;right:-6px;top:-4px;background:var(--fondo-oscuro);color:var(--acento);border:1px solid var(--acento);box-shadow:0 10px 30px rgba(var(--negro-rgb),.45);padding:9px 13px;opacity:0;animation:badgePop .55s cubic-bezier(.34,1.56,.64,1) 1.35s both;
+    font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase}
+  @keyframes badgePop{0%{opacity:0;transform:scale(.55) rotate(2deg)}60%{opacity:1;transform:scale(1.09) rotate(2deg)}100%{opacity:1;transform:scale(1) rotate(2deg)}}
+  .badge b{display:block;font:italic 500 var(--t-bajada)/1.15 var(--serif);letter-spacing:0;text-transform:none;margin-top:3px;color:var(--texto-fuerte)}
+  @media (min-width:900px){
+    .hero{grid-template-columns:1.02fr .98fr;align-items:center;gap:56px;padding:84px 0 96px}
+    .chips{display:flex;flex-wrap:wrap;gap:8px}.chip{padding:9px 14px}
+    .hero-panel{padding:24px 0 56px}.badge{right:-14px;top:-10px}
+  }
+
+  
+  .seccion{padding:72px 0;border-top:1px solid var(--linea)}
+  @media (min-width:900px){.seccion{padding:110px 0}}
+  .t-sec{margin-top:0}
+
+  
+  .problema{background:var(--fondo-oscuro)}
+  .cadena{display:grid;grid-template-columns:1fr auto 1fr auto 1fr;align-items:start;gap:6px;margin:44px 0 18px;max-width:900px}
+  .dato{text-align:center;min-width:0;opacity:0;transform:scale(.6)}
+  .cadena.vis .dato{animation:pop .7s cubic-bezier(.34,1.56,.64,1) both}
+  .cadena.vis .dato:nth-child(1){animation-delay:.1s}.cadena.vis .dato:nth-child(3){animation-delay:.55s}.cadena.vis .dato:nth-child(5){animation-delay:1s}
+  .dato b{display:block;font:500 clamp(58px,11vw,128px)/1 var(--serif);color:var(--texto-fuerte);letter-spacing:-.02em}
+  .dato span{display:block;margin-top:10px;font:700 var(--t-kicker)/1.3 var(--sans);letter-spacing:.08em;text-transform:uppercase;color:var(--texto-suave)}
+  .dato small{display:block;margin-top:6px;font:italic 500 var(--t-chico)/1.2 var(--serif);color:var(--rojo)}
+  .dato.mal b{color:var(--rojo)}
+  .tramo{display:block;height:1px;width:clamp(28px,8vw,90px);margin-top:clamp(30px,5.5vw,64px);background:linear-gradient(90deg,transparent,var(--texto-fuerte));transform:scaleX(0);transform-origin:left}
+  .cadena.vis .tramo:nth-child(2){animation:drawX .5s ease .35s both}.cadena.vis .tramo:nth-child(4){animation:drawX .5s ease .8s both}
+  .total{font-size:var(--t-bajada);color:var(--texto-suave);max-width:none}
+  .total em{font-family:var(--serif);font-style:italic;font-weight:500;color:var(--texto-fuerte)}
+
+  
+  .elegir{background:linear-gradient(180deg,var(--fondo),var(--fondo-oscuro))}
+  .planes-grandes{display:grid;gap:12px;margin-top:36px}
+  @media (min-width:900px){.planes-grandes{grid-template-columns:repeat(3,1fr);gap:14px}}
+  .pg{position:relative;text-align:left;display:flex;flex-direction:column;gap:4px;min-height:44px;padding:24px 22px 22px;
+    background:rgba(var(--blanco-rgb),.03);border:1px solid var(--linea);color:var(--texto-fuerte);cursor:pointer;font-family:var(--sans);
+    transition:border-color .25s,background .25s,transform .35s cubic-bezier(.2,.7,.2,1);overflow:hidden;-webkit-tap-highlight-color:transparent}
+  .pg-sello{position:absolute;top:0;right:0;background:transparent;color:var(--acento);border:1px solid var(--acento);border-top:none;border-right:none;padding:6px 10px 7px;font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase}
+  .pg-n{font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--texto-suave)}
+  .pg-t{font:500 var(--t-bajada)/1.25 var(--serif);color:var(--blanco)}
+  .pg-precio{display:block;margin-top:16px;font:500 var(--t-sec)/1 var(--serif);letter-spacing:-.01em;color:var(--blanco)}
+  .pg-mes{font-size:var(--t-chico);color:var(--texto-fuerte);font-weight:700;margin-top:8px}
+  .pg-d{font-size:var(--t-chico);line-height:1.5;color:var(--texto-suave);margin-top:14px;padding-top:14px;border-top:1px solid var(--linea)}
+  .pg-ir{display:inline-flex;align-items:center;gap:8px;margin-top:16px;font-weight:700;font-size:var(--t-chico);color:var(--texto-fuerte)}
+  .pg-ir .flecha{border-color:var(--acento)}
+  .pg::after{content:'';position:absolute;top:-40%;bottom:-40%;left:-60%;width:40%;pointer-events:none;opacity:0;background:linear-gradient(105deg,transparent 0%,rgba(var(--acento-rgb),.22) 50%,transparent 100%);transform:skewX(-18deg)}
+  .pg.reco.vis::after{animation:brillo 1.4s cubic-bezier(.2,.7,.2,1) .5s both}
+  @keyframes brillo{0%{opacity:0;transform:skewX(-18deg) translateX(0)}20%{opacity:1}100%{opacity:0;transform:skewX(-18deg) translateX(420%)}}
+  .elegir-nota{margin-top:20px}
+
+  
+  .documento{padding-bottom:calc(var(--barra) + 24px)}
+  .plan{display:none;padding-top:40px;scroll-margin-top:16px}
+  .plan.on{display:block;animation:aparecer .3s ease}
+  @keyframes aparecer{from{opacity:0}to{opacity:1}}
+  .plan-head{display:grid;gap:22px;margin-bottom:28px}
+  .plan-head .lede{font-size:var(--t-cuerpo);line-height:1.6;margin-top:14px}
+  .eyebrow.tagline-plan{font:italic 400 var(--t-bajada)/1.4 var(--serif);letter-spacing:0;text-transform:none;color:var(--texto-suave);margin-bottom:10px;max-width:44ch}
+  @media (min-width:900px){.plan{padding-top:56px}.plan-head{grid-template-columns:1.15fr 1fr;align-items:start;gap:40px}}
+  
+  .card{background:var(--superficie-2);color:var(--texto);border:1px solid var(--linea);padding:16px 18px}
+  details.card{padding:0}
+  details.card summary{list-style:none;cursor:pointer;padding:16px 18px;font:500 var(--t-bajada)/1.3 var(--serif);color:var(--texto-fuerte);display:flex;justify-content:space-between;align-items:center;gap:12px;min-height:56px;position:relative;overflow:hidden}
+  details.card summary::-webkit-details-marker{display:none}
+  details.card summary::after{content:'+';font:400 24px/1 var(--sans);color:var(--texto-fuerte);flex:none}
+  details.card[open] summary::after{content:'–';color:var(--acento)}
+  details.card .cuerpo{padding:2px 18px 18px;animation:vzAbre .34s cubic-bezier(.22,.61,.36,1) both}
+  .incluye{list-style:none;margin:0;padding:0}
+  .incluye li{position:relative;padding:12px 0 12px 26px;border-top:1px solid var(--linea);font-size:var(--t-cuerpo);line-height:1.55}
+  .incluye li:first-child{border-top:none;padding-top:4px}
+  .incluye li::before{content:'';position:absolute;left:1px;top:19px;width:9px;height:6px;border-left:2px solid var(--texto-suave);border-bottom:2px solid var(--texto-suave);transform:rotate(-45deg)}
+  .incluye li.hereda::before{border-color:var(--texto-fuerte)}
+  .incluye li:first-child::before{top:11px}
+  .incluye li.nuevo::before{content:'+';border:none;color:var(--texto-suave);font-weight:700;transform:none;top:11px;left:2px}
+  .incluye li b{color:var(--blanco)}
+  .incluye .nota{margin-top:6px;max-width:none}
+  .callout p{margin:0;font-size:var(--t-cuerpo);color:var(--texto);max-width:none}
+  .callout b{color:var(--texto-fuerte)}
+  .linea{list-style:none;margin:8px 0 0;padding:0}
+  .linea li{display:grid;grid-template-columns:64px 18px 1fr;gap:8px;align-items:start;padding:0 0 16px;position:relative;font-size:var(--t-chico);line-height:1.5}
+  .linea li .cuando{font:italic 400 var(--t-chico)/1.4 var(--serif);color:var(--texto-fuerte);text-align:right;padding-top:1px}
+  .linea li .hito{width:8px;height:8px;border-radius:50%;background:var(--texto-fuerte);margin:8px auto 0;position:relative;z-index:1;box-shadow:0 0 0 3px var(--superficie-2)}
+  .linea li.fuera .hito{background:var(--superficie-3);border:1px solid var(--linea-fuerte)}
+  .linea li::after{content:'';position:absolute;left:77px;top:16px;bottom:-2px;width:1px;background:var(--linea)}
+  .linea li:last-child::after{display:none}
+  .linea li b{display:block;color:var(--blanco)}
+  .linea li.fuera b,.linea li.fuera .cuando{color:var(--texto-suave)}
+  .linea li span{color:var(--texto-suave)}
+
+  .faq details{background:var(--superficie-2);border:1px solid var(--linea);margin:10px 0}
+  .faq summary{cursor:pointer;font:600 var(--t-bajada)/1.3 var(--sans);padding:16px 18px;min-height:56px;display:flex;align-items:center;justify-content:space-between;gap:12px;color:var(--texto-fuerte);list-style:none;position:relative;overflow:hidden}
+  .faq summary::-webkit-details-marker{display:none}
+  .faq summary::after{content:'+';color:var(--texto-fuerte);font:400 24px/1 var(--sans);flex:none}
+  .faq details[open] summary::after{content:'–';color:var(--acento)}
+  .faq .r{padding:0 18px 18px;color:var(--texto);max-width:var(--medida);animation:vzAbre .34s cubic-bezier(.22,.61,.36,1) both}
+  .lista-mitiga{list-style:none;margin:0;padding:0}
+  .lista-mitiga li{padding:16px 0;border-top:1px solid var(--linea)}
+  .lista-mitiga li:first-child{border-top:none;padding-top:6px}
+  .lista-mitiga h3{margin:0 0 6px;font-family:var(--sans);font-weight:700;font-size:var(--t-cuerpo);color:var(--blanco)}
+  .lista-mitiga p{margin:0;color:var(--texto-suave);font-size:var(--t-cuerpo)}
+  @media (min-width:900px){.lista-mitiga li{display:grid;grid-template-columns:.9fr 1.1fr;gap:28px}.lista-mitiga h3{font-size:var(--t-bajada)}}
+
+  
+  .cierre{margin-top:96px;padding:60px 0 calc(var(--barra) + 40px);border-top:1px solid var(--linea);position:relative;overflow:hidden}
+  .cierre::before{content:'';position:absolute;left:50%;top:-40%;width:900px;height:600px;transform:translateX(-50%);background:radial-gradient(closest-side,rgba(var(--acento-rgb),.16),transparent 70%);filter:blur(30px);pointer-events:none}
+  .cierre>*{position:relative}
+  .cierre .lead{margin-top:18px}
+  .cta-fila{display:flex;gap:12px;flex-wrap:wrap;align-items:center;margin:28px 0 20px}
+  .cta{display:inline-flex;align-items:center;gap:10px;background:transparent;color:var(--acento);text-decoration:none;font:700 16px/1.2 var(--sans);padding:16px 24px;border:2px solid var(--acento);min-height:54px;position:relative;overflow:hidden;transition:background .2s,color .2s,border-color .2s;-webkit-tap-highlight-color:transparent}
+  .cta svg{width:18px;height:18px;flex:none}
+  .cta.sec{background:transparent;color:var(--texto-fuerte);border-width:1px;border-color:var(--linea-fuerte);font-weight:600;font-size:var(--t-chico);padding:12px 18px;min-height:46px}
+  @keyframes ctaPulso{0%{box-shadow:0 0 0 0 rgba(var(--acento-rgb),.55)}100%{box-shadow:0 0 0 18px rgba(var(--acento-rgb),0)}}
+  .cta-fila.vis .cta:not(.sec){animation:ctaPulso 1.6s ease-out .6s 2}
+  .tagline{font-size:var(--t-chico);color:var(--texto-suave);max-width:48ch}
+  .marca-pie{margin-top:18px;font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--texto-suave)}
+  .marca-pie b{color:var(--texto-fuerte)}
+
+  
+  .barra-fija{position:fixed;left:0;right:0;bottom:0;z-index:40;background:rgba(var(--fondo-oscuro-rgb),.96);backdrop-filter:blur(10px);color:var(--blanco);padding:8px 12px calc(8px + env(safe-area-inset-bottom));display:flex;align-items:center;justify-content:space-between;gap:10px;border-top:2px solid var(--acento);transform:translateY(110%);transition:transform .24s ease}
+  .barra-fija:not(.on){visibility:hidden}
+  .barra-fija.on{transform:none}
+  .barra-fija .marca{font:700 10px/1.2 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:rgba(var(--blanco-rgb),.7);min-width:0}
+  .barra-fija .marca b{color:var(--blanco);display:block;letter-spacing:0}
+  .barra-fija .acc{display:flex;gap:8px;flex:none}
+  .barra-fija a{display:inline-flex;align-items:center;justify-content:center;gap:6px;min-height:44px;background:transparent;color:var(--acento);border:2px solid var(--acento);text-decoration:none;font:700 14px/1 var(--sans);padding:0 16px;white-space:nowrap;transition:background .2s}
+  @media (hover:hover) and (pointer:fine){.barra-fija a:not(.sec):hover{background:rgba(var(--acento-rgb),.1)}}
+  .barra-fija a svg{width:16px;height:16px;flex:none}
+  .barra-fija a.sec{background:transparent;color:var(--blanco);border:1px solid rgba(var(--blanco-rgb),.4)}
+
+  
+  @media (hover:hover) and (pointer:fine){
+    .btn:hover{background:rgba(var(--acento-rgb),.1);border-color:var(--acento-2);color:var(--acento-2)}
+    .btn.ghost:hover,.btn.ghost.oscuro:hover{background:rgba(var(--texto-fuerte-rgb),.08);border-color:rgba(var(--texto-fuerte-rgb),.6)}
+    .btn:hover .flecha,.cta:hover .flecha,.pg:hover .pg-ir .flecha{transform:rotate(-45deg) translate(3px,-3px)}
+    .cta:hover{background:rgba(var(--acento-rgb),.1);border-color:var(--acento-2);color:var(--acento-2)}
+    .cta.sec:hover{background:rgba(var(--texto-fuerte-rgb),.08);border-color:var(--texto-fuerte)}
+    .pg:hover{border-color:rgba(var(--acento-rgb),.65);background:rgba(var(--acento-rgb),.07);transform:translateY(-4px)}
+    .top-nav a:hover{color:var(--blanco)}.top-nav a:hover::after{transform:scaleX(1)}
+  }
+  .btn:active,.cta:active,.pg:active{transform:scale(.96)}
+  summary:active{transform:none}
+
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none!important;transition:none!important}html{scroll-behavior:auto}
+    .rv,.hero *,.panel,.badge,.dato,.tramo{opacity:1!important;transform:none!important}
+    .chip::before{animation:none!important}
+    .chip{background:var(--acento)!important;border-color:var(--acento)!important;color:var(--acento-ink)!important}
+    .chip::before{border-color:var(--acento-ink)!important;transform:rotate(-45deg) translateY(-1px) scale(1)!important}
+  }
+  @media print{
+    html,body,.hero-sec,.problema,.elegir,.seccion,.card,.faq details,.pg{background:var(--blanco)!important;color:var(--negro-puro)!important}
+    h1,h2,h3,.lede,.sub,.chip,.lead,.nota,.pg-t,.pg-precio,.incluye li b,.linea li b,.cap .tit,.faq summary,.dato b,.total{color:var(--negro-puro)!important}
+    .progreso,.glow,.hero-panel,.barra-fija,.video-marco,.top-cta,.top-nav,.cta-fila{display:none!important}
+    .plan{display:block!important}details{display:block}
+    .faq details[open] summary~*{display:block}
+  }
+
+  
+  
+  .top-cta{white-space:nowrap}
+  
+  .cierre{margin-top:0;padding:72px 0 calc(var(--barra) + 40px)}
+  @media (min-width:900px){.cierre{padding-top:110px}}
+  
+  .faq summary{font:500 var(--t-bajada)/1.3 var(--serif)}
+  
+  
+  .linea{max-width:calc(var(--medida) + 90px)}
+  
+  .seccion .bajada + *{margin-top:36px}
+  .planes-grandes{margin-top:0}
+  .linea{margin:0}
+  
+  #despues .t-sec + .linea{margin-top:36px}
+  section.bloque>details.card,.seccion>.wrap>details.card{margin-top:0}
+  
+  .plan-head h2{font-size:clamp(24px,3.2vw,32px);max-width:none}
+  
+  .hero-link{display:inline-flex;align-items:center;min-height:44px}
+  
+  
+  @media (max-width:619px){:root{--t-chico:15px}.barra-fija .marca{display:none}}
+  
+  .badge{top:auto;bottom:24px;right:-6px}
+  @media (min-width:900px){.badge{right:-14px;bottom:32px}}
+  
+  @media (max-width:899px){.panel-kpis{left:0}.badge{right:0}}
+  
+  
+  .hero-panel{animation:none}
+  .glow{animation:none}
+
+  
+  
+  
+  
+  
+  .topwa-corto{display:none}
+  @media (max-width:619px){.topwa-largo{display:none}.topwa-corto{display:inline}}
+
+  
+  .videos{display:grid;gap:22px;margin-top:36px}
+  @media (min-width:900px){.videos{grid-template-columns:repeat(3,1fr);gap:20px}}
+  .video-item{display:flex;flex-direction:column;gap:8px;min-width:0}
+  .video-num{font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--texto-fuerte);margin:0}
+  .video-item h3{margin:0;font-family:var(--sans);font-weight:700;font-size:var(--t-bajada);color:var(--blanco);letter-spacing:-.01em}
+  .video-marco{position:relative;margin:0;aspect-ratio:16/9;background:var(--negro-puro);border:1px solid var(--linea);overflow:hidden}
+  .video-marco video{display:block;width:100%;height:100%;object-fit:contain;background:var(--negro-puro);accent-color:var(--acento)}
+  .video-espera{position:absolute;inset:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:6px;text-align:center;padding:20px;background:var(--superficie-1);border:1px solid var(--linea)}
+  .video-espera b{font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--texto-fuerte)}
+  .video-espera span{font:italic 400 var(--t-chico)/1.4 var(--serif);color:var(--texto-suave)}
+  
+  
+  .video-marco[data-marco="1"]{border-top:1px solid var(--acento);box-shadow:0 30px 80px rgba(var(--negro-rgb),.6),0 0 120px rgba(var(--acento-rgb),.14)}
+  
+  .video-marco[data-marco="2"]{box-sizing:content-box;padding-top:34px;background:var(--fondo);box-shadow:0 30px 80px rgba(var(--negro-rgb),.6),0 0 100px rgba(var(--acento-rgb),.10)}
+  .video-marco[data-marco="2"]::before{content:'';position:absolute;left:0;right:0;top:0;height:34px;background:var(--fondo);border-bottom:1px solid var(--linea);
+    background-image:radial-gradient(circle,transparent 3.5px,rgba(var(--texto-fuerte-rgb),.45) 4px,rgba(var(--texto-fuerte-rgb),.45) 4.6px,transparent 5.2px),radial-gradient(circle,transparent 3.5px,rgba(var(--texto-fuerte-rgb),.45) 4px,rgba(var(--texto-fuerte-rgb),.45) 4.6px,transparent 5.2px),radial-gradient(circle,transparent 3.5px,rgba(var(--texto-fuerte-rgb),.45) 4px,rgba(var(--texto-fuerte-rgb),.45) 4.6px,transparent 5.2px);
+    background-repeat:no-repeat;background-size:12px 12px;background-position:12px 11px,27px 11px,42px 11px}
+  .video-marco[data-marco="2"]::after{content:'';position:absolute;left:62px;top:9px;width:120px;height:25px;border:1px solid var(--linea);border-bottom:none;background:var(--fondo-oscuro) radial-gradient(circle at 12px 12px,var(--acento) 3px,transparent 3.5px) no-repeat}
+  .video-marco[data-marco="2"] .video-espera{top:34px}
+  
+  .video-marco[data-marco="3"]{aspect-ratio:1212/719;background:url(assets/mockups/laptop-oscuro.png) 0 0/100% 100% no-repeat;border:none;overflow:visible;filter:drop-shadow(0 40px 60px rgba(var(--negro-rgb),.65))}
+  .video-marco[data-marco="3"] video,.video-marco[data-marco="3"] .video-espera{position:absolute;left:14.439%;top:6.815%;width:71.782%;height:73.157%}
+  .video-marco[data-marco="3"] .video-espera{padding:12px;border:none}
+  .video-marco[data-marco="3"] .video-espera span{font-size:13px}
+  
+  .video-marco.con-video .boton-play{position:absolute;left:50%;top:50%;transform:translate(-50%,-50%);width:64px;height:64px;border-radius:50%;background:var(--fondo-oscuro);border:2px solid var(--acento);display:flex;align-items:center;justify-content:center;pointer-events:none;box-shadow:0 10px 30px rgba(var(--negro-rgb),.45);z-index:2;transition:opacity .15s}
+  .video-marco.con-video .boton-play::after{content:'';display:block;width:0;height:0;margin-left:4px;border-style:solid;border-width:12px 0 12px 20px;border-color:transparent transparent transparent var(--acento)}
+  .video-marco.con-video.reproduciendo .boton-play{opacity:0;pointer-events:none}
+  
+  .video-marco[data-marco="2"].con-video .boton-play{top:calc(50% + 17px)}
+  
+  .video-marco[data-marco="3"].con-video .boton-play{left:50.33%;top:43.394%}
+  
+  @media (hover:none){ .video-marco.con-video .boton-play{display:none} }
+  .video-marco.largo{max-width:960px;margin-top:36px}
+  
+  .capitulos-grid{display:grid;grid-template-columns:repeat(2,1fr);gap:6px;margin-top:28px;max-width:960px}
+  @media (min-width:900px){.capitulos-grid{grid-template-columns:repeat(4,1fr);gap:8px}}
+  
+  .cap-item{display:flex;align-items:center;gap:8px;border:1px solid var(--linea);padding:8px 9px;min-height:44px;min-width:0;
+    font:inherit;background:transparent;color:inherit;text-align:left;width:100%;cursor:pointer;transition:border-color .15s}
+  .cap-item:hover{border-color:var(--acento-2)}
+  .cap-item:focus-visible{outline:2px solid var(--acento);outline-offset:2px}
+  .cap-item[aria-current="true"]{border-color:var(--acento)}
+  .cap-item .cap-n{flex:none;font:700 10px/1 var(--sans);color:var(--acento);border:1px solid var(--linea);
+    width:15px;height:15px;display:flex;align-items:center;justify-content:center;margin-top:1px}
+  .cap-item .cap-body{flex:1;min-width:0;font-size:0}
+  .cap-item .cap-tit{font:600 11.5px/1.3 var(--sans);color:var(--texto-fuerte)}
+  .cap-item .cap-tit::after{content:' — '}
+  .cap-item .cap-time{font:600 11px/1.3 var(--sans);color:var(--texto-suave)}
+  .videos>.video-item.rv:nth-child(2){transition-delay:.12s}
+  .videos>.video-item.rv:nth-child(3){transition-delay:.24s}
+
+  
+  .pg[aria-pressed="true"]{border-color:var(--acento);box-shadow:inset 0 0 0 1px var(--acento);background:rgba(var(--acento-rgb),.07)}
+  .pg .pg-ir-on{display:none}
+  .pg[aria-pressed="true"] .pg-ir-ver{display:none}
+  .pg[aria-pressed="true"] .pg-ir-on{display:inline}
+  .pg[aria-pressed="true"] .pg-ir{color:var(--acento)}
+  #plan-detalle{scroll-margin-top:16px}
+  @media (min-width:900px){.plan-head{grid-template-columns:1fr;max-width:74ch}}
+
+  
+  .porque{list-style:none;margin:0;padding:0;display:grid;gap:0;max-width:none;background:var(--superficie-2);border:1px solid var(--linea)}
+  .porque li{padding:16px 18px 18px;border-top:1px solid var(--linea);font-size:var(--t-cuerpo);line-height:1.55;color:var(--texto-suave);min-width:0}
+  .porque li:first-child{border-top:none}
+  .porque li b{display:block;font:700 var(--t-kicker)/1.25 var(--sans);letter-spacing:var(--ls-kicker);text-transform:uppercase;color:var(--texto-fuerte);margin-bottom:4px}
+  .card-t{margin:0 0 10px;font:500 var(--t-bajada)/1.3 var(--serif);color:var(--texto-fuerte)}
+  .qincluye{padding:16px 18px 18px}
+  .pago-lista{list-style:none;margin:0;padding:0}
+  .pago-lista li{padding:8px 0;border-top:1px solid var(--linea);font-size:var(--t-chico);line-height:1.5;color:var(--texto)}
+  .pago-lista li:first-child{border-top:none;padding-top:0}
+  .pago-lista b{color:var(--texto-fuerte)}
+  .ver-largo{margin-top:4px}
+
+  
+  .lista-corta{list-style:none;margin:0 0 6px;padding:0}
+  .lista-corta li{position:relative;padding:9px 0 9px 24px;border-top:1px solid var(--linea);font-size:var(--t-chico);line-height:1.5;color:var(--texto-suave)}
+  .lista-corta li:first-child{border-top:none}
+  .lista-corta li::before{content:'';position:absolute;left:1px;top:15px;width:9px;height:6px;border-left:2px solid var(--texto-suave);border-bottom:2px solid var(--texto-suave);transform:rotate(-45deg)}
+  .lista-corta b{color:var(--blanco)}
+  
+  .seccion .bajada + .card{margin-top:36px}
+  .faq{margin-top:14px}
+  
+  @keyframes vzAbre{from{opacity:0;transform:translateY(-8px)}to{opacity:1;transform:none}}
+
+  
+  
+  .video-item h3{flex:1 0 auto}
+  
+
+  
+  
+  .incluye li{padding:10px 0 10px 26px;font-size:var(--t-chico);line-height:1.5;color:var(--texto-suave)}
+  .incluye li::before{top:17px}
+  .incluye li:first-child::before,.incluye li.nuevo::before{top:9px}
+  .incluye li:first-child.nuevo::before{top:1px}
+  
+  
+
+
+
+
+
+.hero-sec,#problema,#como,#video-completo,#planes-sec,#landing-sec,#despues,#confianza,#contacto{position:relative;overflow:clip;isolation:isolate}
+
+.hero-sec>.hero,#problema>.wrap,#como>.wrap,#video-completo>.wrap,#planes-sec>.wrap,#landing-sec>.wrap,#despues>.wrap,#confianza>.wrap,#contacto>.wrap{position:relative;z-index:1}
+
+.hero-sec::before,#problema::before,#como::before,#video-completo::before,#planes-sec::before,#landing-sec::before,#despues::before,#confianza::before,#contacto::before{
+  content:'';position:absolute;z-index:0;pointer-events:none;border-radius:50%;
+  filter:blur(36px);will-change:transform}
+
+@keyframes luzDeriva{from{transform:translate(-3%,-2%) scale(1)}to{transform:translate(4%,3%) scale(1.08)}}
+@keyframes luzDerivaInv{from{transform:translate(3%,2%) scale(1.06)}to{transform:translate(-4%,-3%) scale(1)}}
+
+
+.hero-sec{background:linear-gradient(180deg,var(--superficie-1) 0%,var(--fondo) 26%,var(--fondo-oscuro) 100%)} 
+#problema{background:var(--fondo-oscuro)}
+#como{background:var(--fondo)}
+#planes-sec{background:var(--fondo-oscuro)}
+#landing-sec{background:var(--fondo)}
+#despues{background:var(--fondo-oscuro)}
+#confianza{background:var(--fondo)}
+#video-completo{background:var(--fondo-oscuro)}
+#contacto{background:var(--fondo)}
+
+
+
+.hero-sec::before{width:900px;height:900px;right:-22%;top:-38%;
+  background:radial-gradient(closest-side,rgba(var(--acento-rgb),.20),rgba(var(--acento-rgb),.05) 55%,transparent 72%);
+  animation:luzDeriva 20s ease-in-out infinite alternate}
+
+#problema::before{width:720px;height:720px;left:-18%;bottom:-40%;
+  background:radial-gradient(closest-side,rgba(var(--acento-rgb),.16),rgba(var(--acento-rgb),.04) 55%,transparent 72%);
+  animation:luzDerivaInv 16s ease-in-out infinite alternate}
+
+#como::before{width:820px;height:520px;left:50%;top:-30%;margin-left:-410px;
+  background:radial-gradient(closest-side,rgba(var(--acento-rgb),.18),rgba(var(--acento-rgb),.05) 55%,transparent 72%);
+  animation:luzDeriva 18s ease-in-out infinite alternate}
+
+#video-completo::before{width:640px;height:640px;left:50%;top:-24%;margin-left:-320px;
+  background:radial-gradient(closest-side,rgba(var(--acento-rgb),.22),rgba(var(--acento-rgb),.06) 50%,transparent 70%);
+  animation:luzDerivaInv 14s ease-in-out infinite alternate}
+
+#planes-sec::before{width:760px;height:760px;right:-20%;top:18%;
+  background:radial-gradient(closest-side,rgba(var(--acento-rgb),.17),rgba(var(--acento-rgb),.05) 55%,transparent 72%);
+  animation:luzDeriva 22s ease-in-out infinite alternate}
+
+#landing-sec::before{width:680px;height:680px;left:-16%;top:-30%;
+  background:radial-gradient(closest-side,rgba(var(--acento-rgb),.13),rgba(var(--acento-rgb),.04) 55%,transparent 72%);
+  animation:luzDerivaInv 18s ease-in-out infinite alternate}
+
+#despues::before{width:560px;height:560px;right:-14%;top:-26%;
+  background:radial-gradient(closest-side,rgba(var(--acento-rgb),.15),rgba(var(--acento-rgb),.04) 55%,transparent 72%);
+  animation:luzDeriva 15s ease-in-out infinite alternate}
+
+#confianza::before{width:700px;height:700px;right:-24%;bottom:-38%;
+  background:radial-gradient(closest-side,rgba(var(--acento-rgb),.11),rgba(var(--acento-rgb),.03) 55%,transparent 72%);
+  animation:luzDerivaInv 21s ease-in-out infinite alternate}
+
+#contacto::before{width:900px;height:620px;left:50%;top:-34%;margin-left:-450px;
+  background:radial-gradient(closest-side,rgba(var(--acento-rgb),.20),rgba(var(--acento-rgb),.06) 55%,transparent 72%);
+  animation:luzDeriva 17s ease-in-out infinite alternate}
+
+#contacto .cierre::before{display:none}
+
+@media (max-width:619px){
+  .hero-sec::before,#problema::before,#como::before,#video-completo::before,#planes-sec::before,#landing-sec::before,#despues::before,#confianza::before,#contacto::before{transform:scale(.55);animation:none;filter:blur(28px)}
+}
+
+
+
+.planes-grandes>.pg.rv:nth-child(2){transition-delay:.12s}
+.planes-grandes>.pg.rv:nth-child(3){transition-delay:.24s}
+
+.t-sec{position:relative;padding-bottom:14px}
+.t-sec::after{content:'';position:absolute;left:0;bottom:0;width:56px;height:3px;background:var(--acento);transform-origin:left;transform:scaleX(0)}
+.t-sec.vis::after{animation:drawX .7s cubic-bezier(.2,.7,.2,1) .35s forwards}
+
+
+
+
+
+#despues .linea li.rv:nth-child(n+2){transition-delay:calc(.07s * (var(--i,1)))}
+
+
+
+@media (prefers-reduced-motion:reduce){
+  .hero-sec::before,#problema::before,#como::before,#video-completo::before,#planes-sec::before,#landing-sec::before,#despues::before,#confianza::before,#contacto::before{animation:none!important;transform:none!important}
+  .t-sec::after{transform:none!important;animation:none!important}
+  .planes-grandes>.pg.rv,#despues .linea li.rv{transition-delay:0s!important}
+}
+
+  
+  .landing{display:grid;gap:22px;align-items:start}
+  @media (min-width:900px){.landing{grid-template-columns:minmax(0,1.35fr) minmax(0,.85fr);gap:36px}}
+  .landing-foto{display:block;border:1px solid var(--linea);background:var(--negro-puro);color:var(--texto-suave);text-decoration:none;line-height:0}
+  .landing-foto img{display:block;width:100%;height:auto}
+  .landing-pie{display:flex;align-items:center;gap:10px;padding:10px 12px;border-top:1px solid var(--linea);font:italic 400 var(--t-chico)/1.4 var(--serif);line-height:1.4}
+  
+  .landing-titulo{margin:0;font:600 var(--t-bajada)/1.3 var(--sans);color:var(--texto-fuerte)}
+  
+  .landing-trabaja{margin:0 0 26px;padding:14px 16px;border-left:2px solid var(--linea-fuerte);font:italic 400 var(--t-chico)/1.55 var(--serif);color:var(--texto-suave)}
+  .landing-abrir{margin-top:16px}
+  @media (hover:hover){.landing-foto:hover{border-color:var(--linea-fuerte)}}
+
+  
+  
+  .dato-chip,.linea li .desde{display:inline-block;font:700 11px/1.2 var(--sans);letter-spacing:.06em;text-transform:uppercase;color:var(--texto-fuerte);border:1px solid var(--linea-fuerte);padding:3px 7px;vertical-align:middle;white-space:nowrap}
+  .linea li .desde{margin-left:6px}
+  
+  .video-espera b.dato-chip{padding:6px 10px}
+  
+  .callout.pago{container-type:inline-size}
+  .pago-datos{list-style:none;margin:0 0 12px;padding:0 0 12px;display:grid;grid-template-columns:1fr 1fr;gap:6px;border-bottom:1px solid var(--linea)}
+  .pago-datos .mini-cuadro:last-child{grid-column:1/-1}
+  .mini-cuadro{display:flex;flex-direction:column;justify-content:flex-start;gap:5px;min-width:0;padding:8px 0 9px}
+  
+  .pago-datos .mini-cuadro:last-child{border-top:1px solid var(--linea);margin-top:4px;padding-top:13px}
+  .mini-cuadro .mc-et{font:700 10px/1.3 var(--sans);letter-spacing:.1em;text-transform:uppercase;color:var(--texto-suave)}
+  .mini-cuadro .mc-v{font:700 16px/1.25 var(--sans);letter-spacing:-.01em;color:var(--texto-fuerte);overflow-wrap:anywhere}
+  .mini-cuadro .mc-n{font:400 12px/1.4 var(--sans);color:var(--texto-suave)}
+  @container (min-width:400px){
+    .pago-datos{grid-template-columns:repeat(3,1fr)}
+    .pago-datos .mini-cuadro:last-child{grid-column:auto;border-top:0;margin-top:0;padding-top:8px}
+  }
+  @media print{.dato-chip{background:var(--blanco)!important;color:var(--negro-puro)!important;border-color:var(--negro-puro)!important}}
+
+  
+  
+  .plan .porque{margin:0}
+  @media (min-width:900px){
+    .porque{grid-template-columns:repeat(3,minmax(0,1fr))}
+    .porque li{padding:18px 20px 20px;border-top:none;border-left:1px solid var(--linea)}
+    .porque li:first-child{border-left:none}
+  }
+  
+  
+  .capitulos{max-width:960px;margin:12px 0 0;padding:12px 16px;background:var(--superficie-2);border:1px solid var(--linea);line-height:1.6}
+  .video-marco[data-marco="1"]+.capitulos{margin-top:-1px;border-top:0}
+  @media print{.porque,.capitulos{background:var(--blanco)!important;color:var(--negro-puro)!important;border-color:var(--negro-puro)!important}.porque li{border-color:var(--negro-puro)!important}}
+
+  
+  
+  .plan>.card.callout.pago{margin-top:32px;border-color:var(--acento);box-shadow:inset 0 0 0 1px var(--acento);background:rgba(var(--acento-rgb),.07)}
+  .plan>details.card{margin-top:10px}
+  .plan>.ver-largo{margin-top:20px}
+  
+  .plan-tabs{display:flex;margin-top:28px}
+  .plan-tab{flex:1;min-height:44px;padding:12px 14px;background:transparent;border:1px solid var(--texto-suave);
+    font:600 var(--t-chico)/1.3 var(--sans);color:var(--texto-suave);cursor:pointer;text-align:center;
+    transition:color .15s ease,border-color .15s ease;-webkit-tap-highlight-color:transparent}
+  .plan-tab+.plan-tab{margin-left:-1px}
+  .plan-tab[aria-selected="true"]{border-color:var(--acento);color:var(--acento);position:relative;z-index:1}
+  .plan-tab:hover:not([aria-selected="true"]){color:var(--texto-fuerte);border-color:var(--texto-fuerte)}
+  .plan-tab:focus-visible{outline:2px solid var(--acento);outline-offset:2px;z-index:2}
+  @media (min-width:620px){.plan-tabs{max-width:480px}}
+  
+  .plan-panel{margin-top:20px}
+  @media print{.plan-tabs{display:none!important}.plan-panel[hidden]{display:block!important}}
+
+</style>
+</head>
+<body class="documento">
+<a class="salto" href="#planes-sec">Ir a los planes</a>
+<div class="progreso" aria-hidden="true"><i id="progresoBarra"></i></div>
+
+<header class="top" id="top">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Inicio de la propuesta">
+      <img src="assets/icon-kine.svg" alt="Kine">
+      <span class="brand-t"><b>Propuesta · Kine</b><small>Sistema de gestión para gimnasios · JLAutomatization</small></span>
+    </a>
+    <nav class="top-nav" aria-label="Secciones"><a href="#pitch">La propuesta en video</a><a href="#como">Cómo funciona</a><a href="#planes-sec">Planes</a><a href="#confianza">Preguntas</a></nav>
+    <a class="btn ghost top-cta" id="topWa" href="#" target="_blank" rel="noopener"><span class="topwa-largo">Escribir a Jose</span><span class="topwa-corto">WhatsApp</span></a>
+  </div>
+</header>
+
+<div class="hero-sec">
+  <section class="hero wrap" aria-label="Portada">
+    <div class="hero-texto">
+      <p class="kicker">Propuesta para Kine · Bogotá · EJEMPLO ILUSTRATIVO</p>
+      <h1>El gimnasio que <em>no depende de la memoria de nadie.</em></h1>
+      <p class="lede">Acceso, entrenador y socio en un solo sistema: lo que pasa en el gimnasio queda donde el dueño lo ve.</p>
+      <div class="chips">
+        <span class="chip">Acceso con 4 roles: dueño, administrador, operario y consulta</span>
+        <span class="chip">El entrenador ve sus atletas, no un cuaderno</span>
+        <span class="chip">El socio ve su progreso, su racha y su horario</span>
+        <span class="chip">Se aprende en una sesión</span>
+        
+      </div>
+      <div class="hero-cta">
+        <a class="btn" href="#planes-sec">Ver los planes <span class="flecha" aria-hidden="true"></span></a>
+        <a class="hero-link" href="#pitch">La propuesta en video · próximamente</a>
+        <a class="hero-link" href="#como">Entienda cómo lo solucionamos ↓</a>
+        
+      </div>
+    </div>
+    <div class="hero-panel" aria-hidden="true">
+      <div class="glow"></div>
+      <figure class="panel panel-main">
+        <div class="panel-chrome"><i></i><i></i><i></i><span>Panel de acceso · Kine</span></div>
+        <img src="assets/portada/panel-acceso.png" alt="" loading="eager" decoding="async">
+      </figure>
+      <figure class="panel panel-kpis"><img src="assets/portada/panel-acceso.png" alt="" decoding="async"></figure>
+      <div class="badge"><span>Acceso</span><b>4 roles: Dueño, Administrador, Operario y Consulta</b></div>
+    </div>
+  </section>
+</div>
+
+<section class="seccion" id="pitch" aria-labelledby="t-pitch">
+  <div class="wrap">
+    <p class="kicker anim">La propuesta en video</p>
+    <h2 class="t-sec anim" id="t-pitch">Este video corto <em>todavía no existe.</em></h2>
+    <figure class="video-marco largo anim" data-marco="" data-src="" data-poster="">
+      <div class="video-espera"><b class="dato-chip">Próximamente</b></div>
+    </figure>
+  </div>
+</section>
+
+<section class="seccion" id="problema" aria-labelledby="t-problema">
+  <div class="wrap">
+    <p class="kicker anim">El problema</p>
+    <h2 class="t-sec anim" id="t-problema">Cada entrada, cada pago, cada aviso <em>queda en la memoria de alguien.</em></h2>
+    <p class="bajada anim">Kine es una sede nueva: no hay cifras reales que mostrar todavía. Son 3 situaciones típicas de un gimnasio sin sistema — situaciones ilustrativas, no datos de este caso.</p>
+    <div class="cadena anim" role="img" aria-label="Situaciones ilustrativas: lo que pasa en un gimnasio nuevo sin sistema">
+      <div class="dato"><b>1</b><span>un socio llega y nadie sabe si pagó este mes</span></div>
+      <i class="tramo" aria-hidden="true"></i>
+      <div class="dato"><b>2</b><span>el entrenador anota el progreso en un cuaderno que se puede perder</span></div>
+      <i class="tramo" aria-hidden="true"></i>
+      <div class="dato"><b>3</b><span>el dueño se entera de cómo cerró el día horas después, no en el momento</span></div>
+      
+    </div>
+    <p class="total anim"><em>Situaciones ilustrativas: ningún número es de un socio real.</em></p>
+  </div>
+</section>
+
+<section class="seccion" id="como" aria-labelledby="t-como">
+  <div class="wrap">
+    <p class="kicker anim">Entienda cómo lo solucionamos</p>
+    <h2 class="t-sec anim" id="t-como">Acceso, entrenador y socio, <em>explicados en video.</em></h2>
+    <div class="videos">
+      <article class="video-item" data-src="" data-poster="">
+        <p class="video-num">Video 1</p>
+        <h3>Acceso con PIN, por rol</h3>
+        <figure class="video-marco" data-marco="">
+          <div class="video-espera"><b class="dato-chip">Próximamente</b></div>
+        </figure>
+      </article>
+      <article class="video-item" data-src="" data-poster="">
+        <p class="video-num">Video 2</p>
+        <h3>El panel del entrenador: sus atletas, no un cuaderno</h3>
+        <figure class="video-marco" data-marco="">
+          <div class="video-espera"><b class="dato-chip">Próximamente</b></div>
+        </figure>
+      </article>
+      <article class="video-item" data-src="" data-poster="">
+        <p class="video-num">Video 3</p>
+        <h3>El cierre y el panel del dueño</h3>
+        <figure class="video-marco" data-marco="">
+          <div class="video-espera"><b class="dato-chip">Próximamente</b></div>
+        </figure>
+      </article>
+      
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="planes-sec" aria-labelledby="t-planes">
+  <div class="wrap">
+    <p class="kicker anim">Los planes</p>
+    <h2 class="t-sec anim" id="t-planes">Tres planes, <em>un mismo gimnasio.</em></h2>
+    <p class="bajada anim">Cada plan incluye todo lo del anterior; toque uno para ver qué trae y cómo se paga.</p>
+    <div class="planes-grandes" role="group" aria-label="Elija un plan">
+      <button type="button" class="pg anim" data-pg="1" aria-pressed="false" onclick="elegirPlan(1)">
+        <span class="pg-n">Plan 1</span><span class="pg-t">Base</span>
+        <span class="pg-precio">[PENDIENTE: Jose]</span>
+        <span class="pg-mes">+ [PENDIENTE: Jose]</span>
+        <span class="pg-d">Acceso con 4 roles, panel del operario, panel del administrador y panel del socio: el gimnasio queda a la vista, sin cuadernos ni Excel sueltos.</span>
+        <span class="pg-ir"><span class="pg-ir-ver">Ver qué incluye</span><span class="pg-ir-on">Se muestra abajo ↓</span> <i class="flecha"></i></span>
+      </button>
+      <button type="button" class="pg anim" data-pg="2" aria-pressed="false" onclick="elegirPlan(2)">
+        <span class="pg-n">Plan 2</span><span class="pg-t">Automatizado</span>
+        <span class="pg-precio">[PENDIENTE: Jose]</span>
+        <span class="pg-mes">+ [PENDIENTE: Jose]</span>
+        <span class="pg-d">Todo el Plan 1 + el panel del entrenador: sus atletas asignados, ficha de coaching, horario y mensaje, sin depender de un cuaderno.</span>
+        <span class="pg-ir"><span class="pg-ir-ver">Ver qué incluye</span><span class="pg-ir-on">Se muestra abajo ↓</span> <i class="flecha"></i></span>
+      </button>
+      <button type="button" class="pg reco anim" data-pg="3" aria-pressed="true" onclick="elegirPlan(3)">
+        <span class="pg-sello">Recomendado</span>
+        <span class="pg-n">Plan 3</span><span class="pg-t">Sedes + asistente</span>
+        <span class="pg-precio">[PENDIENTE: Jose]</span>
+        <span class="pg-mes">+ [PENDIENTE: Jose]</span>
+        <span class="pg-d">Todo lo anterior + un asistente disponible 24/7 y las dos sedes en el mismo sistema.</span>
+        <span class="pg-ir"><span class="pg-ir-ver">Ver qué incluye</span><span class="pg-ir-on">Se muestra abajo ↓</span> <i class="flecha"></i></span>
+      </button>
+      
+    </div>
+    <p class="nota elegir-nota anim">[PENDIENTE: Jose]</p>
+  </div>
+  <div class="wrap" id="plan-detalle">
+
+    <section class="plan on" id="plan3">
+      <div class="plan-head">
+        <div>
+          <h2>Plan 3 · Sedes + asistente</h2>
+          <p class="lede">Hoy un gimnasio con más de una sede lo coordina todo por chat. El Plan 3 lo pone en un solo sistema: un asistente disponible 24/7 y las dos sedes a la vista del dueño, cada una con su recepción y sus entrenadores.</p>
+        </div>
+      </div>
+      <div class="card callout pago">
+        <ul class="pago-datos" aria-label="Cómo se paga, en tres datos">
+          <li class="mini-cuadro"><span class="mc-et">Al firmar</span><b class="mc-v">[PENDIENTE: Jose]</b></li>
+          <li class="mini-cuadro"><span class="mc-et">Saldo</span><b class="mc-v">[PENDIENTE: Jose]</b></li>
+          <li class="mini-cuadro ancla"><span class="mc-et">Mensualidad</span><b class="mc-v">[PENDIENTE: Jose]</b></li>
+          
+        </ul>
+      </div>
+      <details class="card">
+        <summary>Ver condiciones completas</summary>
+        <div class="cuerpo">
+          <ul class="pago-lista">
+            <li><b>Al firmar:</b> [PENDIENTE: Jose].</li><li><b>Saldo:</b> [PENDIENTE: Jose].</li><li><b>Mensualidad:</b> [PENDIENTE: Jose].</li><li><b>Referencia:</b> un sistema equivalente con una agencia cuesta [PENDIENTE: Jose]; no es un descuento nuestro.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="plan-tabs" role="tablist" aria-label="Detalle del plan">
+        <button type="button" class="plan-tab" role="tab" id="tab-porque3" aria-controls="panel-porque3" aria-selected="false" onclick="activarPestana(this)">Por qué este plan</button>
+        <button type="button" class="plan-tab" role="tab" id="tab-incluye3" aria-controls="panel-incluye3" aria-selected="false" onclick="activarPestana(this)">Qué incluye</button>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-porque3" aria-labelledby="tab-porque3" hidden>
+        <ul class="porque">
+          <li><b>Qué trae que el Plan 2 no</b>Un asistente disponible 24/7 para resolver lo básico fuera de horario, y las dos sedes manejadas en el mismo sistema, cada una con su recepción y sus entrenadores.</li>
+          <li><b>En qué se nota en el gimnasio</b>El dueño deja de coordinar dos sedes por chat: las ve las dos desde el mismo panel, y lo que antes solo se resolvía en horario de oficina, el asistente lo atiende a cualquier hora.</li>
+          <li><b>Por qué con nosotros</b>Jose no instala el sistema y desaparece: cada mes revisa los números con ustedes y ajusta lo que haga falta a como trabaja el gimnasio.</li>
+          
+        </ul>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-incluye3" aria-labelledby="tab-incluye3" hidden>
+        <div class="card qincluye"><h3 class="card-t">Qué incluye</h3>
+          <ul class="incluye">
+          <li class="hereda"><b>Todo el Plan 2:</b> Acceso por rol, paneles de operación, panel del entrenador y ficha de coaching.</li>
+          <li class="nuevo"><b>Asistente 24/7:</b> responde lo básico fuera del horario de recepción.</li>
+          <li class="nuevo"><b>Segunda sede:</b> cada sede con su recepción y sus entrenadores, en el mismo sistema.</li>
+          <li class="nuevo"><b>Panel del dueño multisede:</b> las dos sedes a la vista, sin comparar chats.</li>
+          <li class="nuevo"><b>Acompañamiento mensual:</b> revisión de los números con ustedes cada mes.</li>
+          
+        </ul>
+        </div>
+      </div>
+      <p class="nota ver-largo">El asistente y la segunda sede todavía no están grabados; el <a href="#video-completo">video completo</a> muestra el resto del sistema (capítulos 1 a 6).</p>
+    </section>
+
+    <section class="plan" id="plan2">
+      <div class="plan-head">
+        <div>
+          <span class="eyebrow tagline-plan">&quot;El entrenador deja de cargar un cuaderno&quot;</span>
+          <h2>Plan 2 · Automatizado</h2>
+          <p class="lede">El Plan 2 agrega lo que hoy se lleva aparte: el entrenador entra con sus propios atletas asignados —ficha de coaching, meta, progreso, racha y notas— y envía mensajes sin tener que pedir el teléfono de nadie.</p>
+        </div>
+      </div>
+      <div class="card callout pago">
+        <ul class="pago-datos" aria-label="Cómo se paga, en tres datos">
+          <li class="mini-cuadro"><span class="mc-et">Al firmar</span><b class="mc-v">[PENDIENTE: Jose]</b></li>
+          <li class="mini-cuadro"><span class="mc-et">Saldo</span><b class="mc-v">[PENDIENTE: Jose]</b></li>
+          <li class="mini-cuadro ancla"><span class="mc-et">Mensualidad</span><b class="mc-v">[PENDIENTE: Jose]</b></li>
+          
+        </ul>
+      </div>
+      <details class="card">
+        <summary>Ver condiciones completas</summary>
+        <div class="cuerpo">
+          <ul class="pago-lista">
+            <li><b>Al firmar:</b> [PENDIENTE: Jose].</li><li><b>Saldo:</b> [PENDIENTE: Jose].</li><li><b>Mensualidad:</b> [PENDIENTE: Jose].</li><li><b>Referencia:</b> un sistema equivalente con una agencia cuesta [PENDIENTE: Jose]; no es un descuento nuestro.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="plan-tabs" role="tablist" aria-label="Detalle del plan">
+        <button type="button" class="plan-tab" role="tab" id="tab-porque2" aria-controls="panel-porque2" aria-selected="false" onclick="activarPestana(this)">Por qué este plan</button>
+        <button type="button" class="plan-tab" role="tab" id="tab-incluye2" aria-controls="panel-incluye2" aria-selected="false" onclick="activarPestana(this)">Qué incluye</button>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-porque2" aria-labelledby="tab-porque2" hidden>
+        <ul class="porque">
+          <li><b>Qué trae que el Plan 1 no</b>Panel del entrenador (coach): ve solo sus atletas asignados —sin cédula, PIN, teléfono ni correo—, con ficha de coaching (meta, progreso, racha, notas), su horario y el envío de mensajes &quot;de parte del entrenador&quot;.</li>
+          <li><b>En qué se nota en el gimnasio</b>El entrenador deja de llevar el progreso de cada atleta en un cuaderno o en el celular personal; lo consulta y lo actualiza desde su propio panel.</li>
+          <li><b>Por qué con nosotros</b>El panel del entrenador se diseñó para entrenar, no para administrar: ve nombre y progreso, nunca los datos de contacto o identificación del socio.</li>
+          
+        </ul>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-incluye2" aria-labelledby="tab-incluye2" hidden>
+        <div class="card qincluye"><h3 class="card-t">Qué incluye</h3>
+          <ul class="incluye">
+          <li class="hereda"><b>Todo el Plan 1:</b> Acceso por rol, panel del operario, panel del administrador, panel del socio, registro encadenado.</li>
+          <li class="nuevo"><b>Panel del entrenador:</b> sus atletas asignados, sin ver cédula, PIN, teléfono ni correo.</li>
+          <li class="nuevo"><b>Ficha de coaching:</b> meta, progreso, racha y notas por atleta.</li>
+          <li class="nuevo"><b>Horario del entrenador:</b> sus clases y sus atletas, en un solo lugar.</li>
+          <li class="nuevo"><b>Mensaje al socio:</b> el sistema lo envía &quot;de parte del entrenador&quot;, sin dar su contacto.</li>
+          
+        </ul>
+        </div>
+      </div>
+      <p class="nota ver-largo">En el <a href="#video-completo">video completo</a>: capítulos 3 y 4 (Panel Administrador y Panel del Socio).</p>
+    </section>
+
+    <section class="plan" id="plan1">
+      <div class="plan-head">
+        <div>
+          <span class="eyebrow tagline-plan">&quot;Nada queda solo en la cabeza de quien atendió&quot;</span>
+          <h2>Plan 1 · Base</h2>
+          <p class="lede">Lo básico que hoy no existe en un gimnasio nuevo: acceso con PIN por rol, panel del operario para el día a día, panel del administrador para la gestión general y panel del socio para que cada persona vea su propio plan, horario y progreso.</p>
+        </div>
+      </div>
+      <div class="card callout pago">
+        <ul class="pago-datos" aria-label="Cómo se paga, en tres datos">
+          <li class="mini-cuadro"><span class="mc-et">Al firmar</span><b class="mc-v">[PENDIENTE: Jose]</b></li>
+          <li class="mini-cuadro"><span class="mc-et">Al terminar</span><b class="mc-v">[PENDIENTE: Jose]</b></li>
+          <li class="mini-cuadro ancla"><span class="mc-et">Mensualidad</span><b class="mc-v">[PENDIENTE: Jose]</b></li>
+          
+        </ul>
+      </div>
+      <details class="card">
+        <summary>Ver condiciones completas</summary>
+        <div class="cuerpo">
+          <ul class="pago-lista">
+            <li><b>Al firmar:</b> [PENDIENTE: Jose].</li><li><b>Al terminar:</b> [PENDIENTE: Jose].</li><li><b>Mensualidad:</b> [PENDIENTE: Jose].</li><li><b>Referencia:</b> un sistema equivalente con una agencia cuesta [PENDIENTE: Jose]; no es un descuento nuestro.</li>
+          </ul>
+        </div>
+      </details>
+      <div class="plan-tabs" role="tablist" aria-label="Detalle del plan">
+        <button type="button" class="plan-tab" role="tab" id="tab-porque1" aria-controls="panel-porque1" aria-selected="false" onclick="activarPestana(this)">Por qué este plan</button>
+        <button type="button" class="plan-tab" role="tab" id="tab-incluye1" aria-controls="panel-incluye1" aria-selected="false" onclick="activarPestana(this)">Qué incluye</button>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-porque1" aria-labelledby="tab-porque1" hidden>
+        <ul class="porque">
+          <li><b>Qué trae</b>Acceso con PIN por rol (dueño, administrador, operario, consulta), panel del operario para el turno, panel del administrador para la gestión general, panel del socio con su plan, horario y progreso, y registro encadenado desde el primer día.</li>
+          <li><b>En qué se nota en el gimnasio</b>Un &quot;yo creo que ya pagó&quot; se pierde en la memoria de quien atendió; acá cada acceso y cada pago quedan con hora y responsable, consultables desde el panel del dueño.</li>
+          <li><b>Por qué con nosotros</b>El dueño ve todo y nada se borra desde el primer plan: cada registro queda encadenado al anterior y las correcciones se agregan, nunca se cambian por encima.</li>
+          
+        </ul>
+      </div>
+      <div class="plan-panel" role="tabpanel" id="panel-incluye1" aria-labelledby="tab-incluye1" hidden>
+        <div class="card qincluye"><h3 class="card-t">Qué incluye</h3>
+          <ul class="incluye">
+          <li><b>Acceso por rol:</b> PIN propio para dueño, administrador, operario y consulta.</li>
+          <li><b>Panel del operario:</b> lo que se usa en el día a día de la recepción.</li>
+          <li><b>Panel del administrador:</b> gestión general del gimnasio desde un solo lugar.</li>
+          <li><b>Panel del socio:</b> su plan, su horario en grilla y su progreso, racha incluida.</li>
+          <li><b>Página web del gimnasio:</b> la presencia pública, enlazada desde el mismo sistema.</li>
+          <li><b>Registro encadenado:</b> lo mal hecho se anula con motivo, nunca se borra.</li>
+          
+        </ul>
+        </div>
+      </div>
+      <p class="nota ver-largo">En el <a href="#video-completo">video completo</a> (grabado con la identidad anterior del proyecto): capítulos 1 a 4.</p>
+    </section>
+
+    
+  </div>
+</section>
+
+<section class="seccion" id="despues" aria-labelledby="t-despues">
+  <div class="wrap">
+    <p class="kicker anim">Después de firmar</p>
+    <h2 class="t-sec anim" id="t-despues">Qué pasa <em>después de firmar.</em></h2>
+    <ul class="linea" data-linea="3"></ul>
+    <details class="card" id="fase0"><summary>Lo que se confirma en la Fase 0 (visita al gimnasio)</summary><div class="cuerpo">
+      <p>Nada se estima ni se inventa: se levanta con ustedes en el gimnasio, en cualquiera de los tres planes.</p>
+      <ul class="lista-corta">
+        <li><b>Inventario real de socios y planes</b> · se carga con ustedes, no de memoria: quién está activo, qué plan tiene y desde cuándo.</li>
+        <li><b>Cómo se cobra hoy</b> · efectivo, transferencia o cuotas: quién cobra y cómo se concilia con la caja.</li>
+        <li><b>Quién atiende cada rol</b> · con nombre real: dueño, administrador, operario y entrenadores quedan dados de alta uno por uno.</li>
+        <li><b>Equipos</b> · qué computador o tablet hay en recepción y en la sala de entrenadores; lo que falte se cotiza antes de firmar.</li>
+        <li><b>Cifras finales</b> · se cierran con esta visita y nunca suben sin que ustedes lo sepan antes de firmar.</li>
+        
+      </ul>
+    </div></details>
+  </div>
+</section>
+
+<section class="seccion" id="confianza" aria-labelledby="t-confianza">
+  <div class="wrap">
+    <p class="kicker anim">Antes de la reunión</p>
+    <h2 class="t-sec anim" id="t-confianza">Lo que le puede <em>preocupar.</em></h2>
+    <p class="bajada anim">Soporte y corrección de errores incluidos en los tres planes; desde el Plan 2, respuesta remota en menos de 24 horas; en el Plan 3, con prioridad.</p>
+    <div class="faq">
+      <details><summary>¿Y si se va la luz o el internet en el gimnasio?</summary><div class="r">La recepción sigue registrando accesos y pagos en el computador local y sincroniza sola cuando vuelve la conexión. Lo registrado a mano mientras tanto se carga después.</div></details>
+      <details><summary>¿El entrenador puede ver cédula, teléfono o correo de un socio?</summary><div class="r">No: el panel del entrenador se diseñó para que vea solo el nombre y los atletas que tiene asignados — no ve datos de identificación ni de contacto.</div></details>
+      <details><summary>¿Alguien puede borrar un registro de pago o de acceso?</summary><div class="r">No: cada registro queda encadenado al anterior; lo mal hecho se anula con motivo y la anulación queda tan visible como el registro original.</div></details>
+      <details><summary>¿Qué tan rápido se nota en la recepción?</summary><div class="r">Desde el primer plan: cada entrada y cada pago quedan con hora y responsable; el panel del dueño se consulta desde cualquier celular.</div></details>
+      <details><summary>¿Y si el gimnasio tiene más de una sede?</summary><div class="r">Desde el Plan 3 las sedes se manejan en el mismo sistema: cada una con su recepción y sus entrenadores, y el dueño ve las dos a la vez.</div></details>
+      <details><summary>¿Y si algo falla en plena jornada?</summary><div class="r">El soporte responde en menos de 24 horas y la recepción no se detiene: el acceso y el registro de pago siguen funcionando; lo que podría fallar es un aviso o un panel, no la entrada al gimnasio.</div></details>
+      
+    </div>
+  </div>
+</section>
+
+<section class="seccion" id="video-completo" aria-labelledby="t-largo">
+  <div class="wrap">
+    <p class="kicker anim">Para quien quiera verlo todo</p>
+    <h2 class="t-sec anim" id="t-largo">¿Quiere ver el <em>sistema completo?</em></h2>
+    <figure class="video-marco largo anim" data-marco="2" data-src="plan2_escritorio.mp4" data-poster="assets/portada/poster_plan2_escritorio.jpg">
+      <div class="video-espera"><b class="dato-chip"></b><span>8 minutos · sistema completo (grabado con la identidad anterior del proyecto)</span></div>
+    </figure>
+    <div class="capitulos-grid anim" id="capitulosLargo">
+      <button type="button" class="cap-item" data-t="1"><span class="cap-n">1</span><span class="cap-body"><span class="cap-tit">Inicio y acceso</span><span class="cap-time">0:01</span></span></button>
+      <button type="button" class="cap-item" data-t="53"><span class="cap-n">2</span><span class="cap-body"><span class="cap-tit">Panel Operario</span><span class="cap-time">0:53</span></span></button>
+      <button type="button" class="cap-item" data-t="179"><span class="cap-n">3</span><span class="cap-body"><span class="cap-tit">Panel Administrador</span><span class="cap-time">2:59</span></span></button>
+      <button type="button" class="cap-item" data-t="360"><span class="cap-n">4</span><span class="cap-body"><span class="cap-tit">Panel del Socio</span><span class="cap-time">6:00</span></span></button>
+      <button type="button" class="cap-item" data-t="414"><span class="cap-n">5</span><span class="cap-body"><span class="cap-tit">Página web</span><span class="cap-time">6:54</span></span></button>
+      <button type="button" class="cap-item" data-t="437"><span class="cap-n">6</span><span class="cap-body"><span class="cap-tit">Resumen y precios</span><span class="cap-time">7:17</span></span></button>
+      
+    </div>
+  </div>
+</section>
+
+
+  <section class="cierre" id="contacto">
+    <div class="wrap">
+    <h2 class="t-sec">El siguiente paso no es firmar nada: <em>es una reunión.</em></h2>
+    <div class="cta-fila">
+      <a class="cta" id="ctaWhatsapp" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> Escribir a Jose por WhatsApp <span class="flecha" aria-hidden="true"></span></a>
+      <a class="cta sec" href="propuesta_resumen.pdf" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 15V3"/><path d="M21 15v4a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2v-4"/><path d="m7 10 5 5 5-5"/></svg> Resumen en PDF</a>
+      
+    </div>
+    <p class="marca-pie">Hecho por <b>JLAutomatization</b></p>
+      </div>
+  </section>
+
+<div class="barra-fija" id="barraFija" aria-hidden="true">
+  <div class="marca">Hecho por <b>JLAutomatization</b></div>
+  <div class="acc"><a class="sec" href="propuesta_resumen.pdf" target="_blank" rel="noopener">Ver el PDF</a><a id="barraWa" href="#" target="_blank" rel="noopener"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M2.992 16.342a2 2 0 0 1 .094 1.167l-1.065 3.29a1 1 0 0 0 1.236 1.168l3.413-.998a2 2 0 0 1 1.099.092 10 10 0 1 0-4.777-4.719"/></svg> Escribir a Jose</a></div>
+</div>
+
+<script>
+
+  
+  
+  
+  
+  var CONFIG = {"build": "20261001e", "videos_ruta_base": "./videos/", "whatsapp": {"numero": "573106582111", "mensaje": "Hola José, vi el caso Kine y me gustaría agendar una reunión", "mensaje_pdf": "Hola José, leí el resumen en PDF del caso Kine y me gustaría agendar una reunión."}, "hitos": [{"c": "Sem. 1", "t": "Reunión de arranque", "s": "Qué sedes, qué roles y quién atiende cada turno en recepción.", "d": 1}, {"c": "Sem. 2-3", "t": "Carga de socios y planes", "s": "Se carga la base de socios y los planes de membresía con los nombres que ya usan.", "d": 1}, {"c": "Sem. 4-6", "t": "Operación en paralelo", "s": "El cuaderno o Excel sigue como hoy; el sistema corre al lado, como prueba, con acceso y panel del socio en vivo.", "d": 1}, {"c": "Mes 2", "t": "Panel del entrenador en vivo", "s": "Cada entrenador entra con sus propios atletas asignados: meta, progreso, racha y notas, sin cuaderno aparte.", "d": 2}, {"c": "Mes 3", "t": "Asistente y segunda sede", "s": "El asistente 24/7 y la segunda sede quedan activos en el mismo sistema.", "d": 3}], "textos": {"desde": "desde Plan"}, "anclas": ["pitch", "problema", "como", "planes-sec", "despues", "fase0", "confianza", "video-completo", "contacto"], "plan_inicial": 3};
+  var BUILD = CONFIG.build;
+  
+  var VID = CONFIG.videos_ruta_base;
+  var WHATSAPP_JLAUTO = CONFIG.whatsapp.numero;
+  var waTexto = function(t){ return 'https://wa.me/' + WHATSAPP_JLAUTO + '?text=' + encodeURIComponent(t); };
+  (function(){ var c = document.getElementById('ctaWhatsapp'); if(!c) return; c.href = waTexto(CONFIG.whatsapp.mensaje);
+    ['barraWa', 'topWa'].forEach(function(id){ var t = document.getElementById(id); if(t) t.href = c.href; }); })();
+  
+  
+  (function(){ var v = document.getElementById('vigencia'); if(v && v.dataset.hasta) v.textContent = ' · válida hasta el ' + v.dataset.hasta; })();
+  var $ = function(s, r){ return (r || document).querySelector(s); };
+  var $$ = function(s, r){ return Array.prototype.slice.call((r || document).querySelectorAll(s)); };
+
+  
+  var pasoActual = 0;
+  function pintarPaso(){}
+  function pasoHistoria(){}
+  
+  
+  
+  
+  (function(){
+    var SEL='.btn,.cta,.pg,summary';
+    document.addEventListener('pointerdown', function(e){
+      var host=e.target.closest(SEL); if(!host||host.disabled) return;
+      if(matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var r=host.getBoundingClientRect(), size=Math.max(r.width,r.height)*1.3;
+      var rip=document.createElement('span'); rip.className='app-ripple';
+      rip.style.width=rip.style.height=size+'px';
+      rip.style.left=(e.clientX-r.left-size/2)+'px'; rip.style.top=(e.clientY-r.top-size/2)+'px';
+      host.appendChild(rip); setTimeout(function(){ rip.remove(); }, 680);
+    }, true);
+  })();
+
+  
+  (function(){
+    var SEL = '.anim,.videos>.video-item,.planes-grandes>.pg,.plan-head>*,.plan>.card.callout.pago,.plan>.plan-tabs,.faq details,.cierre .wrap>*,details.card,.linea li';
+    function revelar(){
+      if(!('IntersectionObserver' in window) || window.matchMedia('(prefers-reduced-motion: reduce)').matches) return;
+      var io = new IntersectionObserver(function(entradas){
+        entradas.forEach(function(e){ if(e.isIntersecting){ e.target.classList.add('vis'); io.unobserve(e.target); } });
+      }, { rootMargin:'0px 0px -6% 0px', threshold:.06 });
+      $$(SEL).forEach(function(el){
+        var padre = el.parentElement, i = padre ? Array.prototype.indexOf.call(padre.children, el) : 0;
+        el.classList.add('rv'); el.style.transitionDelay = Math.min(i, 6) * 70 + 'ms'; io.observe(el);
+      });
+    }
+    if(document.readyState === 'loading') document.addEventListener('DOMContentLoaded', revelar); else revelar();
+  })();
+  
+  (function(){
+    var reducir = window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    if(reducir || !('IntersectionObserver' in window)) return;
+    var io = new IntersectionObserver(function(es){
+      es.forEach(function(e){
+        if(!e.isIntersecting || e.target.dataset.aparecida) return;
+        e.target.dataset.aparecida = '1'; io.unobserve(e.target);
+        e.target.classList.add('aparece');
+      });
+    }, { threshold:.5 });
+    document.querySelectorAll('[data-cifra-cop]').forEach(function(el){ io.observe(el); });
+  })();
+  function abrirDocumento(){ var el = $('#planes-sec'); if(el) el.scrollIntoView({ behavior:'smooth', block:'start' }); }
+
+  
+  
+  
+  var HITOS = CONFIG.hitos || [];
+  function esc(s){ return String(s).replace(/[&<>"]/g, function(c){ return { '&':'&amp;', '<':'&lt;', '>':'&gt;', '"':'&quot;' }[c]; }); }
+  $$('[data-linea]').forEach(function(ul){
+    ul.innerHTML = HITOS.map(function(h){
+      return '<li><span class="cuando">' + esc(h.c) + '</span><span class="hito"></span><div><b>' + esc(h.t) + (h.d > 1 ? '<span class="desde">' + esc(CONFIG.textos.desde) + ' ' + h.d + '</span>' : '') + '</b><span>' + esc(h.s) + '</span></div></li>';
+    }).join('');
+  });
+
+  
+  var barraFija = $('#barraFija'), ctaVisto = false, tecladoAbierto = false, enCierre = false, ioCta = null;
+  function pintarBarra(){ var on = ctaVisto && !tecladoAbierto && !enCierre; barraFija.classList.toggle('on', on); barraFija.setAttribute('aria-hidden', String(!on)); document.documentElement.style.setProperty('--barra', on ? (barraFija.offsetHeight + 'px') : '0px'); }
+  
+  
+  
+  
+  
+  function observarCta(){
+    if(ctaVisto) return;
+    if(ioCta) ioCta.disconnect();
+    if(!('IntersectionObserver' in window)){ ctaVisto = true; pintarBarra(); return; }
+    ioCta = new IntersectionObserver(function(es){ es.forEach(function(e){ if(e.isIntersecting){ ctaVisto = true; pintarBarra(); ioCta.disconnect(); } }); }, { rootMargin:'0px 0px -40% 0px' });
+    var m = $('.plan.on .plan-tabs'); if(m) ioCta.observe(m);
+  }
+  if(window.visualViewport){ window.visualViewport.addEventListener('resize', function(){ tecladoAbierto = window.visualViewport.height < window.innerHeight * 0.75; pintarBarra(); }); }
+  window.addEventListener('beforeprint', function(){ $$('details').forEach(function(d){ d.open = true; }); });
+
+
+
+  
+  var planElegido = CONFIG.plan_inicial || 3;
+  function cargarPlan(p, conservarHash){
+    planElegido = p;
+    $$('.pg').forEach(function(b){ b.setAttribute('aria-pressed', String(Number(b.dataset.pg) === p)); });
+    $$('.plan').forEach(function(s){ s.classList.toggle('on', s.id === 'plan' + p); });
+    observarCta(); 
+    
+    
+    
+    
+    var activo = document.getElementById('plan' + p);
+    if(activo) cerrarPestanas(activo);
+    
+    $$('.plan.on .rv').forEach(function(el){ el.classList.add('vis'); el.style.transitionDelay = '0ms'; });
+    if(!conservarHash){ try{ history.replaceState(null, '', '#plan' + p); }catch(e){} }
+  }
+  function elegirPlan(p){
+    cargarPlan(p);
+    var d = document.getElementById('plan-detalle'); if(d) d.scrollIntoView({ behavior:'smooth', block:'start' });
+  }
+  
+  
+  
+  
+  
+  function cerrarPestanas(plan){
+    $$('.plan-tab', plan).forEach(function(b){ b.setAttribute('aria-selected', 'false'); b.tabIndex = 0; });
+    $$('.plan-panel', plan).forEach(function(pnl){ pnl.hidden = true; });
+  }
+  
+  
+  function activarPestana(btn, abrir){
+    var tabs = btn.closest('.plan-tabs'), plan = btn.closest('.plan');
+    if(!tabs || !plan) return;
+    if(btn.getAttribute('aria-selected') === 'true' && !abrir){ cerrarPestanas(plan); return; }
+    $$('.plan-tab', tabs).forEach(function(b){ b.setAttribute('aria-selected', String(b === btn)); b.tabIndex = 0; });
+    $$('.plan-panel', plan).forEach(function(p){ p.hidden = p.id !== btn.getAttribute('aria-controls'); });
+  }
+  
+  
+  document.addEventListener('keydown', function(e){
+    if(e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+    var btn = e.target.closest && e.target.closest('.plan-tab'); if(!btn) return;
+    var grupo = $$('.plan-tab', btn.closest('.plan-tabs')), i = grupo.indexOf(btn);
+    if(i < 0) return;
+    var siguiente = grupo[(i + (e.key === 'ArrowRight' ? 1 : -1) + grupo.length) % grupo.length];
+    siguiente.focus(); activarPestana(siguiente, true); e.preventDefault();
+  });
+  
+
+  
+  
+  
+  
+  
+  function rutaVideo(r){ return /^(assets\/|https?:|\/)/.test(r) ? r : VID + r; }
+  function existe(url){ return fetch(url, { method:'HEAD', cache:'no-store' }).then(function(r){ return r.ok; }).catch(function(){ return false; }); }
+  
+  
+  
+  
+  
+  function variante720(ruta){ return ruta.replace(/\.mp4$/, '-720.mp4'); }
+  function usarMovil(){
+    try{ return window.innerWidth <= 820 || !!(navigator.connection && navigator.connection.saveData); }
+    catch(e){ return false; }
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  function soportaHLSNativo(){
+    try{
+      var ua = navigator.userAgent || '';
+      var esIOS = /iPad|iPhone|iPod/.test(ua) || (navigator.platform === 'MacIntel' && navigator.maxTouchPoints > 1);
+      var esSafariMac = /Macintosh/.test(ua) && /Safari\//.test(ua) && !/Chrome|Chromium|CriOS|Edg|OPR|Firefox/.test(ua);
+      if(!esIOS && !esSafariMac) return false;
+      var v = document.createElement('video');
+      return !!(v.canPlayType && v.canPlayType('application/vnd.apple.mpegurl'));
+    }catch(e){ return false; }
+  }
+  var HLS_NATIVO = soportaHLSNativo();
+  
+  
+  function rutaHLS(base){
+    var m = base.match(/^(.*)\/([^\/]+)\.mp4$/);
+    return m ? (m[1] + '/hls/' + m[2] + '/index.m3u8') : null;
+  }
+  function elegirSrc(base){
+    if(HLS_NATIVO){
+      var hls = rutaHLS(base);
+      if(hls) return existe(hls).then(function(ok){ return ok ? hls : null; });
+    }
+    if(!usarMovil()) return existe(base).then(function(ok){ return ok ? base : null; });
+    var v720 = variante720(base);
+    return existe(v720).then(function(ok720){
+      if(ok720) return v720;
+      return existe(base).then(function(ok){ return ok ? base : null; });
+    });
+  }
+  
+  
+  
+  
+  
+  
+  
+  var VIDEOS_TODOS = [];
+  function registrarVideo(v, fig){
+    VIDEOS_TODOS.push(v);
+    v.addEventListener('play', function(){ VIDEOS_TODOS.forEach(function(o){ if(o !== v && !o.paused) o.pause(); }); });
+    if('IntersectionObserver' in window){
+      new IntersectionObserver(function(es){
+        es.forEach(function(e){ if(!e.isIntersecting && !v.paused) v.pause(); });
+      }, { threshold:0 }).observe(fig);
+    }
+  }
+  document.addEventListener('visibilitychange', function(){
+    if(document.hidden) VIDEOS_TODOS.forEach(function(v){ if(!v.paused) v.pause(); });
+  });
+  window.addEventListener('pagehide', function(){ VIDEOS_TODOS.forEach(function(v){ if(!v.paused) v.pause(); }); });
+  ['fullscreenchange', 'webkitfullscreenchange'].forEach(function(ev){
+    document.addEventListener(ev, function(){
+      if(!document.fullscreenElement && !document.webkitFullscreenElement) VIDEOS_TODOS.forEach(function(v){ if(!v.paused) v.pause(); });
+    });
+  });
+  document.addEventListener('webkitendfullscreen', function(e){ if(e.target && !e.target.paused) e.target.pause(); }, true);
+  
+  
+  
+  
+  
+  var COLA_PRECARGA = [], colaOcupada = false;
+  function avanzarColaPrecarga(){
+    if(colaOcupada || !COLA_PRECARGA.length) return;
+    colaOcupada = true;
+    var v = COLA_PRECARGA.shift(), yaPaso = false;
+    function pasar(){ if(yaPaso) return; yaPaso = true; colaOcupada = false; avanzarColaPrecarga(); }
+    v.addEventListener('loadedmetadata', pasar, { once:true });
+    v.addEventListener('error', pasar, { once:true });
+    setTimeout(pasar, 4000);
+    v.preload = 'metadata';
+    v.load(); 
+  }
+  function colaSubirPreload(v){ COLA_PRECARGA.push(v); avanzarColaPrecarga(); }
+  function montarVideoNativo(fig, src, poster, preload, alDurar){
+    var v = document.createElement('video');
+    v.controls = true;
+    v.setAttribute('playsinline', '');
+    v.setAttribute('webkit-playsinline', ''); 
+    
+    
+    
+    
+    
+    v.preload = preload || 'metadata';
+    if(poster) v.poster = poster;
+    v.src = src + (src.indexOf('?') < 0 ? '?v=' + BUILD : '');
+    v.addEventListener('play', function(){ fig.classList.add('reproduciendo'); });
+    ['pause', 'ended'].forEach(function(ev){ v.addEventListener(ev, function(){ fig.classList.remove('reproduciendo'); }); });
+    if(alDurar) v.addEventListener('loadedmetadata', function(){ alDurar(v.duration); }, { once:true });
+    var esp = fig.querySelector('.video-espera'); if(esp) esp.remove();
+    fig.insertBefore(v, fig.firstChild); fig.classList.add('con-video');
+    
+    var boton = document.createElement('span'); boton.className = 'boton-play'; boton.setAttribute('aria-hidden', 'true');
+    fig.appendChild(boton);
+    registrarVideo(v, fig);
+    if(v.preload === 'none') colaSubirPreload(v);
+    return v;
+  }
+  
+  function montarVideoComo(it){
+    
+    var fig = $('.video-marco', it);
+    if(!fig || !it.dataset.src) return;
+    var src = rutaVideo(it.dataset.src), poster = it.dataset.poster ? rutaVideo(it.dataset.poster) : '';
+    elegirSrc(src).then(function(elegido){
+      if(!elegido) return;
+      
+      
+      
+      
+      
+      
+      
+      montarVideoNativo(fig, elegido, poster, 'none');
+    });
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  function montarVideos(){
+    montarVideoPitch();
+    var objetivos = $$('.video-item');
+    if(figLargo) objetivos.push(figLargo);
+    objetivos.forEach(function(o){ if(o === figLargo) montarVideoLargo(); else montarVideoComo(o); });
+  }
+  
+  
+  
+  
+  
+  var figPitch = document.getElementById('pitch') ? $('#pitch .video-marco') : null;
+  var pitchMontando = null;
+  function montarVideoPitch(cb){
+    
+    
+    
+    
+    
+    
+    if(!figPitch || !figPitch.dataset.src) return;
+    var v0 = figPitch.querySelector('video');
+    if(v0){ if(cb) cb(v0); return; }
+    if(!pitchMontando){
+      var src = rutaVideo(figPitch.dataset.src), poster = figPitch.dataset.poster ? rutaVideo(figPitch.dataset.poster) : '';
+      pitchMontando = elegirSrc(src).then(function(elegido){
+        if(!elegido) return null;
+        return montarVideoNativo(figPitch, elegido, poster, 'metadata');
+      });
+    }
+    pitchMontando.then(function(v){ if(v && cb) cb(v); });
+  }
+  
+  
+  
+  
+  
+  
+  
+  var figLargo = document.getElementById('video-completo') ? $('#video-completo .video-marco') : null;
+  var capBotones = $$('.cap-item');
+  var largoMontando = null;
+  
+  
+  
+  function montarVideoLargo(cb){
+    
+    
+    if(!figLargo || !figLargo.dataset.src) return;
+    var v0 = figLargo.querySelector('video');
+    if(v0){ if(cb) cb(v0); return; }
+    if(!largoMontando){
+      var src = rutaVideo(figLargo.dataset.src), poster = figLargo.dataset.poster ? rutaVideo(figLargo.dataset.poster) : '';
+      largoMontando = elegirSrc(src).then(function(elegido){
+        var yaMontado = figLargo.querySelector('video');
+        if(yaMontado) return yaMontado; 
+        if(!elegido) return null;
+        
+        
+        var v = montarVideoNativo(figLargo, elegido, poster, 'none');
+        v.addEventListener('timeupdate', function(){ marcarCapituloActivo(v.currentTime); });
+        return v;
+      });
+    }
+    largoMontando.then(function(v){ if(v && cb) cb(v); });
+  }
+  function marcarCapituloActivo(t){
+    var activo = null;
+    capBotones.forEach(function(b){ if(Number(b.dataset.t) <= t + .25) activo = b; });
+    capBotones.forEach(function(b){
+      if(b === activo) b.setAttribute('aria-current', 'true'); else b.removeAttribute('aria-current');
+    });
+  }
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  
+  function irACapitulo(seg){
+    
+    
+    
+    if(!figLargo || !figLargo.dataset.src) return;
+    var v = figLargo.querySelector('video');
+    if(!v){
+      var src = rutaVideo(figLargo.dataset.src), poster = figLargo.dataset.poster ? rutaVideo(figLargo.dataset.poster) : '';
+      v = montarVideoNativo(figLargo, src, poster, 'metadata');
+      v.addEventListener('timeupdate', function(){ marcarCapituloActivo(v.currentTime); });
+      largoMontando = Promise.resolve(v); 
+    }
+    var p = v.play(); if(p && p.catch) p.catch(function(){});
+    figLargo.scrollIntoView({ behavior:'smooth', block:'center' });
+    var fijar = function(){ try{ v.currentTime = seg; }catch(e){} };
+    if(v.readyState >= 1) fijar(); else v.addEventListener('loadedmetadata', fijar, { once:true });
+    v.addEventListener('playing', function(){
+      if(Math.abs(v.currentTime - seg) > 1.5) fijar();
+    }, { once:true });
+  }
+  capBotones.forEach(function(b){ b.addEventListener('click', function(){ irACapitulo(Number(b.dataset.t)); }); });
+
+  
+  (function(){
+    var h = location.hash || '';
+    
+    
+    var anclas = (CONFIG.anclas || []).map(function(a){ return a.replace(/[.*+?^${}()|[\]\\-]/g, '\\$&'); }).join('|');
+    var m = h.match(new RegExp('plan([123])|^#(' + anclas + ')$|^#cap([1-8])$'));
+    if(m && m[1]) planElegido = Number(m[1]);
+    if(m && m[2]){ var el = document.getElementById(m[2]); if(el){ if(el.tagName === 'DETAILS') el.open = true; setTimeout(function(){ el.scrollIntoView({ behavior:'smooth' }); }, 300); } }
+    if(m && m[1]) setTimeout(function(){ var d = document.getElementById('plan-detalle'); if(d) d.scrollIntoView({ behavior:'smooth', block:'start' }); }, 300);
+    if(m && m[3]){ var btn = capBotones[Number(m[3]) - 1]; if(btn) setTimeout(function(){ irACapitulo(Number(btn.dataset.t)); }, 300); }
+  })();
+
+  
+  cargarPlan(planElegido, true);
+  montarVideos();
+  observarCta();
+  (function(){ var c = document.getElementById('contacto'); if(!c || !('IntersectionObserver' in window)) return;
+    new IntersectionObserver(function(es){ es.forEach(function(e){ enCierre = e.isIntersecting; pintarBarra(); }); }, { threshold:.2 }).observe(c);
+  })();
+  (function(){ var b = document.getElementById('progresoBarra'); if(!b) return; function f(){ var h = document.documentElement; var p = h.scrollTop / ((h.scrollHeight - h.clientHeight) || 1); b.style.transform = 'scaleX(' + Math.min(1, Math.max(0, p)) + ')'; } window.addEventListener('scroll', f, { passive:true }); window.addEventListener('resize', f); f(); })();
+
+</script>
+</body>
+</html>
