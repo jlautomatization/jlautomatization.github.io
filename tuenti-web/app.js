@@ -900,40 +900,64 @@
       $('contacto-tel').textContent = c.boton_telefono || 'Llamar';
     } else $('contacto-tel').innerHTML = falta('contacto.telefono');
 
-    /* instagram */
+    /* instagram: reels incrustados + perfil (rediseño 13/10/2026) */
     const red = d.redes || {};
+    const kickR = $('red-kicker');
+    if (kickR) { if (red.antetitulo) kickR.textContent = red.antetitulo; else kickR.style.display = 'none'; }
     txt($('red-titulo'), red.titulo, 'redes.titulo');
-    txt($('red-usuario'), red.usuario, 'redes.usuario');
-
-    const rg = $('redes-grid');
-    if (vacio(red.publicaciones)) rg.innerHTML = falta('redes.publicaciones');
-    else red.publicaciones.forEach(pub => {
-      const tieneUrl = !vacio(pub.url);
-      const el = document.createElement(tieneUrl ? 'a' : 'div');
-      el.className = 'rg';
-      if (tieneUrl) { el.href = pub.url; el.target = '_blank'; el.rel = 'noopener'; }
-      el.innerHTML = '<span class="ic"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg></span>' +
-        (tieneUrl ? '' : '<span class="rg__falta">' + falta('url_post') + '</span>');
-      if (!vacio(pub.imagen)) {
-        const im = new Image();
-        im.alt = ''; im.loading = 'lazy';
-        im.onerror = () => im.remove();
-        el.insertBefore(im, el.firstChild);
-        im.src = pub.imagen;
-      }
-      rg.appendChild(el);
-    });
+    const ru = $('red-usuario');
+    if (ru) {
+      if (red.usuario) { ru.textContent = red.usuario; ru.href = red.instagram || '#'; }
+      else ru.innerHTML = falta('redes.usuario');
+    }
+    const reelsEl = $('reels');
+    const idsReel = (red.reels_destacados || [])
+      .map(u => (String(u).match(/\/reel\/([^\/?#]+)/) || [])[1]).filter(Boolean);
+    if (reelsEl) {
+      if (!idsReel.length) reelsEl.style.display = 'none';
+      idsReel.forEach(id => {
+        const f = document.createElement('div');
+        f.className = 'reel';
+        f.dataset.src = 'https://www.instagram.com/reel/' + id + '/embed/';
+        f.innerHTML = '<a class="reel__ph" href="https://www.instagram.com/reel/' + id + '/" target="_blank" rel="noopener">Ver en Instagram</a>';
+        reelsEl.appendChild(f);
+      });
+    }
+    const pe = $('perfil-embed');
+    if (pe) {
+      if (red.usuario) pe.dataset.src = 'https://www.instagram.com/' + String(red.usuario).replace('@', '') + '/embed/';
+      else pe.closest('.perfil-wrap').style.display = 'none';
+    }
+    /* los iframes de Instagram pesan: se montan al acercarse a la sección */
+    const diferidos = Array.prototype.slice.call(document.querySelectorAll('.reel[data-src], #perfil-embed[data-src]'));
+    const montar = el => {
+      if (el.querySelector('iframe')) return;
+      const fr = document.createElement('iframe');
+      fr.src = el.dataset.src; fr.title = 'Publicación de Instagram';
+      fr.setAttribute('scrolling', 'no'); fr.setAttribute('allowtransparency', 'true');
+      const ph = el.querySelector('.reel__ph');
+      fr.addEventListener('load', () => { if (ph) ph.style.display = 'none'; });
+      el.appendChild(fr);
+    };
+    if ('IntersectionObserver' in window) {
+      const ioIg = new IntersectionObserver(es => es.forEach(en => {
+        if (en.isIntersecting) { montar(en.target); ioIg.unobserve(en.target); }
+      }), { rootMargin: '500px 0px' });
+      diferidos.forEach(e => ioIg.observe(e));
+    } else diferidos.forEach(montar);
 
     const rc = $('redes-cta');
+    const svgIg = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>';
+    const svgTk = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2.3 1.9 3.9 4 4.1v2.8c-1.5.1-2.9-.4-4-1.2v5.6a5.7 5.7 0 1 1-5.7-5.7c.3 0 .6 0 .9.1v2.9a2.8 2.8 0 1 0 2 2.7V3h2.9z"/></svg>';
+    const svgFb = '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M13.6 22v-8.1h2.7l.5-3.3h-3.2V8.6c0-1 .4-1.7 1.8-1.7h1.5V4.1c-.3 0-1.2-.1-2.3-.1-2.5 0-4.1 1.5-4.1 4.2v2.4H7.3v3.3H10V22h3.6z"/></svg>';
     if (red.instagram) rc.insertAdjacentHTML('beforeend',
-      '<a class="ds-btn ds-btn--outline" href="' + esc(red.instagram) + '" target="_blank" rel="noopener">' +
-      '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6"><rect x="3" y="3" width="18" height="18" rx="5"/><circle cx="12" cy="12" r="4"/><circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none"/></svg>' +
-      esc(red.boton_perfil || 'Instagram') + '</a>');
+      '<a class="ds-btn ds-btn--solid-ig" href="' + esc(red.instagram) + '" target="_blank" rel="noopener">' + svgIg + esc(red.boton_perfil || 'Instagram') + '</a>');
     else rc.insertAdjacentHTML('beforeend', falta('redes.instagram'));
     if (red.tiktok) rc.insertAdjacentHTML('beforeend',
-      '<a class="ds-btn ds-btn--outline" href="' + esc(red.tiktok) + '" target="_blank" rel="noopener">' +
-      '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.5 3c.4 2.3 1.9 3.9 4 4.1v2.8c-1.5.1-2.9-.4-4-1.2v5.6a5.7 5.7 0 1 1-5.7-5.7c.3 0 .6 0 .9.1v2.9a2.8 2.8 0 1 0 2 2.7V3h2.9z"/></svg>TikTok</a>');
+      '<a class="ds-btn ds-btn--outline" href="' + esc(red.tiktok) + '" target="_blank" rel="noopener">' + svgTk + 'TikTok</a>');
     else rc.insertAdjacentHTML('beforeend', falta('redes.tiktok'));
+    if (red.facebook) rc.insertAdjacentHTML('beforeend',
+      '<a class="ds-btn ds-btn--outline" href="' + esc(red.facebook) + '" target="_blank" rel="noopener">' + svgFb + 'Facebook</a>');
   }
 
   /* ================================================================

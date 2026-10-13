@@ -239,13 +239,18 @@
     "telefono": "+573147319831"
   },
   "redes": {
-    "antetitulo": null,
+    "antetitulo": "Síguenos",
     "titulo": "Porque el colombiano se sabe poner la camiseta",
     "intro": null,
+    "reels_destacados": [
+      "https://www.instagram.com/reel/DWhLSFJjALD/",
+      "https://www.instagram.com/reel/DVodISQAMm8/",
+      "https://www.instagram.com/reel/DZx4dT1MRrg/"
+    ],
     "usuario": "@tuenti_col",
     "instagram": "https://www.instagram.com/tuenti_col/",
     "tiktok": "https://www.tiktok.com/@tuenti_col",
-    "facebook": null,
+    "facebook": "https://facebook.com/TuentiCamisetas",
     "boton_perfil": "Instagram",
     "publicaciones": [
       {
