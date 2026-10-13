@@ -1,0 +1,88 @@
+/* ================================================================
+   TUENTI · rediseno.css  (13/10/2026 · propuesta 1 aprobada por Jose)
+   Se carga DESPUÉS de landing.css. Paleta y tipografía ya viven en
+   tokens.css (+ el bloque "tokens" de marca.json). Aquí: tipografía de
+   titulares, anuncio, wordmark, héroe y categorías.
+   Respaldo de lo anterior: _respaldos/2026-10-13_085552_antes_rediseno_portada
+   ================================================================ */
+@font-face{font-family:Anton;src:url('fuentes/Anton-normal-400-latin.woff2') format('woff2');font-weight:400;font-display:swap}
+@font-face{font-family:Caveat;src:url('fuentes/Caveat-normal-700-latin.woff2') format('woff2');font-weight:700;font-display:swap}
+
+/* ---- titulares: Anton, una sola cara, sin negrita sintética ---- */
+.ds-title,.ds-h1,.ds-banner-title,.ds-pdp__title,.hero-in h1,.prox-llego h3,.prox-media-t,
+.banner-in h2,.cat-vacio h3,.prox-titulo,.car__t,.reg__t{
+  font-family:var(--font-display);font-weight:400;font-synthesis:none;
+  text-transform:uppercase;letter-spacing:.03em}
+
+/* ---- anuncio: franja verde ---- */
+.ds-announce{background:var(--c-accent);color:var(--c-accent-ink);font-weight:800}
+
+/* ---- wordmark en Anton (el acento «EN» sigue siendo verde) ---- */
+.ds-nav__logo,.ds-footer__logo,.ds-menu__logo{
+  font-family:var(--font-display);font-weight:400;letter-spacing:.04em;font-size:1.7rem}
+
+/* ================================================================
+   HÉROE  ·  texto + una foto en marco verde
+   ================================================================ */
+.hero{aspect-ratio:auto;min-height:0;display:block;overflow:hidden;
+  padding:clamp(1.4rem,5vw,3rem) 0 clamp(2.4rem,6vw,4.5rem)}
+.hero::after{display:none}
+.hero-in{position:relative;z-index:2;padding-bottom:0;display:grid;gap:2.2rem}
+.hero-kicker{font-family:var(--font-hand);font-weight:700;font-size:clamp(1.7rem,5vw,2.3rem);
+  color:var(--c-accent);line-height:1;margin:0}
+.hero-in h1{font-size:clamp(3rem,13vw,5.6rem);line-height:1.02;margin:.5rem 0 0;color:#fff}
+.hero-in .baja{max-width:30ch;margin-top:1rem;color:var(--c-muted);font-size:var(--fs-lead)}
+.hero-btns{display:flex;flex-direction:column;gap:.7rem;margin-top:1.5rem;max-width:22rem}
+.hero .ds-btn{margin-top:0;min-height:54px;border-radius:999px;font-weight:800;
+  letter-spacing:.06em;font-size:.82rem;justify-content:center;border-width:2px}
+.hero .ds-btn--light{background:var(--c-accent);color:var(--c-accent-ink);border-color:var(--c-accent)}
+.hero .ds-btn--light:hover{background:#fff;border-color:#fff;color:var(--c-accent-ink)}
+.hero .ds-btn--outline{background:transparent;color:#fff;border-color:var(--c-accent)}
+.hero .ds-btn--outline:hover{background:var(--c-accent);color:var(--c-accent-ink)}
+
+.hero-pf{position:relative;padding:0 .4rem}
+.hb{position:absolute;background:var(--c-accent);z-index:0;display:block}
+.hb1{left:-1.4rem;top:-1.2rem;width:7.5rem;height:7.5rem;border-radius:50%}
+.hb2{right:-1.4rem;bottom:-1.2rem;width:6rem;height:7.5rem;border-radius:50% 0 0 50%}
+.hero-card{position:relative;z-index:1;aspect-ratio:4/4.6;border:4px solid var(--c-accent);
+  border-radius:26px;overflow:hidden;background:var(--c-surface);transform:rotate(-2deg)}
+.hero-foto{position:absolute;inset:0}
+.hero-capa{background-position:50% 14%}
+.hero-sello{position:absolute;right:0;bottom:0;background:var(--c-accent);color:var(--c-accent-ink);
+  font-family:var(--font-display);font-size:1.05rem;letter-spacing:.05em;line-height:1.15;text-transform:uppercase;
+  padding:.65rem .9rem;border-radius:18px 0 22px 0;text-align:right;max-width:70%}
+
+@media(min-width:900px){
+  .hero{padding:clamp(2.4rem,5vw,4.5rem) 0}
+  .hero-in{grid-template-columns:1.05fr .95fr;align-items:center;gap:clamp(2rem,5vw,4.5rem)}
+  .hero-btns{flex-direction:row;flex-wrap:wrap;max-width:none}
+  .hero .ds-btn{padding-left:1.8rem;padding-right:1.8rem}
+  .hero-pf{max-width:34rem;justify-self:end;width:100%}
+  .hero-card{aspect-ratio:4/4.7}
+}
+
+/* ================================================================
+   CATEGORÍAS  ·  seis tarjetas parejas, con precio al detal
+   ================================================================ */
+.cats{display:grid;grid-template-columns:repeat(2,1fr);gap:.8rem;overflow:visible;
+  background:transparent;padding:clamp(1.6rem,5vw,3rem) 0 clamp(2.4rem,6vw,4rem);
+  max-width:var(--wrap);margin:0 auto;scroll-snap-type:none}
+.cat{flex:none;aspect-ratio:4/5;border-radius:22px;border:2px solid var(--c-line);
+  display:flex;flex-direction:column;justify-content:flex-end;gap:.15rem;padding:0 .9rem .85rem}
+.cat img{object-position:50% 12%}
+.cat::after{background:linear-gradient(to top,rgba(27,29,30,.96) 0%,rgba(27,29,30,.82) 28%,rgba(27,29,30,0) 62%)}
+.cat span{padding:0}
+.cat .cat-n{font-family:var(--font-display);font-weight:400;font-synthesis:none;
+  font-size:clamp(1.15rem,4.6vw,1.6rem);letter-spacing:.05em;line-height:1.05;color:#fff}
+.cat .cat-p{font-family:var(--font);font-weight:800;font-size:.82rem;letter-spacing:.02em;
+  color:var(--c-accent);text-transform:none}
+@media(min-width:721px){
+  .cats{grid-template-columns:repeat(3,1fr);gap:1rem}
+  .cat{aspect-ratio:4/5}
+  .cat .cat-n{font-size:clamp(1.3rem,2.2vw,1.8rem)}
+  .cat .cat-p{font-size:.95rem}
+}
+@media(min-width:1200px){
+  .cats{grid-template-columns:repeat(3,1fr);gap:1.2rem}
+  .cat{aspect-ratio:4/5}
+}

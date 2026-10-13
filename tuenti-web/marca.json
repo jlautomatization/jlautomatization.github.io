@@ -1,0 +1,4001 @@
+{
+  "_meta": {
+    "version": 12,
+    "actualizado": "2026-08-05",
+    "nota": "Todo el contenido variable del sitio vive aquí. El HTML no lleva texto de negocio. Los valores en null se renderizan como [[campo]] visible. IDENTIDAD (fuente: 2 TUENTI BRIEF.pdf p.1): tres colores — gris de marca #2D343E de fondo, blanco #FFFFFF de texto y verde manzana #C0D028 SOLO como acento (logo «EN», precios, líneas, iconos, bordes, estados activos). MAQUETA: se muestran los 146 diseños, licenciados incluidos (app.js, MODO_MAQUETA=true). licenciado es DATO, no filtro. precio_mayor es DATO y NO se muestra: canal de WhatsApp, decisión futura.",
+    "pendientes_de_confirmar": [
+      "historia.texto — **PENDIENTE DE APROBACIÓN, palabra por palabra**. 13/10/2026: Jose pidió quitar los nombres de los fundadores y la cita de Romanos 8:28 (hecho por supresión, sin texto nuevo). Falta que Jose la mejore y la apruebe; hechos tomados del brief p.1 y de lo aportado por el dueño.",
+      "legal.json — los TRES documentos son **BORRADORES PENDIENTES DE REVISIÓN POR ABOGADO**. Redactados siguiendo la Ley 1480 de 2011 (Estatuto del Consumidor) y la Ley 1581 de 2012 (datos personales), pero **no los ha revisado un abogado**.",
+      "registro — el 10% de la primera compra se canjea **a mano**: la clienta lo menciona por WhatsApp. No hay código ni validación automática hasta que haya pasarela (F4).",
+      "registro — los datos se guardan solo en el navegador (localStorage). **No hay captura real**: para KPIs y mercadeo hace falta backend. Es F4/F5.",
+      "TIPOGRAFÍA — DECISIÓN ABIERTA, no dato heredado. Los dos PDF NO documentan ninguna tipografía; el manual p.16 la deja como tarea pendiente. La tríada Fraunces + Manrope + IBM Plex Mono es PROPUESTA NUESTRA, sin respaldo del brief.",
+      "productos[].tema — clasificación PROPUESTA, deducida del nombre. Ya aplicada porque el filtro del catálogo la necesita. Confirmar en docs/REVISION_TEMAS.md.",
+      "MAQUETA — el sitio NO debe indexarse. Tres cosas a revertir al publicar: el <meta robots> de las tres páginas, MODO_MAQUETA=true en app.js y el robots.txt de la raíz. Ver TRASPASO_WEB.md §0.3.",
+      "productos[].variantes[].tallas — medidas en centímetros, las está tomando la trabajadora del local. Solo Hombre tiene tallas de letra (S/M/L/XL), deducidas de las subcarpetas.",
+      "productos[].variantes[].hex — colores de tela, pendientes de foto con luz de día. Solo hay 8 colores mapeados; el resto sale como [[hex_color]].",
+      "local.horario_semana — horario de atención del local.",
+      "productos[].licenciado — clasificación propuesta (91 licenciados, 40 sin marca, 15 dudosos). Confirmar en docs/REVISION_LICENCIADOS.md.",
+      "precio_mayor — DECISIÓN APLAZADA. Cargado como dato (12+ unidades) pero NO se muestra en la web: es canal de WhatsApp. Ver TRASPASO_WEB.md §0.5."
+    ]
+  },
+  "tokens": {
+    "--c-bg": "#1B1D1E",
+    "--c-surface": "#26292B",
+    "--c-fill": "#2F3335",
+    "--c-dark": "#141617",
+    "--c-veil": "rgba(27,29,30,.92)",
+    "--c-ink": "#FFFFFF",
+    "--c-muted": "rgba(255,255,255,.72)",
+    "--c-faint": "rgba(255,255,255,.60)",
+    "--c-on-dark": "#FFFFFF",
+    "--c-on-dark-muted": "rgba(255,255,255,.72)",
+    "--c-on-dark-faint": "rgba(255,255,255,.60)",
+    "--c-accent": "#B3C300",
+    "--c-accent-ink": "#1B1D1E",
+    "--c-alert": "#FF8566",
+    "--c-ok": "#6FC47F",
+    "--c-line": "rgba(255,255,255,.18)",
+    "--c-line-soft": "rgba(255,255,255,.10)",
+    "--c-line-on-dark": "rgba(255,255,255,.18)",
+    "--font": "\"Manrope\",system-ui,-apple-system,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif",
+    "--font-display": "\"Anton\",Impact,\"Arial Narrow\",sans-serif",
+    "--font-hand": "\"Caveat\",\"Segoe Script\",cursive",
+    "--font-mono": "\"IBM Plex Mono\",ui-monospace,SFMono-Regular,\"SF Mono\",Menlo,Consolas,monospace"
+  },
+  "marca": {
+    "nombre": "TUENTI",
+    "tipo": "Camisetas",
+    "ciudad": "Bogotá",
+    "eslogan": "Es saber ponerse la camiseta",
+    "razon_social": "Veinte, veinte",
+    "descripcion_seo": "Camisetas con personalidad. Diseños nuevos cada miércoles y sábado."
+  },
+  "anuncio": "Diseños nuevos cada miércoles y sábado · Envíos a toda Colombia · Pedidos por WhatsApp",
+  "nav": {
+    "enlaces": [
+      {
+        "texto": "Catálogo",
+        "href": "catalogo.html"
+      },
+      {
+        "texto": "Historia",
+        "href": "#historia"
+      },
+      {
+        "texto": "Contacto",
+        "href": "#contacto"
+      }
+    ],
+    "cta": {
+      "texto": "Escríbenos",
+      "href": "#contacto"
+    }
+  },
+  "hero": {
+    "antetitulo": "Diseños que dicen algo",
+    "titulo": "Es saber ponerse la camiseta",
+    "bajada": "Para ponértela, no para dejarla en el clóset.",
+    "boton": "Ver el catálogo",
+    "sello": "Nuevos cada miércoles y sábado",
+    "fotos": [
+      "img/nuevo-hero-1-catrina.jpg",
+      "img/nuevo-hero-2-colombia.jpg",
+      "img/nuevo-hero-3-astronauta.jpg"
+    ]
+  },
+  "categorias_fotos": {
+    "Con mangas": "img/nuevo-cat-con-mangas.jpg",
+    "Sin mangas": "img/nuevo-cat-sin-mangas.jpg",
+    "Clásicas": "img/nuevo-cat-clasicas.jpg",
+    "Oversize": "img/nuevo-cat-oversize.jpg",
+    "Blusones": "img/nuevo-cat-blusones.jpg",
+    "Hombre": "img/nuevo-cat-hombre.jpg"
+  },
+  "catalogo": {
+    "antetitulo": null,
+    "titulo": "Búscala por categoría",
+    "intro": null,
+    "unidad": "referencias",
+    "filtro_todas": "Todas",
+    "conteo": "diseños visibles",
+    "vacio_titulo": "No encontramos nada así",
+    "vacio_texto": "Prueba con otra palabra o quita algún filtro.",
+    "vacio_boton": "Limpiar filtros",
+    "temas": [
+      "Bandas de rock",
+      "Animados",
+      "Muñecas y retratos",
+      "Colombia",
+      "Frases",
+      "Marcas y logos",
+      "Animales",
+      "Gráficos y lugares"
+    ],
+    "generos": [
+      "Mujer",
+      "Hombre"
+    ],
+    "buscador_label": "Buscar diseño",
+    "buscador_placeholder": "nirvana, colombia, snoopy…",
+    "filtros_titulo": "Filtros",
+    "filtros_limpiar": "Limpiar",
+    "label_genero": "Género",
+    "label_categoria": "Categoría",
+    "label_tema": "Tema"
+  },
+  "ficha": {
+    "volver": "Volver al catálogo",
+    "label_color": "Color",
+    "label_talla": "Talla",
+    "label_precio_unidad": "Precio unidad",
+    "label_precio_mayor": "Al por mayor",
+    "boton_whatsapp": "Pedir por WhatsApp",
+    "no_encontrado_titulo": "No encontramos ese diseño",
+    "no_encontrado_texto": "El enlace puede estar viejo o el diseño ya no está publicado.",
+    "detalles": [
+      {
+        "clave": "Material",
+        "valor": "100% algodón"
+      },
+      {
+        "clave": "Estampado",
+        "valor": "Plastisol termofijado"
+      },
+      {
+        "clave": "Envío",
+        "valor": "Enviamos a toda Colombia por Interrapidísimo. El envío lo pagas cuando te llega el pedido. La guía te llega por WhatsApp o al correo que dejes al hacerlo."
+      },
+      {
+        "clave": "Cambios",
+        "valor": "Tienes 8 días hábiles para cambiar. La prenda va sin uso, sin lavar y con el estampado intacto. El cambio lo haces en el punto del Gran San, o te lo mandamos pagando el domicilio de ida y vuelta."
+      }
+    ],
+    "label_tela": "Tela",
+    "tela_por_categoria": {
+      "Clásicas": "Algodón liviano",
+      "Oversize": "Algodón pesado"
+    },
+    "boton_agregar": "Agregar al carrito"
+  },
+  "destacado": {
+    "producto_id": "con-mangas-nirvana-in-utero",
+    "color": "negra"
+  },
+  "proximo": {
+    "antetitulo": null,
+    "titulo": "Diseños nuevos cada miércoles y sábado",
+    "texto": null,
+    "dias_lanzamiento": [
+      3,
+      6
+    ],
+    "hora_lanzamiento": "23:59",
+    "candado_texto": "El próximo se revela en",
+    "etiquetas_tiempo": {
+      "dias": "días",
+      "horas": "horas",
+      "minutos": "min",
+      "segundos": "seg"
+    },
+    "fotos": [
+      "img/con-mangas-colombia-bandera-negra.jpg",
+      "img/sin-mangas-catrina-rosa-blanca.jpg",
+      "img/con-mangas-catrina-girasoles-negra.jpg"
+    ],
+    "llegaron_titulo": "Ya llegaron",
+    "llegaron_texto": "Los diseños nuevos ya están en el catálogo.",
+    "llegaron_boton": "Ver el catálogo",
+    "llegaron_href": "catalogo.html"
+  },
+  "historia": {
+    "antetitulo": null,
+    "titulo": "Veinte, veinte",
+    "texto": "Nacimos en 2020, en el Gran San Victorino, como el paso siguiente de los doce años de Gánster. El nombre no es casualidad: TU-EN-TI suena a twenty, al 2020 que nos vio nacer. Lo llevamos puesto para no olvidar de dónde venimos.\n\nEse año fue duro para todos. Lo que nos sostuvo fue una forma de ser que ya conoces si eres de acá — madrugar, trabajar, estar atento, echar para adelante. Eso es saber ponerse la camiseta.",
+    "boton": "Ver el catálogo",
+    "foto": "img/con-mangas-catrina-girasoles-negra.jpg"
+  },
+  "promesas": [
+    {
+      "titulo": "Diseños nuevos cada semana",
+      "texto": "Miércoles y sábado. Lo que entra hoy no estaba el lunes."
+    },
+    {
+      "titulo": "Hecha en Colombia",
+      "texto": "Con manos de mujeres que saben lo que hacen."
+    },
+    {
+      "titulo": "Te asesoramos por WhatsApp",
+      "texto": "Tallas, colores y envíos, sin drama."
+    }
+  ],
+  "local": {
+    "antetitulo": null,
+    "titulo": "Dónde y cuándo",
+    "direccion": "Carrera 10 #9-37, Centro Comercial El Gran San, Locales 2152 y 2153, Bogotá",
+    "horario_semana": [
+      {
+        "dias": "Lunes, martes, jueves y viernes",
+        "horas": "8:30 a.m. – 6:00 p.m."
+      },
+      {
+        "dias": "Miércoles y sábado",
+        "horas": "4:00 a.m. – 6:00 p.m."
+      },
+      {
+        "dias": "Domingo",
+        "horas": "9:00 a.m. – 5:00 p.m."
+      }
+    ],
+    "mapa_embed": "https://www.google.com/maps?q=Carrera+10+%239-37%2C+Centro+Comercial+El+Gran+San%2C+Locales+2152+y+2153%2C+Bogot%C3%A1&output=embed",
+    "boton_como_llegar": "Cómo llegar →"
+  },
+  "contacto": {
+    "antetitulo": null,
+    "titulo": "Escríbenos y te respondemos",
+    "texto": "Te decimos qué hay disponible, en qué tallas y cuánto tarda el envío.",
+    "boton_whatsapp": "Escribir por WhatsApp",
+    "boton_telefono": "Llamar",
+    "whatsapp": "+573147319831",
+    "telefono": "+573147319831"
+  },
+  "redes": {
+    "antetitulo": null,
+    "titulo": "Porque el colombiano se sabe poner la camiseta",
+    "intro": null,
+    "usuario": "@tuenti_col",
+    "instagram": "https://www.instagram.com/tuenti_col/",
+    "tiktok": "https://www.tiktok.com/@tuenti_col",
+    "facebook": null,
+    "boton_perfil": "Instagram",
+    "publicaciones": [
+      {
+        "imagen": "img/con-mangas-your-love-is-love-blanca.jpg",
+        "url": "https://www.instagram.com/reel/DaOIC4gsYgf/"
+      },
+      {
+        "imagen": "img/con-mangas-perfect-imperfect-blanca.jpg",
+        "url": "https://www.instagram.com/reel/DaFuGLcujxS/"
+      },
+      {
+        "imagen": "img/oversize-munieca-panioleta-y-gafas-blanca.jpg",
+        "url": "https://www.instagram.com/reel/DZx4dT1MRrg/"
+      },
+      {
+        "imagen": "img/sin-mangas-call-me-animal-print-negra.jpg",
+        "url": "https://www.instagram.com/reel/DP7XkZVgCIj/"
+      },
+      {
+        "imagen": "img/sin-mangas-catrina-rosa-blanca.jpg",
+        "url": "https://www.instagram.com/reel/DVodISQAMm8/"
+      },
+      {
+        "imagen": "img/con-mangas-colombia-bandera-blanca.jpg",
+        "url": "https://www.instagram.com/reel/DWhLSFJjALD/"
+      }
+    ],
+    "boton_tiktok": "TikTok"
+  },
+  "pie": {
+    "columnas": [
+      {
+        "titulo": "Tienda",
+        "enlaces": [
+          {
+            "texto": "Catálogo",
+            "href": "catalogo.html"
+          },
+          {
+            "texto": "Historia",
+            "href": "#historia"
+          },
+          {
+            "texto": "Cómo llegar",
+            "href": "#local"
+          }
+        ]
+      },
+      {
+        "titulo": "Legal",
+        "enlaces": [
+          {
+            "texto": "Cambios y envíos",
+            "href": "legal.html#cambios"
+          },
+          {
+            "texto": "Datos personales",
+            "href": "legal.html#datos"
+          },
+          {
+            "texto": "Términos del registro",
+            "href": "legal.html#terminos"
+          }
+        ]
+      }
+    ],
+    "titulo_redes": "Síguenos",
+    "linea_legal": "TUENTI · Veinte, veinte · Bogotá"
+  },
+  "categorias": [
+    "Con mangas",
+    "Sin mangas",
+    "Blusones",
+    "Oversize",
+    "Clásicas",
+    "Hombre"
+  ],
+  "productos": [
+    {
+      "id": "blusones-arctic-monkeys",
+      "diseno": "Arctic monkeys",
+      "categoria": "Blusones",
+      "tema": "Bandas de rock",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "blusones-arctic-monkeys-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blusones-cupido",
+      "diseno": "Cupido",
+      "categoria": "Blusones",
+      "tema": "Animados",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "café",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "blusones-cupido-cafe.jpg"
+          ]
+        },
+        {
+          "color": "naranja rojo",
+          "hex": "#C4472C",
+          "tallas": null,
+          "fotos": [
+            "blusones-cupido-naranja-rojo.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blusones-guns-n-roses-pistola",
+      "diseno": "Guns n roses pistola",
+      "categoria": "Blusones",
+      "tema": "Bandas de rock",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "blusones-guns-n-roses-pistola-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "blusones-guns-n-roses-pistola-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blusones-guns-n-roses",
+      "diseno": "Guns n roses",
+      "categoria": "Blusones",
+      "tema": "Bandas de rock",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "blusones-guns-n-roses-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blusones-jack-daniels",
+      "diseno": "Jack daniels",
+      "categoria": "Blusones",
+      "tema": "Marcas y logos",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "blusones-jack-daniels-blanca.jpg",
+            "blusones-jack-daniels-blanca-2.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "blusones-jack-daniels-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blusones-los-angeles",
+      "diseno": "Los angeles",
+      "categoria": "Blusones",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "vinotinto",
+          "hex": "#5E2233",
+          "tallas": null,
+          "fotos": [
+            "blusones-los-angeles-vinotinto.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blusones-mickey-caricatura",
+      "diseno": "Mickey caricatura",
+      "categoria": "Blusones",
+      "tema": "Animados",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "roja",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "blusones-mickey-caricatura-roja.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blusones-mickey-mouse",
+      "diseno": "Mickey mouse",
+      "categoria": "Blusones",
+      "tema": "Animados",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "blusones-mickey-mouse-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blusones-nirvana-carita",
+      "diseno": "Nirvana carita",
+      "categoria": "Blusones",
+      "tema": "Bandas de rock",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "blusones-nirvana-carita-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "blusones-nirvana-carita-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blusones-nirvana-in-utero",
+      "diseno": "Nirvana in utero",
+      "categoria": "Blusones",
+      "tema": "Bandas de rock",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "blusones-nirvana-in-utero-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blusones-pink-floyd",
+      "diseno": "Pink floyd",
+      "categoria": "Blusones",
+      "tema": "Bandas de rock",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "blusones-pink-floyd-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "blusones-pink-floyd-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "blusones-rolling-stones-lengua",
+      "diseno": "Rolling stones lengua",
+      "categoria": "Blusones",
+      "tema": "Bandas de rock",
+      "precio_unidad": 45000,
+      "precio_mayor": 38000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "blusones-rolling-stones-lengua-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clasicas-acdc-back-in-black",
+      "diseno": "ACDC back in black",
+      "categoria": "Clásicas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "clasicas-acdc-back-in-black-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clasicas-anime",
+      "diseno": "Anime",
+      "categoria": "Clásicas",
+      "tema": "Animados",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "clasicas-anime-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clasicas-guns-n-roses-disco",
+      "diseno": "Guns n roses disco",
+      "categoria": "Clásicas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "clasicas-guns-n-roses-disco-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clasicas-guns-n-roses-pistola-letra-plateada",
+      "diseno": "Guns n roses pistola letra plateada",
+      "categoria": "Clásicas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "clasicas-guns-n-roses-pistola-letra-plateada-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clasicas-harley-davidson",
+      "diseno": "Harley davidson",
+      "categoria": "Clásicas",
+      "tema": "Marcas y logos",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "azul",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "clasicas-harley-davidson-azul.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clasicas-huesitos",
+      "diseno": "Huesitos",
+      "categoria": "Clásicas",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "vinotinto",
+          "hex": "#5E2233",
+          "tallas": null,
+          "fotos": [
+            "clasicas-huesitos-vinotinto.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clasicas-los-angeles",
+      "diseno": "Los angeles",
+      "categoria": "Clásicas",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": null,
+      "publicable_web": false,
+      "variantes": [
+        {
+          "color": "vinotinto",
+          "hex": "#5E2233",
+          "tallas": null,
+          "fotos": [
+            "clasicas-los-angeles-vinotinto.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clasicas-moschino",
+      "diseno": "Moschino",
+      "categoria": "Clásicas",
+      "tema": "Marcas y logos",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "clasicas-moschino-negra.jpg"
+          ]
+        },
+        {
+          "color": "vinotinto",
+          "hex": "#5E2233",
+          "tallas": null,
+          "fotos": [
+            "clasicas-moschino-vinotinto.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clasicas-peanuts",
+      "diseno": "Peanuts",
+      "categoria": "Clásicas",
+      "tema": "Animados",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "clasicas-peanuts-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clasicas-queen-banda",
+      "diseno": "Queen banda",
+      "categoria": "Clásicas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "clasicas-queen-banda-beish.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "clasicas-tom-y-jerry",
+      "diseno": "Tom y jerry",
+      "categoria": "Clásicas",
+      "tema": "Animados",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "azul",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "clasicas-tom-y-jerry-azul.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-mafalda-lo-importante-es-ser-uno-mismo",
+      "diseno": "Mafalda lo importante es ser uno mismo",
+      "categoria": "Con mangas",
+      "tema": "Animados",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "terracota",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-mafalda-lo-importante-es-ser-uno-mismo-terracota.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-call-me-animal-print",
+      "diseno": "Call me animal print",
+      "categoria": "Con mangas",
+      "tema": "Frases",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-call-me-animal-print-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-kiss-me",
+      "diseno": "Kiss me",
+      "categoria": "Con mangas",
+      "tema": "Frases",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-kiss-me-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-snoopy-sombrilla",
+      "diseno": "Snoopy sombrilla",
+      "categoria": "Con mangas",
+      "tema": "Animados",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-snoopy-sombrilla-beish.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-snoopy-sombrilla-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-acdc-back-in-black",
+      "diseno": "ACDC back in black",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-acdc-back-in-black-blanca.jpg"
+          ]
+        },
+        {
+          "color": "mostaza",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-acdc-back-in-black-mostaza.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-acdc-back-in-black-negra.jpg"
+          ]
+        },
+        {
+          "color": "roja",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-acdc-back-in-black-roja.jpg"
+          ]
+        },
+        {
+          "color": "verde aguamarina",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-acdc-back-in-black-verde-aguamarina.jpg"
+          ]
+        },
+        {
+          "color": "vinotinto",
+          "hex": "#5E2233",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-acdc-back-in-black-vinotinto.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-catrina-girasoles",
+      "diseno": "Catrina girasoles",
+      "categoria": "Con mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-catrina-girasoles-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-catrina-girasoles-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-corset-blanco",
+      "diseno": "Corset blanco",
+      "categoria": "Con mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-corset-blanco-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-queen-escudo",
+      "diseno": "Queen escudo",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-queen-escudo-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-queen-escudo-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-ramones",
+      "diseno": "Ramones",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-ramones-blanca.jpg"
+          ]
+        },
+        {
+          "color": "verde",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-ramones-verde.jpg"
+          ]
+        },
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-ramones-beish.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-airjordan",
+      "diseno": "Airjordan",
+      "categoria": "Con mangas",
+      "tema": "Marcas y logos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "roja",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-airjordan-roja.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-amore",
+      "diseno": "Amore",
+      "categoria": "Con mangas",
+      "tema": "Frases",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-amore-blanca.jpg"
+          ]
+        },
+        {
+          "color": "morada claro",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-amore-morada-claro.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-arctic-monkeys",
+      "diseno": "Arctic monkeys",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-arctic-monkeys-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-arctic-monkeys-negra.jpg"
+          ]
+        },
+        {
+          "color": "verde aguamarina",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-arctic-monkeys-verde-aguamarina.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-bad-bunny",
+      "diseno": "Bad bunny",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-bad-bunny-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-blancanieves-tatuada",
+      "diseno": "Blancanieves tatuada",
+      "categoria": "Con mangas",
+      "tema": "Animados",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-blancanieves-tatuada-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-blancanieves-tatuada-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-catrina-rosa",
+      "diseno": "Catrina rosa",
+      "categoria": "Con mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-catrina-rosa-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-catrina-rosa-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-colombia-bandera",
+      "diseno": "Colombia bandera",
+      "categoria": "Con mangas",
+      "tema": "Colombia",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-colombia-bandera-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-colombia-bandera-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-colombia-letra-bandera",
+      "diseno": "Colombia letra bandera",
+      "categoria": "Con mangas",
+      "tema": "Colombia",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-colombia-letra-bandera-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-colombia-letra-bandera-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-colombia-letra-signos-vitales",
+      "diseno": "Colombia letra signos vitales",
+      "categoria": "Con mangas",
+      "tema": "Colombia",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-colombia-letra-signos-vitales-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-colombia-letra-signos-vitales-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-corazon-rojo",
+      "diseno": "Corazon rojo",
+      "categoria": "Con mangas",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-corazon-rojo-beish.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-corset-negro",
+      "diseno": "Corset negro",
+      "categoria": "Con mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-corset-negro-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-dont-be-shy-oso",
+      "diseno": "Don't be shy oso",
+      "categoria": "Con mangas",
+      "tema": "Animales",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-dont-be-shy-oso-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-esqueleto-motor-harley-davidson",
+      "diseno": "Esqueleto motor harley davidson",
+      "categoria": "Con mangas",
+      "tema": "Marcas y logos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-esqueleto-motor-harley-davidson-beish.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-esqueleto-motor-harley-davidson-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-estatua-libertad",
+      "diseno": "Estatua libertad",
+      "categoria": "Con mangas",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-estatua-libertad-beish.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-gatos-carro",
+      "diseno": "Gatos carro",
+      "categoria": "Con mangas",
+      "tema": "Animales",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "verde amarillo",
+          "hex": "#B0C151",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-gatos-carro-verde-amarillo.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-give-me-space",
+      "diseno": "Give me space",
+      "categoria": "Con mangas",
+      "tema": "Frases",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-give-me-space-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-guns-n-roses-circulo-rosado",
+      "diseno": "Guns n roses circulo rosado",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-guns-n-roses-circulo-rosado-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-guns-n-roses-circulo",
+      "diseno": "Guns n roses circulo",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-guns-n-roses-circulo-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-guns-n-roses-circulo-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-guns-n-roses-pistola-letra-amarilla",
+      "diseno": "Guns n roses pistola letra amarilla",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-guns-n-roses-pistola-letra-amarilla-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-guns-n-roses-pistola-letra-rosada",
+      "diseno": "Guns n roses pistola letra rosada",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-guns-n-roses-pistola-letra-rosada-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-jack-daniels",
+      "diseno": "Jack daniels",
+      "categoria": "Con mangas",
+      "tema": "Marcas y logos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-jack-daniels-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-jack-daniels-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-labios-cereza",
+      "diseno": "Labios cereza",
+      "categoria": "Con mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-labios-cereza-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-mafalda-y-snoopy",
+      "diseno": "Mafalda y snoopy",
+      "categoria": "Con mangas",
+      "tema": "Animados",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "rosada",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-mafalda-y-snoopy-rosada.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-mickey-mouse-caricatura",
+      "diseno": "Mickey mouse caricatura",
+      "categoria": "Con mangas",
+      "tema": "Animados",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "morada",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-mickey-mouse-caricatura-morada.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-munieca-2020",
+      "diseno": "Muñeca 2020",
+      "categoria": "Con mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-munieca-2020-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-munieca-panioleta-roja",
+      "diseno": "Muñeca pañoleta roja",
+      "categoria": "Con mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-munieca-panioleta-roja-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-munieca-panioleta-y-gafas",
+      "diseno": "Muñeca pañoleta y gafas",
+      "categoria": "Con mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-munieca-panioleta-y-gafas-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-nirvana-carita",
+      "diseno": "Nirvana carita",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-nirvana-carita-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-nirvana-carita-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-nirvana-in-utero",
+      "diseno": "Nirvana in utero",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-nirvana-in-utero-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-nirvana-in-utero-negra.jpg"
+          ]
+        },
+        {
+          "color": "verde",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-nirvana-in-utero-verde.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-oso-champions",
+      "diseno": "Oso champions",
+      "categoria": "Con mangas",
+      "tema": "Marcas y logos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-oso-champions-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-perfect-imperfect",
+      "diseno": "Perfect imperfect",
+      "categoria": "Con mangas",
+      "tema": "Frases",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-perfect-imperfect-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-perfect-imperfect-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-perro-comiendo-pasta",
+      "diseno": "Perro comiendo pasta",
+      "categoria": "Con mangas",
+      "tema": "Animales",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-perro-comiendo-pasta-blanca.jpg"
+          ]
+        },
+        {
+          "color": "morada",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-perro-comiendo-pasta-morada.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-pink-floyd",
+      "diseno": "Pink floyd",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-pink-floyd-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-pink-floyd-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-playboy-marilyn-monroe",
+      "diseno": "Playboy marilyn monroe",
+      "categoria": "Con mangas",
+      "tema": "Marcas y logos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "mostaza",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-playboy-marilyn-monroe-mostaza.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-playboy-marilyn-monroe-negra.jpg"
+          ]
+        },
+        {
+          "color": "rosada",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-playboy-marilyn-monroe-rosada.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-red-hot-chili-peppers-banda",
+      "diseno": "Red hot chili peppers banda",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-red-hot-chili-peppers-banda-blanca.jpg"
+          ]
+        },
+        {
+          "color": "rosada",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-red-hot-chili-peppers-banda-rosada.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-rolling-stones-boca-animal-print",
+      "diseno": "Rolling stones boca animal print",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-rolling-stones-boca-animal-print-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-rolling-stones-circulo",
+      "diseno": "Rolling stones circulo",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-rolling-stones-circulo-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-rolling-stones-circulo-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-rolling-stones-las-vegas-24",
+      "diseno": "Rolling stones las vegas 24",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-rolling-stones-las-vegas-24-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-rolling-stones-letras",
+      "diseno": "Rolling stones letras",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-rolling-stones-letras-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-rolling-stones-rosas-planta",
+      "diseno": "Rolling stones rosas planta",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-rolling-stones-rosas-planta-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-rolling-stones-rosas-planta-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-rolling-stones-tour-us-78",
+      "diseno": "Rolling stones tour us 78",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-rolling-stones-tour-us-78-beish.jpg"
+          ]
+        },
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-rolling-stones-tour-us-78-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-rolling-stones-tour-us-78-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-snoopy-usa",
+      "diseno": "Snoopy USA",
+      "categoria": "Con mangas",
+      "tema": "Animados",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-snoopy-usa-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-snoopy-beso",
+      "diseno": "Snoopy beso",
+      "categoria": "Con mangas",
+      "tema": "Animados",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-snoopy-beso-beish.jpg"
+          ]
+        },
+        {
+          "color": "verde",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-snoopy-beso-verde.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-snoopy-pizza",
+      "diseno": "Snoopy pizza",
+      "categoria": "Con mangas",
+      "tema": "Animados",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-snoopy-pizza-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-snoopy-show",
+      "diseno": "Snoopy show",
+      "categoria": "Con mangas",
+      "tema": "Animados",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "verde",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "con-mangas-snoopy-show-verde.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-soda-estereo-disco",
+      "diseno": "Soda estéreo disco",
+      "categoria": "Con mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-soda-estereo-disco-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-soda-estereo-disco-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-solar-system",
+      "diseno": "Solar system",
+      "categoria": "Con mangas",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-solar-system-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-you-are-unique",
+      "diseno": "You are unique",
+      "categoria": "Con mangas",
+      "tema": "Frases",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-you-are-unique-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "con-mangas-your-love-is-love",
+      "diseno": "Your love is love",
+      "categoria": "Con mangas",
+      "tema": "Frases",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-your-love-is-love-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "con-mangas-your-love-is-love-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-colombia-bandera",
+      "diseno": "Colombia bandera",
+      "categoria": "Hombre",
+      "tema": "Colombia",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "M",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-colombia-bandera-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": [
+            "M",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-colombia-bandera-negra.jpg",
+            "hombre-colombia-bandera-negra-2.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-jack-daniels",
+      "diseno": "Jack daniels",
+      "categoria": "Hombre",
+      "tema": "Marcas y logos",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "mostaza",
+          "hex": null,
+          "tallas": [
+            "L"
+          ],
+          "fotos": [
+            "hombre-jack-daniels-mostaza.jpg"
+          ]
+        },
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "S",
+            "M",
+            "L"
+          ],
+          "fotos": [
+            "hombre-jack-daniels-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-nirvana-in-utero",
+      "diseno": "Nirvana in utero",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "S",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-nirvana-in-utero-blanca.jpg",
+            "hombre-nirvana-in-utero-blanca-2.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": [
+            "M",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-nirvana-in-utero-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-pink-floyd-the-world",
+      "diseno": "Pink floyd the world",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish cafe",
+          "hex": null,
+          "tallas": [
+            "M",
+            "L"
+          ],
+          "fotos": [
+            "hombre-pink-floyd-the-world-beish-cafe.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-pink-floyd",
+      "diseno": "Pink floyd",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "M",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-pink-floyd-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": [
+            "M",
+            "L"
+          ],
+          "fotos": [
+            "hombre-pink-floyd-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-snoopy-the-show",
+      "diseno": "Snoopy the show",
+      "categoria": "Hombre",
+      "tema": "Animados",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "verde amarillo claro",
+          "hex": null,
+          "tallas": [
+            "L"
+          ],
+          "fotos": [
+            "hombre-snoopy-the-show-verde-amarillo-claro.jpg"
+          ]
+        },
+        {
+          "color": "verde",
+          "hex": null,
+          "tallas": [
+            "L"
+          ],
+          "fotos": [
+            "hombre-snoopy-the-show-verde.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-acdc-back-in-black-letra-blanca",
+      "diseno": "ACDC back in black letra blanca",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-acdc-back-in-black-letra-blanca-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-acdc-back-in-black",
+      "diseno": "ACDC back in black",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "S",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-acdc-back-in-black-blanca.jpg",
+            "hombre-acdc-back-in-black-blanca-2.jpg"
+          ]
+        },
+        {
+          "color": "mostaza",
+          "hex": null,
+          "tallas": [
+            "S",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-acdc-back-in-black-mostaza.jpg",
+            "hombre-acdc-back-in-black-mostaza-2.jpg"
+          ]
+        },
+        {
+          "color": "verde amarillo claro",
+          "hex": null,
+          "tallas": [
+            "M",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-acdc-back-in-black-verde-amarillo-claro.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-acdc-cabeza",
+      "diseno": "ACDC cabeza",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-acdc-cabeza-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-arctic-monkeys",
+      "diseno": "Arctic monkeys",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-arctic-monkeys-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-green-day",
+      "diseno": "Green day",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "S",
+            "M",
+            "L"
+          ],
+          "fotos": [
+            "hombre-green-day-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-guns-n-roses-pistola",
+      "diseno": "Guns n roses pistola",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "M",
+            "L"
+          ],
+          "fotos": [
+            "hombre-guns-n-roses-pistola-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": [
+            "M"
+          ],
+          "fotos": [
+            "hombre-guns-n-roses-pistola-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-linkin-park",
+      "diseno": "Linkin park",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "M",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-linkin-park-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-marlboro",
+      "diseno": "Marlboro",
+      "categoria": "Hombre",
+      "tema": "Marcas y logos",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "S",
+            "M",
+            "L"
+          ],
+          "fotos": [
+            "hombre-marlboro-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-mono",
+      "diseno": "Mono",
+      "categoria": "Hombre",
+      "tema": "Animales",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "M",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-mono-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-nirvana-carita",
+      "diseno": "Nirvana carita",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-nirvana-carita-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-ramones",
+      "diseno": "Ramones",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "S",
+            "L"
+          ],
+          "fotos": [
+            "hombre-ramones-blanca.jpg",
+            "hombre-ramones-blanca-2.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-rolling-stones",
+      "diseno": "Rolling stones",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "L"
+          ],
+          "fotos": [
+            "hombre-rolling-stones-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": [
+            "S",
+            "M",
+            "L",
+            "XL"
+          ],
+          "fotos": [
+            "hombre-rolling-stones-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-alien-coca-cola",
+      "diseno": "Alien coca cola",
+      "categoria": "Hombre",
+      "tema": "Marcas y logos",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "M"
+          ],
+          "fotos": [
+            "hombre-alien-coca-cola-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-blink-182",
+      "diseno": "Blink 182",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "S",
+            "M"
+          ],
+          "fotos": [
+            "hombre-blink-182-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-lobo",
+      "diseno": "Lobo",
+      "categoria": "Hombre",
+      "tema": "Animales",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "azul oscuro",
+          "hex": "#4A5A70",
+          "tallas": [
+            "S",
+            "M"
+          ],
+          "fotos": [
+            "hombre-lobo-azul-oscuro.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-esqueleto",
+      "diseno": "Esqueleto",
+      "categoria": "Hombre",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "azul claro",
+          "hex": "#8FA3CE",
+          "tallas": [
+            "S"
+          ],
+          "fotos": [
+            "hombre-esqueleto-azul-claro.jpg"
+          ]
+        },
+        {
+          "color": "verde",
+          "hex": null,
+          "tallas": [
+            "S"
+          ],
+          "fotos": [
+            "hombre-esqueleto-verde.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-kurt-cobain",
+      "diseno": "Kurt cobain",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "gris",
+          "hex": null,
+          "tallas": [
+            "S"
+          ],
+          "fotos": [
+            "hombre-kurt-cobain-gris.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-palmera",
+      "diseno": "Palmera",
+      "categoria": "Hombre",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca con azul claro",
+          "hex": null,
+          "tallas": [
+            "S"
+          ],
+          "fotos": [
+            "hombre-palmera-blanca-con-azul-claro.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-palmeras-con-azul-claro",
+      "diseno": "Palmeras con azul claro",
+      "categoria": "Hombre",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca con morado claro",
+          "hex": null,
+          "tallas": [
+            "S"
+          ],
+          "fotos": [
+            "hombre-palmeras-con-azul-claro-blanca-con-morado-claro.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-tigres",
+      "diseno": "Tigres",
+      "categoria": "Hombre",
+      "tema": "Animales",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": [
+            "S"
+          ],
+          "fotos": [
+            "hombre-tigres-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-acdc-back-in-black-letra",
+      "diseno": "ACDC back in black letra",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "XL"
+          ],
+          "fotos": [
+            "hombre-acdc-back-in-black-letra-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "hombre-queen-escudo",
+      "diseno": "Queen escudo",
+      "categoria": "Hombre",
+      "tema": "Bandas de rock",
+      "precio_unidad": 35000,
+      "precio_mayor": 30000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": [
+            "XL"
+          ],
+          "fotos": [
+            "hombre-queen-escudo-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-colombia-bandera",
+      "diseno": "Colombia bandera",
+      "categoria": "Oversize",
+      "tema": "Colombia",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "oversize-colombia-bandera-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-colombia-letra-bandera",
+      "diseno": "Colombia letra bandera",
+      "categoria": "Oversize",
+      "tema": "Colombia",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "oversize-colombia-letra-bandera-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-colombia-letra-corazon",
+      "diseno": "Colombia letra corazon",
+      "categoria": "Oversize",
+      "tema": "Colombia",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "oversize-colombia-letra-corazon-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-cherries-2",
+      "diseno": "Cherries 2",
+      "categoria": "Oversize",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "oversize-cherries-2-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-cherries",
+      "diseno": "Cherries",
+      "categoria": "Oversize",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "oversize-cherries-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-corazon-rojo",
+      "diseno": "Corazon rojo",
+      "categoria": "Oversize",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "oversize-corazon-rojo-beish.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "oversize-corazon-rojo-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-hello-sunshine",
+      "diseno": "Hello sunshine",
+      "categoria": "Oversize",
+      "tema": "Frases",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "azul oscuro",
+          "hex": "#4A5A70",
+          "tallas": null,
+          "fotos": [
+            "oversize-hello-sunshine-azul-oscuro.jpg"
+          ]
+        },
+        {
+          "color": "azul claro",
+          "hex": "#8FA3CE",
+          "tallas": null,
+          "fotos": [
+            "oversize-hello-sunshine-azul-claro.jpg"
+          ]
+        },
+        {
+          "color": "verde amarillo",
+          "hex": "#B0C151",
+          "tallas": null,
+          "fotos": [
+            "oversize-hello-sunshine-verde-amarillo.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-love-yourself",
+      "diseno": "Love yourself",
+      "categoria": "Oversize",
+      "tema": "Frases",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "oversize-love-yourself-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-mafalda-lo-importante-es-ser-uno-mismo",
+      "diseno": "Mafalda lo importante es ser uno mismo",
+      "categoria": "Oversize",
+      "tema": "Animados",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "oversize-mafalda-lo-importante-es-ser-uno-mismo-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-mafalda-y-snoopy",
+      "diseno": "Mafalda y snoopy",
+      "categoria": "Oversize",
+      "tema": "Animados",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "oversize-mafalda-y-snoopy-beish.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "oversize-mafalda-y-snoopy-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-munieca-panioleta-y-gafas",
+      "diseno": "Muñeca pañoleta y gafas",
+      "categoria": "Oversize",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "oversize-munieca-panioleta-y-gafas-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-perfect-imperfect",
+      "diseno": "Perfect imperfect",
+      "categoria": "Oversize",
+      "tema": "Frases",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "oversize-perfect-imperfect-beish.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "oversize-perfect-imperfect-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-snoopy-playa",
+      "diseno": "Snoopy playa",
+      "categoria": "Oversize",
+      "tema": "Animados",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "oversize-snoopy-playa-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-snoopy-nyc",
+      "diseno": "Snoopy NYC",
+      "categoria": "Oversize",
+      "tema": "Animados",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "oversize-snoopy-nyc-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-snoopy-the-show",
+      "diseno": "Snoopy the show",
+      "categoria": "Oversize",
+      "tema": "Animados",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "azul claro",
+          "hex": "#8FA3CE",
+          "tallas": null,
+          "fotos": [
+            "oversize-snoopy-the-show-azul-claro.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "oversize-snoopy-the-show-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "oversize-you-are-loved",
+      "diseno": "You are loved",
+      "categoria": "Oversize",
+      "tema": "Frases",
+      "precio_unidad": 40000,
+      "precio_mayor": 35000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "oversize-you-are-loved-beish.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-ramones",
+      "diseno": "Ramones",
+      "categoria": "Sin mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-ramones-negra.jpg"
+          ]
+        },
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-ramones-beish.jpg"
+          ]
+        },
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-ramones-blanca.jpg"
+          ]
+        },
+        {
+          "color": "verde",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-ramones-verde.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-rolling-stones-circulo",
+      "diseno": "Rolling stones circulo",
+      "categoria": "Sin mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-rolling-stones-circulo-beish.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-rolling-stones-circulo-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-rolling-stones-us-tour-78",
+      "diseno": "Rolling stones us tour 78",
+      "categoria": "Sin mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-rolling-stones-us-tour-78-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-rolling-stones-us-tour-78-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-mtv",
+      "diseno": "MTV",
+      "categoria": "Sin mangas",
+      "tema": "Marcas y logos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-mtv-beish.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-acdc-back-in-black",
+      "diseno": "ACDC back in black",
+      "categoria": "Sin mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-acdc-back-in-black-beish.jpg"
+          ]
+        },
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-acdc-back-in-black-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-acdc-back-in-black-negra.jpg"
+          ]
+        },
+        {
+          "color": "verde",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-acdc-back-in-black-verde.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-arctic-monkeys",
+      "diseno": "Arctic monkeys",
+      "categoria": "Sin mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-arctic-monkeys-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-arctic-monkeys-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-call-me-animal-print",
+      "diseno": "Call me animal print",
+      "categoria": "Sin mangas",
+      "tema": "Frases",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-call-me-animal-print-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-call-me-animal-print-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-catrina-girasoles",
+      "diseno": "Catrina girasoles",
+      "categoria": "Sin mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-catrina-girasoles-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-catrina-rosa",
+      "diseno": "Catrina rosa",
+      "categoria": "Sin mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-catrina-rosa-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-fear",
+      "diseno": "Fear",
+      "categoria": "Sin mangas",
+      "tema": "Gráficos y lugares",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": null,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "verde amarillo",
+          "hex": "#B0C151",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-fear-verde-amarillo.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-guns-n-roses-pistola-letra-plateada",
+      "diseno": "Guns n roses pistola letra plateada",
+      "categoria": "Sin mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-guns-n-roses-pistola-letra-plateada-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-guns-n-roses-pistola-letra-plateada-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-guns-n-roses",
+      "diseno": "Guns n roses",
+      "categoria": "Sin mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-guns-n-roses-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-jack-daniels",
+      "diseno": "Jack daniels",
+      "categoria": "Sin mangas",
+      "tema": "Marcas y logos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-jack-daniels-blanca.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-labios",
+      "diseno": "Labios",
+      "categoria": "Sin mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-labios-beish.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-muniecas-barbie",
+      "diseno": "Muñecas barbie",
+      "categoria": "Sin mangas",
+      "tema": "Muñecas y retratos",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "verde",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-muniecas-barbie-verde.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-my-body-my-choice",
+      "diseno": "My body my choice",
+      "categoria": "Sin mangas",
+      "tema": "Frases",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": false,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "verde amarillo",
+          "hex": "#B0C151",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-my-body-my-choice-verde-amarillo.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-nirvana-carita",
+      "diseno": "Nirvana carita",
+      "categoria": "Sin mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-nirvana-carita-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-nirvana-carita-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-nirvana-in-utero",
+      "diseno": "Nirvana in utero",
+      "categoria": "Sin mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-nirvana-in-utero-negra.jpg"
+          ]
+        },
+        {
+          "color": "verde",
+          "hex": null,
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-nirvana-in-utero-verde.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-pink-floyd",
+      "diseno": "Pink floyd",
+      "categoria": "Sin mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "blanca",
+          "hex": "#F2F0EB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-pink-floyd-blanca.jpg"
+          ]
+        },
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-pink-floyd-negra.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-queen-banda",
+      "diseno": "Queen banda",
+      "categoria": "Sin mangas",
+      "tema": "Bandas de rock",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "beish",
+          "hex": "#D9CDBB",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-queen-banda-beish.jpg"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "sin-mangas-snoopy-beso",
+      "diseno": "Snoopy beso",
+      "categoria": "Sin mangas",
+      "tema": "Animados",
+      "precio_unidad": 33000,
+      "precio_mayor": 25000,
+      "licenciado": true,
+      "publicable_web": true,
+      "variantes": [
+        {
+          "color": "negra",
+          "hex": "#1C1B19",
+          "tallas": null,
+          "fotos": [
+            "sin-mangas-snoopy-beso-negra.jpg"
+          ]
+        }
+      ]
+    }
+  ],
+  "pedido": {
+    "boton_agregar": "Agregar al carrito",
+    "boton_whatsapp": "Pedir por WhatsApp",
+    "wa_item_intro": "Hola {marca}, me interesa esta referencia:",
+    "wa_lista_intro": "Hola {marca}, quiero hacer este pedido:",
+    "wa_label_color": "Color",
+    "wa_label_talla": "Talla",
+    "wa_label_ref": "Referencia",
+    "wa_label_total": "Total"
+  },
+  "carrito": {
+    "titulo": "Tu carrito",
+    "vacio": "Todavía no has agregado nada.",
+    "vacio_boton": "Ver el catálogo",
+    "cerrar": "Cerrar",
+    "label_talla": "Talla",
+    "sin_talla": "Sin talla",
+    "label_cantidad": "Cantidad",
+    "label_total": "Total",
+    "quitar": "Quitar",
+    "vaciar": "Vaciar carrito",
+    "boton_whatsapp": "Enviar pedido por WhatsApp",
+    "aviso_agregado": "Agregado al carrito"
+  },
+  "registro": {
+    "titulo": "Regístrate y llévate el 10%",
+    "texto": "Te damos **10% de descuento en tu primera camiseta**. Y te avisamos cuando entren los diseños nuevos, sin llenarte de mensajes.",
+    "label_nombre": "Nombre",
+    "label_whatsapp": "WhatsApp",
+    "label_email": "Correo (opcional)",
+    "label_datos": "Autorizo el tratamiento de mis datos personales conforme a la Política de tratamiento de datos.",
+    "enlace_datos": "legal.html#datos",
+    "enlace_datos_texto": "Leer la política",
+    "boton": "Crear mi cuenta",
+    "boton_abrir": "Regístrate",
+    "cerrar": "Ahora no",
+    "error_datos": "Para registrarte necesitas autorizar el tratamiento de datos.",
+    "error_campos": "Falta el nombre o el WhatsApp.",
+    "exito": "Listo. Menciona tu registro por WhatsApp para que te apliquemos el 10%.",
+    "ya_registrado": "Ya tienes cuenta en este navegador."
+  }
+}
