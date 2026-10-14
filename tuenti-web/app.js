@@ -701,16 +701,21 @@
 
   function pintarProximo(d) {
     const px = d.proximo || {};
-    txt($('prox-titulo'), px.titulo, 'proximo.titulo');
+    /* rediseño 14/10/2026: «Diseños nuevos» en blanco y «cada …» en verde */
+    const pt = $('prox-titulo'), mt = !vacio(px.titulo) && String(px.titulo).match(/^(.*?)\s+(cada\s.+)$/i);
+    if (mt) pt.innerHTML = esc(mt[1]) + '<span>' + esc(mt[2]) + '</span>';
+    else txt(pt, px.titulo, 'proximo.titulo');
     txt($('prox-label'), px.candado_texto, 'proximo.candado_texto');
 
     /* fotos borrosas */
     const cf = $('prox-fotos');
-    if (vacio(px.fotos)) cf.innerHTML = '<div></div><div></div><div></div>';
+    if (vacio(px.fotos)) cf.innerHTML = '<div><b>?</b></div><div><b>?</b></div><div><b>?</b></div>';
     else px.fotos.slice(0, 3).forEach(src => {
       const div = document.createElement('div');
       const im = new Image(); im.alt = ''; im.src = src; im.loading = 'lazy';
-      div.appendChild(im); cf.appendChild(div);
+      div.appendChild(im);
+      const q = document.createElement('b'); q.textContent = '?'; div.appendChild(q);
+      cf.appendChild(div);
     });
 
     /* reloj */

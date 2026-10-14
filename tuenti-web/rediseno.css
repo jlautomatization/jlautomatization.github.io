@@ -127,3 +127,44 @@
   #redes .redes-cta{flex-direction:row;flex-wrap:wrap;max-width:none}
   #redes .redes-cta .ds-btn{padding-left:1.8rem;padding-right:1.8rem}
 }
+
+/* ================================================================
+   NUEVOS DISEÑOS  ·  propuesta 2 aprobada por Jose (14/10/2026)
+   Cartas inclinadas con borde verde y «?», contador en cajas redondeadas.
+   Respaldo de lo anterior: _respaldos/*_antes_nuevos
+   ================================================================ */
+.proximo{border-block:0}
+.prox-teaser{position:relative;overflow:hidden;min-height:0;display:block;
+  padding:clamp(2.8rem,7vw,4.5rem) 0}
+.prox-teaser .hb1{left:-2.2rem;top:-1.6rem}
+.prox-teaser .hb2{right:-2.2rem;bottom:-1.4rem}
+.prox-capa{position:relative;z-index:2;display:block;padding:0;background:none}
+.prox-in{gap:0}
+.prox-label{font-family:var(--font-hand);font-weight:700;font-size:clamp(1.7rem,5vw,2.3rem);
+  text-transform:none;letter-spacing:0;line-height:1;color:var(--c-accent)}
+.prox-titulo{font-size:clamp(2.2rem,9vw,3.6rem);line-height:1.04;max-width:none;
+  margin-top:.6rem;color:#fff}
+.prox-titulo span{display:block;margin-top:.3rem;font-size:.75em;color:var(--c-accent)}
+.prox-fotos{position:static;inset:auto;display:grid;grid-template-columns:repeat(3,1fr);
+  gap:.6rem;width:100%;max-width:34rem;margin:1.9rem 0 0}
+.prox-fotos div{position:relative;aspect-ratio:3/4.2;border:3px solid var(--c-accent);
+  border-radius:20px;overflow:hidden;background:var(--c-surface)}
+.prox-fotos div:nth-child(1){transform:rotate(-3deg)}
+.prox-fotos div:nth-child(2){transform:translateY(-.5rem) rotate(1.5deg)}
+.prox-fotos div:nth-child(3){transform:rotate(-2deg)}
+.prox-fotos img{width:100%;height:100%;object-fit:cover;object-position:50% 20%;
+  filter:blur(9px) brightness(.55) saturate(.8);transform:scale(1.15)}
+.prox-fotos b{position:absolute;inset:0;display:grid;place-items:center;
+  font-family:var(--font-display);font-weight:400;font-size:clamp(2.6rem,10vw,3.5rem);
+  color:var(--c-accent)}
+.prox-reloj{display:grid;grid-template-columns:repeat(4,1fr);gap:.5rem;width:100%;
+  max-width:34rem;margin-top:2rem}
+.prox-caja{min-width:0;padding:.9rem .2rem .7rem;border:2px solid rgba(255,255,255,.14);
+  border-radius:18px;background:var(--c-surface)}
+.prox-caja b{font-family:var(--font-display);font-weight:400;
+  font-size:clamp(1.9rem,8vw,2.6rem);line-height:1;letter-spacing:.01em;color:var(--c-accent)}
+.prox-caja span{font-family:inherit;font-weight:800;font-size:.66rem;letter-spacing:.14em;
+  color:rgba(255,255,255,.8)}
+.prox-llego .ds-btn--light{background:var(--c-accent);color:var(--c-accent-ink);
+  border:2px solid var(--c-accent);border-radius:999px;font-weight:800;min-height:54px;
+  padding:0 1.8rem;justify-content:center}
