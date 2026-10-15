@@ -215,11 +215,15 @@
     "horario_semana": [
       {
         "dias": "Lunes, martes, jueves y viernes",
-        "horas": "8:30 a.m. – 6:00 p.m."
+        "horas": "9:00 a.m. – 6:00 p.m."
       },
       {
-        "dias": "Miércoles y sábado",
-        "horas": "4:00 a.m. – 6:00 p.m."
+        "dias": "Miércoles",
+        "horas": "4:00 a.m. – 6:30 p.m."
+      },
+      {
+        "dias": "Sábado",
+        "horas": "4:00 a.m. – 6:30 p.m."
       },
       {
         "dias": "Domingo",
