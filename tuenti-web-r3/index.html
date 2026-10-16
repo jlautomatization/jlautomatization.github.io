@@ -146,7 +146,7 @@
     <div class="ds-wrap" id="promesas"></div>
   </section>
 
-  <!-- 10 · dónde y cuándo (r3: pin animado, abierto/cerrado en hora de Bogotá, recorrido, Maps/Waze/WhatsApp) -->
+  <!-- 10 · dónde y cuándo (r3: un solo dibujo propio que abre Google Maps; abierto/cerrado en hora de Bogotá; WhatsApp) -->
   <section id="local" class="loc">
     <div class="ds-wrap">
       <h2 class="ds-title loc-titulo" id="local-titulo"></h2>
@@ -159,27 +159,21 @@
           </div>
           <div id="horario" class="loc-horario"></div>
           <div class="loc-btns">
-            <a class="loc-btn loc-btn--maps" id="como-llegar" target="_blank" rel="noopener"></a>
-            <a class="loc-btn loc-btn--waze" id="btn-waze" target="_blank" rel="noopener"></a>
             <a class="loc-btn loc-btn--wa" id="btn-voy" target="_blank" rel="noopener"></a>
           </div>
         </div>
         <div class="loc-visual" data-reveal data-delay="1">
-          <div class="loc-pin" id="loc-pin" aria-hidden="true">
-            <svg class="loc-pin__calles" viewBox="0 0 320 200" preserveAspectRatio="xMidYMid slice" focusable="false">
-              <path d="M0 60H320M0 130H320M70 0V200M170 0V200M250 0V200" />
-              <path class="loc-pin__diag" d="M0 190L320 20" />
+          <a class="loc-mapa" id="loc-mapa" target="_blank" rel="noopener">
+            <svg class="lm" viewBox="0 0 320 240" role="img" aria-label="Dibujo esquemático del recorrido hasta el local" focusable="false">
+              <defs><pattern id="lm-puntos" width="20" height="20" patternUnits="userSpaceOnUse"><circle cx="2" cy="2" r="1.2"/></pattern></defs>
+              <rect class="lm-fondo" width="320" height="240"/>
+              <path id="lm-ruta" class="lm-ruta" d="M34 140C78 140 92 108 126 102S190 94 212 74S240 56 248 48"/>
+              <g id="lm-nodos"></g>
+              <g id="lm-pin" class="lm-pin"><circle class="lm-onda"/><circle class="lm-onda lm-onda--2"/><path class="lm-pin__f" d="M24 2C12.4 2 3 11.4 3 23c0 15.6 21 39 21 39s21-23.4 21-39C45 11.4 35.6 2 24 2z"/><circle class="lm-pin__c" cx="24" cy="23" r="8"/></g>
             </svg>
-            <span class="loc-pin__onda"></span><span class="loc-pin__onda loc-pin__onda--2"></span>
-            <svg class="loc-pin__pin" viewBox="0 0 48 64" focusable="false"><path d="M24 2C12.4 2 3 11.4 3 23c0 15.6 21 39 21 39s21-23.4 21-39C45 11.4 35.6 2 24 2z"/><circle cx="24" cy="23" r="8"/></svg>
-            <span class="loc-pin__sombra"></span>
-          </div>
-          <div class="mapa" id="mapa"></div>
+            <span class="loc-mapa__chip" id="loc-mapa-chip"><span>Abrir en Google Maps</span><svg viewBox="0 0 24 24" width="16" height="16" aria-hidden="true"><path d="M7 17L17 7M9 7h8v8" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round"/></svg></span>
+          </a>
         </div>
-      </div>
-      <div class="ruta" id="ruta">
-        <div class="ruta__linea" aria-hidden="true"><i></i></div>
-        <ol class="ruta__pasos" id="ruta-pasos" aria-label="Cómo llegar, paso a paso"></ol>
       </div>
     </div>
   </section>

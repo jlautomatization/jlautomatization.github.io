@@ -147,62 +147,50 @@ body.is-inicio{overflow-x:hidden}
 .loc-btn{display:flex;align-items:center;justify-content:center;min-height:var(--tap);padding:0 var(--e5);border-radius:var(--r-pill);
   border:2px solid var(--s-lime);font-family:var(--font);font-weight:800;font-size:var(--f-sm);letter-spacing:.06em;text-transform:uppercase;
   text-decoration:none;text-align:center;color:var(--s-ink);background:transparent;transition:background .2s,color .2s}
-.loc-btn--maps{background:var(--s-lime);color:var(--s-on-lime)}
+.loc-btn--wa{background:var(--s-lime);color:var(--s-on-lime)}
 .loc-btn:hover{background:var(--s-ink);border-color:var(--s-ink);color:var(--s-on-lime)}
 .loc-btn:focus-visible,.hist-btn:focus-visible,.ruta a:focus-visible{outline:3px solid var(--s-ink);outline-offset:3px}
 
-/* pin que cae y pulsa */
-.loc-visual{display:grid;gap:var(--e3)}
-.loc-pin{position:relative;aspect-ratio:16/9;border-radius:var(--r);overflow:hidden;background:var(--s-panel);border:2px solid var(--s-line);box-shadow:var(--sh)}
-.loc-pin__calles{position:absolute;inset:0;width:100%;height:100%;fill:none;stroke:var(--s-line);stroke-width:10;stroke-linecap:round}
-.loc-pin__diag{stroke-width:6}
-.loc-pin__pin{position:absolute;left:50%;top:50%;width:48px;height:64px;margin:-58px 0 0 -24px;fill:var(--s-lime);z-index:2;
-  opacity:0;transform:translateY(-140px)}
-.loc-pin__pin circle{fill:var(--s-bg)}
-.loc-pin__sombra{position:absolute;left:50%;top:50%;width:28px;height:8px;margin:2px 0 0 -14px;border-radius:50%;background:rgba(0,0,0,.45);opacity:0;z-index:1}
-.loc-pin__onda{position:absolute;left:50%;top:50%;width:24px;height:24px;margin:-12px 0 0 -12px;border-radius:50%;border:3px solid var(--s-lime);opacity:0;z-index:1}
-.loc-pin.on .loc-pin__pin{opacity:1;transform:none;animation:loc-cae .9s cubic-bezier(.3,0,.4,1) both}
-.loc-pin.on .loc-pin__sombra{opacity:1;animation:loc-sombra .9s ease-in both}
-.loc-pin.on .loc-pin__onda{animation:loc-onda 2.4s ease-out .9s infinite}
-.loc-pin.on .loc-pin__onda--2{animation-delay:1.7s}
-.loc-pin.on .loc-pin__diag{stroke-dasharray:420;animation:loc-dibuja 1.4s ease-out both}
-@keyframes loc-cae{0%{opacity:0;transform:translateY(-140px)}55%{opacity:1;transform:translateY(0)}70%{transform:translateY(-18px)}85%{transform:translateY(0)}93%{transform:translateY(-6px)}100%{transform:translateY(0)}}
-@keyframes loc-sombra{0%{opacity:0;transform:scale(.2)}55%{opacity:1;transform:scale(1)}70%{transform:scale(.7)}85%,100%{transform:scale(1)}}
-@keyframes loc-onda{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(7)}}
-@keyframes loc-dibuja{from{stroke-dashoffset:420}to{stroke-dashoffset:0}}
+/* dibujo propio de ubicación = ÚNICO mapa (animación dentro del mismo dibujo; al tocarlo abre Google Maps) */
+.loc-visual{display:block}
+.loc-mapa{position:relative;display:block;aspect-ratio:4/3;max-width:100%;border-radius:var(--r);overflow:hidden;background:var(--s-panel);
+  border:2px solid var(--s-line);box-shadow:var(--sh);text-decoration:none;color:var(--s-ink);transition:border-color .2s,transform .2s}
+.loc-mapa:hover{border-color:var(--s-lime);transform:translateY(-2px)}
+.loc-mapa:focus-visible{outline:3px solid var(--s-ink);outline-offset:3px}
+.lm{position:absolute;inset:0;width:100%;height:100%;display:block}
+.lm-fondo{fill:url(#lm-puntos)}
+#lm-puntos circle{fill:var(--s-line)}
+.lm-ruta{fill:none;stroke:var(--s-lime);stroke-width:4;stroke-linecap:round;stroke-dasharray:var(--len,520);stroke-dashoffset:var(--len,520)}
+.lm-nodo circle{fill:var(--s-lime);stroke:var(--s-panel);stroke-width:3}
+.lm-cap{font-family:var(--font);font-weight:800;font-size:8px;letter-spacing:.12em;text-transform:uppercase;fill:var(--s-mut)}
+.lm-val{font-family:var(--font);font-weight:800;font-size:11px;fill:var(--s-ink)}
+.lm-nodo{opacity:0}
+.lm-pin{opacity:0}
+.lm-pin__f{fill:var(--s-lime)}
+.lm-pin__c{fill:var(--s-bg)}
+.lm-onda{fill:none;stroke:var(--s-lime);stroke-width:3;opacity:0;transform-box:fill-box;transform-origin:center}
+.loc-mapa.on .lm-ruta{animation:lm-dibuja 1.6s ease-out both}
+.loc-mapa.on .lm-nodo{animation:lm-sale .5s ease-out both;animation-delay:calc(.35s + var(--i) * .4s)}
+.loc-mapa.on .lm-pin{animation:lm-sale .5s ease-out 1.6s both}
+.loc-mapa.on .lm-onda{animation:lm-onda 2.4s ease-out 2.1s infinite}
+.loc-mapa.on .lm-onda--2{animation-delay:3.3s}
+@keyframes lm-dibuja{from{stroke-dashoffset:var(--len,520)}to{stroke-dashoffset:0}}
+@keyframes lm-sale{from{opacity:0}to{opacity:1}}
+@keyframes lm-onda{0%{opacity:.9;transform:scale(1)}100%{opacity:0;transform:scale(5)}}
+.loc-mapa__chip{position:absolute;left:50%;bottom:10px;transform:translateX(-50%);z-index:2;display:inline-flex;align-items:center;gap:var(--e2);
+  min-height:var(--tap);padding:0 var(--e4);border-radius:var(--r-pill);background:var(--s-lime);color:var(--s-on-lime);font-family:var(--font);
+  font-weight:800;font-size:var(--f-sm);letter-spacing:.06em;text-transform:uppercase;white-space:nowrap;animation:lm-pulso 2.2s ease-out infinite;transition:background .2s}
+.loc-mapa:hover .loc-mapa__chip{background:var(--s-ink)}
+@keyframes lm-pulso{0%{box-shadow:0 0 0 0 rgba(179,195,0,.55)}70%,100%{box-shadow:0 0 0 14px rgba(179,195,0,0)}}
 @media (prefers-reduced-motion:reduce){
-  .loc-pin__pin{opacity:1;transform:none}
-  .loc-pin__sombra{opacity:1}
-  .loc-pin__onda{opacity:.55;transform:scale(3)}
-  .loc-pin.on .loc-pin__pin,.loc-pin.on .loc-pin__sombra,.loc-pin.on .loc-pin__onda,.loc-pin.on .loc-pin__diag,.loc .abre.abierto .punto{animation:none}
+  .lm-ruta{stroke-dashoffset:0}
+  .lm-nodo,.lm-pin{opacity:1}
+  .lm-onda{opacity:.5;transform:scale(2.4)}
+  .loc-mapa.on .lm-ruta,.loc-mapa.on .lm-nodo,.loc-mapa.on .lm-pin,.loc-mapa.on .lm-onda,.loc .abre.abierto .punto,.loc-mapa__chip{animation:none}
+  .loc-mapa{transition:none}
 }
-.loc .mapa{aspect-ratio:4/3;border-radius:var(--r);overflow:hidden;border:2px solid var(--s-line);background:var(--s-panel);padding:0;min-height:0}
-.loc .mapa iframe{width:100%;height:100%;min-height:0;border:0;display:block}
-
-/* recorrido de 4 pasos */
-.ruta{--p:0;position:relative;margin-top:var(--e6)}
-.ruta__linea{position:absolute;left:23px;top:var(--e5);bottom:var(--e5);width:4px;border-radius:var(--r-pill);background:var(--s-line)}
-.ruta__linea i{position:absolute;inset:0;border-radius:inherit;background:var(--s-lime);transform-origin:top;transform:scaleY(var(--p))}
-.ruta__pasos{list-style:none;display:grid;gap:var(--e4);margin:0;padding:0;position:relative}
-.ruta__paso{display:flex;align-items:center;gap:var(--e4);padding:var(--e3) var(--e4) var(--e3) 0;position:relative;opacity:.55;transition:opacity .4s}
-.ruta__n{flex:none;width:var(--tap);height:var(--tap);border-radius:50%;display:grid;place-items:center;background:var(--s-panel);
-  border:3px solid var(--s-line);font-family:var(--font-display);font-size:var(--f-lg);color:var(--s-mut);transition:background .3s,border-color .3s,color .3s,transform .3s}
-.ruta__t{display:grid;gap:var(--e1);padding:var(--e3) var(--e4);flex:1;min-width:0;background:var(--s-panel);border:2px solid var(--s-line);border-radius:var(--r);transition:border-color .3s}
-.ruta__t small{font-size:var(--f-xs);letter-spacing:.14em;text-transform:uppercase;color:var(--s-mut);font-weight:800}
-.ruta__t b{font-size:var(--f-lg);line-height:1.25;font-weight:800;color:var(--s-ink)}
-.ruta__paso.on{opacity:1}
-.ruta__paso.on .ruta__n{background:var(--s-lime);border-color:var(--s-lime);color:var(--s-on-lime);transform:scale(1.06)}
-.ruta__paso.on .ruta__t{border-color:var(--s-lime)}
-@media (prefers-reduced-motion:reduce){.ruta__paso,.ruta__n,.ruta__t{transition:none}}
 @media (min-width:900px){
   .loc-grid{grid-template-columns:1fr 1.1fr;gap:var(--e8);align-items:start}
-  .loc-btns{grid-template-columns:repeat(3,auto);justify-content:start}
-  .ruta{margin-top:var(--e7)}
-  .ruta__linea{left:var(--e6);right:var(--e6);top:23px;bottom:auto;width:auto;height:4px}
-  .ruta__linea i{transform-origin:left;transform:scaleX(var(--p))}
-  .ruta__pasos{grid-template-columns:repeat(4,1fr);gap:var(--e4)}
-  .ruta__paso{flex-direction:column;align-items:flex-start;padding:0}
-  .ruta__t{width:100%}
 }
 
 /* ---------- 10 · contacto + pie ---------- */

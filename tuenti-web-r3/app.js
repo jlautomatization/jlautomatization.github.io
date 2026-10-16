@@ -914,34 +914,53 @@
     };
     refrescar(); setInterval(refrescar, 30000);
 
-    /* botones: Maps, Waze, WhatsApp «voy en camino» */
-    const dir = loc.direccion, q = encodeURIComponent(dir || '');
-    const btnM = $('como-llegar'), btnW = $('btn-waze'), btnV = $('btn-voy');
-    if (dir) {
-      btnM.href = 'https://www.google.com/maps/search/?api=1&query=' + q;
-      btnM.textContent = 'Abrir en Google Maps';
-      btnM.setAttribute('aria-label', 'Abrir en Google Maps: ' + dir);
-      btnW.href = 'https://waze.com/ul?q=' + q + '&navigate=yes';
-      btnW.textContent = 'Abrir en Waze';
-      btnW.setAttribute('aria-label', 'Abrir en Waze: ' + dir);
-    } else { btnM.style.display = 'none'; btnW.style.display = 'none'; }
+    /* WhatsApp «voy en camino» */
+    const dir = loc.direccion, btnV = $('btn-voy');
     if (c.whatsapp) {
       btnV.href = waLink(c.whatsapp, 'Hola ' + nombre + ', voy en camino al local');
       btnV.textContent = 'Voy en camino';
       btnV.setAttribute('aria-label', 'Avisar por WhatsApp que voy en camino al local');
     } else btnV.style.display = 'none';
 
-    /* mapa embebido (lazy) */
-    const mp = $('mapa');
-    if (loc.mapa_embed) {
-      const f = document.createElement('iframe');
-      f.src = loc.mapa_embed; f.loading = 'lazy'; f.title = 'Mapa de ' + (nombre || 'la tienda');
-      f.referrerPolicy = 'no-referrer-when-downgrade';
-      mp.appendChild(f);
-    } else mp.innerHTML = falta('local.mapa_embed');
+    /* UN solo dibujo propio = el mapa. Al tocarlo abre Google Maps con la dirección de marca.json
+       (búsqueda por dirección, sin coordenadas). El recorrido (dirección → centro comercial → piso → locales)
+       se dibuja dentro del mismo dibujo; sin calles ni puntos de referencia inventados. */
+    const dib = $('loc-mapa');
+    if (dib && !dir) dib.style.display = 'none';
+    if (dib && dir) {
+      dib.href = 'https://www.google.com/maps/search/?api=1&query=' + encodeURIComponent(dir);
+      dib.setAttribute('aria-label', 'Abrir en Google Maps: ' + dir);
+      const partes = String(dir).split(',').map(s => s.trim());
+      const pasos = [
+        ['Dirección', partes[0]],
+        ['Llegas a', partes[1]],
+        ['Subes al', '2.º piso'],
+        ['Locales', (partes[2] || '').replace(/^Locales\s+/i, '')]
+      ].filter(p => p[1]);
+      const ruta = document.getElementById('lm-ruta'), nodos = document.getElementById('lm-nodos'), pinG = document.getElementById('lm-pin');
+      if (ruta && nodos && pinG && pasos.length) {
+        const L = ruta.getTotalLength();
+        ruta.style.setProperty('--len', L.toFixed(1));
+        const n = pasos.length;
+        let html = '';
+        pasos.forEach((p, i) => {
+          const pt = ruta.getPointAtLength(L * (n === 1 ? 1 : i / (n - 1)));
+          const x = pt.x.toFixed(1), y = pt.y.toFixed(1), ult = i === n - 1;
+          const lado = ult ? 'end' : 'start', dx = ult ? -16 : 12;
+          html += '<g class="lm-nodo" style="--i:' + i + '">' + (ult ? '' : '<circle cx="' + x + '" cy="' + y + '" r="6"/>') +
+            '<text class="lm-cap" text-anchor="' + lado + '" x="' + (pt.x + dx).toFixed(1) + '" y="' + (pt.y + (ult ? -15 : 14)).toFixed(1) + '">' + esc(p[0]) + '</text>' +
+            '<text class="lm-val" text-anchor="' + lado + '" x="' + (pt.x + dx).toFixed(1) + '" y="' + (pt.y + (ult ? 0 : 27)).toFixed(1) + '">' + esc(p[1]) + '</text></g>';
+          if (ult) {
+            pinG.setAttribute('transform', 'translate(' + (pt.x - 13.2).toFixed(1) + ',' + (pt.y - 35.2).toFixed(1) + ') scale(.55)');
+            pinG.querySelectorAll('.lm-onda').forEach(o => { o.setAttribute('cx', 24); o.setAttribute('cy', 64); o.setAttribute('r', 10); });
+          }
+        });
+        nodos.innerHTML = html;
+      }
+    }
 
     /* pin animado: cae y pulsa al entrar en pantalla */
-    const pin = $('loc-pin');
+    const pin = $('loc-mapa');
     if (pin) {
       if (!('IntersectionObserver' in window) || reducido()) pin.classList.add('on');
       else {

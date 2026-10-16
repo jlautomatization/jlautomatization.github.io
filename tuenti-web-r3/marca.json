@@ -229,7 +229,7 @@
         "horas": "9:00 a.m. – 5:00 p.m."
       }
     ],
-    "mapa_embed": "https://www.google.com/maps?q=Carrera+10+%239-37%2C+Centro+Comercial+El+Gran+San%2C+Locales+2152+y+2153%2C+Bogot%C3%A1&output=embed",
+    "mapa_embed": null,
     "boton_como_llegar": "Cómo llegar →"
   },
   "contacto": {
