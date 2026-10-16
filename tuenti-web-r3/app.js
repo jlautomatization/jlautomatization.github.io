@@ -345,7 +345,7 @@
       const meta = [it.color, it.talla ? (c.label_talla || 'Talla') + ' ' + it.talla : (c.sin_talla || 'Sin talla'), it.categoria]
         .filter(Boolean).map(esc).join(' · ');
       return '<div class="car-item">' +
-        '<img class="car-item__foto" src="' + esc(it.foto) + '" alt="" loading="lazy">' +
+        '<img class="car-item__foto" src="' + esc(it.foto) + '"' + (window.__imgw ? window.__imgw.attrs(it.foto, 'mini') : '') + ' alt="" loading="lazy" decoding="async">' +
         '<div class="car-item__in">' +
         '<span class="car-item__t">' + esc(it.diseno) + '</span>' +
         '<span class="car-item__m">' + meta + '</span>' +
@@ -613,21 +613,35 @@
     cont.append(A, B);
     const L = [A, B]; let cur = 0, idx = 0; const ok = []; let pend = cands.length;
     if (!pend) return;
-    cands.forEach(s => { const im = new Image(); im.onload = () => { ok.push(s); fin(); }; im.onerror = fin; im.src = s; });
-    function fin() { if (--pend <= 0) go(); }
-    function go() {
-      if (!ok.length) return;
-      ok.sort((a, b) => cands.indexOf(a) - cands.indexOf(b));
-      L[0].style.backgroundImage = 'url("' + ok[0] + '")'; L[0].classList.add('on');
-      const rm = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
-      if (ok.length < 2 || rm) return;
-      setInterval(() => {
-        idx = (idx + 1) % ok.length;
-        const nx = L[1 - cur];
-        nx.style.backgroundImage = 'url("' + ok[idx] + '")';
-        nx.classList.add('on'); L[cur].classList.remove('on'); cur = 1 - cur;
+    /* r3 (peso): el héroe pide primero SOLO su primera foto, en WebP y con prioridad alta; las demás se piden de a una,
+       justo antes de cada cambio (antes se bajaban todas de golpe). */
+    const urlH = s => (window.__imgw ? window.__imgw.url(s, 800) : s);
+    const cargar = (s, alta) => new Promise(res => {
+      const im = new Image(); im.decoding = 'async';
+      if (alta) im.fetchPriority = 'high';
+      im.onload = () => res(urlH(s)); im.onerror = () => { if (urlH(s) !== s) { const i2 = new Image(); i2.onload = () => res(s); i2.onerror = () => res(null); i2.src = s; } else res(null); };
+      im.src = urlH(s);
+    });
+    const rm = window.matchMedia && matchMedia('(prefers-reduced-motion:reduce)').matches;
+    (async () => {
+      let primera = null, i0 = 0;
+      for (; i0 < cands.length && !primera; i0++) primera = await cargar(cands[i0], true);
+      if (!primera) return;
+      L[0].style.backgroundImage = 'url("' + primera + '")'; L[0].classList.add('on');
+      if (cands.length < 2 || rm) return;
+      let idx = i0 - 1;
+      setInterval(async () => {
+        for (let n = 0; n < cands.length; n++) {
+          idx = (idx + 1) % cands.length;
+          const u = await cargar(cands[idx], false);
+          if (!u) continue;
+          const nx = L[1 - cur];
+          nx.style.backgroundImage = 'url("' + u + '")';
+          nx.classList.add('on'); L[cur].classList.remove('on'); cur = 1 - cur;
+          break;
+        }
       }, 4500);
-    }
+    })();
   }
 
   /* ---------- menú móvil ---------- */
@@ -1053,7 +1067,7 @@
       const v = variantesConFoto(grupos[cat][0])[0];
       if (fotoCat) {
         const im = new Image();
-        im.alt = ''; im.loading = 'lazy';
+        im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; im.dataset.sz = 'cat';
         im.onerror = () => im.remove();
         a.insertBefore(im, a.firstChild);
         im.src = fotoCat;
@@ -1061,7 +1075,7 @@
         /* la imagen se inserta YA y carga dentro del DOM: una imagen con
            loading="lazy" que aún no está en el documento nunca dispara onload. */
         const im = new Image();
-        im.alt = ''; im.loading = 'lazy';
+        im.alt = ''; im.loading = 'lazy'; im.decoding = 'async'; im.dataset.sz = 'cat';
         im.onerror = () => im.remove();
         a.insertBefore(im, a.firstChild);
         im.src = 'img/' + v.fotos[0];
@@ -1097,7 +1111,7 @@
         if (vD) {
           const im = new Image();
           im.alt = prodDest.diseno + ' · ' + (vD.color || '');
-          im.loading = 'lazy';
+          im.loading = 'lazy'; im.decoding = 'async'; im.dataset.sz = 'dest';
           im.onerror = () => im.remove();
           cajaDest.appendChild(im);
           im.src = 'img/' + vD.fotos[0];
@@ -1398,7 +1412,7 @@
      versión grande en img/full/ y, si falta, se cae a img/ sin romperse. */
   function fotoGrande(cont, src, alt) {
     const im = new Image();
-    im.alt = alt || ''; im.decoding = 'async';
+    im.alt = alt || ''; im.decoding = 'async'; im.dataset.sz = 'ficha';
     if (/^oct\//.test(src)) im.src = 'img/' + src;
     else {
       im.src = 'img/full/' + src;
@@ -1500,7 +1514,7 @@
         b.className = 'ds-gallery__thumb' + (j === 0 ? ' is-on' : '');
         const nom = p.diseno + ' · ' + (v.color || '') + ' · foto ' + (j + 1) + ' de ' + v.fotos.length;
         b.setAttribute('aria-label', 'Ver ' + nom);
-        b.innerHTML = '<img src="img/' + esc(src) + '" alt="' + esc(nom) + '" loading="lazy" decoding="async">';
+        b.innerHTML = '<img src="img/' + esc(src) + '"' + (window.__imgw ? window.__imgw.attrs('img/' + src, 'mini') : '') + ' alt="' + esc(nom) + '" loading="lazy" decoding="async">';
         b.addEventListener('click', () => {
           fotoGrande(main, src, nom);
           thumbs.querySelectorAll('.ds-gallery__thumb').forEach((t, q) => t.classList.toggle('is-on', q === j));

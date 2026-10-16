@@ -2,7 +2,7 @@
    Cada tarjeta cambia SU foto, al azar y sin repetir la que acaba de salir, entre fotos de diseños de ESA categoría
    (window.__tuentiFotosCategoria, armado por app.js desde productos[].variantes[].fotos con publicable_web = true).
    - Fundido de 0,6 s cada ~3,5 s, escalonado: las tarjetas no cambian a la vez.
-   - Solo se precarga LA SIGUIENTE foto de cada tarjeta (miniatura de 440 px, ≈ 25 KB), justo antes del fundido (sin parpadeo en blanco).
+   - Solo se precarga LA SIGUIENTE foto de cada tarjeta (WebP de 400 px, ≈ 20 KB; antes miniatura JPG de 440 px), justo antes del fundido (sin parpadeo en blanco).
    - Empieza después de la primera pantalla (load + espera), y se pausa fuera de pantalla o con la pestaña oculta.
    - No toca el carrusel (scrollLeft) ni el layout: las fotos son absolutas dentro de la tarjeta.
    - prefers-reduced-motion, ahorro de datos o conexión 2g: foto fija, como antes. */
@@ -61,8 +61,9 @@
     var st = estado[cat];
     if (!visible || document.hidden) { st.t = setTimeout(function () { paso(cat); }, 800); return; }
     var rel = siguiente(cat);
-    var mini = 'img/' + rel.replace(/^oct\//, 'oct/rot/'), grande = 'img/' + rel;
-    // se precarga la miniatura de rotación (≈ 25 KB); si faltara, la foto normal
+    var grande = 'img/' + rel;
+    // se precarga el WebP de 400 px (≈ 20 KB); si faltara, la foto JPG original
+    var mini = (window.__imgw && window.__imgw.existe(grande)) ? window.__imgw.url(grande, 400) : grande.replace(/^img\/oct\//, 'img/oct/rot/');
     precargar(mini).then(function (ok) { return ok ? mini : precargar(grande).then(function (ok2) { return ok2 ? grande : null; }); })
       .then(function (src) {
         if (src) {
