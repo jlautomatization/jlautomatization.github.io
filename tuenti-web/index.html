@@ -23,6 +23,9 @@
 <link rel="stylesheet" href="tienda.css">
 <link rel="stylesheet" href="landing.css">
 <link rel="stylesheet" href="rediseno.css">
+<!-- DEMO portada (15/10/2026) -->
+<link rel="stylesheet" href="portada.css">
+<link rel="preload" as="image" type="image/webp" imagesrcset="img/portada/portada-480.webp 480w, img/portada/portada-720.webp 720w, img/portada/portada-900.webp 900w" imagesizes="(min-width:900px) 66vw, 100vw" fetchpriority="high">
 
 <style>
 /* Tematización del módulo de tienda con los tokens de TUENTI. */
@@ -70,6 +73,10 @@
 
   <!-- 3 · héroe -->
   <header class="hero" id="top">
+    <picture class="portada">
+      <source type="image/webp" srcset="img/portada/portada-480.webp 480w, img/portada/portada-720.webp 720w, img/portada/portada-900.webp 900w" sizes="(min-width:900px) 66vw, 100vw">
+      <img src="img/portada/portada-900.jpg" width="900" height="1600" alt="Modelo caminando de noche con camiseta negra de Guns N' Roses" fetchpriority="high" decoding="async">
+    </picture>
     <div class="ds-wrap hero-in">
       <div class="hero-txt">
         <p class="hero-kicker" id="hero-kicker"></p>
@@ -80,13 +87,7 @@
           <a class="ds-btn ds-btn--outline" id="hero-wa" target="_blank" rel="noopener"></a>
         </div>
       </div>
-      <div class="hero-pf">
-        <i class="hb hb1"></i><i class="hb hb2"></i>
-        <div class="hero-card">
-          <div class="hero-foto" id="hero-foto"></div>
-          <span class="hero-sello" id="hero-sello"></span>
-        </div>
-      </div>
+      <span class="hero-sello" id="hero-sello"></span>
     </div>
   </header>
 

@@ -1,0 +1,36 @@
+/* DEMO portada (15/10/2026): foto a pantalla completa en el inicio. Solo afecta .hero del inicio.
+   Imagen generada con IA por Jose (no es foto real). Reserva de altura por CSS: no hay salto de layout. */
+body.ds{--chrome:150px}
+body.ds .hero{position:relative;padding:0;overflow:hidden;background:#0b0a09;
+  height:calc(100vh - var(--chrome));height:calc(100svh - var(--chrome));min-height:600px}
+body.ds .portada{position:absolute;inset:0;z-index:0;display:block;margin:0}
+body.ds .portada img{display:block;width:100%;height:100%;object-fit:cover;object-position:50% 24%}
+/* velo para que el texto se lea: oscuro abajo (celular) */
+body.ds .hero::before{content:"";position:absolute;inset:0;z-index:1;pointer-events:none;
+  background:linear-gradient(to top,rgba(10,9,8,.94) 0%,rgba(10,9,8,.86) 30%,rgba(10,9,8,.35) 52%,rgba(10,9,8,0) 68%)}
+body.ds .hero-in{position:relative;z-index:2;height:100%;display:flex;flex-direction:column;justify-content:flex-end;
+  padding-bottom:2.5rem}
+body.ds .hero-in h1,body.ds .hero-in .baja{text-shadow:0 1px 14px rgba(0,0,0,.55)}
+body.ds .hero-in .baja{color:#fff}
+body.ds .hero-sello{position:absolute;right:1rem;top:1rem;bottom:auto;max-width:60%}
+@media (min-width:900px){
+  body.ds .hero{height:clamp(600px,calc(100svh - var(--chrome)),780px)}
+  body.ds .portada{left:auto;right:0;width:66%;
+    -webkit-mask-image:linear-gradient(to right,transparent 0,#000 34%);mask-image:linear-gradient(to right,transparent 0,#000 34%)}
+  body.ds .portada img{object-position:50% 5%}
+  body.ds .hero::before{background:linear-gradient(to top,rgba(10,9,8,.5) 0%,rgba(10,9,8,0) 30%)}
+  body.ds{--chrome:116px}
+  body.ds .hero-in{justify-content:center;align-items:flex-start;padding-bottom:0}
+  body.ds .hero-txt{max-width:min(30rem,44%)}
+  body.ds .hero-sello{top:auto;bottom:0;right:0;border-radius:16px 0 0 0}
+}
+/* web publicada: textos más compactos y sin sello en celular para no tapar la cara */
+@media (max-width:899px){
+  body.ds .hero-sello{display:none}
+  body.ds .portada img{object-position:50% 0}
+  body.ds .hero-in h1{font-size:clamp(2.3rem,10.5vw,3rem)}
+  body.ds .hero-in .baja{font-size:1rem;margin-top:.6rem}
+  body.ds .hero-btns{margin-top:1rem;gap:.5rem}
+  body.ds .hero .ds-btn{min-height:48px}
+  body.ds .hero-in{padding-bottom:1.4rem}
+}
