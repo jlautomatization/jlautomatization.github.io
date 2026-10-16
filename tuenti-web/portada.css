@@ -33,4 +33,5 @@ body.ds .hero-sello{position:absolute;right:1rem;top:1rem;bottom:auto;max-width:
   body.ds .hero-btns{margin-top:1rem;gap:.5rem}
   body.ds .hero .ds-btn{min-height:48px}
   body.ds .hero-in{padding-bottom:1.4rem}
+  body.ds .hero::before{background:linear-gradient(to top,rgba(10,9,8,.95) 0%,rgba(10,9,8,.9) 40%,rgba(10,9,8,.6) 58%,rgba(10,9,8,0) 76%)}
 }
