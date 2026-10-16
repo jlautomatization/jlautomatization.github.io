@@ -1069,6 +1069,19 @@
       cats.appendChild(a);
     });
 
+    /* r3: fotos de cada categoría para que cada tarjeta del carrusel rote SU foto (rotacion.js).
+       Solo diseños de ESA categoría y con publicable_web = true; la marca de terceros no se filtra (riesgo asumido por Jose). */
+    window.__tuentiFotosCategoria = {};
+    orden.forEach(cat => {
+      const lista = [];
+      (grupos[cat] || []).forEach(p => {
+        if (p.publicable_web !== true) return;
+        variantesConFoto(p).forEach(v => (v.fotos || []).forEach(f => { if (f && lista.indexOf(f) < 0) lista.push(f); }));
+      });
+      window.__tuentiFotosCategoria[cat] = lista;
+    });
+    document.dispatchEvent(new CustomEvent('tuenti:categorias'));
+
     /* destacado — SOLO LA PRENDA.
        Sin antetítulo, sin título, sin texto, sin precio y sin botón: la foto
        sola. Se elige la variante de color que fija destacado.color; si no
