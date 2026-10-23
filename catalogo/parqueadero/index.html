@@ -1,0 +1,278 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Caso real: parqueadero — JLA</title>
+<meta name="description" content="Sistema de control para un parqueadero en operación: caja con tiquete, cierre de turno a ciegas, avisos al dueño y registro inalterable.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Caso real: parqueadero — JLA">
+<meta property="og:description" content="Sistema de control para un parqueadero en operación: caja con tiquete, cierre de turno a ciegas, avisos al dueño y registro inalterable.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231D3A5A'/%3E%3Cstop offset='1' stop-color='%230A121C'/%3E%3C/linearGradient%3E%3ClinearGradient id='o' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23FFE3A3'/%3E%3Cstop offset='1' stop-color='%23C9992B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23b)'/%3E%3Cg transform='translate(2.6 2.6) scale(.42)'%3E%3Cpath d='M12 50 32 14 52 50' fill='none' stroke='%23F4F7FB' stroke-opacity='.6' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='12' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='52' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='32' cy='14' r='9' fill='url(%23o)'/%3E%3C/g%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Sora:wght@800&display=swap" rel="stylesheet">
+<script>(function(){var d=document.documentElement,q=location.search;try{if(/[?&]lento\b/.test(q))sessionStorage.vtLento=1;if(/[?&]rapido\b/.test(q))sessionStorage.removeItem("vtLento");if(sessionStorage.vtLento)d.classList.add("vt-lento")}catch(_){}addEventListener("pagereveal",function(e){var vt=e.viewTransition;if(!vt)return;var atras=false;try{var a=navigation.activation;atras=a.navigationType==="traverse"&&a.from&&a.entry.index<a.from.index}catch(_){}d.classList.add("vt-in","vt-llega");if(atras)d.classList.add("vt-atras");vt.ready.catch(function(){});if(vt.updateCallbackDone)vt.updateCallbackDone.catch(function(){});vt.finished.catch(function(){}).then(function(){d.classList.remove("vt-in","vt-atras")})})})();</script>
+<link rel="stylesheet" href="../_base/estilo.css?v=6cb210fb">
+<link rel="stylesheet" href="caso.css?v=f0e2e7d1">
+</head>
+<body data-page="caso" data-caso="parqueadero">
+
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="dotgrid" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="grid-lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="gOro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE3A3"/><stop offset="1" stop-color="#C9992B"/></linearGradient></defs>
+  <symbol id="logo" viewBox="-2 3 92 44"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10 V31 a9 9 0 0 1 -18 0"/><path d="M34 10 V40 H50"/></g><path d="M60 40 L72 10 L84 40" fill="none" stroke="currentColor" stroke-opacity=".55" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"/><circle cx="60" cy="40" r="5.5" fill="currentColor"/><circle cx="84" cy="40" r="5.5" fill="currentColor"/><circle class="pulso" cx="72" cy="10" r="6.5" fill="none" stroke="#E2B54F" stroke-width="2"/><circle cx="72" cy="10" r="6.5" fill="url(#gOro)"/></symbol>
+  <symbol id="logoIcon" viewBox="0 0 64 64"><path d="M12 50 L32 14 L52 50" fill="none" stroke="currentColor" stroke-opacity=".55" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/><circle cx="12" cy="50" r="7" fill="currentColor"/><circle cx="52" cy="50" r="7" fill="currentColor"/><circle class="pulso" cx="32" cy="14" r="8" fill="none" stroke="#E2B54F" stroke-width="2"/><circle cx="32" cy="14" r="8" fill="url(#gOro)"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<nav class="nav" id="nav" aria-label="Principal">
+  <a class="brand" href="../../index.html" aria-label="JLA — inicio"><svg class="mark" aria-hidden="true"><use href="#logo"/></svg></a>
+  <ul id="menu"><li><a href="../../index.html">Inicio</a></li><li><a href="../../servicios.html">Servicios</a></li><li><a href="../../como-trabajamos.html">Cómo trabajamos</a></li><li><a href="../../sectores.html" aria-current="page">Sectores<span class="nav-marca" aria-hidden="true"></span></a></li><li><a href="../../nosotros.html">Nosotros</a></li><li class="solo-cel"><a href="#contacto" data-correo>Solicitar cotización</a></li></ul>
+  <div class="nav-der"><a href="#contacto" class="btn btn-primary" data-correo>Solicitar cotización</a>
+  <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><i></i><i></i></button></div>
+</nav>
+
+<main id="top">
+
+  <section class="page-first cs-cab">
+    <div class="wrap">
+      <a class="cs-volver rv" href="../../sectores.html?s=parqueadero"><svg class="arr"><use href="#i-arrow"/></svg>Soluciones por sector</a>
+      <div class="ph-grid">
+        <div class="sec-head rv">
+          <span class="eyebrow"><b>●</b>Caso real · Parqueadero</span>
+          <h1 class="ph">Su parqueadero, bajo control. <span class="it">Hasta el último peso.</span></h1>
+          <p class="lead">Probado en un parqueadero en operación: caja con tiquete, cierre a ciegas, avisos al dueño y un registro que nadie puede alterar.</p>
+          <ul class="cs-hechos">
+            <li data-ir="escenas" role="link" tabindex="0"><i class="ok"></i>En operación desde agosto de 2026</li>
+            <li data-ir="ciego" role="link" tabindex="0"><i></i>Cierre de turno a ciegas</li>
+            <li data-ir="bot" role="link" tabindex="0"><i></i>Avisos al dueño por Telegram</li>
+            <li data-ir="cadena" role="link" tabindex="0"><i class="oro"></i>Registro inalterable</li>
+          </ul>
+        </div>
+        <div class="arte cs-lote rv" aria-hidden="true" style="--d:.15s" title="Ver el sistema por dentro"><canvas id="loteCv"></canvas></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="lap-wrap" id="lap">
+    <div class="lap-sticky" id="lapSticky">
+      <div class="lap-title">
+        <span class="eyebrow"><b>§</b>La caja y el dueño</span>
+        <h2>La caja registra. <span class="it">El dueño se entera.</span></h2>
+      </div>
+      <div class="scene">
+        <div class="laptop" id="laptop">
+          <div class="base" aria-hidden="true"><div class="keys" id="keys"></div><div class="pad"></div><div class="edge"></div></div>
+          <div class="lid">
+            <div class="front">
+              <div class="scr" role="img" aria-label="Grabación real del sistema de caja.">
+                <div class="scr-in" id="scrIn">
+                  <div class="win-bar"><i></i><i></i><i></i><span>Caja · registro de entrada</span><span class="tag-ej cs-real">Grabación real</span></div>
+                  <video class="cs-lapvid" src="media/escena-1.mp4" poster="media/escena-1.jpg" muted loop playsinline preload="metadata"></video>
+                </div>
+              </div>
+            </div>
+            <div class="back" aria-hidden="true"><svg><use href="#logoIcon"/></svg></div>
+          </div>
+        </div>
+        <div class="cel" id="cel" role="img" aria-label="Celular del dueño recibiendo avisos del sistema.">
+          <div class="cel-in"><div class="isla"></div>
+            <div class="noti n1"><span class="ni"><svg><use href="#logoIcon"/></svg></span><span class="nt"><b>Turno de día abierto</b><small>Base confirmada</small></span></div>
+            <div class="noti n2 w"><span class="ni"><svg><use href="#logoIcon"/></svg></span><span class="nt"><b>Transferencia: ¿llegó?</b><small>Confirmar o negar</small></span></div>
+            <div class="noti n3"><span class="ni"><svg><use href="#logoIcon"/></svg></span><span class="nt"><b>Cierre: cuadró al peso</b><small>7:02 p. m.</small></span></div>
+            <div class="cel-chat"><div class="bub me">¿Cuánto va hoy?</div><div class="bub bot">47 vehículos · $&nbsp;391.500. En patio ahora: 12.</div></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="beam" aria-hidden="true"></div>
+  <section id="problema">
+    <div class="wrap">
+      <div class="sec-head center rv">
+        <span class="eyebrow">El problema</span>
+        <h2>El problema que nadie ve <span class="it">hasta que lo mide.</span></h2>
+        <p class="lead">Con cuaderno y memoria, el dinero se escapa sin rastro, aunque nadie sea deshonesto.</p>
+      </div>
+      <div class="cs-prob">
+        <article class="card rv" data-ir="ciego" role="link" tabindex="0">
+          <div class="vis"><div class="cs-mk cs-mk-desc"><span>Esperado</span><b>$&nbsp;497.000</b><span>Contado</span><b>$&nbsp;474.500</b><em>−&nbsp;$&nbsp;22.500</em></div></div>
+          <div class="txt"><h3>Descuadres sin explicación</h3><p class="prom">Falta plata y nadie sabe si fue error, gasto o algo peor.</p></div>
+        </article>
+        <article class="card rv" style="--d:.06s" data-ir="escenas" data-escena="1" role="link" tabindex="0">
+          <div class="vis"><div class="cs-mk cs-mk-carro"><i class="carro"></i><i class="pista"></i><span>Entró · pagó · salió</span><b>Sin registro</b></div></div>
+          <div class="txt"><h3>Vehículos que no se registran</h3><p class="prom">Un carro entra, paga y sale, y ese dinero nunca existió para el negocio.</p></div>
+        </article>
+        <article class="card rv" style="--d:.12s" data-ir="bot" role="link" tabindex="0">
+          <div class="vis"><div class="cs-mk cs-mk-trans"><span class="bub me">Ya le transferí</span><span class="cs-q">¿Llegó? ¿A qué cuenta? ¿Por cuánto?</span></div></div>
+          <div class="txt"><h3>Transferencias sin verificar</h3><p class="prom">«Ya le transferí». ¿Y quién revisa que llegó?</p></div>
+        </article>
+        <article class="card rv" style="--d:.18s" data-ir="bot" role="link" tabindex="0">
+          <div class="vis"><div class="cs-mk cs-mk-sem"><span>L</span><span class="mal">M</span><span>X</span><span>J</span><span class="hoy">V</span><em>Se enteró el viernes</em></div></div>
+          <div class="txt"><h3>El dueño se entera tarde</h3><p class="prom">Los problemas del lunes se descubren el viernes, cuando ya no hay nada que hacer.</p></div>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <div class="beam" aria-hidden="true"></div>
+  <section id="escenas">
+    <div class="wrap">
+      <div class="sec-head center rv">
+        <span class="eyebrow">El sistema por dentro</span>
+        <h2>Véalo funcionando, <span class="it">sin edición.</span></h2>
+        <p class="lead">Grabaciones reales del sistema. Elija una escena.</p>
+      </div>
+      <div class="cs-esc rv">
+        <div class="cs-monitor">
+          <div class="win-bar"><i></i><i></i><i></i><span id="escTit">Apertura de turno y registro</span><span class="tag-ej cs-real">Grabación real</span></div>
+          <div class="cs-pant">
+            <video id="escVid" src="media/escena-1.mp4" poster="media/escena-1.jpg" muted playsinline preload="metadata"></video>
+            <div class="cs-sub" id="escSub" aria-live="polite"></div>
+            <div class="cs-barra"><i id="escProg"></i></div>
+          </div>
+          <div class="cs-ctrl">
+            <button type="button" class="btn btn-ghost cs-mini" id="escPlay" aria-label="Pausar">Pausar</button>
+            <button type="button" class="btn btn-ghost cs-mini" id="escTiq">Ver el tiquete impreso</button>
+          </div>
+        </div>
+        <ol class="cs-lista" id="escLista"></ol>
+      </div>
+    </div>
+  </section>
+
+  <div class="beam" aria-hidden="true"></div>
+  <section id="ciego">
+    <div class="wrap cs-dos">
+      <div class="rv">
+        <div class="sec-head">
+          <span class="eyebrow">Cierre de turno a ciegas</span>
+          <h2>El operario cuenta <span class="it">sin saber cuánto debería haber.</span></h2>
+        </div>
+        <ol class="cs-pasos">
+          <li><b>01</b>Al cerrar el turno, el operario cuenta el efectivo del cajón sin ver el valor esperado.</li>
+          <li><b>02</b>Digita lo que contó.</li>
+          <li><b>03</b>El sistema compara y avisa al dueño al instante, con el número exacto.</li>
+        </ol>
+      </div>
+      <div class="card cs-prueba rv" style="--d:.1s">
+        <div class="win-bar"><i></i><i></i><i></i><span>Cierre de turno</span></div>
+        <div class="cs-prueba-in">
+          <p class="cs-pq">Pruébelo usted. El sistema espera un valor que el operario no ve.</p>
+          <label for="ciegoIn">Efectivo contado</label>
+          <div class="cs-campo"><span>$</span><input id="ciegoIn" type="text" inputmode="numeric" autocomplete="off" placeholder="Ej.: 445.000"></div>
+          <button type="button" class="btn btn-primary" id="ciegoBtn">Cerrar turno <svg class="arr"><use href="#i-arrow"/></svg></button>
+          <div class="cs-res" id="ciegoRes" hidden></div>
+          <div class="cs-tabla" aria-label="Reporte de turnos">
+            <div class="fila cab"><span>Turno</span><span>Operario</span><span>Esperado</span><span>Contado</span><span>Resultado</span></div>
+            <div class="fila"><span>Lun · Día</span><span>Carlos</span><span>$&nbsp;512.000</span><span>$&nbsp;512.000</span><span class="ok">Cuadró</span></div>
+            <div class="fila"><span>Lun · Noche</span><span>Andrés</span><span>$&nbsp;238.500</span><span>$&nbsp;238.500</span><span class="ok">Cuadró</span></div>
+            <div class="fila"><span>Mar · Día</span><span>Carlos</span><span>$&nbsp;497.000</span><span>$&nbsp;474.500</span><span class="mal">−&nbsp;$&nbsp;22.500</span></div>
+            <div class="fila" id="filaNueva" hidden><span>Hoy · Día</span><span>Usted</span><span>$&nbsp;460.000</span><span id="fnCont"></span><span id="fnRes"></span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="beam" aria-hidden="true"></div>
+  <section id="bot">
+    <div class="wrap cs-dos inv">
+      <div class="rv">
+        <div class="sec-head">
+          <span class="eyebrow">El dueño, en su bolsillo</span>
+          <h2>No le pregunta al operario. <span class="it">Le pregunta al sistema.</span></h2>
+        </div>
+        <ul class="cs-lis">
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><span><b>Avisos en el momento</b>Cierres con arqueo, gastos, anulaciones y cambios de configuración, cuando ocurren.</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><span><b>Preguntas en lenguaje normal</b>«¿Cuánto va hoy?», «¿cuándo vino la placa ABC123?», desde donde esté.</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><span><b>Transferencias verificadas con un botón</b>Llegó o no llegó: ninguna queda en el limbo.</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><span><b>Autorizaciones a distancia</b>El operario pide; el dueño aprueba o niega desde el celular, y queda registrado.</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><span><b>Resumen automático</b>El día completo, resumido, sin tener que pedirlo.</span></li>
+        </ul>
+      </div>
+      <div class="cs-tel rv" style="--d:.1s">
+        <div class="cs-tel-in">
+          <div class="isla"></div>
+          <div class="cs-tel-cab"><span class="ni"><svg><use href="#logoIcon"/></svg></span><span><b>Bot del parqueadero</b><small>chat privado del dueño</small></span></div>
+          <div class="cs-msgs" id="tgMsgs" aria-live="polite"></div>
+          <button type="button" class="cs-otra" id="tgReplay">Ver los avisos de nuevo</button>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="beam" aria-hidden="true"></div>
+  <section id="cadena">
+    <div class="wrap">
+      <div class="sec-head center rv">
+        <span class="eyebrow">Nada se borra</span>
+        <h2>Un registro que <span class="it">nadie puede alterar.</span></h2>
+        <p class="lead">Cada movimiento queda sellado con el anterior. Si alguien altera uno, el sistema lo delata.</p>
+      </div>
+      <div class="cs-cad rv" id="cad">
+        <div class="cs-eslabones" id="eslabones"></div>
+        <div class="cs-cad-pie">
+          <button type="button" class="btn btn-ghost" id="cadAlterar">Intentar cambiar un registro</button>
+          <span class="cs-cad-est" id="cadEst" aria-live="polite"><i></i>Cadena íntegra</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="beam" aria-hidden="true"></div>
+  <section id="proyeccion" class="cs-proy">
+    <div class="cs-fondo" id="fondo" aria-hidden="true"><div class="cs-velo"></div></div>
+    <div class="cs-info" id="maqInfo" aria-live="polite" hidden><b></b><span></span></div>
+    <div class="wrap">
+      <div class="sec-head center rv">
+        <span class="eyebrow">Lo que se proyectó</span>
+        <h2>Cómo puede crecer <span class="it">el lote.</span></h2>
+        <p class="lead">La maqueta de la siguiente etapa. Pase el cursor (o toque) cada parte para ver qué es.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contacto">
+    <div class="wrap">
+      <div class="contact rv">
+        <div class="ring" aria-hidden="true"></div>
+        <h2>Cuéntenos su <span class="it">problema.</span></h2>
+        <p class="lead">Escríbanos qué empresa tiene, cuál es la necesidad y cómo la resuelve hoy. Con esa información preparamos una propuesta y una cotización a la medida.</p>
+        <a href="#contacto" class="btn btn-primary" data-correo>Solicitar cotización <svg class="arr"><use href="#i-arrow"/></svg></a>
+        <div><span class="pend" id="pend-correo" hidden>PENDIENTE: correo de JLA (aún no existe)</span></div>
+        <p class="ayuda">Se abrirá su correo con el mensaje preparado. Solo debe completarlo y enviarlo.</p>
+        <div class="meta">
+          <a href="https://instagram.com/jlautomatization" target="_blank" rel="noopener">Instagram @JLAUTOMATIZATION</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="../../index.html" aria-label="JLA — inicio">
+      <svg class="mark" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="word" style="display:block">Automatización · Software</span>
+    </a>
+  </div>
+  <div class="pie-gigante" aria-hidden="true"><svg class="pie-base"><use href="#logo" width="100%" height="100%"/></svg><svg class="pie-luz"><use href="#logo" width="100%" height="100%"/></svg></div>
+</footer>
+
+<script src="../_base/app.js?v=6cb210fb"></script>
+<script src="caso.js?v=f0e2e7d1"></script>
+</body>
+</html>
