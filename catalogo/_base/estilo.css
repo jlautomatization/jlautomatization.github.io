@@ -691,7 +691,7 @@
 
 :root{--vtx:1}
 html.vt-lento{--vtx:8}
-@media (prefers-reduced-motion:no-preference){
+@media (prefers-reduced-motion:no-preference) and (min-width:960px){
   @view-transition{navigation:auto}
 }
 .nav{view-transition-name:barra}

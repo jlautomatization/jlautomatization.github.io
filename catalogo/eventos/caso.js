@@ -19,7 +19,15 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     if('ResizeObserver' in window) new ResizeObserver(medir).observe(cv); else addEventListener('resize', medir);
     return o;
   }
-  function irA(id){ var d=$(id); if(d) d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'}); }
+   
+  var SUB=document.body.getAttribute('data-sub')||'', RAIZ=SUB?'../':'', MEDIA=RAIZ+'media/';
+   
+  var tope=document.querySelector('main > .hx-tope'); if(tope) document.body.insertBefore(tope,document.body.firstChild);
+  var PAGINA_DE={escenas:'como-funciona/',ciego:'como-funciona/',cadena:'como-funciona/',panel:'dueno/',bot:'dueno/'};
+  function irA(id,escena){ var d=$(id);
+    if(d){ d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'}); return true; }
+    if(PAGINA_DE[id]) location.href=RAIZ+PAGINA_DE[id]+(escena?'?escena='+escena:'')+'#'+id;
+    return false; }
   function reproducir(v){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
 
    
@@ -101,10 +109,10 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
   function video(nombre){
     if(MEM[nombre]) return Promise.resolve(MEM[nombre]);
     if(PIDIENDO[nombre]) return PIDIENDO[nombre];
-    if(!window.fetch||!window.URL||!URL.createObjectURL) return Promise.resolve('media/'+nombre);
-    PIDIENDO[nombre]=fetch('media/'+nombre).then(function(r){ if(!r.ok) throw 0; return r.blob(); })
+    if(!window.fetch||!window.URL||!URL.createObjectURL) return Promise.resolve(MEDIA+nombre);
+    PIDIENDO[nombre]=fetch(MEDIA+nombre).then(function(r){ if(!r.ok) throw 0; return r.blob(); })
       .then(function(b){ MEM[nombre]=URL.createObjectURL(b); return MEM[nombre]; })
-      .catch(function(){ delete PIDIENDO[nombre]; return 'media/'+nombre; });
+      .catch(function(){ delete PIDIENDO[nombre]; return MEDIA+nombre; });
     return PIDIENDO[nombre];
   }
   function precargar(lista){ lista.reduce(function(p,n){ return p.then(function(){ return video(n); }); }, Promise.resolve()); }
@@ -113,9 +121,10 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
    
   (function(){
     var v=document.querySelector('.cs-lapvid'), vc=document.querySelector('#cel video'); if(!v) return;
-    aMemoria(v,'portatil.mp4'); if(vc) aMemoria(vc,'escena-3.mp4');
+     
+    var pedidas=false; aVista($('lap')||v,function(si){ if(si&&!pedidas){ pedidas=true; aMemoria(v,'portatil.mp4'); if(vc) aMemoria(vc,'escena-3.mp4'); } },{threshold:0});
     var scr=document.querySelector('#lap .scr'), cel=$('cel');
-    if(scr){ scr.style.cursor='pointer'; scr.addEventListener('click',function(){ irA('escenas'); var b=document.querySelectorAll('#escLista button')[5]; if(b) setTimeout(function(){ b.click(); },REDUCE?0:500); }); }
+    if(scr){ scr.style.cursor='pointer'; scr.addEventListener('click',function(){ irA('panel'); }); }
     if(cel){ cel.style.cursor='pointer'; cel.addEventListener('click',function(){ irA('ciego'); }); }
     aVista(v,function(si){ if(si && !REDUCE){ reproducir(v); if(vc) reproducir(vc); } else { v.pause(); if(vc) vc.pause(); } },{threshold:.15});
   })();
@@ -143,7 +152,7 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
       li.firstChild.addEventListener('click',function(){ cargar(i,true); }); lista.appendChild(li); });
     function nombre(i){ return i===5?'portatil':'escena-'+(i+1); }
     function cargar(i,usuario){
-      cur=i; var nom=nombre(i), pedido=i; vid.poster='media/'+nom+'.jpg';
+      cur=i; var nom=nombre(i), pedido=i; vid.poster=MEDIA+nom+'.jpg';
       marco.setAttribute('data-forma',ESC[i].f);
       video(nom+'.mp4').then(function(u){ if(cur!==pedido) return; vid.src=u; if(usuario||visto) reproducir(vid); });
       tit.textContent=ESC[i].t;
@@ -162,8 +171,10 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     vid.addEventListener('pause',function(){ bPlay.textContent='Reproducir'; bPlay.setAttribute('aria-label','Reproducir'); });
     bPlay.addEventListener('click',function(){ if(vid.paused) reproducir(vid); else vid.pause(); });
     vid.style.cursor='pointer'; vid.addEventListener('click',function(){ bPlay.click(); });
-    cargar(0,false);
-    aVista($('escenas'),function(si){ if(si) precargar(['escena-1.mp4','escena-2.mp4','escena-3.mp4','escena-4.mp4','escena-5.mp4','portatil.mp4']); },{rootMargin:'100% 0px'});
+    var pedidaEsc=+(new URLSearchParams(location.search).get('escena')||0);    
+    cargar(pedidaEsc>=1&&pedidaEsc<=ESC.length?pedidaEsc-1:0,false);
+     
+    var sigT=0; vid.addEventListener('playing',function(){ clearTimeout(sigT); var c=cur; sigT=setTimeout(function(){ if(c===cur) video(nombre((c+1)%ESC.length)+'.mp4'); },3000); });
     aVista(vid,function(si){ if(si){ if(!visto && !REDUCE){ visto=true; reproducir(vid); } } else if(!vid.paused){ vid.pause(); visto=false; } },{threshold:.4});
   })();
 
@@ -294,8 +305,211 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
   (function(){
     [].forEach.call(document.querySelectorAll('[data-ir]'),function(el){ el.style.cursor='pointer';
       el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); el.click(); } });
-      el.addEventListener('click',function(e){ var t=e.target.closest('a,button,input'); if(t&&t!==el) return; e.preventDefault(); var esc=el.getAttribute('data-escena'); irA(el.getAttribute('data-ir'));
-        if(esc){ var b=document.querySelectorAll('#escLista button')[+esc-1]; if(b) setTimeout(function(){ b.click(); },REDUCE?0:500); } }); });
+      el.addEventListener('click',function(e){ var t=e.target.closest('a,button,input'); if(t&&t!==el) return; e.preventDefault(); var esc=el.getAttribute('data-escena'), aqui=irA(el.getAttribute('data-ir'),esc);
+        if(esc&&aqui){ var b=document.querySelectorAll('#escLista button')[+esc-1]; if(b) setTimeout(function(){ b.click(); },REDUCE?0:500); } }); });
     var p2=document.querySelector('.cs-pasos li:nth-child(2)'); if(p2){ p2.style.cursor='pointer'; p2.addEventListener('click',function(){ var i=$('ciegoIn'); if(i) i.focus(); }); }
   })();
+
+   
+  (function(){
+    [].forEach.call(document.querySelectorAll('.ev-ir-vis'),function(caja){
+      aVista(caja,function(si){ if(!si||caja._ok) return; caja._ok=true;
+        [].forEach.call(caja.querySelectorAll('[data-srcset]'),function(s){ s.srcset=s.getAttribute('data-srcset'); });
+        [].forEach.call(caja.querySelectorAll('img[data-src]'),function(i){ i.src=i.getAttribute('data-src'); });
+        [].forEach.call(caja.querySelectorAll('video[data-poster]'),function(v){ v.poster=v.getAttribute('data-poster'); });
+      },{rootMargin:'150% 0px'});
+      var v=caja.querySelector('video[data-video]'); if(!v) return;
+      aVista(v,function(si){ if(si&&!REDUCE){ aMemoria(v,v.getAttribute('data-video')); if(v.src) reproducir(v); } else if(!si) v.pause(); },{threshold:.3});
+    });
+  })();
+
+   
+  (function(){
+    var tabs=$('visorTabs'), sub=$('visorSub'), img=$('visorImg'); if(!tabs||!img) return;
+    var V=[
+      ['Inicio','inicio','Lo primero que ve: cuánto material está afuera, los eventos del mes y lo que requiere atención.','Inicio del panel: unidades afuera, eventos con material afuera y lo que requiere atención.'],
+      ['Eventos','eventos','Los eventos con material afuera, del más viejo al más nuevo, y cuántos días lleva cada uno.','Lista de eventos con material afuera y los días que lleva.'],
+      ['Un evento','recorrido','El recorrido de un evento: salió, llegó, volvió. Cada paso con folio, huella y quién lo llevó.','Recorrido de un evento: salida, llegada confirmada y regreso, cada uno con folio y huella.'],
+      ['Inventario','inventario','Cuánto hay en bodega, cuánto afuera y cuánto en mantenimiento, por categoría.','Inventario por categoría: en bodega, afuera y en mantenimiento.'],
+      ['Gráficas','operacion','Movimientos por día y unidades que salen contra las que regresan, en los últimos 30 días.','Gráficas de operación: movimientos por día y unidades que salen contra las que regresan.',[
+        ['Operación','operacion','Movimientos por día y unidades que salen contra las que regresan, en los últimos 30 días.'],
+        ['Calidad','calidad','Faltantes y sobrantes por categoría, y si las llegadas completas mejoran o empeoran.'],
+        ['Planeación','planeacion','La carga de las próximas semanas contra lo que hay en bodega: lo que no va a alcanzar.'],
+        ['Uso del sistema','uso','Cuánto se registró sin señal, cuánto se corrigió al sincronizar y los ingresos al panel y a la app.']]],
+      ['Calendario','calendario','Qué hay programado, mes a mes.','Calendario del mes con los eventos programados.'],
+      ['Novedades','novedades','Lo que se salió de lo normal: cada diferencia de conteo, con su folio.','Novedades: diferencias de conteo con lo esperado y lo que llegó.'],
+      ['Manifiestos','manifiestos','Cada salida y cada regreso, con su folio y lo que llevaba.','Lista de manifiestos de salida y regreso.']
+    ];
+    var cAvif=$('visorCelAvif'), cJpg=$('visorCelJpg'), pAvif=$('visorAvif'), cap=$('visorCap'), act=0;
+    function poner(clave,texto,alt){
+      cap.textContent=texto; if(alt) img.alt=alt;
+      if(img.src.indexOf('p-'+clave+'.')>-1||img.currentSrc.indexOf('p-'+clave+'-cel.')>-1) return;
+      img.classList.add('cambia');
+      var listo=function(){ img.classList.remove('cambia'); img.removeEventListener('load',listo); img.removeEventListener('error',listo); }; img.addEventListener('load',listo); img.addEventListener('error',listo);
+      cAvif.srcset=MEDIA+'p-'+clave+'-cel.avif'; cJpg.srcset=MEDIA+'p-'+clave+'-cel.jpg'; pAvif.srcset=MEDIA+'p-'+clave+'.avif'; img.src=MEDIA+'p-'+clave+'.jpg';
+    }
+    function boton(caja,txt,sel,fn){ var b=document.createElement('button'); b.type='button'; b.setAttribute('role','tab'); b.textContent=txt;
+      b.setAttribute('aria-selected',sel?'true':'false'); b.addEventListener('click',fn); caja.appendChild(b); return b; }
+    function marcar(caja,i){ [].forEach.call(caja.children,function(b,k){ b.setAttribute('aria-selected',k===i?'true':'false'); }); }
+    function subtabs(lista,alt){ sub.innerHTML=''; sub.hidden=!lista; if(!lista) return;
+      lista.forEach(function(g,k){ boton(sub,g[0],k===0,function(){ marcar(sub,k); poner(g[1],g[2],alt); }); }); }
+    V.forEach(function(v,i){ boton(tabs,v[0],i===0,function(){ act=i; marcar(tabs,i); subtabs(v[4],v[3]); poner(v[1],v[2],v[3]);
+      var b=tabs.children[i]; if(b.scrollIntoView&&innerWidth<=700) b.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'nearest',inline:'center'}); }); });
+     
+    var celu=matchMedia('(max-width:700px)').matches, avif=null;
+    aVista(img,function(si){ if(!si||avif!==null) return; avif=(img.currentSrc||'').indexOf('.avif')>-1;
+      var claves=['eventos','recorrido','inventario','operacion','calendario','novedades','manifiestos','calidad','planeacion','uso'];
+      claves.reduce(function(p,c){ return p.then(function(){ return new Promise(function(ok){ var i=new Image(); i.onload=i.onerror=ok;
+        i.src=MEDIA+'p-'+c+(celu?'-cel':'')+(avif?'.avif':'.jpg'); }); }); }, Promise.resolve());
+    },{threshold:.2});
+  })();
 })();
+
+ 
+(function(){
+  'use strict';
+  var quieto=matchMedia('(prefers-reduced-motion: reduce)').matches, IO='IntersectionObserver' in window;
+  var SUB=document.body.getAttribute('data-sub')||'', MEDIA=(SUB?'../':'')+'media/';
+  function juega(v){ if(quieto) return; if(!v.src && v.dataset.src) v.src=v.dataset.src; var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+  function mira(el,fn,opts){ if(!el) return; if(!IO){ fn(true); return; } new IntersectionObserver(function(es){ es.forEach(function(e){ fn(e.isIntersecting); }); },opts||{threshold:.25}).observe(el); }
+
+   
+  var sec=document.getElementById('hx');
+  if(sec){
+    var med=sec.querySelector('.hx-media'), v=document.getElementById('hxVid');
+    if(v){
+      var alto=matchMedia('(max-width: 899px)'), actual='';
+      var pon=function(){ var n=alto.matches?'hero-1x1':'hero-16x9'; if(n===actual) return; actual=n;
+         
+        med.style.backgroundImage='url('+MEDIA+n+'.jpg)';
+        med.style.backgroundImage='image-set(url('+MEDIA+n+'.avif) type("image/avif"), url('+MEDIA+n+'.jpg) type("image/jpeg"))';
+        if(quieto) return; v.classList.remove('lista'); v.src=MEDIA+n+'.mp4'; v.load(); var p=v.play(); if(p&&p.catch) p.catch(function(){}); };
+      v.addEventListener('playing',function(){ v.classList.add('lista'); });
+      pon(); if(alto.addEventListener) alto.addEventListener('change',pon);
+      if(!quieto) mira(sec,function(si){ if(si){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); } else v.pause(); },{threshold:0});
+    }
+    if(!quieto){ var pend=false;
+      var mueve=function(){ pend=false; var p=Math.min(1,Math.max(0,scrollY/(sec.offsetHeight||1))); sec.style.setProperty('--p',p.toFixed(3)); };
+      addEventListener('scroll',function(){ if(!pend){ pend=true; requestAnimationFrame(mueve); } },{passive:true}); mueve(); }
+  }
+
+   
+  var nx=document.getElementById('ciclo');
+  if(nx){
+    var pasos=nx.querySelectorAll('.nx-paso'), caps=nx.querySelectorAll('.nx-vid'), avisos=nx.querySelectorAll('.nx-aviso'), cur=0, enVista=false;
+    var vid=nx.querySelector('video.nx-vid');
+    var ponNx=function(i){ if(i===cur) return; cur=i;
+      for(var k=0;k<3;k++){ var on=k===i; pasos[k].classList.toggle('on',on); caps[k].classList.toggle('on',on); avisos[k].classList.toggle('on',on); }
+      if(i===2&&enVista) juega(vid); else if(!vid.paused) vid.pause(); };
+    var mideNx=function(){ var r=nx.getBoundingClientRect(), largo=r.height-innerHeight, p=Math.min(1,Math.max(0,-r.top/(largo||1)));
+      ponNx(Math.min(2,Math.floor(p*3)));
+      for(var k=0;k<3;k++){ var f=Math.min(1,Math.max(0,p*3-k)); pasos[k].querySelector('.nx-barra i').style.setProperty('--f',quieto?(k<=cur?1:0):f.toFixed(3)); } };
+     
+    mira(nx,function(si){ if(si&&!vid.poster) vid.poster=vid.getAttribute('data-poster'); },{rootMargin:'150% 0px'});
+    mira(nx,function(si){ enVista=si; if(si&&cur===2) juega(vid); else if(!si&&!vid.paused) vid.pause(); },{threshold:0});
+    var pn=false; addEventListener('scroll',function(){ if(!pn){ pn=true; requestAnimationFrame(function(){ pn=false; mideNx(); }); } },{passive:true});
+    addEventListener('resize',mideNx); mideNx();
+  }
+
+   
+  var cu=document.getElementById('cuenta'), n=document.getElementById('cuentaN');
+  if(cu&&n){
+    var t=0, hecho=false;
+    mira(cu,function(si){ if(!si||hecho) return; hecho=true; cu.classList.add('vivo');
+      if(quieto){ n.textContent='88'; return; }
+      var t0=performance.now();
+      (function paso(now){ var f=Math.min(1,(now-t0)/3000); n.textContent=String(Math.round(88*(1-Math.pow(1-f,2)))); if(f<1) t=requestAnimationFrame(paso); })(t0);
+    },{threshold:.45});
+  }
+
+   
+  [].forEach.call(document.querySelectorAll('.mx-foto'),function(caja){
+    mira(caja,function(si){ if(!si||caja._ok) return; caja._ok=true;
+      [].forEach.call(caja.querySelectorAll('[data-srcset]'),function(s){ s.srcset=s.getAttribute('data-srcset'); });
+      [].forEach.call(caja.querySelectorAll('img[data-src]'),function(i){ i.src=i.getAttribute('data-src'); });
+    },{rootMargin:'150% 0px'});
+    if(!quieto) mira(caja,function(si){ caja.classList.toggle('vivo',si); },{threshold:.2});
+  });
+})();
+
+ 
+(function(){
+  'use strict';
+  var quieto=matchMedia('(prefers-reduced-motion: reduce)').matches, IO='IntersectionObserver' in window;
+  function juega(v){ if(quieto) return; var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
+  function avance(sec){ var r=sec.getBoundingClientRect(), largo=r.height-innerHeight; return Math.min(1,Math.max(0,-r.top/(largo||1))); }
+  function alScroll(fn){ var pend=false; addEventListener('scroll',function(){ if(!pend){ pend=true; requestAnimationFrame(function(){ pend=false; fn(); }); } },{passive:true}); addEventListener('resize',fn); fn(); }
+  function barras(pasos,p,N,cur){ for(var k=0;k<N;k++){ var f=quieto?(k<=cur?1:0):Math.min(1,Math.max(0,p*N-k)); pasos[k].querySelector('.vj-barra i').style.setProperty('--f',f.toFixed(3)); } }
+  function tocaParada(sec,pasos,N){ [].forEach.call(pasos,function(li,k){ li.addEventListener('click',function(){
+    var top=sec.getBoundingClientRect().top+scrollY, largo=sec.offsetHeight-innerHeight; scrollTo({top:top+largo*(k+.5)/N,behavior:quieto?'auto':'smooth'}); }); }); }
+
+   
+  var vj=document.getElementById('viaje');
+  if(vj){
+    var esc=vj.querySelector('.vj-escena'), pasos=vj.querySelectorAll('.vj-paso'), cines=vj.querySelectorAll('.ev-cine-c'), vids=vj.querySelectorAll('.vj-vid'),
+        sub=vj.querySelector('.ev-vj-sub'), cineV=vj.querySelector('video.ev-cine-c'), N=pasos.length, cur=-1, enVista=false, cargado=false, tT=0;
+     
+    var S2=[[0,'Salida de bodega: el operario abre el evento del día'],[2,'Un toque en «Cargar 90» y queda contado lo que pidió el evento'],[5,'Los equipos con código se leen con la cámara, QR por QR'],[9,'Revisa el resumen antes de cerrar: 92 unidades'],[12.5,'Al cerrar queda con folio y huella. No se puede cambiar: solo anular con motivo']];
+    var S3=[[0,'En el evento, quien recibe confirma la llegada'],[1.2,'Cuenta lo que llegó sin ver cuánto salió'],[3.5,'Escribe lo que contó: 88 Vallas'],[6,'Revisa y cierra el registro'],[8,'El sistema compara: faltan 2 Vallas. Y se le avisa al dueño en ese momento']];
+    var S4=[[0,'De vuelta en la bodega: registrar el regreso'],[1.5,'Otra vez a ciegas: cuenta lo que volvió'],[5.2,'Los equipos con código se leen uno por uno'],[10.5,'Se cierra con folio y huella. Lo que no volvió queda pendiente, a nombre del evento']];
+    var S5=[[0,'El dueño toca 5 veces el logo de la app y se abre su panel'],[3,'Entra con su propio PIN'],[5,'Inicio: cuánto material está afuera ahora y qué requiere atención'],[8,'El sistema mismo señala lo que lleva más de 7 días afuera'],[10,'Lo que sale y lo que vuelve, en los últimos 30 días'],[14,'Eventos: cuál tiene material afuera y desde hace cuántos días'],[16,'Cada evento con su recorrido: salió, llegó, volvió. Cada paso con folio y huella'],[23,'Inventario: cuánto hay en bodega y cuánto afuera, por categoría'],[28,'Gráficas: movimientos por día y lo que queda pendiente por evento']];
+    var SUBS=[S2,S3,S5];
+    [].forEach.call(vids,function(v,k){
+      v.addEventListener('ended',function(){ var sig=v.getAttribute('data-sigue');
+        if(sig&&!v._seg){ v._seg=true; v.src=sig; } else if(sig){ v._seg=false; v.src=v.getAttribute('data-src'); }
+        v.currentTime=0; if(k===cur&&enVista) juega(v); });
+      v.addEventListener('timeupdate',function(){ if(k!==cur) return; var c=(k===1&&v._seg)?S4:SUBS[k], t=v.currentTime, s='';
+        for(var j=0;j<c.length;j++) if(t>=c[j][0]) s=c[j][1];
+        if(s!==sub.textContent) sub.textContent=s; sub.classList.toggle('ver',!!s); });
+    });
+     
+    var pide=function(i){ if(i>=N) return; var v=vids[i]; if(!v.getAttribute('src')){ v.preload='auto'; v.src=v.getAttribute('data-src'); }
+      if(i===2&&!cineV.getAttribute('src')){ cineV.poster=cineV.getAttribute('data-poster'); if(!quieto) cineV.src=cineV.getAttribute('data-src'); } };
+    var carga=function(){ if(cargado) return; cargado=true; pide(Math.max(cur,0)); pide(Math.max(cur,0)+1); };
+    var ponVj=function(i){ if(i===cur) return; cur=i; esc.setAttribute('data-p',i);
+      for(var k=0;k<N;k++){ pasos[k].classList.toggle('on',k===i); cines[k].classList.toggle('on',k===i); }
+      [].forEach.call(vids,function(v,k){ v.classList.toggle('on',k===i); if(k!==i&&!v.paused) v.pause(); });
+      if(i===2&&enVista) juega(cineV); else if(!cineV.paused) cineV.pause();
+      sub.classList.remove('ver'); sub.textContent='';
+      if(cargado){ pide(i); pide(i+1); }
+      clearTimeout(tT); esc.classList.remove('tel');
+      tT=setTimeout(function(){ esc.classList.add('tel'); if(enVista&&cargado){ var v=vids[cur]; try{ v.currentTime=0; }catch(e){} juega(v); } },quieto?0:900); };
+    var mideVj=function(){ var p=avance(vj); ponVj(Math.min(N-1,Math.floor(p*N))); barras(pasos,p,N,cur); };
+    tocaParada(vj,pasos,N);
+    if(IO){
+      new IntersectionObserver(function(e){ if(e[0].isIntersecting) carga(); },{rootMargin:'100% 0px'}).observe(vj);
+      new IntersectionObserver(function(e){ enVista=e[0].isIntersecting;
+        if(enVista){ if(cargado&&esc.classList.contains('tel')) juega(vids[cur]); if(cur===2) juega(cineV); }
+        else { [].forEach.call(vids,function(v){ if(!v.paused) v.pause(); }); if(!cineV.paused) cineV.pause(); } }).observe(vj);
+    } else { enVista=true; carga(); }
+    alScroll(mideVj);
+  }
+
+   
+  var av=document.getElementById('dhAviso');
+  if(av){ var vino=false;
+    var llega=function(){ if(vino) return; vino=true; av.classList.add('ver'); if(!quieto) av.classList.add('zumba'); };
+    if(quieto) llega(); else setTimeout(llega,1200); }
+
+   
+  var mf=document.getElementById('plano');
+  if(mf){
+    var mesc=mf.querySelector('.mf-escena'), mpasos=mf.querySelectorAll('.vj-paso'), M=mpasos.length, mcur=-1, mVista=false, red=document.getElementById('evRed'), tr=0;
+    var SELLO=['01 · Un código por equipo','02 · El estante también','03 · Sin señal'];
+    var senal=function(){ clearTimeout(tr); red.className='ev-red'; if(mcur!==2||!mVista) return;
+      if(quieto){ red.className='ev-red a b'; return; }
+      tr=setTimeout(function(){ red.className='ev-red a'; tr=setTimeout(function(){ red.className='ev-red b'; },2400); },500); };
+    var ponMf=function(i){ if(i===mcur) return; mcur=i; mesc.setAttribute('data-p',i);
+      for(var k=0;k<M;k++) mpasos[k].classList.toggle('on',k===i);
+      document.getElementById('mfSelloT').textContent=SELLO[i];
+       
+      if(mVista){ mesc.classList.remove('vivo'); void mesc.offsetWidth; mesc.classList.add('vivo'); }
+      senal(); };
+    var mideMf=function(){ var p=avance(mf); ponMf(Math.min(M-1,Math.floor(p*M))); barras(mpasos,p,M,mcur); };
+    tocaParada(mf,mpasos,M);
+    var vista=function(v){ if(v===mVista) return; mVista=v; mesc.classList.toggle('vivo',v); senal(); };
+    if(IO) new IntersectionObserver(function(e){ vista(e[0].isIntersecting); },{threshold:.15}).observe(mesc); else vista(true);
+    alScroll(mideMf);
+  }
+})();
+

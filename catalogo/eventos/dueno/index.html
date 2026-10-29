@@ -1,0 +1,156 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>El dueño: panel del sistema de custodia para eventos — JLA</title>
+<meta name="description" content="Las pantallas reales del panel del dueño: material afuera, eventos, inventario, gráficas y calendario. Y el bot que le avisa al celular.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="El dueño: panel del sistema de custodia para eventos — JLA">
+<meta property="og:description" content="Las pantallas reales del panel del dueño: material afuera, eventos, inventario, gráficas y calendario. Y el bot que le avisa al celular.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231D3A5A'/%3E%3Cstop offset='1' stop-color='%230A121C'/%3E%3C/linearGradient%3E%3ClinearGradient id='o' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23FFE3A3'/%3E%3Cstop offset='1' stop-color='%23C9992B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23b)'/%3E%3Cg transform='translate(2.6 2.6) scale(.42)'%3E%3Cpath d='M12 50 32 14 52 50' fill='none' stroke='%23F4F7FB' stroke-opacity='.6' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='12' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='52' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='32' cy='14' r='9' fill='url(%23o)'/%3E%3C/g%3E%3C/svg%3E">
+<style>@font-face {font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/sora-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/sora-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}</style>
+<script>(function(){var d=document.documentElement,q=location.search;try{if(/[?&]lento\b/.test(q))sessionStorage.vtLento=1;if(/[?&]rapido\b/.test(q))sessionStorage.removeItem("vtLento");if(sessionStorage.vtLento)d.classList.add("vt-lento")}catch(_){}addEventListener("pagereveal",function(e){var vt=e.viewTransition;if(!vt)return;var atras=false;try{var a=navigation.activation;atras=a.navigationType==="traverse"&&a.from&&a.entry.index<a.from.index}catch(_){}d.classList.add("vt-in","vt-llega");if(atras)d.classList.add("vt-atras");vt.ready.catch(function(){});if(vt.updateCallbackDone)vt.updateCallbackDone.catch(function(){});vt.finished.catch(function(){}).then(function(){d.classList.remove("vt-in","vt-atras")})})})();</script>
+<link rel="stylesheet" href="../../_base/estilo.css?v=8559732b">
+<link rel="stylesheet" href="../caso.css?v=1edf832a">
+</head>
+<body data-page="caso" data-caso="eventos" data-sub="dueno">
+
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="dotgrid" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="grid-lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="gOro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE3A3"/><stop offset="1" stop-color="#C9992B"/></linearGradient></defs>
+  <symbol id="logo" viewBox="-2 3 92 44"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10 V31 a9 9 0 0 1 -18 0"/><path d="M34 10 V40 H50"/></g><path d="M60 40 L72 10 L84 40" fill="none" stroke="currentColor" stroke-opacity=".55" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"/><circle cx="60" cy="40" r="5.5" fill="currentColor"/><circle cx="84" cy="40" r="5.5" fill="currentColor"/><circle class="pulso" cx="72" cy="10" r="6.5" fill="none" stroke="#E2B54F" stroke-width="2"/><circle cx="72" cy="10" r="6.5" fill="url(#gOro)"/></symbol>
+  <symbol id="logoIcon" viewBox="0 0 64 64"><path d="M12 50 L32 14 L52 50" fill="none" stroke="currentColor" stroke-opacity=".55" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/><circle cx="12" cy="50" r="7" fill="currentColor"/><circle cx="52" cy="50" r="7" fill="currentColor"/><circle class="pulso" cx="32" cy="14" r="8" fill="none" stroke="#E2B54F" stroke-width="2"/><circle cx="32" cy="14" r="8" fill="url(#gOro)"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<nav class="nav" id="nav" aria-label="Principal">
+  <a class="brand" href="../../../index.html" aria-label="JLA — inicio"><svg class="mark" aria-hidden="true"><use href="#logo"/></svg></a>
+  <ul id="menu"><li><a href="../">Inicio</a></li><li><a href="../como-funciona/">Cómo funciona</a></li><li><a href="../dueno/" aria-current="page">El dueño<span class="nav-marca" aria-hidden="true"></span></a></li><li><a href="../mas-funciones/">Más funciones</a></li><li class="solo-cel"><a href="#contacto" data-correo>Solicitar cotización</a></li></ul>
+  <div class="nav-der"><a href="#contacto" class="btn btn-primary" data-correo>Solicitar cotización</a>
+  <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><i></i><i></i></button></div>
+</nav>
+
+<main id="top">
+  <div class="hx-tope" aria-hidden="true"></div>
+
+  <section class="hero hx dh" id="hx">
+    <div class="hx-media" aria-hidden="true">
+      <picture class="dh-foto"><source type="image/avif" srcset="../media/ev-dueno-1000.avif 1000w, ../media/ev-dueno-1200.avif 1200w, ../media/ev-dueno-1600.avif 1600w" sizes="100vw"><img src="../media/ev-dueno-1000.jpg" srcset="../media/ev-dueno-1000.jpg 1000w, ../media/ev-dueno-1200.jpg 1200w, ../media/ev-dueno-1600.jpg 1600w" sizes="100vw" width="1600" height="892" alt="" fetchpriority="high" decoding="async"></picture>
+    </div>
+    <div class="hx-velo" aria-hidden="true"></div>
+    <div class="dh-aviso" id="dhAviso" role="img" aria-label="Aviso del bot al celular del dueño: faltan 2 Vallas al llegar a Festival al parque; se esperaban 90, llegaron 88.">
+      <span class="dh-cab"><span class="ni"><svg><use href="#logoIcon"/></svg></span><b>Bot de custodia</b><small>ahora</small></span>
+      <span class="dh-tx">🔴 FALTAN 2 Vallas al llegar a Festival al parque
+Se esperaban 90, llegaron 88.
+Recibido por: Andrés Ramírez.</span>
+    </div>
+    <div class="wrap hx-in">
+      <span class="eyebrow rv" style="--hd:.1s"><b>●</b>El dueño</span>
+      <h1 class="dh-h rv">Toda su bodega, <span class="it">en una pantalla.</span></h1>
+      <p class="lead rv" style="--hd:.5s">Usted no está en la bodega y aun así se entera: si algo falta, le llega al celular. Abajo, las pantallas del panel, tal cual salen del sistema.</p>
+      <div class="cs-acc rv" style="--hd:.7s">
+        <a href="#panel" class="btn btn-ghost">Ver el panel</a>
+        <a href="#contacto" class="btn btn-primary">Solicitar cotización <svg class="arr"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+  <div class="hx-fin" aria-hidden="true"></div>
+
+  <section id="panel">
+    <div class="wrap">
+      <div class="sec-head center rv">
+        <span class="eyebrow">El panel</span>
+        <h2>Lo que está afuera, lo que falta <span class="it">y lo que viene.</span></h2>
+      </div>
+      <div class="ev-visor rv">
+        <div class="ev-tabs" id="visorTabs" role="tablist" aria-label="Pantallas del panel"></div>
+        <div class="ev-subtabs" id="visorSub" role="tablist" aria-label="Gráficas" hidden></div>
+        <figure class="ev-marco" id="visorMarco">
+          <div class="win-bar" aria-hidden="true"><i></i><i></i><i></i><span>Panel del dueño</span></div>
+          <div class="isla" aria-hidden="true"></div>
+          <picture>
+            <source id="visorCelAvif" media="(max-width:700px)" type="image/avif" srcset="../media/p-inicio-cel.avif">
+            <source id="visorCelJpg" media="(max-width:700px)" srcset="../media/p-inicio-cel.jpg">
+            <source id="visorAvif" type="image/avif" srcset="../media/p-inicio.avif">
+            <img id="visorImg" src="../media/p-inicio.jpg" alt="Inicio del panel: 105 unidades afuera, 4 eventos con material afuera y lo que requiere atención." width="1440" height="900" fetchpriority="high">
+          </picture>
+        </figure>
+        <p class="ev-cap" id="visorCap" aria-live="polite">Lo primero que ve: cuánto material está afuera, los eventos del mes y lo que requiere atención.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="beam" aria-hidden="true"></div>
+  <section id="bot">
+    <div class="wrap cs-dos inv">
+      <div class="rv">
+        <div class="sec-head">
+          <span class="eyebrow">El dueño, en su bolsillo</span>
+          <h2>No llama a preguntar. <span class="it">Le pregunta al sistema.</span></h2>
+        </div>
+        <ul class="cs-lis">
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><span><b>Avisos en el momento</b>Faltantes y sobrantes, con la cantidad y quién recibió.</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><span><b>Preguntas en lenguaje normal</b>«¿Dónde está la EQ-T-001?», «historial de la EQ-T-001», «¿cuánto hay en bodega vs afuera?».</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><span><b>Resumen de cada noche</b>Los pendientes sin resolver y si el registro sigue íntegro.</span></li>
+          <li><svg viewBox="0 0 24 24"><use href="#i-check"/></svg><span><b>Ningún aviso se pierde</b>Si un mensaje no sale, se vuelve a intentar.</span></li>
+        </ul>
+      </div>
+      <div class="cs-tel rv" style="--d:.1s">
+        <div class="cs-tel-in">
+          <div class="isla"></div>
+          <div class="cs-tel-cab"><span class="ni"><svg><use href="#logoIcon"/></svg></span><span><b>Bot de custodia</b><small>chat privado del dueño · Telegram</small></span></div>
+          <div class="cs-msgs" id="tgMsgs" aria-live="polite"></div>
+          <button type="button" class="cs-otra" id="tgReplay">Ver los avisos de nuevo</button>
+        </div>
+      </div>
+    </div>
+    <div class="wrap">
+      <div class="cs-sig rv">
+        <a class="btn btn-ghost" href="../mas-funciones/">Siguiente: más funciones <svg class="arr"><use href="#i-arrow"/></svg></a>
+        <a class="btn btn-primary" href="#contacto">Solicitar cotización <svg class="arr"><use href="#i-arrow"/></svg></a>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contacto">
+    <div class="wrap">
+      <div class="contact rv">
+        <div class="ring" aria-hidden="true"></div>
+        <h2>Cuéntenos su <span class="it">problema.</span></h2>
+        <p class="lead">Escríbanos qué empresa tiene, cuál es la necesidad y cómo la resuelve hoy. Con esa información preparamos una propuesta y una cotización a la medida.</p>
+        <a href="#contacto" class="btn btn-primary" data-correo>Solicitar cotización <svg class="arr"><use href="#i-arrow"/></svg></a>
+        <div></div>
+        <p class="ayuda">Se abrirá su correo con el mensaje preparado. Solo debe completarlo y enviarlo.</p>
+        <div class="meta">
+          <a href="https://instagram.com/jlautomatization" target="_blank" rel="noopener">Instagram @JLAUTOMATIZATION</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="../../../index.html" aria-label="JLA — inicio">
+      <svg class="mark" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="word" style="display:block">Automatización · Software</span>
+    </a>
+  </div>
+  <div class="pie-gigante" aria-hidden="true"><svg class="pie-base"><use href="#logo" width="100%" height="100%"/></svg><svg class="pie-luz"><use href="#logo" width="100%" height="100%"/></svg></div>
+</footer>
+
+<script src="../../_base/app.js?v=8559732b"></script>
+<script src="../caso.js?v=1edf832a"></script>
+</body>
+</html>
