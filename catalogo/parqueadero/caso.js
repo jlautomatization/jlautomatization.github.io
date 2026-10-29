@@ -784,3 +784,6 @@ var RAIZ=CASO_SRC.replace(/caso\.js(\?.*)?$/,'');
   function pide(){ if(!raf) raf=requestAnimationFrame(pinta); }
   addEventListener('scroll',pide,{passive:true}); addEventListener('resize',pide); pinta();
 })();
+
+ 
+(function(){ if(document.querySelector('.cs-tapa')) return; var d=document.createElement('div'); d.className='cs-tapa'; d.setAttribute('aria-hidden','true'); document.body.insertBefore(d, document.body.firstChild); })();
