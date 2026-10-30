@@ -136,18 +136,18 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
       {t:'Entrar con su PIN', s:'El operario abre su día', f:'cel',
        c:[[0,'El operario entra con su PIN de 4 dígitos'],[3,'«Hoy»: lo que toca hacer, evento por evento'],[5.5,'Cada evento muestra en qué va: salida, llegada o regreso']]},
       {t:'Salida de bodega', s:'«Cargar 90» y equipos con QR', f:'cel',
-       c:[[0,'Salida de bodega: el operario abre el evento del día'],[2,'Un toque en «Cargar 90» y queda contado lo que pidió el evento'],[5,'Los equipos con código se leen con la cámara, QR por QR'],[9,'Revisa el resumen antes de cerrar: 92 unidades'],[12.5,'Al cerrar queda con folio y huella. No se puede cambiar: solo anular con motivo']]},
-      {t:'Llegada al evento', s:'A ciegas: faltan 2 Vallas', f:'cel',
+       c:[[0,'Salida de bodega: el operario abre el evento del día'],[2,'Un toque en «Cargar 90» y queda contado lo que pidió el evento'],[5,'Los equipos con código se leen con la cámara, QR por QR'],[9,'Revisa el resumen antes de cerrar: 92 unidades'],[12.5,'Al cerrar queda guardado. No se puede cambiar: solo anular, con el motivo']]},
+      {t:'Llegada al evento', s:'Sin ver cuánto salió: faltan 2 Vallas', f:'cel',
        c:[[0,'En el evento, quien recibe confirma la llegada'],[1.2,'Cuenta lo que llegó sin ver cuánto salió'],[3.5,'Escribe lo que contó: 88 Vallas'],[6,'Revisa y cierra el registro'],[8,'El sistema compara: faltan 2 Vallas. Y se le avisa al dueño en ese momento']]},
-      {t:'Regreso a bodega', s:'Otra vez a ciegas, con QR', f:'cel',
-       c:[[0,'De vuelta en la bodega: registrar el regreso'],[1.5,'Otra vez a ciegas: cuenta lo que volvió'],[5.2,'Los equipos con código se leen uno por uno'],[10.5,'Se cierra con folio y huella. Lo que no volvió queda pendiente, a nombre del evento']]},
-      {t:'Panel del dueño, en el celular', s:'5 toques al logo y su PIN', f:'cel',
-       c:[[0,'El dueño toca 5 veces el logo de la app y se abre su panel'],[3,'Entra con su propio PIN'],[5,'Inicio: cuánto material está afuera ahora y qué requiere atención'],[8,'El sistema mismo señala lo que lleva más de 7 días afuera'],[10,'Lo que sale y lo que vuelve, en los últimos 30 días'],[14,'Eventos: cuál tiene material afuera y desde hace cuántos días'],[16,'Cada evento con su recorrido: salió, llegó, volvió. Cada paso con folio y huella'],[23,'Inventario: cuánto hay en bodega y cuánto afuera, por categoría'],[28,'Gráficas: movimientos por día y lo que queda pendiente por evento']]},
+      {t:'Regreso a bodega', s:'Otra vez sin ver, con QR', f:'cel',
+       c:[[0,'De vuelta en la bodega: registrar el regreso'],[1.5,'Otra vez sin ver cuánto salió: cuenta lo que volvió'],[5.2,'Los equipos con código se leen uno por uno'],[10.5,'Se cierra y queda guardado. Lo que no volvió queda pendiente, a nombre del evento']]},
+      {t:'Panel del dueño, en el celular', s:'Se abre en la misma app, con su PIN', f:'cel',
+       c:[[0,'El dueño abre su panel en la misma app'],[3,'Entra con su propio PIN'],[5,'Inicio: cuánto material está afuera ahora y qué requiere atención'],[8,'El sistema mismo señala lo que lleva más de 7 días afuera'],[10,'Lo que sale y lo que vuelve, en los últimos 30 días'],[14,'Eventos: cuál tiene material afuera y desde hace cuántos días'],[16,'Cada evento con su recorrido: salió, llegó, volvió. Cada paso queda guardado'],[23,'Inventario: cuánto hay en bodega y cuánto afuera, por categoría'],[28,'Gráficas: movimientos por día y lo que queda pendiente por evento']]},
       {t:'Panel del dueño, en el computador', s:'Eventos, inventario y gráficas', f:'pc',
        c:[[0,'El mismo panel, en el computador de la oficina'],[3,'Inicio: material afuera, eventos del mes y lo que requiere atención'],[6,'Avisos que el sistema arma solo: lo que lleva días afuera y lo que falta para los próximos eventos'],[12,'Eventos con material afuera, del más viejo al más nuevo'],[14,'El recorrido de un evento: 90 salieron, 88 volvieron, 2 afuera'],[21,'Inventario por categoría: en bodega, afuera y en mantenimiento'],[26,'Gráficas de los últimos 30 días']]}
     ];
     var cur=0, visto=false, sub=$('escSub'), prog=$('escProg'), tit=$('escTit'), bPlay=$('escPlay');
-    ESC.forEach(function(e,i){ var li=document.createElement('li'); li.innerHTML='<button type="button"><span class="n">0'+(i+1)+'</span><b></b><small></small></button>';
+    ESC.forEach(function(e,i){ var li=document.createElement('li'); li.innerHTML='<button type="button"><span class="n">'+(i+1)+'</span><b></b><small></small></button>';
       li.querySelector('b').textContent=e.t; li.querySelector('small').textContent=e.s;
       li.firstChild.addEventListener('click',function(){ cargar(i,true); }); lista.appendChild(li); });
     function nombre(i){ return i===5?'portatil':'escena-'+(i+1); }
@@ -208,7 +208,7 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
   (function(){
     var box=$('tgMsgs'), otra=$('tgReplay'); if(!box) return;
     var D=[
-      ['📊 Resumen diario\nEventos: 5 con pendientes · 8 sin pendientes\nManifiestos registrados: 25\nDiscrepancias: 4 · Camiones demorados: 0\n\n📌 Pendientes más viejos sin resolver:\n  • Concierto al aire libre lleva 24 día(s) con 4 Vallas sin resolver.\n  • Festival gastronómico lleva 16 día(s) con 2 Vallas sin resolver.\n  • Lanzamiento de producto lleva 8 día(s) con 5 Vallas sin resolver.\nRegistro de auditoría: íntegro','10:00 p. m.','noche'],
+      ['📊 Resumen diario\nEventos: 5 con pendientes · 8 sin pendientes\nSalidas y regresos registrados: 25\nDiferencias de conteo: 4 · Camiones demorados: 0\n\n📌 Pendientes más viejos sin resolver:\n  • Concierto al aire libre lleva 24 día(s) con 4 Vallas sin resolver.\n  • Festival gastronómico lleva 16 día(s) con 2 Vallas sin resolver.\n  • Lanzamiento de producto lleva 8 día(s) con 5 Vallas sin resolver.\nRegistros: nadie los ha cambiado','10:00 p. m.','noche'],
       ['🔴 FALTAN 2 Vallas al llegar a Festival al parque\nSe esperaban 90, llegaron 88.\nRecibido por: Andrés Ramírez.','11:14 p. m.','alerta'],
       ['¿Dónde está la EQ-T-001?','11:20 p. m.','yo'],
       ['📍 EQ-T-001 (Truss cuadrado 3m) → Patio de truss\nEstado: bodega','11:20 p. m.',''],
@@ -259,21 +259,21 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     var cont=$('eslabones'), cad=$('cad'), btn=$('cadAlterar'), est=$('cadEst'); if(!cont) return;
     var G='0'.repeat(64);
     var EV=[
-      {txt:'Salida a evento · 90 Vallas + 2 Truss con QR · folio #46', tipo:'manifiesto_evento_registrado', ts:'2026-10-23T04:13:05.000Z',
+      {txt:'Salida al evento · 90 Vallas + 2 equipos con código', tipo:'manifiesto_evento_registrado', ts:'2026-10-23T04:13:05.000Z',
        p:{tipo:'inicial',eventoNombre:'Festival al parque',tramo:'Bodega → Festival al parque',referencias:[{categoria:'Vallas',cantidad:90}],items:['EQ-T-001','EQ-T-003']},
-       alt:{txt:'Salida a evento · 80 Vallas + 2 Truss con QR · folio #46', k:function(p){ p.referencias[0].cantidad=80; }}},
-      {txt:'Llegada confirmada · llegaron 88 Vallas · folio #48', tipo:'llegada_evento_registrada', ts:'2026-10-23T04:14:02.000Z',
+       alt:{txt:'Salida al evento · 80 Vallas + 2 equipos con código', k:function(p){ p.referencias[0].cantidad=80; }}},
+      {txt:'Llegada al evento · llegaron 88 Vallas', tipo:'llegada_evento_registrada', ts:'2026-10-23T04:14:02.000Z',
        p:{eventoNombre:'Festival al parque',referencias:[{categoria:'Vallas',cantidad:88}],quienRecibe:'Andrés Ramírez'},
-       alt:{txt:'Llegada confirmada · llegaron 90 Vallas · folio #48', k:function(p){ p.referencias[0].cantidad=90; }}},
+       alt:{txt:'Llegada al evento · llegaron 90 Vallas', k:function(p){ p.referencias[0].cantidad=90; }}},
       {txt:'Diferencia registrada · faltan 2 Vallas', tipo:'descargue_registrado', ts:'2026-10-23T04:14:02.100Z',
        p:{tramo:'Bodega → Festival al parque',categoria:'Vallas',esperado:90,real:88,diferencia:2,recibidoPor:'Andrés Ramírez'},
        alt:{txt:'Diferencia registrada · faltan 0 Vallas', k:function(p){ p.real=90; p.diferencia=0; }}},
-      {txt:'Aviso al dueño por Telegram · faltan 2 Vallas', tipo:'alerta_discrepancia_enviada', ts:'2026-10-23T04:14:02.400Z',
+      {txt:'Mensaje al celular del dueño · faltan 2 Vallas', tipo:'alerta_discrepancia_enviada', ts:'2026-10-23T04:14:02.400Z',
        p:{tramo:'Bodega → Festival al parque',categoria:'Vallas',diferencia:2,enviado:true},
-       alt:{txt:'Aviso al dueño por Telegram · no enviado', k:function(p){ p.enviado=false; }}},
-      {txt:'Regreso a bodega · 88 Vallas + 2 Truss con QR · folio #51', tipo:'manifiesto_evento_registrado', ts:'2026-10-23T04:14:50.000Z',
+       alt:{txt:'Mensaje al celular del dueño · no enviado', k:function(p){ p.enviado=false; }}},
+      {txt:'Regreso a bodega · 88 Vallas + 2 equipos con código', tipo:'manifiesto_evento_registrado', ts:'2026-10-23T04:14:50.000Z',
        p:{tipo:'sobrante_a_bodega',eventoNombre:'Festival al parque',tramo:'Festival al parque → Bodega',referencias:[{categoria:'Vallas',cantidad:88}],items:['EQ-T-001','EQ-T-003']},
-       alt:{txt:'Regreso a bodega · 90 Vallas + 2 Truss con QR · folio #51', k:function(p){ p.referencias[0].cantidad=90; }}}
+       alt:{txt:'Regreso a bodega · 90 Vallas + 2 equipos con código', k:function(p){ p.referencias[0].cantidad=90; }}}
     ];
     function huella(seq,e,payload,ant){ return sha256(seq+'|'+e.ts+'|'+e.tipo+'|'+JSON.stringify(payload)+'|'+ant); }
      
@@ -285,15 +285,15 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
         var roto=i===alterado, txt=roto?e.alt.txt:e.txt, h=ORIG[i].h;
         if(roto){ var p=JSON.parse(JSON.stringify(e.p)); e.alt.k(p); h=huella(i+1,e,p,ORIG[i].ant); }    
         var d=document.createElement('div'); d.className='cs-esl'+(roto?' roto':'')+(alterado>=0&&i>alterado?' tras':'')+(i===EV.length-1&&alterado<0?' sello':''); d.style.setProperty('--i',i);
-        d.innerHTML='<div class="bl" role="button" tabindex="0"><span class="num">REGISTRO '+String(i+1).padStart(2,'0')+'</span><span class="ev"></span><span class="h prev">← '+(i?ORIG[i-1].h.slice(0,12):'inicio')+'</span><span class="h">'+h.slice(0,16)+'…</span></div><i class="link"></i>';
-        d.querySelector('.ev').textContent=txt; var bl=d.querySelector('.bl'); bl.title='Alterar este registro';
+        d.innerHTML='<div class="bl" role="button" tabindex="0"><span class="num">REGISTRO '+(i+1)+'</span><span class="ev"></span><span class="h">Sello '+h.slice(0,8)+'</span></div><i class="link"></i>';
+        d.querySelector('.ev').textContent=txt; var bl=d.querySelector('.bl'); bl.title='Cambiar este registro';
         function alterar(){ alterado=(alterado===i)?-1:i; pintar(); cad.classList.add('in'); }
         bl.addEventListener('click',alterar); bl.addEventListener('keydown',function(ev){ if(ev.key==='Enter'||ev.key===' '){ ev.preventDefault(); alterar(); } });
         cont.appendChild(d);
       });
       est.className='cs-cad-est'+(alterado>=0?' mal':'');
-      est.lastChild.textContent=alterado>=0?'Cadena rota en el registro '+String(alterado+1).padStart(2,'0')+': su contenido ya no coincide con su huella. El sistema lo delata.':'Cadena íntegra: cada huella coincide con su contenido y con la anterior';
-      btn.textContent=alterado>=0?'Volver a la cadena íntegra':'Cambiar el 88 por un 90';
+      est.lastChild.textContent=alterado>=0?'Alguien cambió el registro '+(alterado+1)+': ya no coincide con su sello. El sistema lo delata.':'Todo cuadra: nadie ha cambiado ningún registro';
+      btn.textContent=alterado>=0?'Dejarlo como estaba':'Cambiar el 88 por un 90';
     }
     est.innerHTML='<i></i>'; est.appendChild(document.createTextNode(''));
     btn.addEventListener('click',function(){ alterado=alterado>=0?-1:1; pintar(); cad.classList.add('in'); if(alterado>=0){ var r=cont.children[alterado]; if(r) cont.scrollTo({left:Math.max(0,r.offsetLeft-20),behavior:REDUCE?'auto':'smooth'}); } });
@@ -329,16 +329,16 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     var V=[
       ['Inicio','inicio','Lo primero que ve: cuánto material está afuera, los eventos del mes y lo que requiere atención.','Inicio del panel: unidades afuera, eventos con material afuera y lo que requiere atención.'],
       ['Eventos','eventos','Los eventos con material afuera, del más viejo al más nuevo, y cuántos días lleva cada uno.','Lista de eventos con material afuera y los días que lleva.'],
-      ['Un evento','recorrido','El recorrido de un evento: salió, llegó, volvió. Cada paso con folio, huella y quién lo llevó.','Recorrido de un evento: salida, llegada confirmada y regreso, cada uno con folio y huella.'],
+      ['Un evento','recorrido','El recorrido de un evento: salió, llegó, volvió. Cada paso guardado, con quién lo llevó.','Recorrido de un evento: salida, llegada confirmada y regreso.'],
       ['Inventario','inventario','Cuánto hay en bodega, cuánto afuera y cuánto en mantenimiento, por categoría.','Inventario por categoría: en bodega, afuera y en mantenimiento.'],
       ['Gráficas','operacion','Movimientos por día y unidades que salen contra las que regresan, en los últimos 30 días.','Gráficas de operación: movimientos por día y unidades que salen contra las que regresan.',[
         ['Operación','operacion','Movimientos por día y unidades que salen contra las que regresan, en los últimos 30 días.'],
         ['Calidad','calidad','Faltantes y sobrantes por categoría, y si las llegadas completas mejoran o empeoran.'],
         ['Planeación','planeacion','La carga de las próximas semanas contra lo que hay en bodega: lo que no va a alcanzar.'],
-        ['Uso del sistema','uso','Cuánto se registró sin señal, cuánto se corrigió al sincronizar y los ingresos al panel y a la app.']]],
+        ['Uso del sistema','uso','Cuánto se registró sin señal, cuánto se corrigió al subirlo y las entradas al panel y a la app.']]],
       ['Calendario','calendario','Qué hay programado, mes a mes.','Calendario del mes con los eventos programados.'],
-      ['Novedades','novedades','Lo que se salió de lo normal: cada diferencia de conteo, con su folio.','Novedades: diferencias de conteo con lo esperado y lo que llegó.'],
-      ['Manifiestos','manifiestos','Cada salida y cada regreso, con su folio y lo que llevaba.','Lista de manifiestos de salida y regreso.']
+      ['Diferencias','novedades','Lo que se salió de lo normal: cada diferencia de conteo, entre lo que debía llegar y lo que llegó.','Diferencias de conteo entre lo esperado y lo que llegó.'],
+      ['Salidas','manifiestos','Cada salida y cada regreso, con lo que llevaba. Se imprime o se manda por WhatsApp.','Lista de salidas y regresos.']
     ];
     var cAvif=$('visorCelAvif'), cJpg=$('visorCelJpg'), pAvif=$('visorAvif'), cap=$('visorCap'), act=0;
     function poner(clave,texto,alt){
@@ -449,10 +449,10 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     var esc=vj.querySelector('.vj-escena'), pasos=vj.querySelectorAll('.vj-paso'), cines=vj.querySelectorAll('.ev-cine-c'), vids=vj.querySelectorAll('.vj-vid'),
         sub=vj.querySelector('.ev-vj-sub'), cineV=vj.querySelector('video.ev-cine-c'), N=pasos.length, cur=-1, enVista=false, cargado=false, tT=0;
      
-    var S2=[[0,'Salida de bodega: el operario abre el evento del día'],[2,'Un toque en «Cargar 90» y queda contado lo que pidió el evento'],[5,'Los equipos con código se leen con la cámara, QR por QR'],[9,'Revisa el resumen antes de cerrar: 92 unidades'],[12.5,'Al cerrar queda con folio y huella. No se puede cambiar: solo anular con motivo']];
+    var S2=[[0,'Salida de bodega: el operario abre el evento del día'],[2,'Un toque en «Cargar 90» y queda contado lo que pidió el evento'],[5,'Los equipos con código se leen con la cámara, QR por QR'],[9,'Revisa el resumen antes de cerrar: 92 unidades'],[12.5,'Al cerrar queda guardado. No se puede cambiar: solo anular, con el motivo']];
     var S3=[[0,'En el evento, quien recibe confirma la llegada'],[1.2,'Cuenta lo que llegó sin ver cuánto salió'],[3.5,'Escribe lo que contó: 88 Vallas'],[6,'Revisa y cierra el registro'],[8,'El sistema compara: faltan 2 Vallas. Y se le avisa al dueño en ese momento']];
-    var S4=[[0,'De vuelta en la bodega: registrar el regreso'],[1.5,'Otra vez a ciegas: cuenta lo que volvió'],[5.2,'Los equipos con código se leen uno por uno'],[10.5,'Se cierra con folio y huella. Lo que no volvió queda pendiente, a nombre del evento']];
-    var S5=[[0,'El dueño toca 5 veces el logo de la app y se abre su panel'],[3,'Entra con su propio PIN'],[5,'Inicio: cuánto material está afuera ahora y qué requiere atención'],[8,'El sistema mismo señala lo que lleva más de 7 días afuera'],[10,'Lo que sale y lo que vuelve, en los últimos 30 días'],[14,'Eventos: cuál tiene material afuera y desde hace cuántos días'],[16,'Cada evento con su recorrido: salió, llegó, volvió. Cada paso con folio y huella'],[23,'Inventario: cuánto hay en bodega y cuánto afuera, por categoría'],[28,'Gráficas: movimientos por día y lo que queda pendiente por evento']];
+    var S4=[[0,'De vuelta en la bodega: registrar el regreso'],[1.5,'Otra vez sin ver cuánto salió: cuenta lo que volvió'],[5.2,'Los equipos con código se leen uno por uno'],[10.5,'Se cierra y queda guardado. Lo que no volvió queda pendiente, a nombre del evento']];
+    var S5=[[0,'El dueño abre su panel en la misma app'],[3,'Entra con su propio PIN'],[5,'Inicio: cuánto material está afuera ahora y qué requiere atención'],[8,'El sistema mismo señala lo que lleva más de 7 días afuera'],[10,'Lo que sale y lo que vuelve, en los últimos 30 días'],[14,'Eventos: cuál tiene material afuera y desde hace cuántos días'],[16,'Cada evento con su recorrido: salió, llegó, volvió. Cada paso queda guardado'],[23,'Inventario: cuánto hay en bodega y cuánto afuera, por categoría'],[28,'Gráficas: movimientos por día y lo que queda pendiente por evento']];
     var SUBS=[S2,S3,S5];
     [].forEach.call(vids,function(v,k){
       v.addEventListener('ended',function(){ var sig=v.getAttribute('data-sigue');
@@ -495,7 +495,7 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
   var mf=document.getElementById('plano');
   if(mf){
     var mesc=mf.querySelector('.mf-escena'), mpasos=mf.querySelectorAll('.vj-paso'), M=mpasos.length, mcur=-1, mVista=false, red=document.getElementById('evRed'), tr=0;
-    var SELLO=['01 · Un código por equipo','02 · El estante también','03 · Sin señal'];
+    var SELLO=['1 · Un código por equipo','2 · El estante también','3 · Sin señal'];
     var senal=function(){ clearTimeout(tr); red.className='ev-red'; if(mcur!==2||!mVista) return;
       if(quieto){ red.className='ev-red a b'; return; }
       tr=setTimeout(function(){ red.className='ev-red a'; tr=setTimeout(function(){ red.className='ev-red b'; },2400); },500); };
@@ -513,3 +513,9 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
   }
 })();
 
+ 
+(function(){
+  [].forEach.call(document.querySelectorAll('a[data-parada]'),function(a){ a.addEventListener('click',function(e){
+    var pasos=document.querySelectorAll('#plano .vj-paso'), k=+a.getAttribute('data-parada'); if(!pasos[k]) return;
+    e.preventDefault(); pasos[k].click(); }); });
+})();

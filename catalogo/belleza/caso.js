@@ -8,11 +8,15 @@ window.__ESCENAS_TIENDA=[
 ];
  
 window.__PRODUCTOS_TIENDA=[["REF-01","Colágeno bebible en sobres · 30 sobres, durazno","Colágeno & Bienestar"],["REF-02","Mascarilla de noche · 75 ml","Mascarillas"],["REF-03","Parches de contorno de ojos con vitamina C y colágeno · 5 pares","Mascarillas"],["REF-04","Mascarilla en lámina para dispositivo facial · 5 unidades","Mascarillas"],["REF-05","Mascarilla cremosa hidratante · 100 ml","Mascarillas"],["REF-06","Mascarilla en polvo · 75 ml","Mascarillas"],["REF-07","Activador para mascarilla en polvo · 125 ml","Mascarillas"],["REF-08","Geles faciales para dispositivo · 2 cajas","Mascarillas"],["REF-09","Crema hidratante · 75 ml","Cremas & Sueros"],["REF-10","Crema protectora de día SPF 35 · 50 ml","Cremas & Sueros"],["REF-11","Crema iluminadora de contorno de ojos · 15 ml","Cremas & Sueros"],["REF-12","Crema de contorno de ojos sin fragancia · 15 ml","Cremas & Sueros"],["REF-13","Fluido reparador · 30 ml","Cremas & Sueros"],["REF-14","Corrector de líneas de expresión · 30 ml","Cremas & Sueros"],["REF-15","Esencia antiedad en cápsulas · 60 cápsulas","Cremas & Sueros"],["REF-16","Sérum para imperfecciones · 30 ml","Cremas & Sueros"],["REF-17","Tónico equilibrante de pH · 150 ml","Tónicos & Limpieza"],["REF-18","Tónico exfoliante · 175 ml","Tónicos & Limpieza"],["REF-19","Agua micelar · 250 ml","Tónicos & Limpieza"],["REF-20","Limpiador para imperfecciones · paso 1 · 75 ml","Tónicos & Limpieza"],["REF-21","Tónico para imperfecciones · paso 2 · 125 ml","Tónicos & Limpieza"],["REF-22","Sérum de noche para imperfecciones · paso 3 · 30 ml","Tónicos & Limpieza"],["REF-23","Exfoliante facial · 100 ml","Tónicos & Limpieza"],["REF-24","Gel limpiador facial · 125 ml","Tónicos & Limpieza"],["REF-25","Limpiador facial para dispositivo · 100 ml","Tónicos & Limpieza"],["REF-26","Champú para cuero cabelludo y cabello · 200 ml","Cabello"],["REF-27","Acondicionador · 175 ml","Cabello"],["REF-28","Mascarilla capilar · 100 g","Cabello"],["REF-29","Sérum para cuero cabelludo y cabello · 75 ml","Cabello"],["REF-30","Exfoliante corporal en gel · 250 ml","Corporal"],["REF-31","Gel corporal reafirmante · 150 ml","Corporal"],["REF-32","Barra limpiadora facial · 100 g","Corporal"],["REF-33","Desodorante roll-on · 75 ml","Corporal"],["REF-34","Suplemento antioxidante · 120 cápsulas","Colágeno & Bienestar"],["REF-35","Suplemento de cordyceps, granada y ginseng · 180 cápsulas","Colágeno & Bienestar"],["REF-36","Suplemento de extractos de frutos y té verde · 120 cápsulas","Colágeno & Bienestar"],["REF-37","Suplemento de cereza ácida · 90 cápsulas","Colágeno & Bienestar"],["REF-38","Cabezal de repuesto para dispositivo de limpieza · 1 unidad","Tecnología"]];
+ 
+window.__FICHAS_TIENDA=[{"ref":"REF-16","nom":"Sérum para imperfecciones · 30 ml","cat":"Cremas & Sueros","tipo":"Tratamiento para imperfecciones","desc":"Sérum para piel con tendencia a imperfecciones, con ácido salicílico al 2% — la concentración máxima de venta libre. Producto ancla de la rutina contra imperfecciones, presentación 30 ml.","ing":"Ácido salicílico al 2%, ácido azelaico, microplata y extracto de noni.","pasos":["**Limpiar:** realice la limpieza facial adecuada para su tipo de piel.","**Aplicar:** después de la limpieza y el uso de su loción facial, aplique una capa fina sobre el rostro o zonas con imperfecciones.","**Hidratar:** continúe con su crema hidratante habitual.","**Frecuencia:** dos veces al día, mañana y noche."],"car":[["Tipo de producto","Tratamiento para imperfecciones"],["Contenido neto","30 ml"],["Dirigido a","18-35 mixto"],["Ingredientes destacados","Ácido salicílico 2%"]],"sup":false},{"ref":"REF-19","nom":"Agua micelar · 250 ml","cat":"Tónicos & Limpieza","tipo":"Limpieza","desc":"Pensado para limpiar el rostro y ayudar a remover impurezas, exceso de grasa y residuos de maquillaje. Presentación de 250 ml, dirigido a mujer 20-45.","ing":"PCA de sodio, glicerina y propanodiol, extractos botánicos bioadaptables.","pasos":["**Aplicar:** humedecer completamente un algodón con el producto.","**Limpiar:** pasar suavemente sobre rostro, ojos y labios para retirar maquillaje e impurezas.","**Repetir:** usar hasta que la piel quede limpia.","**Frecuencia:** mañana y noche; puede complementarse con un segundo limpiador o tónico."],"car":[["Tipo de producto","Limpieza"],["Contenido neto","250 ml"],["Dirigido a","Mujer 20-45"]],"sup":false},{"ref":"REF-01","nom":"Colágeno bebible en sobres · 30 sobres, durazno","cat":"Colágeno & Bienestar","tipo":"Suplemento alimenticio","desc":"Suplemento alimenticio, presentación 30 sobres. Los suplementos alimenticios no son medicamentos, no curan ni previenen enfermedades y no reemplazan una alimentación equilibrada; consulta a tu médico antes de consumirlos, especialmente en embarazo, lactancia o si tomas medicamentos.","ing":"Péptidos de colágeno, luteína, fitoceramidas.","pasos":["**Preparar:** vacía el contenido de 1 sobre en 120–180 ml (4–6 oz) de agua y disuelve bien; también puedes tomarlo directamente del sobre.","**Consumir:** 1 sobre al día, en el momento que prefieras.","**Constancia:** úsalo a diario durante al menos 8 a 12 semanas para evaluar resultados. Guárdalo en un lugar fresco y seco."],"car":[["Tipo de producto","Suplemento alimenticio"],["Contenido neto","30 sobres"],["Dirigido a","Mujer 35-60"]],"sup":true},{"ref":"REF-38","nom":"Cabezal de repuesto para dispositivo de limpieza · 1 unidad","cat":"Tecnología","tipo":"Accesorio de dispositivo","desc":"Pensado para funcionar como accesorio o consumible de tu dispositivo facial. Presentación de 1 unidad, para quien ya tiene el dispositivo.","ing":null,"pasos":["Humedece el rostro y aplica una cantidad suficiente de limpiador facial en la mano.","Distribuye el producto uniformemente sobre el rostro y utiliza el dispositivo de limpieza facial con el cabezal durante aproximadamente dos minutos o según tu rutina personalizada.","Luego continúa con tónico, suero y humectante de tu preferencia.","Se recomienda usar en la mañana y en la noche.","**Reemplazo:** cambia el cabezal cada 3 meses aproximadamente (con uso 2 veces al día), o antes si notas que las cerdas de silicona pierden firmeza."],"car":[["Material","Silicona no abrasiva, sin cerdas"],["Tipo de producto","Accesorio de dispositivo"],["Contenido neto","1 unidad"],["Dirigido a","Quien ya tiene el dispositivo"]],"sup":false}];
 var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
 (function(){
   'use strict';
   var REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
   function $(id){ return document.getElementById(id); }
+   
+  var tope=document.querySelector('main > .hx-tope'); if(tope) document.body.insertBefore(tope,document.body.firstChild);
   function aVista(el, fn, opts){
     if(!el) return;
     if(!('IntersectionObserver' in window)){ fn(true); return; }
@@ -28,7 +32,10 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     if('ResizeObserver' in window) new ResizeObserver(medir).observe(cv); else addEventListener('resize', medir);
     return o;
   }
-  function irA(id){ var d=$(id); if(d) d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'}); }
+   
+  var RAIZ=document.body.getAttribute('data-sub')?'../':'';
+  function irA(id){ if(id.indexOf('/')>-1){ location.href=RAIZ+id; return; }
+    var d=$(id); if(d) d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'}); }
 
    
   (function(){
@@ -98,7 +105,7 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     var zona=cv.parentNode;
     zona.addEventListener('pointermove',function(e){ var r=cv.getBoundingClientRect(); yawT=-.55+((e.clientX-r.left)/r.width-.5)*1.1; pitT=.42+((e.clientY-r.top)/r.height-.5)*.35; if(REDUCE) pinta(performance.now()); },{passive:true});
     zona.addEventListener('pointerleave',function(){ yawT=-.55; pitT=.42; });
-    zona.addEventListener('click',function(){ irA('escenas'); });
+    zona.addEventListener('click',function(){ irA('como-compra/#escenas'); });
     arranca();
   })();
 
@@ -107,10 +114,10 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
   function video(nombre){
     if(MEM[nombre]) return Promise.resolve(MEM[nombre]);
     if(PIDIENDO[nombre]) return PIDIENDO[nombre];
-    if(!window.fetch||!window.URL||!URL.createObjectURL) return Promise.resolve('media/'+nombre);
-    PIDIENDO[nombre]=fetch('media/'+nombre).then(function(r){ if(!r.ok) throw 0; return r.blob(); })
+    if(!window.fetch||!window.URL||!URL.createObjectURL) return Promise.resolve(RAIZ+'media/'+nombre);
+    PIDIENDO[nombre]=fetch(RAIZ+'media/'+nombre).then(function(r){ if(!r.ok) throw 0; return r.blob(); })
       .then(function(b){ MEM[nombre]=URL.createObjectURL(b); return MEM[nombre]; })
-      .catch(function(){ delete PIDIENDO[nombre]; return 'media/'+nombre; });
+      .catch(function(){ delete PIDIENDO[nombre]; return RAIZ+'media/'+nombre; });
     return PIDIENDO[nombre];
   }
   function precargar(lista){ lista.reduce(function(p,n){ return p.then(function(){ return video(n); }); }, Promise.resolve()); }
@@ -118,27 +125,42 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
 
    
   (function(){
-    [['.cs-lapvid','panel-1440.mp4'],['#cel video','cel-tienda.mp4']].forEach(function(par){
-      var v=document.querySelector(par[0]); if(!v) return;
-      video(par[1]).then(function(u){ if(v.src.indexOf('blob:')<0){ var t=v.currentTime, sigue=!v.paused; v.src=u; try{ v.currentTime=t; }catch(e){} if(sigue) play(v); } });
-      aVista(v,function(si){ if(si && !REDUCE) play(v); else v.pause(); },{threshold:.15});
+    [].forEach.call(document.querySelectorAll('#lap video[data-src], #cel video[data-src]'),function(v){
+      var pedido=false;
+      aVista(v,function(si){ if(si && !v.getAttribute('poster')) v.poster=v.getAttribute('data-poster'); },{rootMargin:'150% 0px'});
+       
+      aVista(v,function(si){
+        if(si && !pedido){ pedido=true; video(v.getAttribute('data-src').replace(/^media\//,'')).then(function(u){ v.src=u; if(!REDUCE && v.__vista) play(v); }); }
+      },{rootMargin:'50% 0px'});
+      aVista(v,function(si){ v.__vista=si; if(si && !REDUCE && v.src) play(v); else v.pause(); },{threshold:.15});
     });
     var scr=document.querySelector('#lap .scr'), cel=$('cel');
-    if(scr){ scr.style.cursor='pointer'; scr.addEventListener('click',function(){ irA('escenas'); }); }
-    if(cel){ cel.style.cursor='pointer'; cel.addEventListener('click',function(){ irA('escenas'); }); }
+    if(scr){ scr.style.cursor='pointer'; scr.addEventListener('click',function(){ irA('como-compra/#escenas'); }); }
+    if(cel){ cel.style.cursor='pointer'; cel.addEventListener('click',function(){ irA('como-compra/#escenas'); }); }
+  })();
+
+   
+  (function(){
+    [].forEach.call(document.querySelectorAll('.mx-tel video[data-src]'),function(v){
+      v.addEventListener('playing',function(){ v.classList.add('on'); });
+      aVista(v,function(si){ if(REDUCE) return;
+        if(si){ if(!v.getAttribute('src')) v.src=v.getAttribute('data-src'); play(v); } else if(!v.paused) v.pause(); },{rootMargin:'100px 0px'});
+    });
   })();
 
    
   var ESC=window.__ESCENAS_TIENDA||[];
   (function(){
     var vid=$('escVid'), lista=$('escLista'); if(!vid||!lista||!ESC.length) return;
-    var cur=0, visto=false, sub=$('escSub'), prog=$('escProg'), tit=$('escTit'), bPlay=$('escPlay');
-    ESC.forEach(function(e,i){ var li=document.createElement('li'); li.innerHTML='<button type="button"><span class="n">0'+(i+1)+'</span><b></b><small></small></button>';
+    var cur=0, visto=false, cerca=false, sub=$('escSub'), prog=$('escProg'), tit=$('escTit'), bPlay=$('escPlay');
+    ESC.forEach(function(e,i){ var li=document.createElement('li'); li.innerHTML='<button type="button"><span class="n">'+(i+1)+'</span><b></b><small></small></button>';
       li.querySelector('b').textContent=e.t; li.querySelector('small').textContent=e.s;
       li.firstChild.addEventListener('click',function(){ cargar(i,true); }); lista.appendChild(li); });
     function cargar(i,usuario){
-      cur=i; var nom='escena-'+(i+1)+'.mp4', pedido=i; vid.poster='media/escena-'+(i+1)+'.jpg';
-      video(nom).then(function(u){ if(cur!==pedido) return; vid.src=u; if(usuario||visto) play(vid); });
+      cur=i; var nom='escena-'+(i+1)+'.mp4', pedido=i; vid.poster=RAIZ+'media/escena-'+(i+1)+'.jpg';
+       
+      if(!usuario && cerca && !MEM[nom] && !vid.getAttribute('src')){ vid.src=RAIZ+'media/'+nom; if(visto) play(vid); }
+      else if(usuario||cerca) video(nom).then(function(u){ if(cur!==pedido) return; vid.src=u; if(usuario||visto) play(vid); });
       tit.textContent=ESC[i].t;
       [].forEach.call(lista.children,function(li,k){ li.classList.toggle('act',k===i); });
       sub.classList.remove('ver'); sub.textContent='';
@@ -156,7 +178,11 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     bPlay.addEventListener('click',function(){ if(vid.paused) play(vid); else vid.pause(); });
     vid.addEventListener('click',function(){ bPlay.click(); });
     cargar(0,false);
-    aVista($('escenas'),function(si){ if(si) precargar(ESC.map(function(e,i){ return 'escena-'+(i+1)+'.mp4'; })); },{rootMargin:'100% 0px'});
+     
+    aVista($('escenas'),function(si){ if(si && !cerca){ cerca=true; if(!vid.getAttribute('src')) cargar(cur,false);
+       
+      var resto=function(){ precargar(ESC.map(function(e,i){ return 'escena-'+(i+1)+'.mp4'; }).slice(1)); };
+      if(vid.readyState>=3) resto(); else vid.addEventListener('canplaythrough',resto,{once:true}); } },{rootMargin:'100% 0px'});
     aVista(vid,function(si){ if(si){ if(!visto && !REDUCE){ visto=true; play(vid); } } else if(!vid.paused){ vid.pause(); visto=false; } },{threshold:.4});
   })();
 
@@ -169,7 +195,7 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     var LISTA=['REF-16','REF-20','REF-21','REF-22','REF-01','REF-10','REF-19','REF-28'], RUTINA=['REF-20','REF-21','REF-22','REF-16'], cesta={}, orden=[];
     LISTA.forEach(function(ref){
       var p=porRef[ref], d=document.createElement('div'); d.className='cs-prod'; d.dataset.ref=ref;
-      d.innerHTML='<img src="media/prod/'+ref+'-1.svg" alt="" width="44" height="44"><span class="tx"><small>'+ref+'</small><b></b></span><span class="cant"><button type="button" class="menos" aria-label="Quitar uno">−</button><output>0</output><button type="button" class="mas" aria-label="Agregar uno">+</button></span>';
+      d.innerHTML='<img src="'+RAIZ+'media/prod/'+ref+'-1.svg" alt="" width="44" height="44"><span class="tx"><small>'+ref+'</small><b></b></span><span class="cant"><button type="button" class="menos" aria-label="Quitar uno">−</button><output>0</output><button type="button" class="mas" aria-label="Agregar uno">+</button></span>';
       d.querySelector('b').textContent=p[1];
       d.querySelector('.mas').addEventListener('click',function(){ poner(ref,(cesta[ref]||0)+1); });
       d.querySelector('.menos').addEventListener('click',function(){ poner(ref,(cesta[ref]||0)-1); });
@@ -232,6 +258,40 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     ['limpiadro','colageno','REF16','mascarilla'].forEach(function(t){ var b=document.createElement('button'); b.type='button'; b.textContent=t; b.addEventListener('click',function(){ q.value=t; pintar(); }); ej.appendChild(b); });
     q.addEventListener('input',pintar);
     pintar();
+  })();
+
+
+   
+  (function(){
+    var lista=$('fcLista'), F=window.__FICHAS_TIENDA||[]; if(!lista||!F.length) return;
+    var img=$('fcImg'), gal=$('fcGal'), secs=$('fcSecs'), SUP='Los suplementos alimenticios no son medicamentos, no curan ni previenen enfermedades y no reemplazan una alimentación equilibrada. Consulta a tu médico antes de consumirlos, especialmente en embarazo, lactancia o si tomas medicamentos.';
+    function el(tag,cls,txt){ var e=document.createElement(tag); if(cls) e.className=cls; if(txt!=null) e.textContent=txt; return e; }
+    function negrita(li,t){ var m=/^\*\*(.+?)\*\*\s*(.*)$/.exec(t); if(m){ li.appendChild(el('b',null,m[1]+' ')); li.appendChild(document.createTextNode(m[2])); } else li.textContent=t; }
+    function vista(ref,k){ img.src=RAIZ+'media/prod/'+ref+'-'+k+'.svg'; [].forEach.call(gal.children,function(b,i){ b.classList.toggle('on',i===k-1); b.setAttribute('aria-pressed',i===k-1); }); }
+    function abrir(i){
+      var f=F[i];
+      [].forEach.call(lista.children,function(b,k){ b.classList.toggle('on',k===i); b.setAttribute('aria-selected',k===i); });
+      img.alt=f.nom; gal.innerHTML='';
+      [1,2].forEach(function(k){ var b=el('button','fc-min'); b.type='button'; b.setAttribute('aria-label','Vista '+k);
+        var m=el('img'); m.src=RAIZ+'media/prod/'+f.ref+'-'+k+'.svg'; m.alt=''; m.width=56; m.height=56; b.appendChild(m);
+        b.addEventListener('click',function(){ vista(f.ref,k); }); gal.appendChild(b); });
+      vista(f.ref,1);
+      $('fcMigas').textContent=f.cat+' · '+f.tipo; $('fcNom').textContent=f.nom; $('fcDesc').textContent=f.desc;
+      secs.innerHTML='';
+      if(f.ing){ secs.appendChild(el('p','fc-tit','Ingredientes')); secs.appendChild(el('p','fc-txt',f.ing)); }
+      secs.appendChild(el('p','fc-tit','Instrucciones de uso'));
+      var ol=el('ol','fc-pasos'); f.pasos.forEach(function(t){ var li=el('li'); negrita(li,t); ol.appendChild(li); }); secs.appendChild(ol);
+      if(f.sup) secs.appendChild(el('p','fc-sup',SUP));
+      secs.appendChild(el('p','fc-tit','Características'));
+      var dl=el('dl','fc-car'); f.car.forEach(function(c){ dl.appendChild(el('dt',null,c[0])); dl.appendChild(el('dd',null,c[1])); }); secs.appendChild(dl);
+      var r=el('p','fc-ref',f.ref); secs.appendChild(r);
+    }
+    F.forEach(function(f,i){ var b=el('button','fc-prod'); b.type='button'; b.setAttribute('role','tab');
+      var m=el('img'); m.src=RAIZ+'media/prod/'+f.ref+'-1.svg'; m.alt=''; m.width=44; m.height=44; b.appendChild(m);
+      var t=el('span','tx'); t.appendChild(el('small',null,f.ref)); t.appendChild(el('b',null,f.nom.split(' · ')[0])); b.appendChild(t);
+      b.addEventListener('click',function(){ abrir(i); if(innerWidth<960) $('fcFicha').scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'}); });
+      lista.appendChild(b); });
+    abrir(0);
   })();
 
    

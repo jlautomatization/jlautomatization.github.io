@@ -5,7 +5,7 @@ window.__ESCENAS_GYM=[
   {t:'Agendar una clase', s:'Horario de la semana, con cupos', c:[[0,'En Clases ve el horario de cada día, con los cupos libres'],[3,'Elige el lunes y toca la clase de Funcional de las 6 p. m.'],[6,'Agendar: el sistema revisa cupo, cruces y lo que incluye su plan'],[8,'Queda agendada y aparece en su lista']]},
   {t:'Progreso y nutrición', s:'Sus medidas en gráficas y su plan', c:[[0,'Progreso: su peso medición a medición'],[3,'Grasa y cintura, comparadas con la primera medición'],[6,'Cada perímetro: gris la primera, verde hoy'],[10,'Nutrición: el plan que le asignó el gimnasio']]},
   {t:'El entrenador registra', s:'Un toque por entreno; la vencida no pasa', c:[[0,'Ahora entra la entrenadora, con su usuario y su clave'],[10,'Ve solo a sus atletas, con su semana y su membresía'],[13,'Abre la ficha de Mariana: 4 de 5 esta semana'],[16,'Un toque: entrenamiento registrado, 5 de 5. Queda en el registro'],[22,'Busca por cédula o por nombre'],[26,'Membresía vencida: el sistema no deja registrar hasta que renueve'],[30,'Mi semana: sus clases y quién viene']]},
-  {t:'El panel del dueño', s:'Cifras, socios, mensajes, reporte, asistente', c:[[0,'El dueño entra a su panel con su PIN'],[4,'Lo importante de un vistazo: vencimientos, cumplimiento, riesgo de irse'],[6,'Entrenamientos por día, estado de la cartera y cada entrenador'],[14,'Socios: filtra los vencidos y abre la ficha de cada uno'],[22,'Mensajes: los que salen hoy y el interruptor de cada tipo'],[27,'La felicitación de permanencia, con el texto exacto'],[31,'Reporte semanal: quién cumplió y quién no'],[38,'Asistente: el dueño pregunta y el sistema responde'],[48,'Registro: cada movimiento sellado. Cadena íntegra']]}
+  {t:'El panel del dueño', s:'Cifras, socios, mensajes, reporte, asistente', c:[[0,'El dueño entra a su panel con su PIN'],[4,'Lo importante de un vistazo: vencimientos, cumplimiento, riesgo de irse'],[6,'Entrenamientos por día, estado de la cartera y cada entrenador'],[14,'Socios: filtra los vencidos y abre la ficha de cada uno'],[22,'Mensajes: los que salen hoy y el interruptor de cada tipo'],[27,'La felicitación de permanencia, con el texto exacto'],[31,'Reporte semanal: quién cumplió y quién no'],[38,'Asistente: el dueño pregunta y el sistema responde'],[48,'Registro: cada movimiento queda guardado y nadie lo cambia']]}
 ];
  
 window.__FOTO_GYM={preguntas:[
@@ -15,9 +15,13 @@ window.__FOTO_GYM={preguntas:[
   ['¿Quién cumple meses?','Cumplen meses con ustedes:\n• Mariana Sepúlveda — 3 meses\n• Santiago Molano — 6 meses\n• Natalia Cárdenas — 12 meses\n• Camila Duarte — 3 meses\n• Tomás Herrera — 3 meses\nLes llega la felicitación a las 8:00 a. m.']
 ]};
 var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
+ 
+var CASO_BASE=CASO_SRC?CASO_SRC.replace(/caso\.js[^\/]*$/,''):'';
 (function(){
   'use strict';
   var REDUCE = matchMedia('(prefers-reduced-motion: reduce)').matches;
+   
+  var tope=document.querySelector('main > .hx-tope'); if(tope) document.body.insertBefore(tope,document.body.firstChild);
   function $(id){ return document.getElementById(id); }
   function aVista(el, fn, opts){
     if(!el) return;
@@ -34,7 +38,9 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     if('ResizeObserver' in window) new ResizeObserver(medir).observe(cv); else addEventListener('resize', medir);
     return o;
   }
-  function irA(id){ var d=$(id); if(d) d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'}); }
+  var PAG={escenas:'como-funciona/',semana:'como-funciona/',cadena:'como-funciona/',panel:'dueno/',mensajes:'dueno/',bot:'dueno/',todos:'funciones/',cuentas:'funciones/',suma:'funciones/'};
+  function irA(id,tipo){ var d=$(id); if(d){ d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'}); return true; }
+    if(PAG[id]&&CASO_BASE) location.href=CASO_BASE+PAG[id]+(tipo?'?m='+tipo:'')+'#'+id; return false; }
 
    
   (function(){
@@ -88,24 +94,24 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
   function video(nombre){
     if(MEM[nombre]) return Promise.resolve(MEM[nombre]);
     if(PIDIENDO[nombre]) return PIDIENDO[nombre];
-    if(!window.fetch||!window.URL||!URL.createObjectURL) return Promise.resolve('media/'+nombre);
-    PIDIENDO[nombre]=fetch('media/'+nombre).then(function(r){ if(!r.ok) throw 0; return r.blob(); })
+    var url=CASO_BASE+'media/'+nombre;
+    if(!window.fetch||!window.URL||!URL.createObjectURL) return Promise.resolve(url);
+    PIDIENDO[nombre]=fetch(url).then(function(r){ if(!r.ok) throw 0; return r.blob(); })
       .then(function(b){ MEM[nombre]=URL.createObjectURL(b); return MEM[nombre]; })
-      .catch(function(){ delete PIDIENDO[nombre]; return 'media/'+nombre; });
+      .catch(function(){ delete PIDIENDO[nombre]; return url; });
     return PIDIENDO[nombre];
   }
   function precargar(lista){ lista.reduce(function(p,n){ return p.then(function(){ return video(n); }); }, Promise.resolve()); }
   function play(v){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); }
 
    
+  function ponVideo(v){ if(v.getAttribute('src')) return Promise.resolve(); return video(v.getAttribute('data-video')).then(function(u){ if(!v.getAttribute('src')) v.src=u; }); }
   (function(){
-    [['.cs-lapvid','panel-1440.mp4'],['#cel video','cel-socio.mp4']].forEach(function(par){
-      var v=document.querySelector(par[0]); if(!v) return;
-      video(par[1]).then(function(u){ if(v.src.indexOf('blob:')<0){ var t=v.currentTime, sigue=!v.paused; v.src=u; try{ v.currentTime=t; }catch(e){} if(sigue) play(v); } });
-      aVista(v,function(si){ if(si && !REDUCE) play(v); else v.pause(); },{threshold:.15});
+    [].forEach.call(document.querySelectorAll('#lap video[data-video]'),function(v){
+      aVista(v,function(si){ v._ver=si; if(si && !REDUCE) ponVideo(v).then(function(){ if(v._ver) play(v); }); else v.pause(); },{threshold:.15});
     });
     var scr=document.querySelector('#lap .scr'), cel=$('cel');
-    if(scr){ scr.style.cursor='pointer'; scr.addEventListener('click',function(){ irA('escenas'); var b=document.querySelectorAll('#escLista button')[4]; if(b) setTimeout(function(){ b.click(); },REDUCE?0:500); }); }
+    if(scr){ scr.style.cursor='pointer'; scr.addEventListener('click',function(){ irA('panel'); }); }
     if(cel){ cel.style.cursor='pointer'; cel.addEventListener('click',function(){ irA('escenas'); }); }
   })();
 
@@ -114,12 +120,13 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
   (function(){
     var vid=$('escVid'), lista=$('escLista'); if(!vid||!lista||!ESC.length) return;
     var cur=0, visto=false, sub=$('escSub'), prog=$('escProg'), tit=$('escTit'), bPlay=$('escPlay');
-    ESC.forEach(function(e,i){ var li=document.createElement('li'); li.innerHTML='<button type="button"><span class="n">0'+(i+1)+'</span><b></b><small></small></button>';
+    ESC.forEach(function(e,i){ var li=document.createElement('li'); li.innerHTML='<button type="button"><span class="n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><b></b><small></small></button>';
       li.querySelector('b').textContent=e.t; li.querySelector('small').textContent=e.s;
       li.firstChild.addEventListener('click',function(){ cargar(i,true); }); lista.appendChild(li); });
     function cargar(i,usuario){
-      cur=i; var nom='escena-'+(i+1)+'.mp4', pedido=i; vid.poster='media/escena-'+(i+1)+'.jpg';
-      video(nom).then(function(u){ if(cur!==pedido) return; vid.src=u; if(usuario||visto) play(vid); });
+      cur=i; var nom='escena-'+(i+1)+'.mp4', pedido=i; vid.poster=CASO_BASE+'media/escena-'+(i+1)+'.jpg';
+       
+      video(nom).then(function(u){ if(cur!==pedido) return; vid.src=u; if(usuario||visto) play(vid); video('escena-'+((i+1)%ESC.length+1)+'.mp4'); });
       tit.textContent=ESC[i].t;
       [].forEach.call(lista.children,function(li,k){ li.classList.toggle('act',k===i); });
       sub.classList.remove('ver'); sub.textContent='';
@@ -137,7 +144,6 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     bPlay.addEventListener('click',function(){ if(vid.paused) play(vid); else vid.pause(); });
     vid.addEventListener('click',function(){ bPlay.click(); });
     cargar(0,false);
-    aVista($('escenas'),function(si){ if(si) precargar(ESC.map(function(e,i){ return 'escena-'+(i+1)+'.mp4'; })); },{rootMargin:'100% 0px'});
     aVista(vid,function(si){ if(si){ if(!visto && !REDUCE){ visto=true; play(vid); } } else if(!vid.paused){ vid.pause(); visto=false; } },{threshold:.4});
   })();
 
@@ -196,6 +202,33 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
     [].forEach.call(tabs.querySelectorAll('button'),function(b){ b.addEventListener('click',function(){ tipo=b.getAttribute('data-t'); [].forEach.call(tabs.children,function(x){ x.classList.toggle('act',x===b); }); control(); pintar(); }); });
     control(); pintar();
     window.__msgTipo=function(t){ var b=tabs.querySelector('[data-t="'+t+'"]'); if(b) b.click(); };
+    var q=(location.search.match(/[?&]m=(venc|perm|segui)\b/)||[])[1]; if(q) window.__msgTipo(q);    
+  })();
+
+   
+  (function(){
+    var vid=$('panVid'), lista=$('panCaps'); if(!vid||!lista) return;
+    var CAP=[[1.5,'Inicio','Lo importante de un vistazo: vencimientos, cumplimiento, riesgo de irse'],[12,'Socios','Filtra los vencidos y abre la ficha de cada uno'],
+      [22,'Mensajes','Los que salen hoy y el interruptor de cada tipo'],[30,'Reporte','Quién cumplió la semana y quién no'],
+      [36,'Asistente','El dueño pregunta y el sistema responde'],[46,'Registro','Cada movimiento queda guardado y nadie lo cambia']];
+    var tit=$('panTit'), prog=$('panProg'), cur=-1, listo=null, ver=false;
+    function cargar(){ if(!listo) listo=video('panel-1440.mp4').then(function(u){ vid.src=u; }); return listo; }
+    function salta(t){ if(vid.readyState>=1){ try{ vid.currentTime=t; }catch(e){} return; }
+      vid.addEventListener('loadedmetadata',function f(){ vid.removeEventListener('loadedmetadata',f); try{ vid.currentTime=t; }catch(e){} }); }
+    function marca(i){ if(i===cur) return; cur=i; tit.innerHTML='<span class="gp-pre">Panel del dueño · </span>'; tit.appendChild(document.createTextNode(CAP[i][1]));
+      [].forEach.call(lista.children,function(li,k){ li.classList.toggle('act',k===i); var b=li.firstChild; if(k===i) b.setAttribute('aria-current','true'); else b.removeAttribute('aria-current'); }); }
+    CAP.forEach(function(c,i){ var li=document.createElement('li');
+      li.innerHTML='<button type="button"><span class="n"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M8 5v14l11-7z"/></svg></span><span class="tx"><b></b><small></small></span></button>';
+      li.querySelector('b').textContent=c[1]; li.querySelector('small').textContent=c[2];
+      li.firstChild.addEventListener('click',function(){ marca(i); cargar().then(function(){ salta(c[0]); play(vid); });
+        if(innerWidth<960) vid.closest('.gp-mon').scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'}); });
+      lista.appendChild(li); });
+    vid.addEventListener('timeupdate',function(){ var t=vid.currentTime, k=0; for(var i=0;i<CAP.length;i++) if(t>=CAP[i][0]-.3) k=i; marca(k);
+      if(vid.duration) prog.style.width=(t/vid.duration*100).toFixed(2)+'%'; });
+    vid.addEventListener('click',function(){ if(vid.paused) play(vid); else vid.pause(); });
+    aVista(vid,function(si){ if(si) cargar(); },{rootMargin:'100% 0px'});
+    aVista(vid,function(si){ ver=si; if(si && !REDUCE) cargar().then(function(){ if(ver) play(vid); }); else vid.pause(); },{threshold:.3});
+    marca(0);
   })();
 
    
@@ -220,12 +253,12 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
       EV.forEach(function(ev,i){
         var txt=(alterado&&i===cual)?CAMBIO[i]:ev, h=alterado&&i===cual?sello((i?orig[i-1]:'0000000000000000')+'|'+txt):orig[i];
         var d=document.createElement('div'); d.className='cs-esl'+(alterado&&i===cual?' roto':'')+(alterado&&i>cual?' tras':'')+(i===EV.length-1&&!alterado?' sello':''); d.style.setProperty('--i',i);
-        d.innerHTML='<div class="bl"><span class="num">REGISTRO '+String(i+1).padStart(2,'0')+'</span><span class="ev"></span><span class="h prev">← '+(i?orig[i-1].slice(0,10):'inicio')+'</span><span class="h">'+h.slice(0,16)+'</span></div><i class="link"></i>';
+        d.innerHTML='<div class="bl"><span class="num">REGISTRO '+(i+1)+'</span><span class="ev"></span><span class="h prev">← '+(i?orig[i-1].slice(0,10):'inicio')+'</span><span class="h">'+h.slice(0,16)+'</span></div><i class="link"></i>';
         d.querySelector('.ev').textContent=txt; d.querySelector('.bl').title='Intentar cambiar este registro';
         d.addEventListener('click',function(){ cual=i; alterado=true; pintar(); cad.classList.add('in'); }); cont.appendChild(d);
       });
-      est.className='cs-cad-est'+(alterado?' mal':''); est.lastChild.textContent=alterado?'Cadena rota en el registro '+String(cual+1).padStart(2,'0')+': el sistema lo delata':'Cadena íntegra';
-      btn.textContent=alterado?'Volver a la cadena íntegra':'Intentar cambiar un registro';
+      est.className='cs-cad-est'+(alterado?' mal':''); est.lastChild.textContent=alterado?'Registro '+(cual+1)+' cambiado: el sistema lo muestra':'Todo en orden';
+      btn.textContent=alterado?'Dejarlo como estaba':'Intentar cambiar un registro';
     }
     est.innerHTML='<i></i>'; est.appendChild(document.createTextNode(''));
     btn.addEventListener('click',function(){ alterado=!alterado; pintar(); cad.classList.add('in'); if(alterado){ var r=cont.children[cual]; if(r) cont.scrollTo({left:Math.max(0,r.offsetLeft-20),behavior:REDUCE?'auto':'smooth'}); } });
@@ -234,10 +267,11 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
   })();
 
    
+   
   (function(){
     [].forEach.call(document.querySelectorAll('[data-ir]'),function(el){ el.style.cursor='pointer';
       el.addEventListener('keydown',function(e){ if(e.key==='Enter'||e.key===' '){ e.preventDefault(); el.click(); } });
-      el.addEventListener('click',function(e){ var t=e.target.closest('a,button,input'); if(t&&t!==el) return; e.preventDefault(); irA(el.getAttribute('data-ir'));
-        var tp=el.getAttribute('data-tipo'); if(tp&&window.__msgTipo) setTimeout(function(){ window.__msgTipo(tp); },REDUCE?0:400); }); });
+      el.addEventListener('click',function(e){ var t=e.target.closest('a,button,input'); if(t&&t!==el) return; e.preventDefault();
+        var tp=el.getAttribute('data-tipo'); if(irA(el.getAttribute('data-ir'),tp) && tp && window.__msgTipo) setTimeout(function(){ window.__msgTipo(tp); },REDUCE?0:400); }); });
   })();
 })();

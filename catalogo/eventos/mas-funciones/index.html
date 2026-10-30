@@ -3,17 +3,17 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Más funciones: sistema de custodia para eventos — JLA</title>
-<meta name="description" content="Funciona sin señal, traslados entre eventos, manifiesto impreso, programación del material y la etiqueta QR de cada equipo.">
+<title>Más funciones: sistema para empresas de eventos — JLA</title>
+<meta name="description" content="Véalo crecer: un código en cada equipo, su lugar en el estante, el trabajo sin señal y todo lo que también trae.">
 <meta name="theme-color" content="#000000">
-<meta property="og:title" content="Más funciones: sistema de custodia para eventos — JLA">
-<meta property="og:description" content="Funciona sin señal, traslados entre eventos, manifiesto impreso, programación del material y la etiqueta QR de cada equipo.">
+<meta property="og:title" content="Más funciones: sistema para empresas de eventos — JLA">
+<meta property="og:description" content="Véalo crecer: un código en cada equipo, su lugar en el estante, el trabajo sin señal y todo lo que también trae.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231D3A5A'/%3E%3Cstop offset='1' stop-color='%230A121C'/%3E%3C/linearGradient%3E%3ClinearGradient id='o' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23FFE3A3'/%3E%3Cstop offset='1' stop-color='%23C9992B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23b)'/%3E%3Cg transform='translate(2.6 2.6) scale(.42)'%3E%3Cpath d='M12 50 32 14 52 50' fill='none' stroke='%23F4F7FB' stroke-opacity='.6' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='12' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='52' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='32' cy='14' r='9' fill='url(%23o)'/%3E%3C/g%3E%3C/svg%3E">
 <style>@font-face {font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/sora-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/sora-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}</style>
 <script>(function(){var d=document.documentElement,q=location.search;try{if(/[?&]lento\b/.test(q))sessionStorage.vtLento=1;if(/[?&]rapido\b/.test(q))sessionStorage.removeItem("vtLento");if(sessionStorage.vtLento)d.classList.add("vt-lento")}catch(_){}addEventListener("pagereveal",function(e){var vt=e.viewTransition;if(!vt)return;var atras=false;try{var a=navigation.activation;atras=a.navigationType==="traverse"&&a.from&&a.entry.index<a.from.index}catch(_){}d.classList.add("vt-in","vt-llega");if(atras)d.classList.add("vt-atras");vt.ready.catch(function(){});if(vt.updateCallbackDone)vt.updateCallbackDone.catch(function(){});vt.finished.catch(function(){}).then(function(){d.classList.remove("vt-in","vt-atras")})})})();</script>
 <link rel="stylesheet" href="../../_base/estilo.css?v=8559732b">
-<link rel="stylesheet" href="../caso.css?v=1edf832a">
+<link rel="stylesheet" href="../caso.css?v=54b791b7">
 </head>
 <body data-page="caso" data-caso="eventos" data-sub="mas-funciones">
 
@@ -45,10 +45,14 @@
   <section class="page-first cs-cab cs-cab-sub">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="eyebrow"><b>●</b>Más funciones</span>
-        <h1 class="ph">Lo que no sale en el video <span class="it">también está.</span></h1>
-        <p class="lead">Un código en cada equipo, su lugar en el estante y el trabajo sin señal. Y todo lo que el sistema ya trae.</p>
+        <span class="eyebrow"><b>●</b>Paso 3 de 3 · Más funciones</span>
+        <h1 class="ph">Véalo <span class="it">crecer.</span></h1>
       </div>
+      <ol class="gd-indice rv" style="--d:.1s" aria-label="En esta página">
+        <li><a href="#plano" data-parada="0"><span class="gd-n">1</span><span><b>Un código por equipo</b></span></a></li>
+        <li><a href="#plano" data-parada="1"><span class="gd-n">2</span><span><b>Su lugar en el estante</b></span></a></li>
+        <li><a href="#plano" data-parada="2"><span class="gd-n">3</span><span><b>Sin señal, igual funciona</b></span></a></li>
+      </ol>
     </div>
   </section>
 
@@ -56,12 +60,12 @@
     <div class="mf-fijo">
       <div class="wrap mf-grid">
         <div class="mf-texto">
-          <span class="eyebrow"><b>●</b>Tres paradas</span>
-          <h2 class="vj-h mf-h">Lo que se suma, <span class="it">parada por parada.</span></h2>
+          <span class="eyebrow"><b>●</b>Lo que se suma</span>
+          <h2 class="vj-h mf-h">Tres cosas que <span class="it">su bodega no tiene.</span></h2>
           <ol class="vj-pasos mf-pasos">
-            <li class="vj-paso on"><span class="vj-barra"><i></i></span><span class="vj-n">01 · Un código por equipo</span><b>Cada equipo, con su código.</b></li>
-            <li class="vj-paso"><span class="vj-barra"><i></i></span><span class="vj-n">02 · El estante también</span><b>Y su lugar en la bodega.</b></li>
-            <li class="vj-paso"><span class="vj-barra"><i></i></span><span class="vj-n">03 · Sin señal</span><b>Sin señal, igual funciona.</b></li>
+            <li class="vj-paso on"><span class="vj-barra"><i></i></span><span class="vj-n">1 · Un código por equipo</span><b>Cada equipo, con su código.</b></li>
+            <li class="vj-paso"><span class="vj-barra"><i></i></span><span class="vj-n">2 · El estante también</span><b>Y su lugar en la bodega.</b></li>
+            <li class="vj-paso"><span class="vj-barra"><i></i></span><span class="vj-n">3 · Sin señal</span><b>Sin señal, igual funciona.</b></li>
           </ol>
         </div>
 
@@ -108,7 +112,7 @@
             </div>
 
           </div>
-          <div class="mf-sello" aria-hidden="true"><span id="mfSelloT">01 · Un código por equipo</span></div>
+          <div class="mf-sello" aria-hidden="true"><span id="mfSelloT">1 · Un código por equipo</span></div>
 
           <div class="mf-bajo">
             <div class="mf-b mf-b0">
@@ -117,7 +121,7 @@
             </div>
             <div class="mf-b mf-b1">
               <span class="mf-dos"><b>La EQ-R-023 está en el B&#8209;4</b>Se lee el equipo, se lee el estante, y queda su lugar.</span>
-              <span class="mf-dos"><b>Sin pistolas</b>El lector es la cámara del celular.</span>
+              <span class="mf-dos"><b>Sin aparatos aparte</b>El lector es la cámara del celular.</span>
             </div>
             <div class="mf-b mf-b2">
               <span class="mf-dos"><b>Se guarda en el celular</b>En un coliseo o en un parque sin señal, el registro no se pierde.</span>
@@ -142,51 +146,54 @@
           <picture><source type="image/avif" srcset="../media/p-programar-cel.avif"><img src="../media/p-programar-cel.jpg" alt="" width="780" height="1688" loading="lazy"></picture>
         </div>
       </div>
-      <ul class="ev-fn">
-        <li class="rv"><span class="ev-fn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><path d="M3 3l18 18"/></svg></span><b>Sin señal, igual funciona</b><p>Se guarda en el celular y se sube solo cuando vuelve la señal.</p></li>
-        <li class="rv" style="--d:.04s"><span class="ev-fn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M3 12a9 9 0 1 0 3-6.7L3 8"/><path d="M3 3v5h5"/></svg></span><b>Nada queda a medias</b><p>Si un registro quedó sin terminar, la app lo ofrece para retomarlo.</p></li>
-        <li class="rv" style="--d:.08s"><span class="ev-fn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h13l-3-3M20 17H7l3 3"/></svg></span><b>De un evento a otro</b><p>El material pasa a otro evento sin volver a bodega, y queda contado.</p></li>
-        <li class="rv" style="--d:.12s"><span class="ev-fn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M7 3h7l5 5v12a1 1 0 0 1-1 1H7a1 1 0 0 1-1-1V4a1 1 0 0 1 1-1z"/><path d="M14 3v5h5M9 13h6M9 17h6"/></svg></span><b>Manifiesto en la mano</b><p>Cada salida tiene su manifiesto: se imprime o se copia para mandarlo por WhatsApp.</p></li>
-        <li class="rv"><span class="ev-fn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6 8a6 6 0 1 1 12 0c0 7 3 9 3 9H3s3-2 3-9"/><path d="M10.3 21a1.9 1.9 0 0 0 3.4 0"/></svg></span><b>Lo que pide atención</b><p>El sistema señala solo lo que lleva más de 7 días afuera y lo que falta para los próximos eventos.</p></li>
-        <li class="rv" style="--d:.04s"><span class="ev-fn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><rect x="3" y="4" width="18" height="17" rx="3"/><path d="M3 9h18M8 2v4M16 2v4"/></svg></span><b>Calendario y novedades</b><p>Qué hay programado, mes a mes, y cada diferencia de conteo con su folio.</p></li>
-        <li class="rv" style="--d:.08s"><span class="ev-fn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><circle cx="12" cy="8" r="4"/><path d="M4 21c1.5-4 4.5-6 8-6s6.5 2 8 6"/></svg></span><b>Cada quien con su PIN</b><p>Cada operario entra con su PIN, y cada registro dice quién lo llevó.</p></li>
-        <li class="rv" style="--d:.12s"><span class="ev-fn-ic"><svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 17.5A4.5 4.5 0 0 0 17.5 9h-1.3A7 7 0 1 0 4 15.3"/><path d="M12 12v9M8.5 17.5 12 21l3.5-3.5"/></svg></span><b>Copia de seguridad</b><p>Con un toque desde el panel, cuando el dueño quiera.</p></li>
-      </ul>
     </div>
   </section>
 
   <div class="beam" aria-hidden="true"></div>
-  <section id="codigo-qr">
+  <section id="lista" class="mfl">
     <div class="wrap">
       <div class="sec-head center rv">
-        <h2>Cada equipo, <span class="it">con su propio código.</span></h2>
-        <p class="lead">La etiqueta, paso a paso: cómo se pone en su bodega.</p>
+        <span class="eyebrow">Todo, en una lista</span>
+        <h2>Lo que también <span class="it">trae.</span></h2>
       </div>
-      <ol class="ev-dis">
-        <li class="rv"><span class="ev-dis-n">01</span><b>Un código por equipo</b><p>EQ-R-001, EQ-R-002… El código también va en texto, por si el QR se daña.</p></li>
-        <li class="rv" style="--d:.05s"><span class="ev-dis-n">02</span><b>Una etiqueta que aguanta</b><p>De poliéster o laminada, lejos del calor del reflector y del roce.</p></li>
-        <li class="rv" style="--d:.1s"><span class="ev-dis-n">03</span><b>Primero, diez equipos</b><p>Los más maltratados trabajan un mes. Lo que sobreviva se usa en el resto.</p></li>
-        <li class="rv" style="--d:.15s"><span class="ev-dis-n">04</span><b>El estante también</b><p>Equipo más estante: «la EQ-R-023 está en el B&#8209;4».</p></li>
-        <li class="rv" style="--d:.2s"><span class="ev-dis-n">05</span><b>Sin pistolas</b><p>El lector es la cámara del celular. Se compra la impresora de etiquetas y sus rollos.</p></li>
-        <li class="rv" style="--d:.25s"><span class="ev-dis-n">06</span><b>Radiofrecuencia, después</b><p>Leer todo sin apuntar, si un día el negocio lo justifica. Hoy no hace falta.</p></li>
-      </ol>
+      <div class="mfl-grid rv">
+        <div class="mfl-g">
+          <h3>En la bodega</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Retoma lo que quedó a medias</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Pasa material de un evento a otro</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Hoja de salida para imprimir o mandar por WhatsApp</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Cada operario con su PIN</span></li>
+          </ul>
+        </div>
+        <div class="mfl-g">
+          <h3>Para el dueño</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Le señala lo que lleva más de 7 días afuera</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Calendario de eventos, mes a mes</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Cada diferencia de conteo, guardada</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Copia de seguridad con un toque</span></li>
+          </ul>
+        </div>
+        <div class="mfl-g">
+          <h3>Las etiquetas</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Aguantan el calor y el roce</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Primero se prueban en 10 equipos</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Solo se compra la impresora de etiquetas</span></li>
+          </ul>
+        </div>
+      </div>
     </div>
   </section>
 
   <div class="beam" aria-hidden="true"></div>
-  <section id="hoy" class="cs-hoy">
+  <section id="hoy">
     <div class="wrap">
-      <div class="sec-head center rv">
+      <div class="sec-head gd-fin rv">
         <span class="eyebrow">Para empezar</span>
         <h2>Todo listo. <span class="it">Falta su bodega.</span></h2>
-      </div>
-      <div class="cs-estado">
-        <article class="card rv"><span class="cs-est-n ok">01</span><h3>La app y el panel</h3><p class="prom">App de bodega, panel del dueño, bot de Telegram y registro sellado.</p></article>
-        <article class="card rv" style="--d:.06s"><span class="cs-est-n ok">02</span><h3>Un evento completo</h3><p class="prom">El recorrido completo de un evento, con QR y aviso de faltantes: lo que vio en Cómo funciona.</p></article>
-        <article class="card rv" style="--d:.12s"><span class="cs-est-n">03</span><h3>En su bodega</h3><p class="prom">Lo ponemos a andar en su bodega, con cámara, impresora y Telegram.</p></article>
-      </div>
-      <div class="cs-cta rv">
-        <a class="btn btn-primary" href="#contacto">¿Su bodega se parece a esta? Solicitar cotización <svg class="arr"><use href="#i-arrow"/></svg></a>
+        <p>Lo ponemos a andar en su bodega: los celulares de su equipo, la impresora de etiquetas y los mensajes al celular del dueño.</p>
       </div>
     </div>
   </section>
@@ -221,6 +228,6 @@
 </footer>
 
 <script src="../../_base/app.js?v=8559732b"></script>
-<script src="../caso.js?v=1edf832a"></script>
+<script src="../caso.js?v=54b791b7"></script>
 </body>
 </html>
