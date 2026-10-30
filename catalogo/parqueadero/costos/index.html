@@ -4,16 +4,16 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Costos: sistema para parqueaderos — JLA</title>
-<meta name="description" content="Dos planes y todos los costos de tener el sistema, dichos desde el principio: desarrollo, implementación, equipos y mensualidad.">
+<meta name="description" content="Lo que cuesta, sin letra pequeña: dos planes, lo que se paga cada mes y cómo se paga, en orden.">
 <meta name="theme-color" content="#000000">
 <meta property="og:title" content="Costos: sistema para parqueaderos — JLA">
-<meta property="og:description" content="Dos planes y todos los costos de tener el sistema, dichos desde el principio: desarrollo, implementación, equipos y mensualidad.">
+<meta property="og:description" content="Lo que cuesta, sin letra pequeña: dos planes, lo que se paga cada mes y cómo se paga, en orden.">
 <meta property="og:type" content="website">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231D3A5A'/%3E%3Cstop offset='1' stop-color='%230A121C'/%3E%3C/linearGradient%3E%3ClinearGradient id='o' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23FFE3A3'/%3E%3Cstop offset='1' stop-color='%23C9992B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23b)'/%3E%3Cg transform='translate(2.6 2.6) scale(.42)'%3E%3Cpath d='M12 50 32 14 52 50' fill='none' stroke='%23F4F7FB' stroke-opacity='.6' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='12' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='52' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='32' cy='14' r='9' fill='url(%23o)'/%3E%3C/g%3E%3C/svg%3E">
 <style>@font-face {font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/sora-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/sora-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}</style>
 <script>(function(){var d=document.documentElement,q=location.search;try{if(/[?&]lento\b/.test(q))sessionStorage.vtLento=1;if(/[?&]rapido\b/.test(q))sessionStorage.removeItem("vtLento");if(sessionStorage.vtLento)d.classList.add("vt-lento")}catch(_){}addEventListener("pagereveal",function(e){var vt=e.viewTransition;if(!vt)return;var atras=false;try{var a=navigation.activation;atras=a.navigationType==="traverse"&&a.from&&a.entry.index<a.from.index}catch(_){}d.classList.add("vt-in","vt-llega");if(atras)d.classList.add("vt-atras");vt.ready.catch(function(){});if(vt.updateCallbackDone)vt.updateCallbackDone.catch(function(){});vt.finished.catch(function(){}).then(function(){d.classList.remove("vt-in","vt-atras")})})})();</script>
 <link rel="stylesheet" href="../../_base/estilo.css?v=8559732b">
-<link rel="stylesheet" href="../caso.css?v=9c251777">
+<link rel="stylesheet" href="../caso.css?v=11c3ddcf">
 </head>
 <body data-page="caso" data-caso="parqueadero" data-sub="costos">
 
@@ -44,24 +44,18 @@
   <section class="page-first cs-cab cs-cab-sub">
     <div class="wrap">
       <div class="sec-head rv">
-        <span class="eyebrow"><b>●</b>Costos</span>
-        <h1 class="ph">Todo lo que cuesta, <span class="it">dicho desde el principio.</span></h1>
-        <p class="lead">Dos planes. En cada uno, lo que se le paga a JLA y lo que pone el negocio, sin letra pequeña.</p>
+        <span class="eyebrow"><b>●</b>Paso 4 de 4 · Costos</span>
+        <h1 class="ph">Lo que cuesta, <span class="it">sin letra pequeña.</span></h1>
       </div>
     </div>
   </section>
 
   <section id="inversion" class="cw cs-sec-pegada" data-plan="s">
     <div class="wrap">
-      <div class="cw-sel rv" role="group" aria-label="Elija un plan">
-        <button type="button" class="cw-op" data-p="s" aria-pressed="true">
-          <span class="cw-op-t">Sistema</span>
-          <span class="cw-op-v">$&nbsp;2.000.000 <small>+ $&nbsp;200.000/mes</small></span>
-        </button>
-        <button type="button" class="cw-op" data-p="g" aria-pressed="false">
-          <span class="cw-op-t">Atención personalizada</span>
-          <span class="cw-op-v">$&nbsp;20.000.000 <small>+ $&nbsp;300.000/mes</small></span>
-        </button>
+      <p class="cw-elija rv">Elija un plan</p>
+      <div class="cw-sel cw-sel-nombre rv" role="group" aria-label="Elija un plan">
+        <button type="button" class="cw-op" data-p="s" aria-pressed="true"><span class="cw-op-t">Sistema</span></button>
+        <button type="button" class="cw-op" data-p="g" aria-pressed="false"><span class="cw-op-t">Atención personalizada</span></button>
       </div>
 
       <div class="cw-cifra rv" style="--d:.06s" aria-live="polite">
@@ -71,7 +65,7 @@
         </div>
         <div class="cw-dato">
           <p class="cw-mes"><span id="cwMes">+ $&nbsp;200.000</span><small>/mes</small></p>
-          <p class="cw-nota" data-s="Pago único · instalación del software incluida" data-g="Le dejamos el parqueadero imprimiendo tiquete, con todo instalado">Pago único · instalación del software incluida</p>
+          <p class="cw-nota" data-s="Instalación del software incluida" data-g="Le dejamos el parqueadero imprimiendo tiquete, con todo instalado">Instalación del software incluida</p>
         </div>
       </div>
 
@@ -81,28 +75,27 @@
           <source media="(max-width:640px)" type="image/avif" srcset="../media/costos-kit-cel.avif" width="1440" height="1074">
           <source media="(max-width:640px)" srcset="../media/costos-kit-cel.jpg" width="1440" height="1074">
           <source type="image/avif" srcset="../media/costos-kit.avif" width="1920" height="1072">
-          <img src="../media/costos-kit.jpg" width="1920" height="1072" alt="Computador, impresora de tiquetes, pistola lectora y cámara de placas con su grabador" loading="lazy" decoding="async">
+          <img src="../media/costos-kit.jpg" width="1920" height="1072" alt="Computador, impresora de tiquetes, lector de códigos y cámara de placas con su grabador" loading="lazy" decoding="async">
         </picture>
         <span class="cw-sombra-cam" aria-hidden="true"></span>
         <span class="cw-barrido" aria-hidden="true"></span>
         </div>
         <span class="cw-et e1"><i></i><b>Computador</b><em data-s="Lo pone el negocio" data-g="Incluido e instalado">Lo pone el negocio</em></span>
         <span class="cw-et e2"><i></i><b>Impresora de tiquetes</b><em data-s="La pone el negocio" data-g="Incluida e instalada">La pone el negocio</em></span>
-        <span class="cw-et e3"><i></i><b>Pistola</b><em data-s="La pone el negocio" data-g="Incluida e instalada">La pone el negocio</em></span>
+        <span class="cw-et e3"><i></i><b>Lector de códigos</b><em data-s="Lo pone el negocio" data-g="Incluido e instalado">Lo pone el negocio</em></span>
         <span class="cw-et e4"><i></i><b>Cámaras de placas y grabador</b><em data-s="No van en este plan" data-g="Incluidas e instaladas">No van en este plan</em></span>
       </figure>
 
       <div class="cw-incluye rv">
         <ul class="cw-lis" data-plan-lis="s">
-          <li>Todo lo que ya funciona: caja con tiquete, cierre a ciegas, bot del dueño y registro que nadie puede alterar</li>
+          <li>La caja con tiquete, el cierre de turno, los mensajes al celular del dueño y un registro que nadie puede alterar</li>
           <li>Instalación del software y capacitación del personal</li>
-          <li>Mensualidad: atención más personalizada, cambios en las funciones del sistema y auditoría mensual</li>
-          <li class="no">Computador, impresora de tiquetes y pistola: los pone el negocio</li>
+          <li>Mensualidad: soporte, cambios al sistema y una revisión cada mes</li>
         </ul>
         <ul class="cw-lis" data-plan-lis="g">
           <li>Todo lo del plan Sistema</li>
           <li class="mas">Las funciones nuevas: cámaras que leen placas, patio lleno, pago por QR, panel con gráficas y varias sedes</li>
-          <li class="mas">Computador, impresora de tiquetes y pistola, instalados</li>
+          <li class="mas">Computador, impresora de tiquetes y lector de códigos, instalados</li>
           <li class="mas">Cámaras de lectura de placas con su grabador, instaladas</li>
           <li class="mas">Estudio del lote con maqueta 3D</li>
           <li>Mensualidad: todo lo del plan Sistema, más soporte de los equipos y revisión de que las cámaras lean bien y cuadren con los tiquetes</li>
@@ -118,22 +111,16 @@
         <span class="eyebrow">Fila por fila</span>
         <h2>Qué recibe <span class="it">en cada plan.</span></h2>
       </div>
-      <div class="cw-sel cw-sel-mini rv" role="group" aria-label="Ordenar la tabla por plan">
-        <button type="button" class="cw-op" data-p="s" aria-pressed="true"><span class="cw-op-t">Sistema</span></button>
-        <button type="button" class="cw-op" data-p="g" aria-pressed="false"><span class="cw-op-t">Atención personalizada</span></button>
-      </div>
       <div class="cw-comp rv" role="table" aria-label="Comparación de los dos planes" id="cwComp">
         <div class="f cab" role="row"><span role="columnheader"></span><span role="columnheader" class="c2">Sistema</span><span role="columnheader" class="c3">Atención personalizada</span></div>
         <div class="f" role="row" data-o="1"><span role="rowheader">Pago para tenerlo</span><span role="cell" class="c2">$&nbsp;2.000.000</span><span role="cell" class="c3">$&nbsp;20.000.000</span></div>
         <div class="f" role="row" data-o="2"><span role="rowheader">Mensualidad</span><span role="cell" class="c2">$&nbsp;200.000</span><span role="cell" class="c3">$&nbsp;300.000</span></div>
-        <div class="f" role="row" data-o="3"><span role="rowheader">Desarrollo e instalación del software</span><span role="cell" class="c2"><i class="si">Incluido</i></span><span role="cell" class="c3"><i class="si">Incluido</i></span></div>
-        <div class="f" role="row" data-o="4"><span role="rowheader">Caja, cierre a ciegas, bot del dueño y registro inalterable</span><span role="cell" class="c2"><i class="si">Incluido</i></span><span role="cell" class="c3"><i class="si">Incluido</i></span></div>
-        <div class="f" role="row" data-o="5"><span role="rowheader">Capacitación del personal</span><span role="cell" class="c2"><i class="si">Incluida</i></span><span role="cell" class="c3"><i class="si">Incluida</i></span></div>
-        <div class="f g" role="row" data-o="6"><span role="rowheader">Computador, impresora de tiquetes y pistola</span><span role="cell" class="c2"><i class="neg">Los pone el negocio</i></span><span role="cell" class="c3"><i class="si">Incluidos e instalados</i></span></div>
+        <div class="f" role="row" data-o="3"><span role="rowheader">El sistema, instalado y con su personal capacitado</span><span role="cell" class="c2"><i class="si">Incluido</i></span><span role="cell" class="c3"><i class="si">Incluido</i></span></div>
+        <div class="f g" role="row" data-o="6"><span role="rowheader">Computador, impresora de tiquetes y lector de códigos</span><span role="cell" class="c2"><i class="neg">Los pone el negocio</i></span><span role="cell" class="c3"><i class="si">Incluidos e instalados</i></span></div>
         <div class="f g" role="row" data-o="7"><span role="rowheader">Cámaras de lectura de placas con grabador</span><span role="cell" class="c2"><i class="no">No</i></span><span role="cell" class="c3"><i class="si">Incluidas e instaladas</i></span></div>
-        <div class="f g" role="row" data-o="8"><span role="rowheader">Funciones nuevas: placas, patio lleno, QR, gráficas, sedes</span><span role="cell" class="c2"><i class="no">No</i></span><span role="cell" class="c3"><i class="si">Incluidas</i></span></div>
+        <div class="f g" role="row" data-o="8"><span role="rowheader">Lectura de placas, aviso de patio lleno, pago por QR, gráficas y varias sedes</span><span role="cell" class="c2"><i class="no">No</i></span><span role="cell" class="c3"><i class="si">Incluidas</i></span></div>
         <div class="f g" role="row" data-o="9"><span role="rowheader">Estudio del lote con maqueta 3D</span><span role="cell" class="c2"><i class="no">No</i></span><span role="cell" class="c3"><i class="si">Incluido</i></span></div>
-        <div class="f" role="row" data-o="10"><span role="rowheader">En la mensualidad: atención, cambios y auditoría</span><span role="cell" class="c2"><i class="si">Sí</i></span><span role="cell" class="c3"><i class="si">Sí</i></span></div>
+        <div class="f" role="row" data-o="10"><span role="rowheader">En la mensualidad: soporte, cambios y una revisión cada mes</span><span role="cell" class="c2"><i class="si">Sí</i></span><span role="cell" class="c3"><i class="si">Sí</i></span></div>
         <div class="f g" role="row" data-o="11"><span role="rowheader">En la mensualidad: soporte de equipos y revisión de cámaras</span><span role="cell" class="c2"><i class="no">No</i></span><span role="cell" class="c3"><i class="si">Sí</i></span></div>
         <div class="f" role="row" data-o="12"><span role="rowheader">Forma de pago</span><span role="cell" class="c2">50&nbsp;% y 50&nbsp;%</span><span role="cell" class="c3">50&nbsp;% y 50&nbsp;%</span></div>
       </div>
@@ -145,33 +132,15 @@
   <section id="gastos" class="cw">
     <div class="wrap">
       <div class="sec-head center rv">
-        <span class="eyebrow">Gastos asociados</span>
-        <h2>Lo que se paga, <span class="it">a quién y cuándo.</span></h2>
+        <span class="eyebrow">Cada mes</span>
+        <h2>Lo que se paga cada mes, <span class="it">y a quién.</span></h2>
       </div>
-      <div class="cw-gastos">
+      <div class="cw-gastos cw-gastos-solo">
         <div class="cw-g rv">
-          <span class="cw-g-n">01</span>
-          <div class="cw-g-t"><b>El software: desarrollo e implementación</b><p>Se le paga a JLA</p></div>
           <ul>
-            <li data-p="s"><span>Plan Sistema</span><em>$&nbsp;2.000.000</em></li>
-            <li data-p="g"><span>Plan Atención personalizada</span><em>$&nbsp;20.000.000</em></li>
-          </ul>
-        </div>
-        <div class="cw-g rv" style="--d:.06s">
-          <span class="cw-g-n">02</span>
-          <div class="cw-g-t"><b>Los equipos para implementarlo</b><p>Computador, impresora de tiquetes, pistola y cámaras</p></div>
-          <ul>
-            <li data-p="s"><span>Plan Sistema</span><em>Los pone el negocio (sin cámaras)</em></li>
-            <li data-p="g"><span>Plan Atención personalizada</span><em class="cw-gratis">Incluidos e instalados</em></li>
-          </ul>
-        </div>
-        <div class="cw-g rv" style="--d:.12s">
-          <span class="cw-g-n">03</span>
-          <div class="cw-g-t"><b>Cada mes</b><p>Para que siga funcionando y mejore</p></div>
-          <ul>
-            <li><span>Mensualidad</span><em>$&nbsp;200.000 o $&nbsp;300.000</em></li>
-            <li><span>Avisos por Telegram</span><em class="cw-gratis">Sin costo</em></li>
-            <li data-p="g"><span>Avisos por WhatsApp (plan Atención personalizada)</span><em>WhatsApp cobra cada mensaje: va en su cotización</em></li>
+            <li><span>Mensualidad, a JLA</span><em>$&nbsp;200.000 o $&nbsp;300.000</em></li>
+            <li><span>Mensajes al celular del dueño</span><em class="cw-gratis">Sin costo</em></li>
+            <li data-p="g"><span>Avisos de vencimiento por WhatsApp · plan Atención personalizada</span><em>WhatsApp cobra cada mensaje: va en su cotización</em></li>
             <li><span>Internet y luz</span><em>Los pone el negocio</em></li>
           </ul>
         </div>
@@ -183,20 +152,17 @@
   <section id="pago" class="cw">
     <div class="wrap">
       <div class="sec-head center rv">
-        <span class="eyebrow">Paso a paso</span>
+        <span class="eyebrow">Forma de pago</span>
         <h2>Cómo se paga, <span class="it">en orden.</span></h2>
+        <p class="cw-de-plan" data-s="Montos del plan <b>Sistema</b>" data-g="Montos del plan <b>Atención personalizada</b>">Montos del plan <b>Sistema</b></p>
       </div>
       <ol class="cw-linea" id="cwLinea">
         <li><span class="cw-pt"></span><b>Cotización</b><p>Le contamos el valor y todos los costos antes de empezar.</p></li>
         <li><span class="cw-pt"></span><b>50&nbsp;% para empezar</b><strong class="cw-monto" data-s="$&nbsp;1.000.000" data-g="$&nbsp;10.000.000">$&nbsp;1.000.000</strong><p>Con el primer pago se arranca el trabajo.</p></li>
-        <li><span class="cw-pt"></span><b>Desarrollo e instalación</b><p>El software y, en el plan completo, los equipos y las cámaras.</p></li>
+        <li><span class="cw-pt"></span><b>Desarrollo e instalación</b><p>El software y, en el plan Atención personalizada, los equipos y las cámaras.</p></li>
         <li><span class="cw-pt"></span><b>Entrega, capacitación y 50&nbsp;%</b><strong class="cw-monto" data-s="$&nbsp;1.000.000" data-g="$&nbsp;10.000.000">$&nbsp;1.000.000</strong><p>El parqueadero queda funcionando y su personal sabe usarlo.</p></li>
-        <li><span class="cw-pt"></span><b>Mensualidad</b><strong class="cw-monto" data-s="$&nbsp;200.000<small>/mes</small>" data-g="$&nbsp;300.000<small>/mes</small>">$&nbsp;200.000<small>/mes</small></strong><p>Atención, cambios, auditoría y, en el plan completo, soporte de equipos.</p></li>
+        <li><span class="cw-pt"></span><b>Mensualidad</b><strong class="cw-monto" data-s="$&nbsp;200.000<small>/mes</small>" data-g="$&nbsp;300.000<small>/mes</small>">$&nbsp;200.000<small>/mes</small></strong><p>Soporte, cambios y una revisión cada mes; en el plan Atención personalizada, también los equipos.</p></li>
       </ol>
-      <div class="cs-sig rv">
-        <a class="btn btn-primary" href="#contacto" data-cotice>Cotice ahora <svg class="arr"><use href="#i-arrow"/></svg></a>
-        <a class="btn btn-ghost" href="../como-funciona/">Ver cómo funciona</a>
-      </div>
     </div>
   </section>
 
@@ -230,6 +196,6 @@
 </footer>
 
 <script src="../../_base/app.js?v=8559732b"></script>
-<script src="../caso.js?v=9c251777"></script>
+<script src="../caso.js?v=11c3ddcf"></script>
 </body>
 </html>

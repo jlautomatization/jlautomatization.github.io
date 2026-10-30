@@ -113,22 +113,22 @@ var RAIZ=CASO_SRC.replace(/caso\.js(\?.*)?$/,'');
   (function(){
     var vid=$('escVid'), lista=$('escLista'); if(!vid||!lista) return;
     var ESC=[
-      {t:'Apertura de turno y registro', s:'Ingreso, revisión de patio, entrada nueva', tiq:true,
+      {t:'Abrir el turno y registrar un carro', s:'Ingreso, revisión de patio, entrada nueva', tiq:true,
        c:[[0,'Inicia sesión el operario, con su PIN'],[6,'Antes de abrir el turno, confirma los vehículos que ya estaban en el patio'],[15,'Registra la entrada de un vehículo nuevo: elige el tipo'],[21,'Escribe la placa y el sistema imprime el tiquete']]},
       {t:'Registrar un gasto de caja', s:'Papel de impresora, con su soporte', tiq:true, c:[[0,'Se registra un gasto menor de caja (papel de la impresora), con su soporte']]},
-      {t:'Salida con pago mixto', s:'Efectivo + transferencia', tiq:true,
+      {t:'Cobrar con efectivo y transferencia', s:'Efectivo + transferencia', tiq:true,
        c:[[0,'El operario escribe la placa del vehículo que sale'],[5,'Elige el tipo de pago: efectivo, transferencia o mixto'],[9,'Si es mixto, reparte el valor entre efectivo y transferencia'],[15,'Se cobra y el sistema queda listo para el siguiente vehículo']]},
-      {t:'Cierre de turno (arqueo)', s:'Conteo a ciegas, diferencia en vivo', tiq:true,
+      {t:'Cerrar el turno contando la plata', s:'Cuenta sin ver el total; la diferencia sale al momento', tiq:true,
        c:[[0,'Al cerrar el turno, el operario cuenta el efectivo SIN ver el valor esperado'],[3,'El sistema compara en vivo: aquí sobraron $ 300.000 sobre la base']]},
-      {t:'Panel de administrador', s:'Reportes, operarios, mensualidades, transferencias', tiq:false,
+      {t:'Lo que ve el administrador', s:'Reportes, operarios, mensualidades, transferencias', tiq:false,
        c:[[0,'El administrador entra con su PIN'],[6,'Reportes: movimientos y resumen de cada turno'],[18,'Operarios: quién puede operar el sistema'],[24,'Mensualidades: clientes con plan fijo'],[30,'Transferencias: confirmar los pagos que llegan por transferencia']]},
-      {t:'Cierre forzado y nuevo operario', s:'El supervisor cierra, entra el siguiente', tiq:true,
+      {t:'El supervisor cierra un turno y entra otro', s:'El supervisor cierra, entra el siguiente', tiq:true,
        c:[[0,'El supervisor puede forzar el cierre de un turno abierto'],[6,'Con su PIN, entra el siguiente operario'],[15,'Abre su propio turno con la base de caja'],[20,'Y ya puede registrar entradas']]},
-      {t:'Anular una factura', s:'Con PIN y motivo, autorizado', tiq:true,
+      {t:'Corregir un cobro mal hecho', s:'Con PIN y motivo, autorizado', tiq:true,
        c:[[0,'El administrador puede anular una factura del turno'],[9,'Con su PIN y el motivo, autoriza la anulación'],[24,'Se corrige el pago y el sistema sigue funcionando sin perder el registro']]},
-      {t:'Cargar un vehículo al patio', s:'Entrada retroactiva', tiq:true, c:[[0,'Carga inicial de patio: registrar un vehículo que ya estaba adentro antes de usar el sistema']]}
+      {t:'Anotar un carro que ya estaba adentro', s:'Entrada retroactiva', tiq:true, c:[[0,'Carga inicial de patio: registrar un vehículo que ya estaba adentro antes de usar el sistema']]}
     ];
-    var TIQ={1:'El tiquete de apertura y el de entrada, impresos',2:'El comprobante del gasto, línea por línea',3:'La factura de salida, desglosada',4:'El informe de cierre de turno, con el arqueo completo',6:'El comprobante del cierre forzado y la apertura del siguiente turno',7:'La factura anulada y la factura corregida',8:'El comprobante de apertura y la factura del vehículo cargado'};
+    var TIQ={1:'El tiquete de apertura y el de entrada, impresos',2:'El comprobante del gasto, línea por línea',3:'La factura de salida, desglosada',4:'El informe de cierre de turno, con la plata contada',6:'El comprobante del cierre forzado y la apertura del siguiente turno',7:'La factura anulada y la factura corregida',8:'El comprobante de apertura y la factura del vehículo cargado'};
     var cur=0, tiq=false, visto=false, sub=$('escSub'), prog=$('escProg'), tit=$('escTit'), bPlay=$('escPlay'), bTiq=$('escTiq');
     ESC.forEach(function(e,i){ var li=document.createElement('li'); li.innerHTML='<button type="button"><span class="n">0'+(i+1)+'</span><b></b><small></small></button>';
       li.querySelector('b').textContent=e.t; li.querySelector('small').textContent=e.s;
@@ -189,7 +189,7 @@ var RAIZ=CASO_SRC.replace(/caso\.js(\?.*)?$/,'');
       ['¿Cuánto va hoy?','1:05','yo'],
       ['Hoy: 47 vehículos · $ 391.500\nEfectivo: $ 344.500 · Transferencias: $ 47.000\nEn patio ahora: 12 vehículos','1:05',''],
       ['Anulación de factura: requiere su autorización\nMotivo del operario: «el cliente pagó dos veces»','3:22','aut'],
-      ['Cierre de turno con arqueo · 7:00 p. m.\nEsperado: $ 512.000 · Contado: $ 512.000\nCuadró al peso','7:02','']
+      ['Cierre de turno con conteo · 7:00 p. m.\nEsperado: $ 512.000 · Contado: $ 512.000\nCuadró al peso','7:02','']
     ];
     var timers=[];
     function botones(tipo){ var c=document.createElement('div'); c.className='cs-botones';
@@ -498,7 +498,7 @@ var RAIZ=CASO_SRC.replace(/caso\.js(\?.*)?$/,'');
   if(lista){
     var cad=$('ibCad'), sello=$('ibSello'), cont=$('ibInt'), intentos=0;
     var REG=[['TURNO','Apertura de turno · base $ 200.000'],['ENTRADA','Entrada · placa DEM-123'],['FACTURA','Salida · $ 8.000 efectivo'],
-             ['GASTO','Gasto · papel impresora $ 15.000'],['TURNO','Cierre de turno · arqueo']];
+             ['GASTO','Gasto · papel impresora $ 15.000'],['TURNO','Cierre de turno · conteo de la plata']];
     var BORRAR={TURNO:'INVIOLABLE: no se puede borrar un turno',ENTRADA:'INVIOLABLE: no se puede borrar una entrada',
                 FACTURA:'INVIOLABLE: no se puede borrar una factura',GASTO:'INVIOLABLE: no se puede borrar un gasto'};
     var BOTE='<svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13"/></svg>';
@@ -534,7 +534,7 @@ var RAIZ=CASO_SRC.replace(/caso\.js(\?.*)?$/,'');
   function $(id){ return document.getElementById(id); }
   var mf=$('plano'); if(!mf) return;
   var esc=mf.querySelector('.mf-escena'), pasos=mf.querySelectorAll('.vj-paso'), N=pasos.length, actual=-1, enVista=false;
-  var SELLO=['Plano 01 · Cámaras','Plano 02 · Patio lleno','Plano 03 · Cobro y panel'];
+  var SELLO=['1 · Cámaras','2 · Patio lleno','3 · Cobro y panel'];    
   var NS='http://www.w3.org/2000/svg';
   function el(tag,at,padre){ var e=document.createElementNS(NS,tag); for(var k in at) e.setAttribute(k,at[k]); if(padre) padre.appendChild(e); return e; }
   var semilla=7; function azar(){ semilla=(semilla*16807)%2147483647; return (semilla-1)/2147483646; }    
@@ -623,7 +623,7 @@ var RAIZ=CASO_SRC.replace(/caso\.js(\?.*)?$/,'');
   var sec=$('etapa'); if(!sec) return;
   var fijo=sec.querySelector('.lt-fijo'), caja=$('ltFondo'), pasos=sec.querySelectorAll('.vj-paso'), N=pasos.length;
   var cF=$('ltCF'), cL=$('ltCL'), cA=$('ltCA'), usos=sec.querySelectorAll('.lt-uso'), vuelta=$('ltVuelta');
-  var SELLO=['Plano 01 · El terreno','Plano 02 · Piso 1','Plano 03 · Piso 2','Plano 04 · Acceso','Render · Terminado'];
+  var SELLO=['1 · El terreno','2 · Piso 1','3 · Piso 2','4 · Acceso','5 · Así se vería'];    
   var foto=$('ltFoto'), fotoPedida=false, giroFin=0;
   var f=null, MAQ=null, q=0, actual=-1, giro=0, deriva=0, enVista=false, raf=0, ult=0, resaltada=null;
   function lim(x){ return Math.max(0,Math.min(1,x)); }
@@ -804,4 +804,25 @@ var RAIZ=CASO_SRC.replace(/caso\.js(\?.*)?$/,'');
     var im=pic.querySelector('img[data-src]'); if(im){ im.setAttribute('src',im.getAttribute('data-src')); im.removeAttribute('data-src'); }
     pic.removeAttribute('data-tarde'); }); }
   if(document.readyState==='complete') pide(); else addEventListener('load',pide);
+})();
+
+ 
+(function(){
+  var v=document.getElementById('gdVid'), sub=document.getElementById('gdSub'), prog=document.getElementById('gdProg'); if(!v) return;
+  var C=[[0,'Entra un carro: el operario elige el tipo de vehículo'],[4.8,'Escribe la placa y sale el tiquete'],[10,'Al salir, se lee el tiquete o se escribe la placa'],
+         [14,'Elige cómo paga: efectivo, transferencia o las dos'],[17.3,'Se cobra y queda listo para el siguiente carro'],[20.9,'Al cerrar el turno, cuenta la plata sin ver cuánto debería haber']];
+  var quieto=matchMedia('(prefers-reduced-motion: reduce)').matches, actual=-1;
+  function pon(i){ if(i===actual) return; actual=i; sub.classList.remove('ver'); setTimeout(function(){ sub.textContent=C[i][1]; sub.classList.add('ver'); },120); }
+  function mira(){ var t=v.currentTime, i=0; for(var k=0;k<C.length;k++) if(t>=C[k][0]) i=k; pon(i); if(v.duration) prog.style.width=(100*t/v.duration).toFixed(1)+'%'; }
+  v.addEventListener('timeupdate',mira); pon(0);
+  if(quieto||!('IntersectionObserver' in window)) return;
+  new IntersectionObserver(function(es){ es.forEach(function(e){
+    if(e.isIntersecting){ if(!v.src) v.src=v.dataset.src; var p=v.play(); if(p&&p.catch) p.catch(function(){}); } else if(!v.paused) v.pause(); }); },{threshold:.35}).observe(v);
+})();
+
+ 
+(function(){
+  [].forEach.call(document.querySelectorAll('a[data-parada]'),function(a){ a.addEventListener('click',function(e){
+    var pasos=document.querySelectorAll('#plano .vj-paso'), k=+a.getAttribute('data-parada'); if(!pasos[k]) return;
+    e.preventDefault(); pasos[k].click(); }); });
 })();
