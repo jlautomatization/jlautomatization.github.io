@@ -318,11 +318,12 @@
   @keyframes dash{0%,100%{transform:scaleX(.4);opacity:.5}50%{transform:scaleX(1);opacity:1}}
 
   
+  
   .aurora{position:fixed;inset:0;z-index:0;pointer-events:none;overflow:hidden}
-  .aurora i{position:absolute;width:62vmax;height:62vmax;border-radius:50%;filter:blur(90px);opacity:.16;mix-blend-mode:screen;animation:aur 28s ease-in-out infinite alternate;will-change:transform}
-  .aurora i:nth-child(1){left:-24vmax;top:-14vmax;background:radial-gradient(closest-side,rgba(31,78,121,.95),transparent 70%)}
-  .aurora i:nth-child(2){right:-28vmax;top:18vh;background:radial-gradient(closest-side,rgba(201,153,43,.55),transparent 70%);animation-duration:36s;animation-delay:-9s}
-  .aurora i:nth-child(3){left:18vw;bottom:-34vmax;background:radial-gradient(closest-side,rgba(74,147,214,.7),transparent 70%);animation-duration:42s;animation-delay:-18s}
+  .aurora i{position:absolute;width:62vmax;height:62vmax;border-radius:50%;opacity:.16;mix-blend-mode:screen;animation:aur 28s ease-in-out infinite alternate;will-change:transform}
+  .aurora i:nth-child(1){left:-24vmax;top:-14vmax;background:radial-gradient(closest-side,rgba(31,78,121,.7),rgba(31,78,121,.25) 50%,transparent)}
+  .aurora i:nth-child(2){right:-28vmax;top:18vh;background:radial-gradient(closest-side,rgba(201,153,43,.4),rgba(201,153,43,.14) 50%,transparent);animation-duration:36s;animation-delay:-9s}
+  .aurora i:nth-child(3){left:18vw;bottom:-34vmax;background:radial-gradient(closest-side,rgba(74,147,214,.5),rgba(74,147,214,.18) 50%,transparent);animation-duration:42s;animation-delay:-18s}
   @keyframes aur{from{transform:translate3d(0,0,0) scale(1)}to{transform:translate3d(9vw,7vh,0) scale(1.18)}}
   .dotgrid{position:fixed;inset:0;z-index:0;pointer-events:none;background-image:radial-gradient(rgba(255,255,255,.28) 1px,transparent 1.6px);background-size:26px 26px;-webkit-mask-image:radial-gradient(300px circle at var(--cx,-999px) var(--cy,-999px),#000 0%,rgba(0,0,0,.4) 45%,transparent 100%);mask-image:radial-gradient(300px circle at var(--cx,-999px) var(--cy,-999px),#000 0%,rgba(0,0,0,.4) 45%,transparent 100%)}
   .cursor{position:fixed;left:var(--cx,-999px);top:var(--cy,-999px);width:360px;height:360px;border-radius:50%;transform:translate(-50%,-50%);pointer-events:none;z-index:1;background:radial-gradient(circle,rgba(74,147,214,.16),rgba(242,184,75,.05) 40%,transparent 65%);display:none}
@@ -796,3 +797,6 @@ footer{overflow:hidden}
 @media (pointer: coarse) and (prefers-reduced-motion: no-preference){ .lap-wrap{height:auto} .lap-sticky{position:relative}
   
   .lap-title{position:relative;top:auto;opacity:1;transform:none;margin-bottom:var(--s2)} }
+
+
+html.ya-visto .hero .rv,html.ya-visto .hero h1 .w,html.ya-visto .hero h1 *{animation:none!important;opacity:1!important;transform:none!important;filter:none!important}
