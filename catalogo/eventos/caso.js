@@ -211,11 +211,11 @@ var CASO_SRC=(document.currentScript&&document.currentScript.src)||'';
       ['📊 Resumen diario\nEventos: 5 con pendientes · 8 sin pendientes\nSalidas y regresos registrados: 25\nDiferencias de conteo: 4 · Camiones demorados: 0\n\n📌 Pendientes más viejos sin resolver:\n  • Concierto al aire libre lleva 24 día(s) con 4 Vallas sin resolver.\n  • Festival gastronómico lleva 16 día(s) con 2 Vallas sin resolver.\n  • Lanzamiento de producto lleva 8 día(s) con 5 Vallas sin resolver.\nRegistros: nadie los ha cambiado','10:00 p. m.','noche'],
       ['🔴 FALTAN 2 Vallas al llegar a Festival al parque\nSe esperaban 90, llegaron 88.\nRecibido por: Andrés Ramírez.','11:14 p. m.','alerta'],
       ['¿Dónde está la EQ-T-001?','11:20 p. m.','yo'],
-      ['📍 EQ-T-001 (Truss cuadrado 3m) → Patio de truss\nEstado: bodega','11:20 p. m.',''],
+      ['📍 EQ-T-001 (Estructura metálica de 3\u00a0m) → Patio de estructuras\nEstado: bodega','11:20 p. m.',''],
       ['Historial de la EQ-T-001','11:21 p. m.','yo'],
-      ['📜 Historial de EQ-T-001 (Truss cuadrado 3m) — 2 movimiento(s):\n22/10/2026 23:13 — Salida inicial · Festival al parque (Bodega → Festival al parque)\n22/10/2026 23:14 — Regreso a bodega · Festival al parque (Festival al parque → Bodega)','11:21 p. m.',''],
+      ['📜 Historial de EQ-T-001 (Estructura metálica de 3\u00a0m) — 2 movimiento(s):\n22/10/2026 23:13 — Salida inicial · Festival al parque (Bodega → Festival al parque)\n22/10/2026 23:14 — Regreso a bodega · Festival al parque (Festival al parque → Bodega)','11:21 p. m.',''],
       ['¿Cuánto hay en bodega vs afuera?','11:22 p. m.','yo'],
-      ['📊 Resumen bodega vs. afuera\nReflectores: 4 en bodega · 2 afuera · 1 en mantenimiento · 1 perdido(s)\nTruss: 2 en bodega · 2 afuera\nTarimas: 2 en bodega · 2 afuera\nPirotecnia: 1 en bodega · 1 afuera\nVallas: 340 unidades en bodega · 60 unidades afuera\nTubería de palco: 60 m en bodega · 12 m afuera','11:22 p. m.','']
+      ['📊 Resumen bodega vs. afuera\nReflectores: 4 en bodega · 2 afuera · 1 en mantenimiento · 1 perdido(s)\nEstructuras: 2 en bodega · 2 afuera\nTarimas: 2 en bodega · 2 afuera\nPirotecnia: 1 en bodega · 1 afuera\nVallas: 340 unidades en bodega · 60 unidades afuera\nTubería de palco: 60\u00a0m en bodega · 12\u00a0m afuera','11:22 p. m.','']
     ];
     var timers=[];
     function play(){ timers.forEach(clearTimeout); timers=[]; box.innerHTML='';
