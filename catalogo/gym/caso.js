@@ -275,3 +275,39 @@ var CASO_BASE=CASO_SRC?CASO_SRC.replace(/caso\.js[^\/]*$/,''):'';
         var tp=el.getAttribute('data-tipo'); if(irA(el.getAttribute('data-ir'),tp) && tp && window.__msgTipo) setTimeout(function(){ window.__msgTipo(tp); },REDUCE?0:400); }); });
   })();
 })();
+
+ 
+(function(){
+  'use strict';
+  var quieto=matchMedia('(prefers-reduced-motion: reduce)').matches, IO='IntersectionObserver' in window;
+  var SUB=document.body.getAttribute('data-sub')||'', MEDIA=(SUB?'../':'')+'media/';
+  function mira(el,fn,opts){ if(!el) return; if(!IO){ fn(true); return; } new IntersectionObserver(function(es){ es.forEach(function(e){ fn(e.isIntersecting); }); },opts||{threshold:.25}).observe(el); }
+  var sec=document.getElementById('hx');
+  if(sec){
+    var med=sec.querySelector('.hx-media'), v=document.getElementById('hxVid');
+    if(v){
+      var alto=matchMedia('(max-width: 899px)'), actual='';
+      var pon=function(){ var n=alto.matches?'hero-1x1':'hero-16x9'; if(n===actual) return; actual=n;
+        med.style.backgroundImage='url('+MEDIA+n+'.jpg)';
+        med.style.backgroundImage='image-set(url('+MEDIA+n+'.avif) type("image/avif"), url('+MEDIA+n+'.jpg) type("image/jpeg"))';
+        if(quieto) return; v.classList.remove('lista'); v.src=MEDIA+n+'.mp4'; v.load(); var p=v.play(); if(p&&p.catch) p.catch(function(){}); };
+      v.addEventListener('playing',function(){ v.classList.add('lista'); });
+      pon(); if(alto.addEventListener) alto.addEventListener('change',pon);
+      if(!quieto) mira(sec,function(si){ if(si){ var p=v.play(); if(p&&p.catch) p.catch(function(){}); } else v.pause(); },{threshold:0});
+    }
+    if(!quieto){ var pend=false;
+      var mueve=function(){ pend=false; var p=Math.min(1,Math.max(0,scrollY/(sec.offsetHeight||1))); sec.style.setProperty('--p',p.toFixed(3)); };
+      addEventListener('scroll',function(){ if(!pend){ pend=true; requestAnimationFrame(mueve); } },{passive:true}); mueve(); }
+  }
+  var av=document.getElementById('dhAviso');
+  if(av){ var vino=false;
+    var llega=function(){ if(vino) return; vino=true; av.classList.add('ver'); if(!quieto&&av.hasAttribute('data-zumba')) av.classList.add('zumba'); };
+    if(quieto) llega(); else setTimeout(llega,1200); }
+  [].forEach.call(document.querySelectorAll('.cn-fondo'),function(caja){
+    mira(caja,function(si){ if(!si||caja._ok) return; caja._ok=true;
+      [].forEach.call(caja.querySelectorAll('[data-srcset]'),function(s){ s.srcset=s.getAttribute('data-srcset'); });
+      [].forEach.call(caja.querySelectorAll('img[data-src]'),function(i){ i.src=i.getAttribute('data-src'); });
+    },{rootMargin:'150% 0px'});
+    if(!quieto) mira(caja,function(si){ caja.classList.toggle('vivo',si); },{threshold:.2});
+  });
+})();
