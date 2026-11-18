@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<script>try{var k="jlaVisto:"+location.pathname;if(sessionStorage.getItem(k))document.documentElement.classList.add("ya-visto");else sessionStorage.setItem(k,"1")}catch(_){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Más funciones: sistema para parqueaderos — JLA</title>
+<meta name="description" content="Lo que se suma con el plan Pro: cámaras que leen la placa, aviso de patio lleno, cobro por QR y un panel con gráficas.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Más funciones: sistema para parqueaderos — JLA">
+<meta property="og:description" content="Lo que se suma con el plan Pro: cámaras que leen la placa, aviso de patio lleno, cobro por QR y un panel con gráficas.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231D3A5A'/%3E%3Cstop offset='1' stop-color='%230A121C'/%3E%3C/linearGradient%3E%3ClinearGradient id='o' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23FFE3A3'/%3E%3Cstop offset='1' stop-color='%23C9992B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23b)'/%3E%3Cg transform='translate(2.6 2.6) scale(.42)'%3E%3Cpath d='M12 50 32 14 52 50' fill='none' stroke='%23F4F7FB' stroke-opacity='.6' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='12' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='52' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='32' cy='14' r='9' fill='url(%23o)'/%3E%3C/g%3E%3C/svg%3E">
+<style>@font-face {font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/sora-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/sora-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}</style>
+<script>(function(){var d=document.documentElement,q=location.search;try{if(/[?&]lento\b/.test(q))sessionStorage.vtLento=1;if(/[?&]rapido\b/.test(q))sessionStorage.removeItem("vtLento");if(sessionStorage.vtLento)d.classList.add("vt-lento")}catch(_){}addEventListener("pagereveal",function(e){var vt=e.viewTransition;if(!vt)return;var atras=false;try{var a=navigation.activation;atras=a.navigationType==="traverse"&&a.from&&a.entry.index<a.from.index}catch(_){}d.classList.add("vt-in","vt-llega");if(atras)d.classList.add("vt-atras");vt.ready.catch(function(){});if(vt.updateCallbackDone)vt.updateCallbackDone.catch(function(){});vt.finished.catch(function(){}).then(function(){d.classList.remove("vt-in","vt-atras")})})})();</script>
+<link rel="stylesheet" href="../../_base/estilo.css?v=18335b07">
+<link rel="stylesheet" href="../caso.css?v=9059279b">
+</head>
+<body data-page="caso" data-caso="parqueadero" data-sub="mas-funciones">
+
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="dotgrid" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="grid-lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="gOro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE3A3"/><stop offset="1" stop-color="#C9992B"/></linearGradient></defs>
+  <symbol id="logo" viewBox="-2 3 92 44"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10 V31 a9 9 0 0 1 -18 0"/><path d="M34 10 V40 H50"/></g><path d="M60 40 L72 10 L84 40" fill="none" stroke="currentColor" stroke-opacity=".55" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"/><circle cx="60" cy="40" r="5.5" fill="currentColor"/><circle cx="84" cy="40" r="5.5" fill="currentColor"/><circle class="pulso" cx="72" cy="10" r="6.5" fill="none" stroke="#E2B54F" stroke-width="2"/><circle cx="72" cy="10" r="6.5" fill="url(#gOro)"/></symbol>
+  <symbol id="logoIcon" viewBox="0 0 64 64"><path d="M12 50 L32 14 L52 50" fill="none" stroke="currentColor" stroke-opacity=".55" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/><circle cx="12" cy="50" r="7" fill="currentColor"/><circle cx="52" cy="50" r="7" fill="currentColor"/><circle class="pulso" cx="32" cy="14" r="8" fill="none" stroke="#E2B54F" stroke-width="2"/><circle cx="32" cy="14" r="8" fill="url(#gOro)"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<nav class="nav" id="nav" aria-label="Principal">
+  <a class="brand" href="../../../index.html" aria-label="JLA — inicio"><svg class="mark" aria-hidden="true"><use href="#logo"/></svg></a>
+  <ul id="menu"><li><a href="../">Inicio</a></li><li><a href="../como-funciona/">Cómo funciona</a></li><li><a href="../mas-funciones/" aria-current="page">Más funciones<span class="nav-marca" aria-hidden="true"></span></a></li><li><a href="../lote/">El lote</a></li><li><a href="../costos/">Costos</a></li><li class="solo-cel"><a href="#contacto" data-correo>Solicitar cotización</a></li></ul>
+  <div class="nav-der"><a href="#contacto" class="btn btn-primary" data-correo>Solicitar cotización</a>
+  <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><i></i><i></i></button></div>
+</nav>
+
+<main id="top">
+  <div class="hx-tope" aria-hidden="true"></div>
+
+  <section class="page-first cs-cab cs-cab-sub">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow"><b>●</b>Paso 2 de 4 · Más funciones</span>
+        <h1 class="ph">Véalo <span class="it">crecer.</span></h1>
+      </div>
+      <ol class="gd-indice rv" style="--d:.1s" aria-label="En esta página">
+        <li><a href="#plano" data-parada="0"><span class="gd-n">1</span><span><b>Lee la placa</b></span></a></li>
+        <li><a href="#plano" data-parada="1"><span class="gd-n">2</span><span><b>Avisa antes de llenarse</b></span></a></li>
+        <li><a href="#plano" data-parada="2"><span class="gd-n">3</span><span><b>Cobra por QR</b></span></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="mf" id="plano" aria-label="Las funciones nuevas, dibujadas en plano">
+    <div class="mf-fijo">
+      <div class="wrap mf-grid">
+        <div class="mf-texto">
+          <span class="eyebrow"><b>●</b>Lo que se suma</span>
+          <h2 class="vj-h mf-h">Tres cosas que <span class="it">hoy no tiene.</span></h2>
+          <ol class="vj-pasos mf-pasos">
+            <li class="vj-paso on"><span class="vj-barra"><i></i></span><span class="vj-n">1</span><b>La cámara lee la placa.</b></li>
+            <li class="vj-paso"><span class="vj-barra"><i></i></span><span class="vj-n">2</span><b>El patio avisa antes de llenarse.</b></li>
+            <li class="vj-paso"><span class="vj-barra"><i></i></span><span class="vj-n">3</span><b>Cobro por QR. Todo en un panel.</b></li>
+          </ol>
+        </div>
+
+        <div class="mf-escena" data-p="0">
+          <div class="mf-plano">
+            <i class="mf-esq" aria-hidden="true"></i>
+
+            <div class="mf-capa mf-c0" aria-label="Plano sobre foto: la cámara de la salida lee la placa del carro">
+              <div class="mf-foto" id="mfFotoCam">
+                <picture><source type="image/avif" srcset="../media/mf-camara-1000.avif 1000w, ../media/mf-camara-1200.avif 1200w, ../media/mf-camara-1600.avif 1600w" sizes="(max-width:899px) 100vw, 62vw"><img class="mf-img" src="../media/mf-camara-1000.jpg" srcset="../media/mf-camara-1000.jpg 1000w, ../media/mf-camara-1200.jpg 1200w, ../media/mf-camara-1600.jpg 1600w" sizes="(max-width:899px) 100vw, 62vw" width="1600" height="1072" alt="" loading="lazy" decoding="async"></picture>
+                <i class="mf-tapa" aria-hidden="true"></i>
+                <i class="mf-faro f1" aria-hidden="true"></i><i class="mf-faro f2" aria-hidden="true"></i>
+                <svg class="mf-svg mf-sobre" viewBox="0 0 1000 667" aria-hidden="true">
+                  <path class="mf-guia" pathLength="1" d="M475 441 L440 323 L389 323"/>
+                  <path class="mf-mira" pathLength="1" d="M475 452 V441 H487 M523 441 H535 V452 M535 468 V479 H523 M487 479 H475 V468"/>
+                  <rect class="mf-barrido" x="479" y="444" width="2.5" height="32"/>
+                </svg>
+              </div>
+              <span class="mf-cam"><i></i>Cámara 2 · salida</span>
+              <div class="mf-lee" id="mfLee" aria-live="polite"><small>Placa leída</small><b id="mfLeeP">DEM-123</b><span id="mfLeeR"></span></div>
+              <div class="mf-aviso" id="mfAv0"><span class="ni"><svg><use href="#logoIcon"/></svg></span><span><b>Le llegaría al dueño</b><small>No coincide: tiquete DEM-123 · cámara KTR-409.</small></span></div>
+            </div>
+
+            <div class="mf-capa mf-c1" aria-label="Plano sobre foto: el patio visto desde arriba se llena de carros">
+              <div class="mf-foto"><picture data-tarde><source type="image/avif" data-srcset="../media/mf-patio-1000.avif 1000w, ../media/mf-patio-1200.avif 1200w, ../media/mf-patio-1600.avif 1600w" sizes="(max-width:899px) 100vw, 62vw"><img class="mf-img" data-src="../media/mf-patio-1000.jpg" data-srcset="../media/mf-patio-1000.jpg 1000w, ../media/mf-patio-1200.jpg 1200w, ../media/mf-patio-1600.jpg 1600w" sizes="(max-width:899px) 100vw, 62vw" width="1600" height="1072" alt="" loading="lazy" decoding="async"></picture></div>
+              <svg class="mf-svg" id="mfPatio" viewBox="0 0 640 440" aria-hidden="true"></svg>
+              <span class="mf-lleno" id="mfLleno">Lleno</span>
+              <div class="mf-aviso" id="mfAv1"><span class="ni"><svg><use href="#logoIcon"/></svg></span><span><b>Le llegaría al dueño</b><small id="mfAv1T">Patio al 90 %: quedan 4 cupos.</small></span></div>
+            </div>
+
+            <div class="mf-capa mf-c2" aria-label="Plano sobre foto: un código QR en el celular para pagar y el panel del dueño con gráficas">
+              <div class="mf-foto"><picture data-tarde><source type="image/avif" data-srcset="../media/mf-celular-1000.avif 1000w, ../media/mf-celular-1200.avif 1200w, ../media/mf-celular-1600.avif 1600w" sizes="(max-width:899px) 100vw, 62vw"><img class="mf-img" data-src="../media/mf-celular-1000.jpg" data-srcset="../media/mf-celular-1000.jpg 1000w, ../media/mf-celular-1200.jpg 1200w, ../media/mf-celular-1600.jpg 1600w" sizes="(max-width:899px) 100vw, 62vw" width="1600" height="1072" alt="" loading="lazy" decoding="async"></picture></div>
+              <div class="mf-pant" aria-hidden="true"><svg class="mf-svg" id="mfQr" viewBox="-14 -14 196 196"></svg></div>
+              <svg class="mf-svg" id="mfCobro" viewBox="0 0 640 440" aria-hidden="true">
+                <rect class="mf-vidrio" x="308" y="78" width="304" height="284" rx="10"/>
+                <path class="mf-l" pathLength="1" d="M318 78 H602 Q612 78 612 88 V352 Q612 362 602 362 H318 Q308 362 308 352 V88 Q308 78 318 78 Z M308 104 H612"/>
+                <path class="mf-l mf-tenue" pathLength="1" d="M330 330 H592 M330 280 H592 M330 230 H592 M330 180 H592"/>
+                <g id="mfBarras"></g>
+                <path class="mf-l mf-linea" pathLength="1" d="M341 236 L379 211 L417 225 L455 183 L493 198 L531 145 L569 191"/>
+              </svg>
+              <span class="mf-et mf-et-qr">Pago por QR</span>
+              <span class="mf-et mf-et-pa">Panel del dueño</span>
+            </div>
+
+          </div>
+          <div class="mf-sello" aria-hidden="true"><span id="mfSelloT">1 · Cámaras</span></div>
+
+          <div class="mf-bajo">
+            <div class="mf-b mf-b0">
+              <span class="mf-pre">El tiquete dice <b>DEM-123</b>. Pruebe: ¿y si sale otro carro?</span>
+              <div class="mf-pls">
+                <button type="button" class="mf-pl" data-pl="DEM-123" aria-label="Sale el carro de placa DEM-123">DEM-123</button>
+                <button type="button" class="mf-pl" data-pl="KTR-409" aria-label="Sale el carro de placa KTR-409">KTR-409</button>
+              </div>
+            </div>
+            <div class="mf-b mf-b1">
+              <span class="mf-num" id="mfNum">0&nbsp;%</span>
+              <span class="mf-ocu"><b>ocupado</b><span id="mfCupos">quedan 40 cupos</span><i class="mf-ocu-b"><i id="mfOcuB"></i></i></span>
+            </div>
+            <div class="mf-b mf-b2">
+              <span class="mf-dos"><b>Referencia única</b>Lo que se pagó por QR no se puede repetir.</span>
+              <span class="mf-dos"><b>Ingresos y ocupación</b>Por día, por hora y mes contra mes.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="beam" aria-hidden="true"></div>
+  <section id="lista" class="mfl">
+    <div class="wrap">
+      <div class="sec-head center rv">
+        <span class="eyebrow">Todo, en una lista</span>
+        <h2>Las 13 funciones <span class="it">que se suman.</span></h2>
+      </div>
+      <div class="mfl-grid rv">
+        <div class="mfl-g">
+          <h3>Cámaras</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Lee la placa al entrar y salir</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Mismo tiquete, mismo carro</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Aviso de carro sin registro</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Foto en el tiquete</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Talanquera automática</span></li>
+          </ul>
+        </div>
+        <div class="mfl-g">
+          <h3>Patio lleno</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Aviso al 90&nbsp;% y al 100&nbsp;%</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Cupos libres en pantalla</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>«Lleno» en la entrada</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Horas pico</span></li>
+          </ul>
+        </div>
+        <div class="mfl-g">
+          <h3>Cobro y panel</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Pago por QR</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Vencimientos por WhatsApp*</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Panel con gráficas</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Varias sedes, un panel</span></li>
+          </ul>
+        </div>
+      </div>
+      <p class="mfl-nota rv">* WhatsApp cobra cada mensaje que entrega. Ese valor va en su cotización.</p>
+      <div class="gd-sig rv">
+        <span class="eyebrow"><b>●</b>Siguiente: paso 3 de 4</span>
+        <div class="mx-grid">
+          <a class="mx-ir" href="../lote/">
+            <span class="mx-vid"><video muted loop playsinline preload="none" poster="../media/k7-lote.jpg" data-src="../media/k7-lote.mp4"></video></span>
+            <span class="mx-txt"><b>El lote</b><span class="mx-mas">Ver el lote <svg class="arr"><use href="#i-arrow"/></svg></span></span>
+          </a>
+        </div>
+        <p class="gd-ya">Todo esto viene con el plan Pro. <a href="../costos/">Vea su precio en Costos <svg class="arr"><use href="#i-arrow"/></svg></a></p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contacto">
+    <div class="wrap">
+      <div class="contact rv">
+        <div class="ring" aria-hidden="true"></div>
+        <h2>Cuéntenos su <span class="it">problema.</span></h2>
+        <p class="lead">Escríbanos qué empresa tiene, cuál es la necesidad y cómo la resuelve hoy. Con esa información preparamos una propuesta y una cotización a la medida.</p>
+        <a href="#contacto" class="btn btn-primary" data-correo>Solicitar cotización <svg class="arr"><use href="#i-arrow"/></svg></a>
+        <div></div>
+        <p class="ayuda">Se abrirá su correo con el mensaje preparado. Solo debe completarlo y enviarlo.</p>
+        <div class="meta">
+          <a href="https://instagram.com/jlautomatization" target="_blank" rel="noopener">Instagram @JLAUTOMATIZATION</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="../../../index.html" aria-label="JLA — inicio">
+      <svg class="mark" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="word" style="display:block">Automatización · Software</span>
+    </a>
+  </div>
+  <div class="pie-gigante" aria-hidden="true"><svg class="pie-base"><use href="#logo" width="100%" height="100%"/></svg><svg class="pie-luz"><use href="#logo" width="100%" height="100%"/></svg></div>
+</footer>
+
+<script src="../../_base/app.js?v=18335b07"></script>
+<script src="../caso.js?v=9059279b"></script>
+</body>
+</html>

@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<script>try{var k="jlaVisto:"+location.pathname;if(sessionStorage.getItem(k))document.documentElement.classList.add("ya-visto");else sessionStorage.setItem(k,"1")}catch(_){}</script>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Más funciones: sistema para empresas de eventos — JLA</title>
+<meta name="description" content="Véalo crecer: un código en cada equipo, su lugar en el estante, el trabajo sin señal y todo lo que también trae.">
+<meta name="theme-color" content="#000000">
+<meta property="og:title" content="Más funciones: sistema para empresas de eventos — JLA">
+<meta property="og:description" content="Véalo crecer: un código en cada equipo, su lugar en el estante, el trabajo sin señal y todo lo que también trae.">
+<meta property="og:type" content="website">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Cdefs%3E%3ClinearGradient id='b' x1='0' y1='0' x2='0' y2='1'%3E%3Cstop offset='0' stop-color='%231D3A5A'/%3E%3Cstop offset='1' stop-color='%230A121C'/%3E%3C/linearGradient%3E%3ClinearGradient id='o' x1='0' y1='0' x2='1' y2='1'%3E%3Cstop offset='0' stop-color='%23FFE3A3'/%3E%3Cstop offset='1' stop-color='%23C9992B'/%3E%3C/linearGradient%3E%3C/defs%3E%3Crect width='32' height='32' rx='8' fill='url(%23b)'/%3E%3Cg transform='translate(2.6 2.6) scale(.42)'%3E%3Cpath d='M12 50 32 14 52 50' fill='none' stroke='%23F4F7FB' stroke-opacity='.6' stroke-width='6' stroke-linecap='round' stroke-linejoin='round'/%3E%3Ccircle cx='12' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='52' cy='50' r='8' fill='%23F4F7FB'/%3E%3Ccircle cx='32' cy='14' r='9' fill='url(%23o)'/%3E%3C/g%3E%3C/svg%3E">
+<style>@font-face {font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:400;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:500;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:600;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:700;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/inter-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Inter';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/inter-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}@font-face {font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/sora-800-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Sora';font-style:normal;font-weight:800;font-display:swap;src:url(../../../letras/sora-800-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}</style>
+<script>(function(){var d=document.documentElement,q=location.search;try{if(/[?&]lento\b/.test(q))sessionStorage.vtLento=1;if(/[?&]rapido\b/.test(q))sessionStorage.removeItem("vtLento");if(sessionStorage.vtLento)d.classList.add("vt-lento")}catch(_){}addEventListener("pagereveal",function(e){var vt=e.viewTransition;if(!vt)return;var atras=false;try{var a=navigation.activation;atras=a.navigationType==="traverse"&&a.from&&a.entry.index<a.from.index}catch(_){}d.classList.add("vt-in","vt-llega");if(atras)d.classList.add("vt-atras");vt.ready.catch(function(){});if(vt.updateCallbackDone)vt.updateCallbackDone.catch(function(){});vt.finished.catch(function(){}).then(function(){d.classList.remove("vt-in","vt-atras")})})})();</script>
+<link rel="stylesheet" href="../../_base/estilo.css?v=18335b07">
+<link rel="stylesheet" href="../caso.css?v=37180e4d">
+</head>
+<body data-page="caso" data-caso="eventos" data-sub="mas-funciones">
+
+<canvas id="stars" aria-hidden="true"></canvas>
+<div class="aurora" aria-hidden="true"><i></i><i></i><i></i></div>
+<div class="dotgrid" aria-hidden="true"></div>
+<div class="cursor" aria-hidden="true"></div>
+<div class="grain" aria-hidden="true"></div>
+<div class="grid-lines" aria-hidden="true"><i></i><i></i><i></i><i></i><i></i></div>
+
+<svg width="0" height="0" style="position:absolute" aria-hidden="true">
+  <defs><linearGradient id="gOro" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#FFE3A3"/><stop offset="1" stop-color="#C9992B"/></linearGradient></defs>
+  <symbol id="logo" viewBox="-2 3 92 44"><g fill="none" stroke="currentColor" stroke-width="7" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10 V31 a9 9 0 0 1 -18 0"/><path d="M34 10 V40 H50"/></g><path d="M60 40 L72 10 L84 40" fill="none" stroke="currentColor" stroke-opacity=".55" stroke-linecap="round" stroke-linejoin="round" stroke-width="4.5"/><circle cx="60" cy="40" r="5.5" fill="currentColor"/><circle cx="84" cy="40" r="5.5" fill="currentColor"/><circle class="pulso" cx="72" cy="10" r="6.5" fill="none" stroke="#E2B54F" stroke-width="2"/><circle cx="72" cy="10" r="6.5" fill="url(#gOro)"/></symbol>
+  <symbol id="logoIcon" viewBox="0 0 64 64"><path d="M12 50 L32 14 L52 50" fill="none" stroke="currentColor" stroke-opacity=".55" stroke-linecap="round" stroke-linejoin="round" stroke-width="5"/><circle cx="12" cy="50" r="7" fill="currentColor"/><circle cx="52" cy="50" r="7" fill="currentColor"/><circle class="pulso" cx="32" cy="14" r="8" fill="none" stroke="#E2B54F" stroke-width="2"/><circle cx="32" cy="14" r="8" fill="url(#gOro)"/></symbol>
+  <symbol id="i-check" viewBox="0 0 24 24"><path d="M20 6 9 17l-5-5"/></symbol>
+  <symbol id="i-arrow" viewBox="0 0 24 24"><path d="M5 12h14M13 6l6 6-6 6" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"/></symbol>
+</svg>
+
+<nav class="nav" id="nav" aria-label="Principal">
+  <a class="brand" href="../../../index.html" aria-label="JLA — inicio"><svg class="mark" aria-hidden="true"><use href="#logo"/></svg></a>
+  <ul id="menu"><li><a href="../">Inicio</a></li><li><a href="../como-funciona/">Cómo funciona</a></li><li><a href="../dueno/">El dueño</a></li><li><a href="../mas-funciones/" aria-current="page">Más funciones<span class="nav-marca" aria-hidden="true"></span></a></li><li class="solo-cel"><a href="#contacto" data-correo>Solicitar cotización</a></li></ul>
+  <div class="nav-der"><a href="#contacto" class="btn btn-primary" data-correo>Solicitar cotización</a>
+  <button class="menu-btn" id="menuBtn" type="button" aria-label="Abrir menú" aria-expanded="false" aria-controls="menu"><i></i><i></i></button></div>
+</nav>
+
+<main id="top">
+  <div class="hx-tope" aria-hidden="true"></div>
+
+  <section class="page-first cs-cab cs-cab-sub">
+    <div class="wrap">
+      <div class="sec-head rv">
+        <span class="eyebrow"><b>●</b>Paso 3 de 3 · Más funciones</span>
+        <h1 class="ph">Véalo <span class="it">crecer.</span></h1>
+      </div>
+      <ol class="gd-indice rv" style="--d:.1s" aria-label="En esta página">
+        <li><a href="#plano" data-parada="0"><span class="gd-n">1</span><span><b>Un código por equipo</b></span></a></li>
+        <li><a href="#plano" data-parada="1"><span class="gd-n">2</span><span><b>Su lugar en el estante</b></span></a></li>
+        <li><a href="#plano" data-parada="2"><span class="gd-n">3</span><span><b>Sin señal, igual funciona</b></span></a></li>
+      </ol>
+    </div>
+  </section>
+
+  <section class="mf" id="plano" aria-label="Lo que se suma, parada por parada">
+    <div class="mf-fijo">
+      <div class="wrap mf-grid">
+        <div class="mf-texto">
+          <span class="eyebrow"><b>●</b>Lo que se suma</span>
+          <h2 class="vj-h mf-h">Tres cosas que <span class="it">su bodega no tiene.</span></h2>
+          <ol class="vj-pasos mf-pasos">
+            <li class="vj-paso on"><span class="vj-barra"><i></i></span><span class="vj-n">1</span><b>Un código por equipo.</b></li>
+            <li class="vj-paso"><span class="vj-barra"><i></i></span><span class="vj-n">2</span><b>Su lugar en el estante.</b></li>
+            <li class="vj-paso"><span class="vj-barra"><i></i></span><span class="vj-n">3</span><b>Sin señal, igual funciona.</b></li>
+          </ol>
+        </div>
+
+        <div class="mf-escena" data-p="0">
+          <div class="mf-plano">
+            <i class="mf-esq" aria-hidden="true"></i>
+
+            <div class="mf-capa mf-c0" aria-label="Un reflector con su etiqueta: código QR y EQ-R-023">
+              <div class="mf-foto" style="--x:59%;--y:58%">
+                <picture><source type="image/avif" srcset="../media/mf-reflector-1000.avif 1000w, ../media/mf-reflector-1200.avif 1200w, ../media/mf-reflector-1600.avif 1600w" sizes="(max-width:899px) 100vw, 62vw"><img class="mf-img" src="../media/mf-reflector-1000.jpg" srcset="../media/mf-reflector-1000.jpg 1000w, ../media/mf-reflector-1200.jpg 1200w, ../media/mf-reflector-1600.jpg 1600w" sizes="(max-width:899px) 100vw, 62vw" width="1600" height="1072" alt="" loading="lazy" decoding="async"></picture>
+                <svg class="mf-svg" viewBox="0 0 1000 670" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <path class="mf-l" pathLength="1" d="M533 362 L643 343 L659 427 L547 447 Z"/>
+                  <path class="mf-l mf-tenue" pathLength="1" d="M547 447 L470 560 L120 560"/>
+                  <rect class="mf-barrido" x="540" y="350" width="3" height="96"/>
+                </svg>
+              </div>
+              <div class="mf-lee ev-lee" aria-hidden="true"><small>Leído con la cámara</small><b>EQ-R-023</b><span>Reflectores · PAR LED</span></div>
+            </div>
+
+            <div class="mf-capa mf-c1" aria-label="Pasillo de estantes: la EQ-R-023 está en el B-4">
+              <div class="mf-foto" style="--x:20%;--y:57%">
+                <picture><source type="image/avif" srcset="../media/mf-estante-1000.avif 1000w, ../media/mf-estante-1200.avif 1200w, ../media/mf-estante-1600.avif 1600w" sizes="(max-width:899px) 100vw, 62vw"><img class="mf-img" src="../media/mf-estante-1000.jpg" srcset="../media/mf-estante-1000.jpg 1000w, ../media/mf-estante-1200.jpg 1200w, ../media/mf-estante-1600.jpg 1600w" sizes="(max-width:899px) 100vw, 62vw" width="1600" height="1072" alt="" loading="lazy" decoding="async"></picture>
+                <svg class="mf-svg" viewBox="0 0 1000 670" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <path class="mf-l" pathLength="1" d="M760 120 C600 130 330 250 112 372"/>
+                  <path class="mf-l" pathLength="1" d="M60 361 H114 V397 H60 Z"/>
+                  <path class="mf-l mf-tenue" pathLength="1" d="M872 361 H924 V395 H872 Z"/>
+                </svg>
+              </div>
+              <div class="mf-lee ev-lee ev-lee-dr" aria-hidden="true"><small>Equipo → estante</small><b>EQ-R-023 → B&#8209;4</b><span>Reflectores · PAR LED</span></div>
+            </div>
+
+            <div class="mf-capa mf-c2" aria-label="Celular sin señal en un coliseo: el registro queda guardado y se sube solo cuando vuelve la señal">
+              <div class="mf-foto" style="--x:66%;--y:72%">
+                <picture><source type="image/avif" srcset="../media/mf-sinsenal-1000.avif 1000w, ../media/mf-sinsenal-1200.avif 1200w, ../media/mf-sinsenal-1600.avif 1600w" sizes="(max-width:899px) 100vw, 62vw"><img class="mf-img" src="../media/mf-sinsenal-1000.jpg" srcset="../media/mf-sinsenal-1000.jpg 1000w, ../media/mf-sinsenal-1200.jpg 1200w, ../media/mf-sinsenal-1600.jpg 1600w" sizes="(max-width:899px) 100vw, 62vw" width="1600" height="1072" alt="" loading="lazy" decoding="async"></picture>
+                <svg class="mf-svg" viewBox="0 0 1000 670" preserveAspectRatio="xMidYMid slice" aria-hidden="true">
+                  <path class="mf-l" pathLength="1" d="M527 465 L779 444 L792 488 L539 509 Z"/>
+                  <path class="mf-l mf-tenue" pathLength="1" d="M655 452 L655 300 L640 230"/>
+                </svg>
+              </div>
+              <div class="ev-red" id="evRed" aria-hidden="true">
+                <span class="ev-red-a"><svg viewBox="0 0 24 24"><path d="M2 8.8a15 15 0 0 1 20 0M5 12.5a10 10 0 0 1 14 0M8.5 16a5 5 0 0 1 7 0"/><path d="M3 3l18 18"/></svg><b>Sin señal</b><small>Salida guardada en el celular</small></span>
+                <span class="ev-red-b"><svg viewBox="0 0 24 24"><path d="M5 12.5l4.5 4.5L19 7"/></svg><b>Volvió la señal</b><small>Se subió solo</small></span>
+              </div>
+            </div>
+
+          </div>
+          <div class="mf-sello" aria-hidden="true"><span id="mfSelloT">1 · Un código por equipo</span></div>
+
+          <div class="mf-bajo">
+            <div class="mf-b mf-b0">
+              <span class="mf-dos"><b>El código también va en texto</b>Si el QR se daña, igual se puede escribir.</span>
+              <span class="mf-dos"><b>No «faltan reflectores»</b>Falta la EQ-R-023, y el sistema sabe quién la tuvo.</span>
+            </div>
+            <div class="mf-b mf-b1">
+              <span class="mf-dos"><b>La EQ-R-023 está en el B&#8209;4</b>Se lee el equipo, se lee el estante, y queda su lugar.</span>
+              <span class="mf-dos"><b>Sin aparatos aparte</b>El lector es la cámara del celular.</span>
+            </div>
+            <div class="mf-b mf-b2">
+              <span class="mf-dos"><b>Se guarda en el celular</b>En un coliseo o un parque, no se pierde.</span>
+              <span class="mf-dos"><b>Se sube solo</b>Cuando vuelve la señal, sin tocar nada.</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="beam" aria-hidden="true"></div>
+  <section id="trae">
+    <div class="wrap">
+      <div class="ev-dest rv">
+        <div class="ev-dest-txt">
+          <h2>Programe el evento. <span class="it">Sepa hoy si alcanza.</span></h2>
+          <p class="lead">Aparte el material para una fecha y véalo en el calendario y en la app de bodega.</p>
+        </div>
+        <div class="ev-dest-tel" aria-hidden="true">
+          <div class="isla"></div>
+          <picture><source type="image/avif" srcset="../media/p-programar-cel.avif"><img src="../media/p-programar-cel.jpg" alt="" width="780" height="1688" loading="lazy"></picture>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="beam" aria-hidden="true"></div>
+  <section id="lista" class="mfl">
+    <div class="wrap">
+      <div class="sec-head center rv">
+        <span class="eyebrow">Todo, en una lista</span>
+        <h2>Lo que también <span class="it">trae.</span></h2>
+      </div>
+      <div class="mfl-grid rv">
+        <div class="mfl-g">
+          <h3>En la bodega</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Retoma lo que quedó a medias</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Pasa material de un evento a otro</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Hoja de salida para imprimir o mandar por WhatsApp</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Cada operario con su PIN</span></li>
+          </ul>
+        </div>
+        <div class="mfl-g">
+          <h3>Para el dueño</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Le señala lo que lleva más de 7 días afuera</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Calendario de eventos, mes a mes</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Cada diferencia de conteo, guardada</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Copia de seguridad con un toque</span></li>
+          </ul>
+        </div>
+        <div class="mfl-g">
+          <h3>Las etiquetas</h3>
+          <ul>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Aguantan el calor y el roce</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Primero se prueban en 10 equipos</span></li>
+            <li><svg viewBox="0 0 24 24" aria-hidden="true"><use href="#i-check"/></svg><span>Solo se compra la impresora de etiquetas</span></li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <div class="beam" aria-hidden="true"></div>
+  <section id="hoy">
+    <div class="wrap">
+      <div class="sec-head gd-fin rv">
+        <span class="eyebrow">Para empezar</span>
+        <h2>Todo listo. <span class="it">Falta su bodega.</span></h2>
+        <p>Lo ponemos a andar en su bodega: los celulares de su equipo, la impresora de etiquetas y los mensajes al celular del dueño.</p>
+      </div>
+    </div>
+  </section>
+
+
+  <section id="contacto">
+    <div class="wrap">
+      <div class="contact rv">
+        <div class="ring" aria-hidden="true"></div>
+        <h2>Cuéntenos su <span class="it">problema.</span></h2>
+        <p class="lead">Escríbanos qué empresa tiene, cuál es la necesidad y cómo la resuelve hoy. Con esa información preparamos una propuesta y una cotización a la medida.</p>
+        <a href="#contacto" class="btn btn-primary" data-correo>Solicitar cotización <svg class="arr"><use href="#i-arrow"/></svg></a>
+        <div></div>
+        <p class="ayuda">Se abrirá su correo con el mensaje preparado. Solo debe completarlo y enviarlo.</p>
+        <div class="meta">
+          <a href="https://instagram.com/jlautomatization" target="_blank" rel="noopener">Instagram @JLAUTOMATIZATION</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="wrap foot">
+    <a class="brand" href="../../../index.html" aria-label="JLA — inicio">
+      <svg class="mark" aria-hidden="true"><use href="#logo"/></svg>
+      <span class="word" style="display:block">Automatización · Software</span>
+    </a>
+  </div>
+  <div class="pie-gigante" aria-hidden="true"><svg class="pie-base"><use href="#logo" width="100%" height="100%"/></svg><svg class="pie-luz"><use href="#logo" width="100%" height="100%"/></svg></div>
+</footer>
+
+<script src="../../_base/app.js?v=18335b07"></script>
+<script src="../caso.js?v=37180e4d"></script>
+</body>
+</html>
