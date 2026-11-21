@@ -256,7 +256,7 @@
     function poly(x,pts,fill,stroke,lw){ x.beginPath(); x.moveTo(pts[0][0],pts[0][1]); for(var i=1;i<pts.length;i++) x.lineTo(pts[i][0],pts[i][1]); x.closePath(); if(fill){ x.fillStyle=fill; x.fill(); } if(stroke){ x.strokeStyle=stroke; x.lineWidth=lw||1; x.stroke(); } }
     function linea(x,a,b,col,lw){ x.beginPath(); x.moveTo(a[0],a[1]); x.lineTo(b[0],b[1]); x.strokeStyle=col; x.lineWidth=lw||1; x.stroke(); }
     function punto(x,p,r,col,glow){ x.save(); if(glow){ x.shadowColor=col; x.shadowBlur=glow; } x.beginPath(); x.arc(p[0],p[1],r,0,6.283); x.fillStyle=col; x.fill(); x.restore(); }
-    function texto(x,p,s,col,tam){ x.font='700 '+(tam||12)+'px Inter,system-ui,sans-serif'; x.textAlign='center'; x.textBaseline='middle'; x.fillStyle=col; x.fillText(s,p[0],p[1]); }
+    function texto(x,p,s,col,tam){ x.font='700 '+(tam||12)+'px Outfit,system-ui,sans-serif'; x.textAlign='center'; x.textBaseline='middle'; x.fillStyle=col; x.fillText(s,p[0],p[1]); }
     function cerca(o,p){ var dx=o.px-p[0], dy=o.py-p[1]; return Math.sqrt(dx*dx+dy*dy); }
      
     function caja(x,P,bx,bz,a,b,y0,h,col,borde){
@@ -404,14 +404,14 @@
           for(k=0;k<4;k++){ var a2=s.lift[k]; if(a2<.08) continue;
             var cx=(k%2?1:-1)*cxz, cz=(k>1?1:-1)*cxz, p2=P(cx,1.75+.25*a2,cz), Zb=BARRIOS[k];
             x.save(); x.globalAlpha=Math.min(1,a2*1.2);
-            x.font='700 15px Inter,system-ui,sans-serif'; var w1=x.measureText(Zb.nombre).width;
-            x.font='600 11px Inter,system-ui,sans-serif'; var w2=x.measureText('Ver proyecto →').width;
+            x.font='700 15px Outfit,system-ui,sans-serif'; var w1=x.measureText(Zb.nombre).width;
+            x.font='600 11px Outfit,system-ui,sans-serif'; var w2=x.measureText('Ver proyecto →').width;
             var w=Math.max(w1,w2)+28, hh=46, rx=p2[0]-w/2, ry=p2[1]-hh/2; s.R[k]=[rx-8,ry-8,w+16,hh+16];
             x.beginPath(); if(x.roundRect) x.roundRect(rx,ry,w,hh,12); else x.rect(rx,ry,w,hh);
             x.fillStyle='rgba(8,10,14,.6)'; x.fill(); x.strokeStyle=c(ORO,.55); x.lineWidth=1.2; x.stroke();
             x.textAlign='center'; x.textBaseline='middle';
-            x.font='700 15px Inter,system-ui,sans-serif'; x.fillStyle=c(BL,1); x.fillText(Zb.nombre,p2[0],p2[1]-8);
-            x.font='600 11px Inter,system-ui,sans-serif'; x.fillStyle=c(ORO,1); x.fillText('Ver proyecto →',p2[0],p2[1]+11);
+            x.font='700 15px Outfit,system-ui,sans-serif'; x.fillStyle=c(BL,1); x.fillText(Zb.nombre,p2[0],p2[1]-8);
+            x.font='600 11px Outfit,system-ui,sans-serif'; x.fillStyle=c(ORO,1); x.fillText('Ver proyecto →',p2[0],p2[1]+11);
             linea(x,[p2[0],ry+hh],P(cx,1.15,cz),c(ORO,.45),1);
             x.restore(); }
         }},

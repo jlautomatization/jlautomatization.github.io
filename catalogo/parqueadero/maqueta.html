@@ -342,7 +342,7 @@
     const c=cnv.getContext('2d');
     c.fillStyle='rgba(8,12,18,.86)';
     rr(c,6,6,cnv.width-12,cnv.height-12,40); c.fill(); c.strokeStyle='rgba(74,147,214,.75)'; c.lineWidth=4; c.stroke();
-    c.fillStyle='#F5F6F8'; c.textAlign='center'; c.textBaseline='middle'; c.font='600 44px Inter, Helvetica, Arial';
+    c.fillStyle='#F5F6F8'; c.textAlign='center'; c.textBaseline='middle'; c.font='600 44px Outfit, Helvetica, Arial';
     lineas.forEach((l,i)=> c.fillText(l, cnv.width/2, cnv.height/2 + (i-(lineas.length-1)/2)*56));
     const sp=new THREE.Sprite(new THREE.SpriteMaterial({map:new THREE.CanvasTexture(cnv), depthTest:false}));
     sp.scale.set(ancho, ancho*cnv.height/cnv.width, 1);
@@ -682,7 +682,8 @@
 </html>
 <style>
 :root{--azul:#4A93D6;--tinta:#C9D1DC;--papel:#0C0D10;--niebla:rgba(255,255,255,.08);--acento:#F2B84B}
-html,body{background:#07090D;font-family:Inter,system-ui,-apple-system,'Segoe UI',sans-serif}
+@font-face {font-family:'Outfit';font-style:normal;font-weight:100 900;font-display:swap;src:url(../../letras/outfit-latin-ext.woff2) format('woff2');unicode-range:U+0100-02BA, U+02BD-02C5, U+02C7-02CC, U+02CE-02D7, U+02DD-02FF, U+0304, U+0308, U+0329, U+1D00-1DBF, U+1E00-1E9F, U+1EF2-1EFF, U+2020, U+20A0-20AB, U+20AD-20C4, U+2113, U+2C60-2C7F, U+A720-A7FF}@font-face {font-family:'Outfit';font-style:normal;font-weight:100 900;font-display:swap;src:url(../../letras/outfit-latin.woff2) format('woff2');unicode-range:U+0000-00FF, U+0131, U+0152-0153, U+02BB-02BC, U+02C6, U+02DA, U+02DC, U+0304, U+0308, U+0329, U+2000-206F, U+20AC, U+2122, U+2191, U+2193, U+2212, U+2215, U+FEFF, U+FFFD}
+html,body{background:#07090D;font-family:'Outfit',system-ui,-apple-system,'Segoe UI',sans-serif}
 .panel,body.mobil .panel{background:rgba(12,13,16,.96);border-top:1px solid rgba(255,255,255,.12);box-shadow:none}
 .panel h1{color:#F5F6F8;font-size:14px;letter-spacing:.06em}
 .panel h2,.lbl-mini{color:#8C93A0}

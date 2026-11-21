@@ -251,7 +251,7 @@
     function poly(x,pts,fill,stroke,lw){ x.beginPath(); x.moveTo(pts[0][0],pts[0][1]); for(var i=1;i<pts.length;i++) x.lineTo(pts[i][0],pts[i][1]); x.closePath(); if(fill){ x.fillStyle=fill; x.fill(); } if(stroke){ x.strokeStyle=stroke; x.lineWidth=lw||1; x.stroke(); } }
     function linea(x,a,b,col,lw){ x.beginPath(); x.moveTo(a[0],a[1]); x.lineTo(b[0],b[1]); x.strokeStyle=col; x.lineWidth=lw||1; x.stroke(); }
     function punto(x,p,r,col,glow){ x.save(); if(glow){ x.shadowColor=col; x.shadowBlur=glow; } x.beginPath(); x.arc(p[0],p[1],r,0,6.283); x.fillStyle=col; x.fill(); x.restore(); }
-    function texto(x,p,s,col,tam){ x.font='700 '+(tam||12)+'px Inter,system-ui,sans-serif'; x.textAlign='center'; x.textBaseline='middle'; x.fillStyle=col; x.fillText(s,p[0],p[1]); }
+    function texto(x,p,s,col,tam){ x.font='700 '+(tam||12)+'px Outfit,system-ui,sans-serif'; x.textAlign='center'; x.textBaseline='middle'; x.fillStyle=col; x.fillText(s,p[0],p[1]); }
     function cerca(o,p){ var dx=o.px-p[0], dy=o.py-p[1]; return Math.sqrt(dx*dx+dy*dy); }
      
     function caja(x,P,bx,bz,a,b,y0,h,col,borde){
