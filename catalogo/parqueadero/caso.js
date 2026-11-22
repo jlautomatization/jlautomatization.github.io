@@ -95,7 +95,8 @@ var RAIZ=CASO_SRC.replace(/caso\.js(\?.*)?$/,'');
   }
   function precargar(lista){ lista.reduce(function(p,n){ return p.then(function(){ return video(n); }); }, Promise.resolve()); }
    
-  var PAGINA_DE={viaje:'como-funciona/',escenas:'como-funciona/',ciego:'como-funciona/',bot:'como-funciona/',cadena:'como-funciona/',proyeccion:'lote/',video:'',problema:''};
+   
+  var PAGINA_DE={viaje:'como-funciona/',escenas:'como-funciona/',ciego:'como-funciona/',bot:'como-funciona/',cadena:'como-funciona/',noche:'como-funciona/',asi:'como-funciona/',plano:'como-funciona/',etapa:'como-funciona/',proyeccion:'como-funciona/',video:'',problema:'',solucion:''};
   function irA(id){ var d=$(id); if(d){ d.scrollIntoView({behavior:REDUCE?'auto':'smooth',block:'start'}); return; }
     if(id in PAGINA_DE) location.href=RAIZ+PAGINA_DE[id]+'#'+id; }
 
