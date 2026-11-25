@@ -1615,6 +1615,8 @@ body[data-sub="costos"] #contacto .meta a{display:inline-flex;align-items:center
   .pl-plan{flex:1 1 0}
   .pl-puntos{display:none}
   .pl-h{font-size:2.6rem}
-  .pc-t,.pc-eq{max-width:720px;margin-inline:0}
+  
+  .pc-t,.pc-eq{max-width:none;margin-inline:0}
+  .pc-cab,.pc-m{column-gap:24px}
   .pg-l{max-width:720px}
 }
