@@ -736,7 +736,7 @@ var RAIZ=CASO_SRC.replace(/caso\.js(\?.*)?$/,'');
   var secs=document.querySelectorAll('.cw'); if(!secs.length) return;
   var ops=document.querySelectorAll('.cw-op'), num=document.getElementById('cwNum'), mes=document.getElementById('cwMes');
   var kit=document.querySelector('.cw-kit'), comp=document.getElementById('cwComp'), linea=document.getElementById('cwLinea');
-  var PRECIO={s:2000000,g:20000000}, MES={s:200000,g:300000};
+  var PRECIO={s:640000,g:2720000}, MES={s:100000,g:300000};    
   var plan='s', cuenta=0, valor=PRECIO.s;
   function pesos(n){ return '$ '+Math.round(n).toLocaleString('es-CO').replace(/,/g,'.'); }
   function lim(x){ return Math.max(0,Math.min(1,x)); }
@@ -833,4 +833,15 @@ var RAIZ=CASO_SRC.replace(/caso\.js(\?.*)?$/,'');
   var v=document.getElementById('vxVid'), b=document.getElementById('vxPlay'); if(!v||!b) return;
   b.addEventListener('click',function(){ v.controls=true; v.parentNode.classList.add('on'); var p=v.play(); if(p&&p.catch) p.catch(function(){}); });
   v.addEventListener('ended',function(){ v.controls=false; v.parentNode.classList.remove('on'); v.load(); });
+})();
+
+ 
+(function(){
+  var r=document.getElementById('plRiel'); if(!r) return;
+  var ps=document.querySelectorAll('.pl-puntos i'), ts=r.querySelectorAll('.pl-plan'), raf=0;
+  function pinta(){ raf=0; var c=r.scrollLeft+r.clientWidth/2, k=0, m=1e9;
+    [].forEach.call(ts,function(el,i){ var d=Math.abs(el.offsetLeft+el.offsetWidth/2-c); if(d<m){ m=d; k=i; } });
+    [].forEach.call(ps,function(p,i){ p.classList.toggle('on', i===k); }); }
+  r.addEventListener('scroll',function(){ if(!raf) raf=requestAnimationFrame(pinta); },{passive:true});
+  pinta();
 })();
